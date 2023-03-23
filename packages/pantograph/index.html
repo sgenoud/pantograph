@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <title>Pantograph Example</title>
+
+    <style>
+      .app {
+        width: 100%;
+        display: flex;
+      }
+      svg {
+        width: 100%;
+        display: flex;
+        max-height: 90vh;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app"></div>
+    <script type="module">
+      import { draw, cut, fuseAll, exportSVG } from "./src/main.ts";
+
+      const updatePage = (drawing) => {
+        const svg = exportSVG(drawing, 0);
+        const canvas = document.getElementById("app");
+
+        canvas.innerHTML = svg;
+      };
+
+      const drawPolygon = (radius, sides) => {
+        const angle = 360 / sides;
+        const pen = draw([radius, 0]);
+        for (let i = 1; i < sides; i++) {
+          pen.polarLineTo([radius, angle * i]);
+        }
+        return pen.close().rotate(90);
+      };
+
+      const drawStrokedPolygon = (radius, sides, strokeWidth) => {
+        const outerPolygon = drawPolygon(radius + strokeWidth / 2, sides);
+        const innerPolygon = drawPolygon(radius - strokeWidth / 2, sides);
+        return cut(outerPolygon, innerPolygon);
+      };
+
+      const polarCopy = (drawing, radius, count) => {
+        const angle = 360 / count;
+
+        const copies = [];
+        for (let i = 0; i < count; i++) {
+          copies.push(drawing.translateY(radius).rotate(angle * i));
+        }
+        return copies;
+      };
+
+      const shape = drawStrokedPolygon(50, 6, 5).rotate(45);
+      const copies = polarCopy(shape, 60, 12);
+
+      updatePage(fuseAll(copies.slice()));
+    </script>
+  </body>
+</html>

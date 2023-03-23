@@ -1,0 +1,47 @@
+{
+  "name": "pantograph",
+  "version": "0.1.0",
+  "description": "Pantograph, the pure JS 2D CAD library",
+  "type": "module",
+  "main": "./dist/pantograph.cjs",
+  "module": "./dist/pantograph.js",
+  "types": "./dist/pantograph.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/pantograph.js",
+      "require": "./dist/pantograph.cjs"
+    },
+    "./models": {
+      "import": "./dist/pantograph/models.js",
+      "require": "./dist/pantograph/models.cjs"
+    }
+  },
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "test": "vitest"
+  },
+  "keywords": [
+    "2d",
+    "graphics",
+    "cad",
+    "svg"
+  ],
+  "author": "Steve Genoud",
+  "license": "AGPL",
+  "devDependencies": {
+    "@types/node": "^18.15.5",
+    "@typescript-eslint/eslint-plugin": "^5.55.0",
+    "@typescript-eslint/parser": "^5.55.0",
+    "eslint": "^8.36.0",
+    "prettier": "^2.8.4",
+    "terminal-image": "^2.0.0",
+    "typescript": "^5.0.2",
+    "vite": "^4.1.4",
+    "vite-plugin-dts": "^2.2.0",
+    "vitest": "^0.29.2"
+  }
+}
