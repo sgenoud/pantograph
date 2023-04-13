@@ -25,7 +25,13 @@
   <body>
     <div id="app"></div>
     <script type="module">
-      import { draw, cut, fuseAll, exportSVG } from "./src/main.ts";
+      import {
+        draw,
+        cut,
+        fuseAll,
+        exportSVG,
+        polarToCartesian,
+      } from "./src/main.ts";
 
       const updatePage = (drawing) => {
         const svg = exportSVG(drawing, 0);
@@ -37,8 +43,8 @@
       const drawPolygon = (radius, sides) => {
         const angle = 360 / sides;
         const pen = draw([radius, 0]);
-        for (let i = 1; i < sides; i++) {
-          pen.polarLineTo([radius, angle * i]);
+        for (let i = 1; i <= sides; i++) {
+          pen.bulgeArcTo(polarToCartesian(radius, angle * i), -0.1);
         }
         return pen.close().rotate(90);
       };
@@ -59,8 +65,8 @@
         return copies;
       };
 
-      const shape = drawStrokedPolygon(50, 6, 5).rotate(45);
-      const copies = polarCopy(shape, 60, 12);
+      const shape = drawStrokedPolygon(50, 6, 6).rotate(45);
+      const copies = polarCopy(shape, 80, 13);
 
       updatePage(fuseAll(copies.slice()));
     </script>

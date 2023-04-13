@@ -1,12 +1,15 @@
 import { Diagram } from "../../models/Diagram";
 import { Figure } from "../../models/Figure";
 import { Loop } from "../../models/Loop";
+import { Arc } from "../../models/segments/Arc";
+import { Line } from "../../models/segments/Line";
 import { svgDiagram } from "./svgDiagram";
 import { svgFigure } from "./svgFigure";
 import { svgLoop } from "./svgLoop";
+import { svgSegmentToPath } from "./svgSegment";
 import { wrapSVG } from "./wrapSVG";
 
-type Shape = Loop | Figure | Diagram;
+type Shape = Loop | Figure | Diagram | Arc | Line;
 
 export function svgBody(shape: Shape) {
   if (shape instanceof Diagram) {
@@ -15,6 +18,10 @@ export function svgBody(shape: Shape) {
     return svgFigure(shape);
   } else if (shape instanceof Loop) {
     return `<path d="${svgLoop(shape)}" />`;
+  } else if (shape instanceof Arc || shape instanceof Line) {
+    return `<path d="${`M ${shape.firstPoint.join(" ")}`} ${svgSegmentToPath(
+      shape
+    )}" />`;
   } else {
     throw new Error("Unknown shape type");
   }

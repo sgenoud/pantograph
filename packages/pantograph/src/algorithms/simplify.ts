@@ -2,10 +2,20 @@ import type { Stroke } from "../models/Stroke";
 import { Line } from "../models/segments/Line";
 import { Segment } from "../models/segments/Segment";
 import { parallel, sameVector } from "../vectorOperations";
+import { Arc } from "../models/segments/Arc";
 
 function canExtendSegment(segment1: Segment, segment2: Segment): boolean {
   if (segment1 instanceof Line && segment2 instanceof Line) {
     if (parallel(segment1.V, segment2.V)) {
+      return true;
+    }
+  }
+
+  if (segment1 instanceof Arc && segment2 instanceof Arc) {
+    if (
+      sameVector(segment1.center, segment2.center) &&
+      segment1.radius - segment2.radius < segment1.precision
+    ) {
       return true;
     }
   }
@@ -16,6 +26,17 @@ function extendSegment(segment1: Segment, segment2: Segment): Segment {
   if (segment1 instanceof Line && segment2 instanceof Line) {
     return new Line(segment1.firstPoint, segment2.lastPoint);
   }
+  if (segment1 instanceof Arc && segment2 instanceof Arc) {
+    // clockwise is the same for both segments, we would otherwise have some
+    // self-intersections in the stroke
+    return new Arc(
+      segment1.firstPoint,
+      segment2.lastPoint,
+      segment1.center,
+      segment1.clockwise
+    );
+  }
+
   throw new Error("Not implemented");
 }
 

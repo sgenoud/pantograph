@@ -92,4 +92,9 @@ export class TransformationMatrix {
     const [a, b, c, d, e, f] = this._matrix;
     return [a * x + b * y + c, d * x + e * y + f];
   }
+
+  keepsOrientation(): boolean {
+    const [a, , , , e] = this._matrix;
+    return a * e > 0;
+  }
 }
