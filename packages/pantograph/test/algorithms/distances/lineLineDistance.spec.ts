@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 
-import { lineLineDistance } from "../../../src/algorithms/distances";
+import { lineLineDistance } from "../../../src/algorithms/distances/lineLineDistance";
 import { Line } from "../../../src/models/segments/Line";
 
 describe("linelineDistance", () => {

@@ -4,6 +4,7 @@ import type { BoundingBox } from "./BoundingBox";
 import { Loop } from "./Loop";
 import { combineDifferentValues } from "../utils/allCombinations";
 import { Transformable } from "./utils/Transformable";
+import { exportJSON } from "../main";
 
 export class Figure extends Transformable<Figure> {
   readonly contour: Loop;
@@ -74,6 +75,7 @@ export function checkIsValidFigure(contour?: Loop, holes: Loop[] = []): void {
 
   for (const [hole1, hole2] of combineDifferentValues(holes)) {
     if (hole1.contains(hole2.firstPoint)) {
+      console.error(exportJSON(hole1), exportJSON(hole2));
       throw new Error("Holes must not be inside other holes");
     }
   }

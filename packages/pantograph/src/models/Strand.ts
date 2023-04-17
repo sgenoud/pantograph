@@ -5,6 +5,7 @@ import { sameVector } from "../vectorOperations";
 import { simplifySegments } from "../algorithms/simplify";
 
 export class Strand extends AbstractStroke<Strand> {
+  strokeType = "STRAND";
   reverse(): Strand {
     const reversedSegments = this.segments.map((segment) => segment.reverse());
     reversedSegments.reverse();

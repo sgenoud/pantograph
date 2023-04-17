@@ -1,6 +1,6 @@
-import { lineLineParams } from "./intersections";
-import type { Line } from "./segments/Line";
-import { distance } from "../vectorOperations";
+import { lineLineParams } from "../intersections/lineLineIntersection";
+import type { Line } from "../../models/segments/Line";
+import { distance } from "../../vectorOperations";
 
 function segmentPosition(intersectionParam: number) {
   if (intersectionParam < 0) return "before";

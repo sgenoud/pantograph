@@ -21,4 +21,4 @@ jobs:
           path-to-signatures: 'signatures/version1/cla.json'
           path-to-document: 'https://github.com/sgenoud/pantograph/blob/main/CLA/CLA.html' 
           branch: 'main'
-          allowlist: sgenoud
+          allowlist: sgenoud,

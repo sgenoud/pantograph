@@ -68,9 +68,13 @@ export function polarToCartesian(r: number, theta: number): Vector {
   return [x, y];
 }
 
-export function cartesianToPolar([x, y]: Vector): [number, number] {
-  const r = distance([x, y]);
-  const theta = Math.atan2(y, x);
+export function polarAngle([x, y]: Vector): number {
+  return Math.atan2(y, x);
+}
+
+export function cartesianToPolar(v: Vector): [number, number] {
+  const r = distance(v);
+  const theta = polarAngle(v);
 
   return [r, theta];
 }
@@ -82,4 +86,12 @@ export function parallel(v1: Vector, v2: Vector, precision = 1e-9): boolean {
   const yLength = squareLength(v2);
 
   return V1xV2 * V1xV2 < xLength * yLength * precision * precision;
+}
+
+export function perpendicular(v: Vector): Vector {
+  return [-v[1], v[0]];
+}
+
+export function perpendicularClockwise(v: Vector): Vector {
+  return [v[1], -v[0]];
 }

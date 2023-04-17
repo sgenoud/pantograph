@@ -2,6 +2,7 @@ import { Vector } from "./definitions";
 import { Diagram } from "./models/Diagram";
 import { Figure } from "./models/Figure";
 import { Loop } from "./models/Loop";
+import { tangentArc, threePointsArc } from "./models/segments/Arc";
 import { Line } from "./models/segments/Line";
 import { Segment } from "./models/segments/Segment";
 import { TransformationMatrix } from "./models/TransformationMatrix";
@@ -10,6 +11,10 @@ import {
   DEG2RAD,
   subtract,
   sameVector,
+  perpendicular,
+  add,
+  scalarMultiply,
+  distance,
 } from "./vectorOperations";
 
 function closeSegments(segments: Segment[]) {
@@ -57,6 +62,9 @@ export class DrawingPen {
   }
 
   protected saveSegment(segment: Segment) {
+    if (sameVector(segment.firstPoint, segment.lastPoint)) {
+      throw new Error(`Segment has no length, ${segment.repr}`);
+    }
     this.pendingSegments.push(segment);
     return this;
   }
@@ -107,6 +115,92 @@ export class DrawingPen {
 
     const [xDir, yDir] = previousCurve.tangentAtLastPoint;
     return this.line(xDir * distance, yDir * distance);
+  }
+
+  threePointsArcTo(end: Vector, midPoint: Vector): this {
+    this.saveSegment(threePointsArc(this.pointer, midPoint, end));
+    this.pointer = end;
+    return this;
+  }
+
+  threePointsArc(
+    xDist: number,
+    yDist: number,
+    viaXDist: number,
+    viaYDist: number
+  ): this {
+    const [x0, y0] = this.pointer;
+    return this.threePointsArcTo(
+      [x0 + xDist, y0 + yDist],
+      [x0 + viaXDist, y0 + viaYDist]
+    );
+  }
+
+  sagittaArcTo(end: Vector, sagitta: number): this {
+    if (!sagitta) return this.lineTo(end);
+    const chord = new Line(this.pointer, end);
+    const norm = perpendicular(chord.tangentAtFirstPoint);
+
+    const sagPoint: Vector = add(chord.midPoint, scalarMultiply(norm, sagitta));
+
+    return this.threePointsArcTo(end, sagPoint);
+  }
+
+  sagittaArc(xDist: number, yDist: number, sagitta: number): this {
+    return this.sagittaArcTo(
+      [xDist + this.pointer[0], yDist + this.pointer[1]],
+      sagitta
+    );
+  }
+
+  vSagittaArc(distance: number, sagitta: number): this {
+    return this.sagittaArc(0, distance, sagitta);
+  }
+
+  hSagittaArc(distance: number, sagitta: number): this {
+    return this.sagittaArc(distance, 0, sagitta);
+  }
+
+  bulgeArcTo(end: Vector, bulge: number): this {
+    if (!bulge) return this.lineTo(end);
+    const halfChord = distance(this.pointer, end) / 2;
+    const bulgeAsSagitta = -bulge * halfChord;
+
+    return this.sagittaArcTo(end, bulgeAsSagitta);
+  }
+
+  bulgeArc(xDist: number, yDist: number, bulge: number): this {
+    return this.bulgeArcTo(
+      [xDist + this.pointer[0], yDist + this.pointer[1]],
+      bulge
+    );
+  }
+
+  vBulgeArc(distance: number, bulge: number): this {
+    return this.bulgeArc(0, distance, bulge);
+  }
+
+  hBulgeArc(distance: number, bulge: number): this {
+    return this.bulgeArc(distance, 0, bulge);
+  }
+
+  tangentArcTo(end: Vector): this {
+    const previousCurve = this.pendingSegments.at(-1);
+
+    if (!previousCurve)
+      throw new Error("You need a previous curve to sketch a tangent arc");
+
+    this.saveSegment(
+      tangentArc(this.pointer, end, previousCurve.tangentAtLastPoint)
+    );
+
+    this.pointer = end;
+    return this;
+  }
+
+  tangentArc(xDist: number, yDist: number): this {
+    const [x0, y0] = this.pointer;
+    return this.tangentArcTo([xDist + x0, yDist + y0]);
   }
 
   close(): Diagram {

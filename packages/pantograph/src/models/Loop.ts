@@ -1,5 +1,5 @@
 import type { Vector } from "../definitions";
-import { rayIntersectionsCount } from "../algorithms/rayIntersections";
+import { rayIntersectionsCount } from "../algorithms/intersections/rayIntersections";
 import { AbstractStroke, checkValidStroke } from "./Stroke";
 import type { TransformationMatrix } from "./TransformationMatrix";
 import { simplifySegments } from "../algorithms/simplify";
@@ -7,6 +7,8 @@ import { Segment } from "./segments/Segment";
 import { sameVector } from "../vectorOperations";
 
 export class Loop extends AbstractStroke<Loop> {
+  strokeType = "LOOP";
+
   constructor(segments: Segment[], { ignoreChecks = false } = {}) {
     super(segments, { ignoreChecks: true });
     if (!ignoreChecks) checkValidLoop(segments);
@@ -34,6 +36,7 @@ export class Loop extends AbstractStroke<Loop> {
 
   contains(point: Vector): boolean {
     if (this.onStroke(point)) return false;
+    if (!this.boundingBox.contains(point)) return false;
 
     const intersections = this.segments.reduce((acc, segment) => {
       return acc + rayIntersectionsCount(point, segment);

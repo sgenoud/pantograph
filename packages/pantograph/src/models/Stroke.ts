@@ -15,6 +15,8 @@ export abstract class AbstractStroke<
 > extends Transformable<T> {
   readonly segments: Segment[];
 
+  abstract strokeType: string;
+
   get repr(): string {
     return this.segments.map((segment) => segment.repr).join("\n") + "\n";
   }

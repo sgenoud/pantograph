@@ -1,9 +1,7 @@
-import { crossProduct, squareLength, subtract } from "../vectorOperations";
-import { Line } from "../models/segments/Line";
-
-import type { Vector } from "../definitions";
-import { Segment } from "../models/segments/Segment";
-import removeDuplicatePoints from "../utils/removeDuplicatePoints";
+import { crossProduct, squareLength, subtract } from "../../vectorOperations";
+import { Line } from "../../models/segments/Line";
+import { Vector } from "../../definitions";
+import removeDuplicatePoints from "../../utils/removeDuplicatePoints";
 
 export const lineLineParams = (
   line1: { V: Vector; firstPoint: Vector; precision: number },
@@ -38,7 +36,6 @@ export const lineLineParams = (
     intersectionParam2,
   };
 };
-
 /**
  * Returns the intersection point between two segment of lines
  *
@@ -52,6 +49,7 @@ export const lineLineParams = (
  * intersect
  *
  **/
+
 export function lineLineIntersection(
   line1: Line,
   line2: Line,
@@ -75,6 +73,7 @@ export function lineLineIntersection(
     if (points.length === 0) return null;
     // We consider the case when the lines are collinear and touch only on
     // the last point. We consider that they do not overlap there
+    // We might want to revisit this choice
     else if (points.length === 1) return null;
     else if (points.length === 2) return new Line(points[0], points[1]);
     else {
@@ -90,43 +89,4 @@ export function lineLineIntersection(
   if (!line2.isValidParameter(intersectionParam2)) return null;
 
   return line1.paramPoint(intersectionParam1);
-}
-
-export function findIntersections(
-  segment1: Segment,
-  segment2: Segment,
-  precision?: number
-): Vector[] {
-  if (segment1 instanceof Line && segment2 instanceof Line) {
-    const intersection = lineLineIntersection(
-      segment1,
-      segment2,
-      false,
-      precision
-    );
-    if (intersection === null) return [];
-    return [intersection as Vector];
-  }
-  throw new Error("Not implemented");
-}
-
-export function findIntersectionsAndOverlaps(
-  segment1: Segment,
-  segment2: Segment,
-  precision?: number
-): { intersections: Vector[]; overlaps: Segment[]; count: number } {
-  if (segment1 instanceof Line && segment2 instanceof Line) {
-    const intersection = lineLineIntersection(
-      segment1,
-      segment2,
-      true,
-      precision
-    );
-    if (intersection === null)
-      return { intersections: [], overlaps: [], count: 0 };
-    if (intersection instanceof Line)
-      return { intersections: [], overlaps: [intersection], count: 1 };
-    return { intersections: [intersection], overlaps: [], count: 1 };
-  }
-  throw new Error("Not implemented");
 }

@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import type { Vector } from "../../../src/definitions";
 
-import { lineLineIntersection } from "../../../src/algorithms/intersections";
+import { lineLineIntersection } from "../../../src/algorithms/intersections/lineLineIntersection";
 import { Line } from "../../../src/models/segments/Line";
 
 import { TransformationMatrix } from "../../../src/models/TransformationMatrix";
