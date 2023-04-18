@@ -51,4 +51,6 @@ export abstract class AbstractSegment<
   [Symbol.for("nodejs.util.inspect.custom")]() {
     return this.repr;
   }
+
+  abstract paramPoint(t: number): Vector;
 }

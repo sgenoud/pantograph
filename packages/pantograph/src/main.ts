@@ -30,7 +30,7 @@ export type {
 } from "./models/exports";
 
 export { draw } from "./draw";
-export { fuse, fuseAll, cut, intersect } from "./operations";
+export { fuse, fuseAll, cut, intersect, offset } from "./operations";
 
 export { exportSVG, svgBody } from "./export/svg/exportSVG";
 

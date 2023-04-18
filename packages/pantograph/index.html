@@ -28,13 +28,16 @@
       import {
         draw,
         cut,
+        fuse,
         fuseAll,
         exportSVG,
+        offset,
         polarToCartesian,
       } from "./src/main.ts";
+      import { drawRect } from "./src/drawShape";
 
       const updatePage = (drawing) => {
-        const svg = exportSVG(drawing, 0);
+        const svg = exportSVG(drawing, 1);
         const canvas = document.getElementById("app");
 
         canvas.innerHTML = svg;
@@ -65,10 +68,17 @@
         return copies;
       };
 
+      /*
       const shape = drawStrokedPolygon(50, 6, 6).rotate(45);
       const copies = polarCopy(shape, 80, 13);
 
       updatePage(fuseAll(copies.slice()));
+      */
+
+      const rect = drawRect(32, 23, 2).figures[0].contour;
+      const fig = fuse(rect, rect.rotate(90));
+
+      updatePage([offset(fig, 4), fig, offset(fig, 15)]);
     </script>
   </body>
 </html>

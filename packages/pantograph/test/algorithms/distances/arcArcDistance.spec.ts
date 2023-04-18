@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 
 import { arcArcDistance } from "../../../src/algorithms/distances/arcArcDistance";
-import { threePointsArc } from "../../../src/models/segments/Arc";
+import { Arc, threePointsArc } from "../../../src/models/segments/Arc";
 
 describe("arcArcDistance", () => {
   it("is zero when intersecting", () => {
@@ -40,5 +40,17 @@ describe("arcArcDistance", () => {
     expect(arcArcDistance(arc2.rotate(180, arc1.center), arc1)).toBeCloseTo(
       1.36176
     );
+  });
+
+  it("works with crossing circles but non crossing arcs", () => {
+    const a1 = new Arc([320, 0], [280, 0], [300, 15.000000000000004], true);
+    const a2 = new Arc(
+      [275.99266686420884, 24.676735625661472],
+      [377.5646496724898, 167.5240988148737],
+      [256.25, 146.25],
+      false
+    );
+
+    expect(arcArcDistance(a1, a2)).toBeCloseTo(25);
   });
 });
