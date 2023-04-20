@@ -2,8 +2,6 @@ import { expect, test } from "vitest";
 import { draw } from "../src/draw";
 import { offset } from "../src/offsetOperations";
 import { exportJSON } from "../src/export/json/exportJSON";
-import { debugImg } from "./debug";
-import { Arc } from "../src/models/segments/Arc";
 
 const ex1Vertexes: [number, number, number][] = [
   [100, 100, -0.5],

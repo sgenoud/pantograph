@@ -9,7 +9,6 @@ import {
   normalize,
   polarToCartesian,
 } from "../../../src/vectorOperations";
-import { debugImg } from "../../debug";
 
 import { translation } from "../../quickShapes";
 

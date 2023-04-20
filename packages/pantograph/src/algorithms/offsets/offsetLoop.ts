@@ -16,9 +16,6 @@ import { findIntersectionsAndOverlaps } from "../intersections";
 import { Figure } from "../../models/Figure";
 import { stitchSegments } from "../stitchSegments";
 
-import { debugImg } from "../../../test/debug";
-import { exportJSON } from "../../main";
-
 const PRECISION = 1e-8;
 
 export function rawOffsets(
@@ -159,8 +156,6 @@ export function offsetLoop(loop: Loop, offset: number): Diagram {
   const correctedOffset = loop.clockwise ? offset : -offset;
   const offsettedArray = rawOffsets(loop.segments, correctedOffset);
 
-  debugImg([...offsettedArray, loop], "offsettedArray");
-
   if (offsettedArray.length < 2) return new Diagram();
 
   // We remove the self intersections with the use the the algorithm as described in
@@ -226,8 +221,6 @@ export function offsetLoop(loop: Loop, offset: number): Diagram {
     });
     return !closeSegment;
   });
-
-  debugImg([...prunedSegments, loop], "prunedSegments");
 
   if (!prunedSegments.length) return new Diagram();
 

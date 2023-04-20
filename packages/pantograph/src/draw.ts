@@ -1,3 +1,4 @@
+import { chamferSegments, filletSegments } from "./algorithms/filletSegments";
 import { Vector } from "./definitions";
 import { Diagram } from "./models/Diagram";
 import { Figure } from "./models/Figure";
@@ -17,20 +18,6 @@ import {
   distance,
 } from "./vectorOperations";
 
-function closeSegments(segments: Segment[]) {
-  if (!segments.length) throw new Error("No segments to close");
-  const firstSegment = segments[0];
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  const lastSegment = segments.at(-1)!;
-
-  if (sameVector(firstSegment.firstPoint, lastSegment.lastPoint))
-    return segments;
-  return [
-    ...segments,
-    new Line(lastSegment.lastPoint, firstSegment.firstPoint),
-  ];
-}
-
 function loopySegmentsToDiagram(segments: Segment[]) {
   // Here we will need to do our best to fix cases where the drawing is
   // broken in some way (i.e. self-intersecting loops)
@@ -43,11 +30,14 @@ export class DrawingPen {
   protected firstPoint: Vector;
   protected pendingSegments: Segment[];
 
+  protected _nextCorner: { radius: number; mode: "fillet" | "chamfer" } | null;
+
   constructor(origin: Vector = [0, 0]) {
     this.pointer = origin;
     this.firstPoint = origin;
 
     this.pendingSegments = [];
+    this._nextCorner = null;
   }
 
   movePointerTo(point: Vector): this {
@@ -65,7 +55,22 @@ export class DrawingPen {
     if (sameVector(segment.firstPoint, segment.lastPoint)) {
       throw new Error(`Segment has no length, ${segment.repr}`);
     }
-    this.pendingSegments.push(segment);
+
+    if (!this._nextCorner) {
+      this.pendingSegments.push(segment);
+      return this;
+    }
+
+    const previousSegment = this.pendingSegments.pop();
+    if (!previousSegment) throw new Error("bug in the custom corner algorithm");
+
+    const makeCorner =
+      this._nextCorner.mode === "chamfer" ? chamferSegments : filletSegments;
+
+    this.pendingSegments.push(
+      ...makeCorner(previousSegment, segment, this._nextCorner.radius)
+    );
+    this._nextCorner = null;
     return this;
   }
 
@@ -203,9 +208,50 @@ export class DrawingPen {
     return this.tangentArcTo([xDist + x0, yDist + y0]);
   }
 
+  customCorner(radius: number, mode: "fillet" | "chamfer" = "fillet") {
+    if (!this.pendingSegments.length)
+      throw new Error("You need a segment defined to fillet the angle");
+
+    this._nextCorner = { mode, radius };
+    return this;
+  }
+
+  protected _customCornerLastWithFirst(
+    radius: number,
+    mode: "fillet" | "chamfer" = "fillet"
+  ) {
+    if (!radius) return;
+
+    const lastSegment = this.pendingSegments.pop();
+    const firstSegment = this.pendingSegments.shift();
+
+    if (!lastSegment || !firstSegment)
+      throw new Error("Not enough curves to close and fillet");
+
+    const makeCorner = mode === "chamfer" ? chamferSegments : filletSegments;
+
+    this.pendingSegments.push(...makeCorner(lastSegment, firstSegment, radius));
+  }
+
   close(): Diagram {
-    const segments = closeSegments(this.pendingSegments);
-    return loopySegmentsToDiagram(segments);
+    if (!this.pendingSegments.length) throw new Error("No segments to close");
+    const firstSegment = this.pendingSegments[0];
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const lastSegment = this.pendingSegments.at(-1)!;
+
+    if (!sameVector(firstSegment.firstPoint, lastSegment.lastPoint)) {
+      this.lineTo(firstSegment.firstPoint);
+    }
+
+    if (this._nextCorner !== null) {
+      this._customCornerLastWithFirst(
+        this._nextCorner.radius,
+        this._nextCorner.mode
+      );
+      this._nextCorner = null;
+    }
+
+    return loopySegmentsToDiagram(this.pendingSegments);
   }
 
   closeWithMirror(): Diagram {

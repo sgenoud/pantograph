@@ -43,18 +43,26 @@
         canvas.innerHTML = svg;
       };
 
-      const drawPolygon = (radius, sides) => {
+      const drawPolygon = (radius, sides, { bulge = 0, fillet = 0 } = {}) => {
         const angle = 360 / sides;
         const pen = draw([radius, 0]);
         for (let i = 1; i <= sides; i++) {
-          pen.bulgeArcTo(polarToCartesian(radius, angle * i), -0.1);
+          pen.bulgeArcTo(polarToCartesian(radius, angle * i), bulge);
+          if (fillet) pen.customCorner(fillet);
         }
         return pen.close().rotate(90);
       };
 
-      const drawStrokedPolygon = (radius, sides, strokeWidth) => {
-        const outerPolygon = drawPolygon(radius + strokeWidth / 2, sides);
-        const innerPolygon = drawPolygon(radius - strokeWidth / 2, sides);
+      const drawStrokedPolygon = (
+        radius,
+        sides,
+        { strokeWidth, bulge, fillet = 0 } = {}
+      ) => {
+        const outerPolygon = drawPolygon(radius + strokeWidth / 2, sides, {
+          fillet,
+          bulge,
+        });
+        const innerPolygon = offset(outerPolygon, -strokeWidth);
         return cut(outerPolygon, innerPolygon);
       };
 
@@ -68,17 +76,14 @@
         return copies;
       };
 
-      /*
-      const shape = drawStrokedPolygon(50, 6, 6).rotate(45);
-      const copies = polarCopy(shape, 80, 13);
+      const shape = drawStrokedPolygon(50, 6, {
+        strokeWidth: 3,
+        fillet: 10,
+        bulge: -0.2,
+      }).rotate(45);
+      const copies = polarCopy(shape, 80, 17);
 
       updatePage(fuseAll(copies.slice()));
-      */
-
-      const rect = drawRect(32, 23, 2).figures[0].contour;
-      const fig = fuse(rect, rect.rotate(90));
-
-      updatePage([offset(fig, 4), fig, offset(fig, 15)]);
     </script>
   </body>
 </html>

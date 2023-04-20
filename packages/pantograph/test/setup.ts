@@ -8,14 +8,6 @@ export const repr = (vector: unknown): string => {
   return `[${vector[0]}, ${vector[1]}]`;
 };
 
-function sameVector(a: number[], b: number[]): boolean {
-  return (
-    Array.isArray(a) &&
-    Math.abs(a[0] - b[0]) < 1e-8 &&
-    Math.abs(a[1] - b[1]) < 1e-8
-  );
-}
-
 function sameLoop(a: Loop, b: Loop): boolean {
   const first = a.simplify();
   const second = b.simplify();

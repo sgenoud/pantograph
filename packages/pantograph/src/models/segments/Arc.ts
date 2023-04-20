@@ -232,11 +232,9 @@ export class Arc extends AbstractSegment<Arc> {
     if (!this.isValidParameter(param))
       throw new Error("Point is not on the arc");
 
-    const tangent = polarToCartesian(
-      1,
-      theta + (this.clockwise ? Math.PI / 2 : -Math.PI / 2)
-    );
-    return normalize(tangent);
+    const tangent = polarToCartesian(1, theta);
+    const fcn = this.clockwise ? perpendicularClockwise : perpendicular;
+    return fcn(normalize(tangent));
   }
 
   get tangentAtFirstPoint(): Vector {

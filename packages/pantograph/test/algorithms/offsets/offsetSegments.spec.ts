@@ -5,10 +5,9 @@ import {
   offsetArc,
   offsetLine,
 } from "../../../src/algorithms/offsets/offsetSegment";
-import { Arc, tangentArc } from "../../../src/models/segments/Arc";
+import { Arc } from "../../../src/models/segments/Arc";
 import { Line } from "../../../src/models/segments/Line";
 import { distance } from "../../../src/vectorOperations";
-import { debugImg } from "../../debug";
 
 describe("offsetSegments", () => {
   describe("offsetLine", () => {
@@ -86,8 +85,6 @@ describe("offsetSegments", () => {
     it("returns the degenerate case", () => {
       const arc = new Arc([0, 1], [1, 0], [0, 0]);
       const offset = offsetArc(arc, 1.5) as Line;
-
-      debugImg([arc, new Line(offset.firstPoint, offset.lastPoint)]);
 
       expect(offset).toBeInstanceOf(DegenerateSegment);
 
