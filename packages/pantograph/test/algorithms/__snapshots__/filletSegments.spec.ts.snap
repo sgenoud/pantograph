@@ -1,0 +1,1058 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`filletSegments > should fillet arcs 1`] = `
+[
+  Arc {
+    "_angularLength": null,
+    "_boundingBox": null,
+    "_firstAngle": null,
+    "_lastAngle": 3.5256563058730768,
+    "_radius": 133.82499999999993,
+    "center": [
+      153.3508823414237,
+      88.53717320028758,
+    ],
+    "clockwise": true,
+    "firstPoint": [
+      53,
+      0,
+    ],
+    "lastPoint": [
+      29.27507637820431,
+      38.39412782430834,
+    ],
+    "precision": 1e-9,
+    "segmentType": "ARC",
+  },
+  Arc {
+    "_angularLength": null,
+    "_boundingBox": null,
+    "_firstAngle": null,
+    "_lastAngle": null,
+    "_radius": 10,
+    "center": [
+      20.003579575423107,
+      34.64721615787985,
+    ],
+    "clockwise": false,
+    "firstPoint": [
+      29.27507637820431,
+      38.39412782430834,
+    ],
+    "lastPoint": [
+      18.612751862895866,
+      44.55002375340882,
+    ],
+    "precision": 1e-9,
+    "segmentType": "ARC",
+  },
+  Arc {
+    "_angularLength": null,
+    "_boundingBox": null,
+    "_firstAngle": null,
+    "_lastAngle": null,
+    "_radius": 133.82500000000024,
+    "center": [
+      0,
+      177.07434640057548,
+    ],
+    "clockwise": true,
+    "firstPoint": [
+      18.612751862895866,
+      44.55002375340882,
+    ],
+    "lastPoint": [
+      -26.5,
+      45.899346400575254,
+    ],
+    "precision": 1e-9,
+    "segmentType": "ARC",
+  },
+]
+`;
+
+exports[`filletSegments > should fillet two lines at right angle 1`] = `
+[
+  Line {
+    "_V": [
+      0.5,
+      0,
+    ],
+    "_boundingBox": null,
+    "firstPoint": [
+      0,
+      0,
+    ],
+    "lastPoint": [
+      0.5,
+      0,
+    ],
+    "precision": 1e-9,
+    "segmentType": "LINE",
+  },
+  Arc {
+    "_angularLength": null,
+    "_boundingBox": null,
+    "_firstAngle": null,
+    "_lastAngle": null,
+    "_radius": 0.5,
+    "center": [
+      0.5,
+      0.5,
+    ],
+    "clockwise": false,
+    "firstPoint": [
+      0.5,
+      0,
+    ],
+    "lastPoint": [
+      1,
+      0.5,
+    ],
+    "precision": 1e-9,
+    "segmentType": "ARC",
+  },
+  Line {
+    "_V": null,
+    "_boundingBox": null,
+    "firstPoint": [
+      1,
+      0.5,
+    ],
+    "lastPoint": [
+      1,
+      1,
+    ],
+    "precision": 1e-9,
+    "segmentType": "LINE",
+  },
+]
+`;
+
+exports[`filletSegments > should fillet two lines at right angle 2`] = `
+[
+  Line {
+    "_V": [
+      0,
+      -0.5,
+    ],
+    "_boundingBox": null,
+    "firstPoint": [
+      1,
+      1,
+    ],
+    "lastPoint": [
+      1,
+      0.5,
+    ],
+    "precision": 1e-9,
+    "segmentType": "LINE",
+  },
+  Arc {
+    "_angularLength": null,
+    "_boundingBox": null,
+    "_firstAngle": null,
+    "_lastAngle": null,
+    "_radius": 0.5,
+    "center": [
+      0.5,
+      0.5,
+    ],
+    "clockwise": true,
+    "firstPoint": [
+      1,
+      0.5,
+    ],
+    "lastPoint": [
+      0.5,
+      0,
+    ],
+    "precision": 1e-9,
+    "segmentType": "ARC",
+  },
+  Line {
+    "_V": null,
+    "_boundingBox": null,
+    "firstPoint": [
+      0.5,
+      0,
+    ],
+    "lastPoint": [
+      0,
+      0,
+    ],
+    "precision": 1e-9,
+    "segmentType": "LINE",
+  },
+]
+`;
+
+exports[`filletSegments > should fillet two lines at right angle 3`] = `
+[
+  Line {
+    "_V": [
+      -0.5,
+      0,
+    ],
+    "_boundingBox": null,
+    "firstPoint": [
+      0,
+      0,
+    ],
+    "lastPoint": [
+      -0.5,
+      0,
+    ],
+    "precision": 1e-9,
+    "segmentType": "LINE",
+  },
+  Arc {
+    "_angularLength": null,
+    "_boundingBox": null,
+    "_firstAngle": null,
+    "_lastAngle": null,
+    "_radius": 0.5,
+    "center": [
+      -0.5,
+      0.5,
+    ],
+    "clockwise": true,
+    "firstPoint": [
+      -0.5,
+      0,
+    ],
+    "lastPoint": [
+      -1,
+      0.5,
+    ],
+    "precision": 1e-9,
+    "segmentType": "ARC",
+  },
+  Line {
+    "_V": null,
+    "_boundingBox": null,
+    "firstPoint": [
+      -1,
+      0.5,
+    ],
+    "lastPoint": [
+      -1,
+      1,
+    ],
+    "precision": 1e-9,
+    "segmentType": "LINE",
+  },
+]
+`;
+
+exports[`filletSegments > should fillet two lines at right angle 4`] = `
+[
+  Line {
+    "_V": [
+      -0.5,
+      0,
+    ],
+    "_boundingBox": null,
+    "firstPoint": [
+      0,
+      0,
+    ],
+    "lastPoint": [
+      -0.5,
+      0,
+    ],
+    "precision": 1e-9,
+    "segmentType": "LINE",
+  },
+  Arc {
+    "_angularLength": null,
+    "_boundingBox": null,
+    "_firstAngle": null,
+    "_lastAngle": null,
+    "_radius": 0.5,
+    "center": [
+      -0.5,
+      -0.5,
+    ],
+    "clockwise": false,
+    "firstPoint": [
+      -0.5,
+      0,
+    ],
+    "lastPoint": [
+      -1,
+      -0.5,
+    ],
+    "precision": 1e-9,
+    "segmentType": "ARC",
+  },
+  Line {
+    "_V": null,
+    "_boundingBox": null,
+    "firstPoint": [
+      -1,
+      -0.5,
+    ],
+    "lastPoint": [
+      -1,
+      -1,
+    ],
+    "precision": 1e-9,
+    "segmentType": "LINE",
+  },
+]
+`;
+
+exports[`filletSegments > should fillet two lines at right angle 5`] = `
+[
+  Line {
+    "_V": [
+      0.5,
+      0,
+    ],
+    "_boundingBox": null,
+    "firstPoint": [
+      0,
+      0,
+    ],
+    "lastPoint": [
+      0.5,
+      0,
+    ],
+    "precision": 1e-9,
+    "segmentType": "LINE",
+  },
+  Arc {
+    "_angularLength": null,
+    "_boundingBox": null,
+    "_firstAngle": null,
+    "_lastAngle": null,
+    "_radius": 0.5,
+    "center": [
+      0.5,
+      -0.5,
+    ],
+    "clockwise": true,
+    "firstPoint": [
+      0.5,
+      0,
+    ],
+    "lastPoint": [
+      1,
+      -0.5,
+    ],
+    "precision": 1e-9,
+    "segmentType": "ARC",
+  },
+  Line {
+    "_V": null,
+    "_boundingBox": null,
+    "firstPoint": [
+      1,
+      -0.5,
+    ],
+    "lastPoint": [
+      1,
+      -1,
+    ],
+    "precision": 1e-9,
+    "segmentType": "LINE",
+  },
+]
+`;
+
+exports[`filletSegments > should fillet two lines with a big angle 1`] = `
+[
+  Line {
+    "_V": [
+      0.8388333388544771,
+      -1.6776666777089542,
+    ],
+    "_boundingBox": null,
+    "firstPoint": [
+      0,
+      3,
+    ],
+    "lastPoint": [
+      0.8388333388544771,
+      1.3223333222910458,
+    ],
+    "precision": 1e-9,
+    "segmentType": "LINE",
+  },
+  Arc {
+    "_angularLength": null,
+    "_boundingBox": null,
+    "_firstAngle": null,
+    "_lastAngle": null,
+    "_radius": 0.4999999999999999,
+    "center": [
+      0.3916197433545192,
+      1.098726524541067,
+    ],
+    "clockwise": true,
+    "firstPoint": [
+      0.8388333388544771,
+      1.3223333222910458,
+    ],
+    "lastPoint": [
+      0.7451731339477929,
+      0.7451731339477932,
+    ],
+    "precision": 1e-9,
+    "segmentType": "ARC",
+  },
+  Line {
+    "_V": null,
+    "_boundingBox": null,
+    "firstPoint": [
+      0.7451731339477929,
+      0.7451731339477932,
+    ],
+    "lastPoint": [
+      0,
+      0,
+    ],
+    "precision": 1e-9,
+    "segmentType": "LINE",
+  },
+]
+`;
+
+exports[`filletSegments > should fillet two lines with a big angle 2`] = `
+[
+  Line {
+    "_V": [
+      0.8388333388544771,
+      1.6776666777089542,
+    ],
+    "_boundingBox": null,
+    "firstPoint": [
+      0,
+      -3,
+    ],
+    "lastPoint": [
+      0.8388333388544771,
+      -1.3223333222910458,
+    ],
+    "precision": 1e-9,
+    "segmentType": "LINE",
+  },
+  Arc {
+    "_angularLength": null,
+    "_boundingBox": null,
+    "_firstAngle": null,
+    "_lastAngle": null,
+    "_radius": 0.4999999999999999,
+    "center": [
+      0.3916197433545192,
+      -1.098726524541067,
+    ],
+    "clockwise": false,
+    "firstPoint": [
+      0.8388333388544771,
+      -1.3223333222910458,
+    ],
+    "lastPoint": [
+      0.7451731339477929,
+      -0.7451731339477932,
+    ],
+    "precision": 1e-9,
+    "segmentType": "ARC",
+  },
+  Line {
+    "_V": null,
+    "_boundingBox": null,
+    "firstPoint": [
+      0.7451731339477929,
+      -0.7451731339477932,
+    ],
+    "lastPoint": [
+      0,
+      0,
+    ],
+    "precision": 1e-9,
+    "segmentType": "LINE",
+  },
+]
+`;
+
+exports[`filletSegments > should fillet two lines with a big angle 3`] = `
+[
+  Line {
+    "_V": [
+      -0.8388333388544771,
+      -1.6776666777089542,
+    ],
+    "_boundingBox": null,
+    "firstPoint": [
+      0,
+      3,
+    ],
+    "lastPoint": [
+      -0.8388333388544771,
+      1.3223333222910458,
+    ],
+    "precision": 1e-9,
+    "segmentType": "LINE",
+  },
+  Arc {
+    "_angularLength": null,
+    "_boundingBox": null,
+    "_firstAngle": null,
+    "_lastAngle": null,
+    "_radius": 0.4999999999999999,
+    "center": [
+      -0.3916197433545192,
+      1.098726524541067,
+    ],
+    "clockwise": false,
+    "firstPoint": [
+      -0.8388333388544771,
+      1.3223333222910458,
+    ],
+    "lastPoint": [
+      -0.7451731339477929,
+      0.7451731339477932,
+    ],
+    "precision": 1e-9,
+    "segmentType": "ARC",
+  },
+  Line {
+    "_V": null,
+    "_boundingBox": null,
+    "firstPoint": [
+      -0.7451731339477929,
+      0.7451731339477932,
+    ],
+    "lastPoint": [
+      0,
+      0,
+    ],
+    "precision": 1e-9,
+    "segmentType": "LINE",
+  },
+]
+`;
+
+exports[`filletSegments > should fillet two lines with a big angle 4`] = `
+[
+  Line {
+    "_V": [
+      -0.8388333388544771,
+      1.6776666777089542,
+    ],
+    "_boundingBox": null,
+    "firstPoint": [
+      0,
+      -3,
+    ],
+    "lastPoint": [
+      -0.8388333388544771,
+      -1.3223333222910458,
+    ],
+    "precision": 1e-9,
+    "segmentType": "LINE",
+  },
+  Arc {
+    "_angularLength": null,
+    "_boundingBox": null,
+    "_firstAngle": null,
+    "_lastAngle": null,
+    "_radius": 0.4999999999999999,
+    "center": [
+      -0.3916197433545192,
+      -1.098726524541067,
+    ],
+    "clockwise": true,
+    "firstPoint": [
+      -0.8388333388544771,
+      -1.3223333222910458,
+    ],
+    "lastPoint": [
+      -0.7451731339477929,
+      -0.7451731339477932,
+    ],
+    "precision": 1e-9,
+    "segmentType": "ARC",
+  },
+  Line {
+    "_V": null,
+    "_boundingBox": null,
+    "firstPoint": [
+      -0.7451731339477929,
+      -0.7451731339477932,
+    ],
+    "lastPoint": [
+      0,
+      0,
+    ],
+    "precision": 1e-9,
+    "segmentType": "LINE",
+  },
+]
+`;
+
+exports[`filletSegments > should fillet two lines with a small angle 1`] = `
+[
+  Line {
+    "_V": [
+      0.2950556451573624,
+      0.23604451612588995,
+    ],
+    "_boundingBox": null,
+    "firstPoint": [
+      0,
+      0.2,
+    ],
+    "lastPoint": [
+      0.2950556451573624,
+      0.43604451612588996,
+    ],
+    "precision": 1e-9,
+    "segmentType": "LINE",
+  },
+  Arc {
+    "_angularLength": null,
+    "_boundingBox": null,
+    "_firstAngle": null,
+    "_lastAngle": null,
+    "_radius": 0.04999999999999997,
+    "center": [
+      0.3262903975350836,
+      0.3970010756537385,
+    ],
+    "clockwise": true,
+    "firstPoint": [
+      0.2950556451573624,
+      0.43604451612588996,
+    ],
+    "lastPoint": [
+      0.36164573659441096,
+      0.36164573659441107,
+    ],
+    "precision": 1e-9,
+    "segmentType": "ARC",
+  },
+  Line {
+    "_V": null,
+    "_boundingBox": null,
+    "firstPoint": [
+      0.36164573659441096,
+      0.36164573659441107,
+    ],
+    "lastPoint": [
+      0,
+      0,
+    ],
+    "precision": 1e-9,
+    "segmentType": "LINE",
+  },
+]
+`;
+
+exports[`filletSegments > should fillet two lines with a small angle 2`] = `
+[
+  Line {
+    "_V": [
+      0.2943451895912623,
+      0.3532142275095147,
+    ],
+    "_boundingBox": null,
+    "firstPoint": [
+      0,
+      -0.2,
+    ],
+    "lastPoint": [
+      0.2943451895912623,
+      0.1532142275095147,
+    ],
+    "precision": 1e-9,
+    "segmentType": "LINE",
+  },
+  Arc {
+    "_angularLength": null,
+    "_boundingBox": null,
+    "_firstAngle": null,
+    "_lastAngle": null,
+    "_radius": 0.05000000000000003,
+    "center": [
+      0.2559341256113935,
+      0.1852234474927387,
+    ],
+    "clockwise": false,
+    "firstPoint": [
+      0.2943451895912623,
+      0.1532142275095147,
+    ],
+    "lastPoint": [
+      0.22057878655206611,
+      0.2205787865520661,
+    ],
+    "precision": 1e-9,
+    "segmentType": "ARC",
+  },
+  Line {
+    "_V": null,
+    "_boundingBox": null,
+    "firstPoint": [
+      0.22057878655206611,
+      0.2205787865520661,
+    ],
+    "lastPoint": [
+      0,
+      0,
+    ],
+    "precision": 1e-9,
+    "segmentType": "LINE",
+  },
+]
+`;
+
+exports[`filletSegments > should fillet two lines with a small angle 3`] = `
+[
+  Line {
+    "_V": [
+      -0.2950556451573624,
+      0.23604451612588995,
+    ],
+    "_boundingBox": null,
+    "firstPoint": [
+      0,
+      0.2,
+    ],
+    "lastPoint": [
+      -0.2950556451573624,
+      0.43604451612588996,
+    ],
+    "precision": 1e-9,
+    "segmentType": "LINE",
+  },
+  Arc {
+    "_angularLength": null,
+    "_boundingBox": null,
+    "_firstAngle": null,
+    "_lastAngle": null,
+    "_radius": 0.04999999999999997,
+    "center": [
+      -0.3262903975350836,
+      0.3970010756537385,
+    ],
+    "clockwise": false,
+    "firstPoint": [
+      -0.2950556451573624,
+      0.43604451612588996,
+    ],
+    "lastPoint": [
+      -0.36164573659441096,
+      0.36164573659441107,
+    ],
+    "precision": 1e-9,
+    "segmentType": "ARC",
+  },
+  Line {
+    "_V": null,
+    "_boundingBox": null,
+    "firstPoint": [
+      -0.36164573659441096,
+      0.36164573659441107,
+    ],
+    "lastPoint": [
+      0,
+      0,
+    ],
+    "precision": 1e-9,
+    "segmentType": "LINE",
+  },
+]
+`;
+
+exports[`filletSegments > should fillet two lines with a small angle 4`] = `
+[
+  Line {
+    "_V": [
+      -0.2943451895912623,
+      0.3532142275095147,
+    ],
+    "_boundingBox": null,
+    "firstPoint": [
+      0,
+      -0.2,
+    ],
+    "lastPoint": [
+      -0.2943451895912623,
+      0.1532142275095147,
+    ],
+    "precision": 1e-9,
+    "segmentType": "LINE",
+  },
+  Arc {
+    "_angularLength": null,
+    "_boundingBox": null,
+    "_firstAngle": null,
+    "_lastAngle": null,
+    "_radius": 0.05000000000000003,
+    "center": [
+      -0.2559341256113935,
+      0.1852234474927387,
+    ],
+    "clockwise": true,
+    "firstPoint": [
+      -0.2943451895912623,
+      0.1532142275095147,
+    ],
+    "lastPoint": [
+      -0.22057878655206611,
+      0.2205787865520661,
+    ],
+    "precision": 1e-9,
+    "segmentType": "ARC",
+  },
+  Line {
+    "_V": null,
+    "_boundingBox": null,
+    "firstPoint": [
+      -0.22057878655206611,
+      0.2205787865520661,
+    ],
+    "lastPoint": [
+      0,
+      0,
+    ],
+    "precision": 1e-9,
+    "segmentType": "LINE",
+  },
+]
+`;
+
+exports[`filletSegments > should fillet two lines with a small angle 5`] = `
+[
+  Line {
+    "_V": [
+      -0.2950556451573624,
+      -0.23604451612588995,
+    ],
+    "_boundingBox": null,
+    "firstPoint": [
+      0,
+      -0.2,
+    ],
+    "lastPoint": [
+      -0.2950556451573624,
+      -0.43604451612588996,
+    ],
+    "precision": 1e-9,
+    "segmentType": "LINE",
+  },
+  Arc {
+    "_angularLength": null,
+    "_boundingBox": null,
+    "_firstAngle": null,
+    "_lastAngle": null,
+    "_radius": 0.04999999999999997,
+    "center": [
+      -0.3262903975350836,
+      -0.3970010756537385,
+    ],
+    "clockwise": true,
+    "firstPoint": [
+      -0.2950556451573624,
+      -0.43604451612588996,
+    ],
+    "lastPoint": [
+      -0.36164573659441096,
+      -0.36164573659441107,
+    ],
+    "precision": 1e-9,
+    "segmentType": "ARC",
+  },
+  Line {
+    "_V": null,
+    "_boundingBox": null,
+    "firstPoint": [
+      -0.36164573659441096,
+      -0.36164573659441107,
+    ],
+    "lastPoint": [
+      0,
+      0,
+    ],
+    "precision": 1e-9,
+    "segmentType": "LINE",
+  },
+]
+`;
+
+exports[`filletSegments > should fillet two lines with a small angle 6`] = `
+[
+  Line {
+    "_V": [
+      -0.2943451895912623,
+      -0.3532142275095147,
+    ],
+    "_boundingBox": null,
+    "firstPoint": [
+      0,
+      0.2,
+    ],
+    "lastPoint": [
+      -0.2943451895912623,
+      -0.1532142275095147,
+    ],
+    "precision": 1e-9,
+    "segmentType": "LINE",
+  },
+  Arc {
+    "_angularLength": null,
+    "_boundingBox": null,
+    "_firstAngle": null,
+    "_lastAngle": null,
+    "_radius": 0.05000000000000003,
+    "center": [
+      -0.2559341256113935,
+      -0.1852234474927387,
+    ],
+    "clockwise": false,
+    "firstPoint": [
+      -0.2943451895912623,
+      -0.1532142275095147,
+    ],
+    "lastPoint": [
+      -0.22057878655206611,
+      -0.2205787865520661,
+    ],
+    "precision": 1e-9,
+    "segmentType": "ARC",
+  },
+  Line {
+    "_V": null,
+    "_boundingBox": null,
+    "firstPoint": [
+      -0.22057878655206611,
+      -0.2205787865520661,
+    ],
+    "lastPoint": [
+      0,
+      0,
+    ],
+    "precision": 1e-9,
+    "segmentType": "LINE",
+  },
+]
+`;
+
+exports[`filletSegments > should fillet two lines with a small angle 7`] = `
+[
+  Line {
+    "_V": [
+      0.2943451895912623,
+      -0.3532142275095147,
+    ],
+    "_boundingBox": null,
+    "firstPoint": [
+      0,
+      0.2,
+    ],
+    "lastPoint": [
+      0.2943451895912623,
+      -0.1532142275095147,
+    ],
+    "precision": 1e-9,
+    "segmentType": "LINE",
+  },
+  Arc {
+    "_angularLength": null,
+    "_boundingBox": null,
+    "_firstAngle": null,
+    "_lastAngle": null,
+    "_radius": 0.05000000000000003,
+    "center": [
+      0.2559341256113935,
+      -0.1852234474927387,
+    ],
+    "clockwise": true,
+    "firstPoint": [
+      0.2943451895912623,
+      -0.1532142275095147,
+    ],
+    "lastPoint": [
+      0.22057878655206611,
+      -0.2205787865520661,
+    ],
+    "precision": 1e-9,
+    "segmentType": "ARC",
+  },
+  Line {
+    "_V": null,
+    "_boundingBox": null,
+    "firstPoint": [
+      0.22057878655206611,
+      -0.2205787865520661,
+    ],
+    "lastPoint": [
+      0,
+      0,
+    ],
+    "precision": 1e-9,
+    "segmentType": "LINE",
+  },
+]
+`;
+
+exports[`filletSegments > should fillet two lines with a small angle 8`] = `
+[
+  Line {
+    "_V": [
+      0.2943451895912623,
+      -0.3532142275095147,
+    ],
+    "_boundingBox": null,
+    "firstPoint": [
+      0,
+      0.2,
+    ],
+    "lastPoint": [
+      0.2943451895912623,
+      -0.1532142275095147,
+    ],
+    "precision": 1e-9,
+    "segmentType": "LINE",
+  },
+  Arc {
+    "_angularLength": null,
+    "_boundingBox": null,
+    "_firstAngle": null,
+    "_lastAngle": null,
+    "_radius": 0.05000000000000003,
+    "center": [
+      0.2559341256113935,
+      -0.1852234474927387,
+    ],
+    "clockwise": true,
+    "firstPoint": [
+      0.2943451895912623,
+      -0.1532142275095147,
+    ],
+    "lastPoint": [
+      0.22057878655206611,
+      -0.2205787865520661,
+    ],
+    "precision": 1e-9,
+    "segmentType": "ARC",
+  },
+  Line {
+    "_V": null,
+    "_boundingBox": null,
+    "firstPoint": [
+      0.22057878655206611,
+      -0.2205787865520661,
+    ],
+    "lastPoint": [
+      0,
+      0,
+    ],
+    "precision": 1e-9,
+    "segmentType": "LINE",
+  },
+]
+`;

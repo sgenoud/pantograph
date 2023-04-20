@@ -30,7 +30,7 @@ export function arcArcDistance(arc1: Arc, arc2: Arc): number {
   const centerCenterDirection = normalize(subtract(arc2.center, arc1.center));
 
   const containedCircles =
-    centersDistance - (arc1.radius + arc2.radius) < arc1.precision;
+    centersDistance - Math.abs(arc1.radius - arc2.radius) < arc1.precision;
 
   let arc1ClosestPointAngle = polarAngle(centerCenterDirection);
   if (containedCircles && arc2.radius > arc1.radius) {
@@ -40,13 +40,12 @@ export function arcArcDistance(arc1: Arc, arc2: Arc): number {
     ? arc1ClosestPointAngle
     : arc1ClosestPointAngle + Math.PI;
 
-  if (
-    arc1.isValidParameter(arc1.angleToParam(arc1ClosestPointAngle)) &&
-    arc2.isValidParameter(arc2.angleToParam(arc2ClosestPointAngle))
-  ) {
-    return containedCircles
-      ? Math.abs(arc1.radius - arc2.radius) - centersDistance
-      : centersDistance - (arc1.radius + arc2.radius);
+  const p1 = arc1.angleToParam(arc1ClosestPointAngle);
+  const p2 = arc2.angleToParam(arc2ClosestPointAngle);
+
+  if (arc1.isValidParameter(p1) && arc2.isValidParameter(p2)) {
+    // There might be some optimization here (with the center distance and radius differences)
+    return distance(arc1.paramPoint(p1), arc2.paramPoint(p2));
   }
 
   return Math.min(

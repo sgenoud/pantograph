@@ -8,6 +8,7 @@ import {
   dotProduct,
   normalize,
   parallel,
+  perpendicular,
   reprVector,
   sameVector,
   scalarMultiply,
@@ -106,6 +107,10 @@ export class Line extends AbstractSegment<Line> {
   tangentAt(point: Vector): Vector {
     if (!this.isOnSegment(point)) throw new Error("Point is not on segment");
     return normalize(this.V);
+  }
+
+  get normalVector() {
+    return perpendicular(normalize(this.V));
   }
 
   get tangentAtFirstPoint(): Vector {

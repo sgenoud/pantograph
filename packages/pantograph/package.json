@@ -44,5 +44,10 @@
     "vite-plugin-dts": "^2.2.0",
     "vitest": "^0.29.2"
   },
-  "gitHead": "a2b9db5c938cdbd7452e96175b403fac8f4caf5b"
+  "gitHead": "a2b9db5c938cdbd7452e96175b403fac8f4caf5b",
+  "dependencies": {
+    "-": "^0.0.1",
+    "@types/flatbush": "^3.3.0",
+    "flatbush": "^4.1.0"
+  }
 }
