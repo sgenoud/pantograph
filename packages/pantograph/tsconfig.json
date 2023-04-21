@@ -8,6 +8,7 @@
     "sourceMap": true,
     "skipLibCheck": true,
     "declaration": true,
+    "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true
   },
   "include": ["src"]

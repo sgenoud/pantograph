@@ -9,81 +9,62 @@
     />
     <title>Pantograph Example</title>
 
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"
+    />
+
     <style>
-      .app {
-        width: 100%;
+      #app {
         display: flex;
+        flex-grow: 1;
       }
       svg {
         width: 100%;
+        height: 100%;
+      }
+      main {
+        width: 100%;
         display: flex;
-        max-height: 90vh;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        max-height: 100vh;
+        overflow: hidden;
       }
     </style>
   </head>
 
   <body>
-    <div id="app"></div>
-    <script type="module">
-      import {
-        draw,
-        cut,
-        fuse,
-        fuseAll,
-        exportSVG,
-        offset,
-        polarToCartesian,
-      } from "./src/main.ts";
-      import { drawRect } from "./src/drawShape";
+    <main>
+      <section class="container">
+        <span role="button" onClick="showMandala()">Mandala</span>
+        <span role="button" onClick="showStar()">Star</span>
+      </section>
+      <div id="app"></div>
+      <script type="module">
+        import { exportSVG } from "./src/main.ts";
+        import mandala from "./examples/mandala.js";
+        import drawStar from "./examples/star.js";
 
-      const updatePage = (drawing) => {
-        const svg = exportSVG(drawing, 1);
-        const canvas = document.getElementById("app");
+        const updatePage = (drawing) => {
+          const svg = exportSVG(drawing, 1);
+          const canvas = document.getElementById("app");
 
-        canvas.innerHTML = svg;
-      };
+          canvas.innerHTML = svg;
+        };
 
-      const drawPolygon = (radius, sides, { bulge = 0, fillet = 0 } = {}) => {
-        const angle = 360 / sides;
-        const pen = draw([radius, 0]);
-        for (let i = 1; i <= sides; i++) {
-          pen.bulgeArcTo(polarToCartesian(radius, angle * i), bulge);
-          if (fillet) pen.customCorner(fillet);
-        }
-        return pen.close().rotate(90);
-      };
+        window.showMandala = () => {
+          updatePage(mandala());
+        };
 
-      const drawStrokedPolygon = (
-        radius,
-        sides,
-        { strokeWidth, bulge, fillet = 0 } = {}
-      ) => {
-        const outerPolygon = drawPolygon(radius + strokeWidth / 2, sides, {
-          fillet,
-          bulge,
-        });
-        const innerPolygon = offset(outerPolygon, -strokeWidth);
-        return cut(outerPolygon, innerPolygon);
-      };
+        window.showStar = () => {
+          updatePage(drawStar(7));
+        };
 
-      const polarCopy = (drawing, radius, count) => {
-        const angle = 360 / count;
-
-        const copies = [];
-        for (let i = 0; i < count; i++) {
-          copies.push(drawing.translateY(radius).rotate(angle * i));
-        }
-        return copies;
-      };
-
-      const shape = drawStrokedPolygon(50, 6, {
-        strokeWidth: 3,
-        fillet: 10,
-        bulge: -0.2,
-      }).rotate(45);
-      const copies = polarCopy(shape, 80, 17);
-
-      updatePage(fuseAll(copies.slice()));
-    </script>
+        showStar();
+      </script>
+    </main>
   </body>
 </html>
