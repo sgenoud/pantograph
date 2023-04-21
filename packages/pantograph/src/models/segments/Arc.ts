@@ -369,8 +369,8 @@ export function tangentArc(
   const clockwise =
     crossProduct(
       subtract(center, firstPoint),
-      add(firstPoint, tangentAtFirstPoint)
-    ) > 0;
+      subtract(center, add(firstPoint, tangentAtFirstPoint))
+    ) < 0;
 
   return new Arc(firstPoint, lastPoint, center, clockwise, {
     ignoreChecks: true,

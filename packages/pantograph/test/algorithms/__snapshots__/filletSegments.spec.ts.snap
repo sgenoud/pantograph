@@ -593,6 +593,64 @@ exports[`filletSegments > should fillet two lines with a big angle 4`] = `
 ]
 `;
 
+exports[`filletSegments > should fillet two lines with a big counter clockwise angle 1`] = `
+[
+  Line {
+    "_V": [
+      -39.894037411434816,
+      17.274624928914665,
+    ],
+    "_boundingBox": null,
+    "firstPoint": [
+      50,
+      0,
+    ],
+    "lastPoint": [
+      10.105962588565184,
+      17.274624928914665,
+    ],
+    "precision": 1e-9,
+    "segmentType": "LINE",
+  },
+  Arc {
+    "_angularLength": null,
+    "_boundingBox": null,
+    "_firstAngle": null,
+    "_lastAngle": null,
+    "_radius": 0.9999999999999117,
+    "center": [
+      10.503322295684661,
+      18.19228786439683,
+    ],
+    "clockwise": true,
+    "firstPoint": [
+      10.105962588565184,
+      17.274624928914665,
+    ],
+    "lastPoint": [
+      9.907282735005428,
+      17.38933279584995,
+    ],
+    "precision": 1e-9,
+    "segmentType": "ARC",
+  },
+  Line {
+    "_V": null,
+    "_boundingBox": null,
+    "firstPoint": [
+      9.907282735005428,
+      17.38933279584995,
+    ],
+    "lastPoint": [
+      -24.99999999999999,
+      43.30127018922194,
+    ],
+    "precision": 1e-9,
+    "segmentType": "LINE",
+  },
+]
+`;
+
 exports[`filletSegments > should fillet two lines with a small angle 1`] = `
 [
   Line {

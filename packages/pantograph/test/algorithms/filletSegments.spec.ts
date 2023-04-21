@@ -147,6 +147,21 @@ describe("filletSegments", () => {
     checkFillet(f4, 0.5);
   });
 
+  it("should fillet two lines with a big counter clockwise angle", () => {
+    const angle = Math.PI / 3;
+    const f1 = filletSegments(
+      new Line([50, 0], [20 * Math.cos(angle), 20 * Math.sin(angle)]),
+      new Line(
+        [20 * Math.cos(angle), 20 * Math.sin(angle)],
+        [50 * Math.cos(2 * angle), 50 * Math.sin(2 * angle)]
+      ),
+      1
+    );
+
+    expect(f1[1].clockwise).toBe(true);
+    checkFillet(f1, 1);
+  });
+
   it("should fillet arcs", () => {
     const a1 = new Arc(
       [53, 0],
