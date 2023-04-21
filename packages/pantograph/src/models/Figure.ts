@@ -69,7 +69,12 @@ export function checkIsValidFigure(contour?: Loop, holes: Loop[] = []): void {
     }
   }
 
-  if (holes.some((hole) => !contour.contains(hole.firstPoint))) {
+  if (
+    holes.some(
+      (hole) =>
+        !contour.contains(hole.firstPoint) && !contour.onStroke(hole.firstPoint)
+    )
+  ) {
     throw new Error("Holes must be inside the contour");
   }
 

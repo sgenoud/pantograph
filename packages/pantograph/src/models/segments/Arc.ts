@@ -216,6 +216,8 @@ export class Arc extends AbstractSegment<Arc> {
   }
 
   isOnSegment(point: Vector): boolean {
+    if (sameVector(point, this.firstPoint) || sameVector(point, this.lastPoint))
+      return true;
     const [r, theta] = polarCoordsFromCenter(point, this.center);
     if (Math.abs(r - this.radius) > this.precision) return false;
 

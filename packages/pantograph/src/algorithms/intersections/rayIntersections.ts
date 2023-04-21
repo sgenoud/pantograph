@@ -51,7 +51,8 @@ const rayArcIntersectionsCount = (point: Vector, arc: Arc) => {
   const squareEpsilon = epsilon * epsilon;
 
   // On the border
-  if (Math.abs(squareDist - squareR) < squareEpsilon) return 0;
+  if (Math.abs(squareDist - squareR) < squareEpsilon && arc.isOnSegment(point))
+    return 0;
 
   const pointOutsideCircle = squareDist - squareR > squareEpsilon;
 

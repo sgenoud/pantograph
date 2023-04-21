@@ -7,6 +7,7 @@ import { reprVector, sameVector } from "../../vectorOperations";
 import { Loop } from "../../models/Loop";
 import { findIntersectionsAndOverlaps } from "../intersections";
 import removeDuplicatePoints from "../../utils/removeDuplicatePoints";
+import { stitchSegments } from "../stitchSegments";
 
 const rotateToStartAt = (segments: Segment[], point: Vector) => {
   const startIndex = segments.findIndex((segment: Segment) => {
@@ -223,7 +224,7 @@ function loopIntersectionStrands(
   }
 
   // We group segments between intersections in strands
-  const strandsFromFirst = Array.from(
+  let strandsFromFirst = Array.from(
     strandsBetweenIntersections(
       firstCurveSegments,
       allIntersections,
@@ -246,7 +247,12 @@ function loopIntersectionStrands(
     ) ||
     (allCommonSegments.length > 0 && strandsFromSecond[0].segmentsCount !== 1)
   ) {
-    strandsFromSecond = strandsFromSecond.reverse().map((s) => s.reverse());
+    strandsFromSecond = strandsFromSecond.map((s) => s.reverse()).reverse();
+    if (
+      !sameVector(strandsFromSecond[0].lastPoint, strandsFromFirst[0].lastPoint)
+    ) {
+      strandsFromFirst = strandsFromFirst.map((s) => s.reverse()).reverse();
+    }
   }
 
   return zip([strandsFromFirst, strandsFromSecond]).map(([first, second]) => {
@@ -280,24 +286,10 @@ function mergeStrandsAsLoop(strands: Strand[]) {
   return new Loop(outStrand.segments);
 }
 
-function groupLoops(inputStrands: Strand[]): Loop[] {
-  if (!inputStrands.length) return [];
-
-  const startPoints = inputStrands.map((c) => c.firstPoint);
-  let endPoints = inputStrands.map((c) => c.lastPoint);
-  endPoints = endPoints.slice(-1).concat(endPoints.slice(0, -1));
-
-  const discontinuities = zip([startPoints, endPoints]).flatMap(
-    ([startPoint, endPoint], index) => {
-      if (!sameVector(startPoint, endPoint)) {
-        return index;
-      }
-      return [];
-    }
-  );
-
-  if (!discontinuities.length) return [mergeStrandsAsLoop(inputStrands)];
-
+function mergeDiscontinuities(
+  inputStrands: Strand[],
+  discontinuities: number[]
+) {
   const strands = zip([
     discontinuities.slice(0, -1),
     discontinuities.slice(1),
@@ -314,6 +306,34 @@ function groupLoops(inputStrands: Strand[]): Loop[] {
   strands.push(mergeStrandsAsLoop(lastStrand));
 
   return strands;
+}
+
+function groupLoops(inputStrands: Strand[]): Loop[] {
+  if (!inputStrands.length) return [];
+
+  const startPoints = inputStrands.map((c) => c.firstPoint);
+  let endPoints = inputStrands.map((c) => c.lastPoint);
+  endPoints = endPoints.slice(-1).concat(endPoints.slice(0, -1));
+
+  const discontinuities = zip([startPoints, endPoints]).flatMap(
+    ([startPoint, endPoint], index) => {
+      if (!sameVector(startPoint, endPoint)) {
+        return index;
+      }
+      return [];
+    }
+  );
+
+  try {
+    return mergeDiscontinuities(inputStrands, discontinuities);
+  } catch (e) {
+    // Sometimes the shapes are weird enough that our assumptions about the
+    // strands do not work
+    return stitchSegments(inputStrands.flatMap((s) => s.segments))
+      .filter((c) => c.length > 1)
+      .filter((c) => sameVector(c[0].firstPoint, c.at(-1)!.lastPoint))
+      .map((c) => new Loop(c));
+  }
 }
 
 const extendStrandList = (strandList: Strand[], strand: Strand) => {
