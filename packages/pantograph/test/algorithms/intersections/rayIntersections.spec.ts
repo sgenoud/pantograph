@@ -36,5 +36,31 @@ describe("rayIntersectionsCount", () => {
       const arc = threeQuarterCircle(4);
       expect(rayIntersectionsCount([5, 1], arc)).toBe(0);
     });
+
+    it("should return 1 for this arc that was buggy", () => {
+      const arc = new Arc(
+        [-7.421792193014102, 39.703081476706785],
+        [53.26056233274296, 29.249999999999968],
+        [-7.721149961268838e-14, -98.57534959858313],
+        true
+      );
+
+      expect(
+        rayIntersectionsCount([-45.281051156689436, 32.28959569290916], arc)
+      ).toBe(1);
+    });
+
+    it.only("should return 1 for this other arc that was buggy", () => {
+      const arc = new Arc(
+        [38.52710211020566, 42.26221778725147],
+        [34.48816871800838, 46.554145764976006],
+        [137.3302811663715, 139.2876747992915],
+        true
+      );
+
+      const point: [number, number] = [-38.52710211020651, 42.262217787250734];
+
+      expect(rayIntersectionsCount(point, arc)).toBe(1);
+    });
   });
 });

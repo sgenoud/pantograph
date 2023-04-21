@@ -361,35 +361,32 @@ describe("boolean for loops", () => {
       expect(intersected[0]).toBeLoop(loops[1]);
     });
 
-    it.fails(
-      "handles shapes have sub shapes starting with common segments",
-      () => {
-        const loops = [
-          polygon([
-            [0, 2],
-            [3, 2],
-            [3, -2],
-            [0, -2],
-            [0, -1],
-            [2, -1],
-            [2, 1],
-            [0, 1],
-          ]),
-          rect(2, 4),
-        ];
-        const smallRects = [
-          rect(1, 1).transform(translation({ x: 0.5, y: 1.5 })),
-          rect(1, 1).transform(translation({ x: 0.5, y: -1.5 })),
-        ];
-        expect(intersectLoops(loops[0], loops[1])).toBeEquivalentLoops(
-          smallRects
-        );
+    it("handles shapes have sub shapes starting with common segments", () => {
+      const loops = [
+        polygon([
+          [0, 2],
+          [3, 2],
+          [3, -2],
+          [0, -2],
+          [0, -1],
+          [2, -1],
+          [2, 1],
+          [0, 1],
+        ]),
+        rect(2, 4),
+      ];
+      const smallRects = [
+        rect(1, 1).transform(translation({ x: 0.5, y: 1.5 })),
+        rect(1, 1).transform(translation({ x: 0.5, y: -1.5 })),
+      ];
+      expect(intersectLoops(loops[0], loops[1])).toBeEquivalentLoops(
+        smallRects
+      );
 
-        expect(intersectLoops(loops[1], loops[0])).toBeEquivalentLoops(
-          smallRects
-        );
-      }
-    );
+      expect(intersectLoops(loops[1], loops[0])).toBeEquivalentLoops(
+        smallRects
+      );
+    });
 
     it("handles cutting a weird shape from a square", () => {
       const p1 = polygon([

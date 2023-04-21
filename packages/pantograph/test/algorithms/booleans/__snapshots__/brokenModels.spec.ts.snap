@@ -1,0 +1,336 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`tests that correspond to bugs found in real models > should cut the model in fixture 1 1`] = `
+Diagram {
+  "_boundingBox": null,
+  "figures": [
+    Figure {
+      "contour": Loop {
+        "_boundingBox": BoundingBox {
+          "xMax": 9.30045367892232,
+          "xMin": -9.300453678922278,
+          "yMax": 38.897163531315805,
+          "yMin": 17.416985258030042,
+        },
+        "_clockwise": null,
+        "segments": [
+          Arc {
+            "_angularLength": 0.06840761595045941,
+            "_boundingBox": BoundingBox {
+              "xMax": 9.30045367892232,
+              "xMin": -9.300453678922278,
+              "yMax": 17.57605623427429,
+              "yMin": 17.416985258030042,
+            },
+            "_firstAngle": 1.5365925188196663,
+            "_lastAngle": 1.6050001347701257,
+            "_radius": 271.9658397803519,
+            "center": [
+              -1.3526572670654706e-13,
+              -254.38978354707763,
+            ],
+            "clockwise": false,
+            "firstPoint": [
+              9.30045367792232,
+              17.41698525903007,
+            ],
+            "lastPoint": [
+              -9.300453677922278,
+              17.416985259030042,
+            ],
+            "precision": 1e-9,
+            "segmentType": "ARC",
+          },
+          Arc {
+            "_angularLength": 0.08705411024424858,
+            "_boundingBox": BoundingBox {
+              "xMax": 1.0000475014143811e-9,
+              "xMin": -9.300453678922278,
+              "yMax": 38.897163531315805,
+              "yMin": 17.416985258030042,
+            },
+            "_firstAngle": 2.7765107218117855,
+            "_lastAngle": 2.689456611567537,
+            "_radius": 268.96583978035187,
+            "center": [
+              241.93906132136178,
+              -78.61076631141151,
+            ],
+            "clockwise": true,
+            "firstPoint": [
+              -9.300453677922278,
+              17.416985259030042,
+            ],
+            "lastPoint": [
+              4.750141438099034e-14,
+              38.89716353031581,
+            ],
+            "precision": 1e-9,
+            "segmentType": "ARC",
+          },
+          Arc {
+            "_angularLength": 0.08705411024424853,
+            "_boundingBox": BoundingBox {
+              "xMax": 9.30045367892232,
+              "xMin": -9.99952498585619e-10,
+              "yMax": 38.897163531315805,
+              "yMin": 17.41698525803007,
+            },
+            "_firstAngle": 0.452136042022255,
+            "_lastAngle": 0.36508193177800646,
+            "_radius": 268.9658397803519,
+            "center": [
+              -241.93906132136186,
+              -78.6107663114112,
+            ],
+            "clockwise": true,
+            "firstPoint": [
+              4.750141438099034e-14,
+              38.89716353031581,
+            ],
+            "lastPoint": [
+              9.30045367792232,
+              17.41698525903007,
+            ],
+            "precision": 1e-9,
+            "segmentType": "ARC",
+          },
+        ],
+        "strokeType": "LOOP",
+      },
+      "holes": [],
+    },
+    Figure {
+      "contour": Loop {
+        "_boundingBox": BoundingBox {
+          "xMax": 25.13270200049966,
+          "xMin": -25.132702000499915,
+          "yMax": 92.5037648683675,
+          "yMin": 41.76493318182681,
+        },
+        "_clockwise": null,
+        "segments": [
+          Arc {
+            "_angularLength": 0.021475252065441985,
+            "_boundingBox": BoundingBox {
+              "xMax": 7.661146116053629,
+              "xMin": 4.8780107618016935,
+              "yMax": 53.512212067067644,
+              "yMin": 48.45095599931289,
+            },
+            "_firstAngle": 2.649571335313931,
+            "_lastAngle": 2.628096083248489,
+            "_radius": 268.9658397803519,
+            "center": [
+              241.93906132136178,
+              -78.61076631141151,
+            ],
+            "clockwise": true,
+            "firstPoint": [
+              4.8780107628016935,
+              48.450956000312885,
+            ],
+            "lastPoint": [
+              7.661146115053629,
+              53.51221206606765,
+            ],
+            "precision": 1e-9,
+            "segmentType": "ARC",
+          },
+          Arc {
+            "_angularLength": 0.03084017963648744,
+            "_boundingBox": BoundingBox {
+              "xMax": 7.661146116053629,
+              "xMin": -9.999420907027317e-10,
+              "yMax": 53.512212067067644,
+              "yMin": 50.33295709076028,
+            },
+            "_firstAngle": 5.121165795606332,
+            "_lastAngle": 5.090325615969845,
+            "_radius": 268.9658397803519,
+            "center": [
+              -99.24933830855309,
+              300.3173402321163,
+            ],
+            "clockwise": true,
+            "firstPoint": [
+              7.661146115053629,
+              53.51221206606765,
+            ],
+            "lastPoint": [
+              5.790929726849339e-14,
+              50.33295709176028,
+            ],
+            "precision": 1e-9,
+            "segmentType": "ARC",
+          },
+          Arc {
+            "_angularLength": 0.03084017963648833,
+            "_boundingBox": BoundingBox {
+              "xMax": 1.0000579092972685e-9,
+              "xMin": -7.6611461160535725,
+              "yMax": 53.512212067067686,
+              "yMin": 50.33295709076028,
+            },
+            "_firstAngle": 4.334452344799534,
+            "_lastAngle": 4.303612165163045,
+            "_radius": 268.9658397803521,
+            "center": [
+              99.24933830855338,
+              300.3173402321164,
+            ],
+            "clockwise": true,
+            "firstPoint": [
+              5.790929726849339e-14,
+              50.33295709176028,
+            ],
+            "lastPoint": [
+              -7.6611461150535725,
+              53.51221206606769,
+            ],
+            "precision": 1e-9,
+            "segmentType": "ARC",
+          },
+          Arc {
+            "_angularLength": 0.021475252065442263,
+            "_boundingBox": BoundingBox {
+              "xMax": -4.87801076180158,
+              "xMin": -7.6611461160535725,
+              "yMax": 53.512212067067686,
+              "yMin": 48.450955999312875,
+            },
+            "_firstAngle": 0.5134965703413028,
+            "_lastAngle": 0.49202131827586054,
+            "_radius": 268.9658397803519,
+            "center": [
+              -241.93906132136186,
+              -78.6107663114112,
+            ],
+            "clockwise": true,
+            "firstPoint": [
+              -7.6611461150535725,
+              53.51221206606769,
+            ],
+            "lastPoint": [
+              -4.87801076280158,
+              48.45095600031287,
+            ],
+            "precision": 1e-9,
+            "segmentType": "ARC",
+          },
+          Arc {
+            "_angularLength": 0.07932337102768638,
+            "_boundingBox": BoundingBox {
+              "xMax": -4.87801076180158,
+              "xMin": -25.132702000499915,
+              "yMax": 48.45095600131287,
+              "yMin": 41.76493318182681,
+            },
+            "_firstAngle": 5.070886143261684,
+            "_lastAngle": 4.991562772233998,
+            "_radius": 268.9658397803519,
+            "center": [
+              -99.24933830855309,
+              300.3173402321163,
+            ],
+            "clockwise": true,
+            "firstPoint": [
+              -4.87801076280158,
+              48.45095600031287,
+            ],
+            "lastPoint": [
+              -25.132701999499915,
+              41.76493318282681,
+            ],
+            "precision": 1e-9,
+            "segmentType": "ARC",
+          },
+          Arc {
+            "_angularLength": 0.20857412949765397,
+            "_boundingBox": BoundingBox {
+              "xMax": 9.999524972635898e-10,
+              "xMin": -25.132702000499915,
+              "yMax": 92.5037648683675,
+              "yMin": 41.76493318182681,
+            },
+            "_firstAngle": 5.71898986502995,
+            "_lastAngle": 5.927563994527604,
+            "_radius": 271.9658397803521,
+            "center": [
+              -254.94903116637155,
+              187.19489177353896,
+            ],
+            "clockwise": false,
+            "firstPoint": [
+              -25.132701999499915,
+              41.76493318282681,
+            ],
+            "lastPoint": [
+              -4.7502736410236056e-14,
+              92.5037648673675,
+            ],
+            "precision": 1e-9,
+            "segmentType": "ARC",
+          },
+          Arc {
+            "_angularLength": 0.20857412949765353,
+            "_boundingBox": BoundingBox {
+              "xMax": 25.13270200049966,
+              "xMin": -1.0000475027364104e-9,
+              "yMax": 92.5037648683675,
+              "yMin": 41.7649331818269,
+            },
+            "_firstAngle": 3.4972139662417736,
+            "_lastAngle": 3.705788095739427,
+            "_radius": 271.96583978035204,
+            "center": [
+              254.94903116637147,
+              187.1948917735387,
+            ],
+            "clockwise": false,
+            "firstPoint": [
+              -4.7502736410236056e-14,
+              92.5037648673675,
+            ],
+            "lastPoint": [
+              25.13270199949966,
+              41.764933182826894,
+            ],
+            "precision": 1e-9,
+            "segmentType": "ARC",
+          },
+          Arc {
+            "_angularLength": 0.0793233710276855,
+            "_boundingBox": BoundingBox {
+              "xMax": 25.13270200049966,
+              "xMin": 4.8780107618016935,
+              "yMax": 48.45095600131288,
+              "yMin": 41.7649331818269,
+            },
+            "_firstAngle": 4.43321518853538,
+            "_lastAngle": 4.353891817507694,
+            "_radius": 268.9658397803521,
+            "center": [
+              99.24933830855338,
+              300.3173402321164,
+            ],
+            "clockwise": true,
+            "firstPoint": [
+              25.13270199949966,
+              41.764933182826894,
+            ],
+            "lastPoint": [
+              4.8780107628016935,
+              48.450956000312885,
+            ],
+            "precision": 1e-9,
+            "segmentType": "ARC",
+          },
+        ],
+        "strokeType": "LOOP",
+      },
+      "holes": [],
+    },
+  ],
+}
+`;
