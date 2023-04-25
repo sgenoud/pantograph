@@ -50,7 +50,7 @@ describe("rayIntersectionsCount", () => {
       ).toBe(1);
     });
 
-    it.only("should return 1 for this other arc that was buggy", () => {
+    it("should return 1 for this other arc that was buggy", () => {
       const arc = new Arc(
         [38.52710211020566, 42.26221778725147],
         [34.48816871800838, 46.554145764976006],
