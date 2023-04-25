@@ -10,6 +10,8 @@ import {
 } from "../algorithms/boolean/figureBooleans";
 import { combineDifferentValues } from "../utils/allCombinations";
 import { Transformable } from "./utils/Transformable";
+import { Strand } from "./Strand";
+import type { Stroke } from "./Stroke";
 
 export class Diagram extends Transformable<Diagram> {
   figures: Figure[];
@@ -54,6 +56,18 @@ export class Diagram extends Transformable<Diagram> {
     return this.figures.some((figure) =>
       other.figures.some((otherFigure) => figure.intersects(otherFigure))
     );
+  }
+
+  overlappingStrands(other: Diagram | Figure | Stroke): Strand[] {
+    return this.figures.flatMap((figure) => {
+      if (!(other instanceof Diagram)) {
+        return figure.overlappingStrands(other);
+      }
+
+      return other.figures.flatMap((otherFigure) =>
+        figure.overlappingStrands(otherFigure)
+      );
+    });
   }
 
   fuse(other: Diagram): Diagram {

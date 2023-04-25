@@ -55,6 +55,15 @@ export abstract class AbstractStroke<
     );
   }
 
+  overlappingSegments(other: Stroke): Segment[] {
+    return this.segments.flatMap((segment) => {
+      return other.segments.flatMap((otherSegment) => {
+        if (!segment.boundingBox.overlaps(otherSegment.boundingBox)) return [];
+        return findIntersectionsAndOverlaps(segment, otherSegment).overlaps;
+      });
+    });
+  }
+
   private _boundingBox: BoundingBox | null = null;
   get boundingBox(): BoundingBox {
     if (this._boundingBox === null) {
