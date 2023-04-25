@@ -3,10 +3,17 @@ import {
   fuseFiguresLists,
   intersectFiguresLists,
 } from "./algorithms/boolean/figureBooleans";
+import { Strand } from "./models/Strand";
 import { Diagram } from "./models/Diagram";
 import { Figure } from "./models/Figure";
 import { Loop } from "./models/Loop";
 import { listOfFigures } from "./utils/listOfFigures";
+import {
+  eraseStrandOutsideFigure,
+  eraseStrandOutsideLoop,
+  eraseStrandWithinFigure,
+  eraseStrandWithinLoop,
+} from "./algorithms/boolean/strandBoolean";
 
 export function fuse(
   first: Diagram | Figure | Loop,
@@ -40,4 +47,50 @@ export function intersect(
   return new Diagram(
     intersectFiguresLists(listOfFigures(first), listOfFigures(second))
   );
+}
+
+export function eraseStrand(
+  strand: Strand,
+  diagram: Diagram | Figure | Loop,
+  eraseOnBorder = true
+): Strand[] {
+  if (diagram instanceof Loop) {
+    return eraseStrandWithinLoop(strand, diagram, eraseOnBorder);
+  }
+
+  if (diagram instanceof Figure) {
+    return eraseStrandWithinFigure(strand, diagram, eraseOnBorder);
+  }
+
+  let outStrands: Strand[] = [strand];
+  diagram.figures.forEach((figure: Figure) => {
+    outStrands = outStrands.flatMap((strand: Strand) => {
+      return eraseStrandWithinFigure(strand, figure, eraseOnBorder);
+    });
+  });
+
+  return outStrands;
+}
+
+export function confineStrand(
+  strand: Strand,
+  diagram: Diagram | Figure | Loop,
+  eraseOnBorder = false
+): Strand[] {
+  if (diagram instanceof Loop) {
+    return eraseStrandOutsideLoop(strand, diagram, eraseOnBorder);
+  }
+
+  if (diagram instanceof Figure) {
+    return eraseStrandOutsideFigure(strand, diagram, eraseOnBorder);
+  }
+
+  let outStrands: Strand[] = [strand];
+  diagram.figures.forEach((figure: Figure) => {
+    outStrands = outStrands.flatMap((strand: Strand) => {
+      return eraseStrandOutsideFigure(strand, figure, eraseOnBorder);
+    });
+  });
+
+  return outStrands;
 }
