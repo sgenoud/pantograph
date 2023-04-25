@@ -2,9 +2,12 @@ import { Vector } from "../definitions";
 import { TransformationMatrix } from "./TransformationMatrix";
 import type { BoundingBox } from "./BoundingBox";
 import { Loop } from "./Loop";
+import { Strand } from "./Strand";
+import type { Stroke } from "./Stroke";
 import { combineDifferentValues } from "../utils/allCombinations";
 import { Transformable } from "./utils/Transformable";
-import { exportJSON } from "../main";
+import { exportJSON } from "../export/json/exportJSON";
+import { stitchSegments } from "../algorithms/stitchSegments";
 
 export class Figure extends Transformable<Figure> {
   readonly contour: Loop;
@@ -58,6 +61,19 @@ export class Figure extends Transformable<Figure> {
     return this.allLoops.some((loop) =>
       other.allLoops.some((otherLoop) => loop.intersects(otherLoop))
     );
+  }
+
+  overlappingStrands(other: Figure | Stroke): Strand[] {
+    const otherStrokes = other instanceof Figure ? other.allLoops : [other];
+    const overlappingSegments = this.allLoops.flatMap((loop) => {
+      return otherStrokes.flatMap((otherLoop) => {
+        return loop.overlappingSegments(otherLoop);
+      });
+    });
+
+    return stitchSegments(overlappingSegments).map((segments) => {
+      return new Strand(segments);
+    });
   }
 }
 

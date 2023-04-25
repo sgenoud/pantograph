@@ -10,3 +10,5 @@ export { TransformationMatrix } from "./TransformationMatrix";
 export { Line } from "./segments/Line";
 export { Arc } from "./segments/Arc";
 export type { Segment } from "./segments/Segment";
+
+export { Transformable } from "./utils/Transformable";

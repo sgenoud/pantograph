@@ -24,6 +24,9 @@ export abstract class AbstractSegment<
       this.lastPoint
     )}`;
   }
+  get info() {
+    return this.repr;
+  }
 
   abstract get midPoint(): Vector;
 

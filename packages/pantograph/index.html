@@ -41,15 +41,17 @@
       <section class="container">
         <span role="button" onClick="showMandala()">Mandala</span>
         <span role="button" onClick="showStar()">Star</span>
+        <span role="button" onClick="showDieline()">Dieline</span>
       </section>
       <div id="app"></div>
       <script type="module">
         import { exportSVG } from "./src/main.ts";
         import mandala from "./examples/mandala.js";
         import drawStar from "./examples/star.js";
+        import drawDieline from "./examples/box-dieline.js";
 
-        const updatePage = (drawing) => {
-          const svg = exportSVG(drawing, 1);
+        const updatePage = (drawing, alreadyExported = false) => {
+          const svg = alreadyExported ? drawing : exportSVG(drawing, 1);
           const canvas = document.getElementById("app");
 
           canvas.innerHTML = svg;
@@ -63,7 +65,11 @@
           updatePage(drawStar(7));
         };
 
-        showStar();
+        window.showDieline = () => {
+          updatePage(drawDieline().asSVG(), true);
+        };
+
+        showDieline();
       </script>
     </main>
   </body>

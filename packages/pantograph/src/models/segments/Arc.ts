@@ -59,6 +59,12 @@ export class Arc extends AbstractSegment<Arc> {
     }
   }
 
+  get info() {
+    return `ARC(${reprVector(this.firstPoint)}, ${reprVector(
+      this.lastPoint
+    )}, ${reprVector(this.center)}, ${this.clockwise ? "CW" : "CCW"})`;
+  }
+
   isValidParameter(t: number): boolean {
     return 1 - t >= -this.precision && t >= -this.precision;
   }

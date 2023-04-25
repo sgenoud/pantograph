@@ -20,6 +20,9 @@ export abstract class AbstractStroke<
   get repr(): string {
     return this.segments.map((segment) => segment.repr).join("\n") + "\n";
   }
+  get info(): string {
+    return this.repr;
+  }
   constructor(segments: Segment[], { ignoreChecks = false } = {}) {
     super();
     if (!ignoreChecks) checkValidStroke(segments);
@@ -50,6 +53,15 @@ export abstract class AbstractStroke<
           findIntersectionsAndOverlaps(segment, otherSegment).count > 0
       )
     );
+  }
+
+  overlappingSegments(other: Stroke): Segment[] {
+    return this.segments.flatMap((segment) => {
+      return other.segments.flatMap((otherSegment) => {
+        if (!segment.boundingBox.overlaps(otherSegment.boundingBox)) return [];
+        return findIntersectionsAndOverlaps(segment, otherSegment).overlaps;
+      });
+    });
   }
 
   private _boundingBox: BoundingBox | null = null;
@@ -116,8 +128,13 @@ export function checkSelfIntersections(
             return;
         }
       }
+
       throw new Error(
-        `${type} segments must not intersect, but segments ${segment.repr} and ${otherSegment.repr} do`
+        `${type} segments must not intersect, but segments ${
+          segment.info
+        } and ${otherSegment.info} do at ${JSON.stringify(
+          intersections.intersections
+        )}`
       );
     }
   );
@@ -131,7 +148,7 @@ export function checkValidStroke(segments: Segment[], type = "Stroke"): void {
     ([segment, nextSegment]) => {
       if (!sameVector(segment.lastPoint, nextSegment.firstPoint))
         throw new Error(
-          `${type} segments must be connected, but ${segment.repr} and ${nextSegment.repr} are not`
+          `${type} segments must be connected, but ${segment.info} and ${nextSegment.info} are not`
         );
     }
   );

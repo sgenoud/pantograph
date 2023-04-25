@@ -1,7 +1,8 @@
 export function angularDistance(
   angle1: number,
   angle2: number,
-  clockwise: boolean
+  clockwise: boolean,
+  precision = 1e-9
 ) {
   let relDistance = angle2 - angle1;
 
@@ -12,5 +13,10 @@ export function angularDistance(
   if (relDistance < 0) {
     relDistance += 2 * Math.PI;
   }
+
+  if (relDistance > 2 * Math.PI - precision) {
+    return 0;
+  }
+
   return relDistance;
 }

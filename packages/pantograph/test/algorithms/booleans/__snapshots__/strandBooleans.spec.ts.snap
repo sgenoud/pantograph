@@ -1,0 +1,343 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`eraseStrandOutsideLoop > should erase the parts of a strand within a loop 1`] = `
+[
+  Strand {
+    "_boundingBox": null,
+    "segments": [
+      Line {
+        "_V": [
+          1,
+          0.5,
+        ],
+        "_boundingBox": null,
+        "firstPoint": [
+          0,
+          -1.5,
+        ],
+        "lastPoint": [
+          1,
+          -1,
+        ],
+        "precision": 1e-9,
+        "segmentType": "LINE",
+      },
+      Line {
+        "_V": [
+          -0.5,
+          2,
+        ],
+        "_boundingBox": null,
+        "firstPoint": [
+          1,
+          -1,
+        ],
+        "lastPoint": [
+          0.5,
+          1,
+        ],
+        "precision": 1e-9,
+        "segmentType": "LINE",
+      },
+      Line {
+        "_V": null,
+        "_boundingBox": null,
+        "firstPoint": [
+          0.5,
+          1,
+        ],
+        "lastPoint": [
+          1.125,
+          1.5,
+        ],
+        "precision": 1e-9,
+        "segmentType": "LINE",
+      },
+    ],
+    "strokeType": "STRAND",
+  },
+]
+`;
+
+exports[`eraseStrandOutsideLoop > should erase the parts of on the border when configured that way 1`] = `
+[
+  Strand {
+    "_boundingBox": null,
+    "segments": [
+      Line {
+        "_V": [
+          1.5,
+          2.5,
+        ],
+        "_boundingBox": null,
+        "firstPoint": [
+          -1,
+          -1.5,
+        ],
+        "lastPoint": [
+          0.5,
+          1,
+        ],
+        "precision": 1e-9,
+        "segmentType": "LINE",
+      },
+      Line {
+        "_V": null,
+        "_boundingBox": null,
+        "firstPoint": [
+          0.5,
+          1,
+        ],
+        "lastPoint": [
+          1.125,
+          1.5,
+        ],
+        "precision": 1e-9,
+        "segmentType": "LINE",
+      },
+    ],
+    "strokeType": "STRAND",
+  },
+]
+`;
+
+exports[`eraseStrandOutsideLoop > should not erase the parts of on the border when configured that way 1`] = `
+[
+  Strand {
+    "_boundingBox": null,
+    "segments": [
+      Line {
+        "_V": [
+          -2,
+          0,
+        ],
+        "_boundingBox": null,
+        "firstPoint": [
+          1,
+          -1.5,
+        ],
+        "lastPoint": [
+          -1,
+          -1.5,
+        ],
+        "precision": 1e-9,
+        "segmentType": "LINE",
+      },
+    ],
+    "strokeType": "STRAND",
+  },
+  Strand {
+    "_boundingBox": null,
+    "segments": [
+      Line {
+        "_V": [
+          1.5,
+          2.5,
+        ],
+        "_boundingBox": null,
+        "firstPoint": [
+          -1,
+          -1.5,
+        ],
+        "lastPoint": [
+          0.5,
+          1,
+        ],
+        "precision": 1e-9,
+        "segmentType": "LINE",
+      },
+      Line {
+        "_V": null,
+        "_boundingBox": null,
+        "firstPoint": [
+          0.5,
+          1,
+        ],
+        "lastPoint": [
+          1.125,
+          1.5,
+        ],
+        "precision": 1e-9,
+        "segmentType": "LINE",
+      },
+    ],
+    "strokeType": "STRAND",
+  },
+]
+`;
+
+exports[`eraseStrandWithinLoop > should erase the parts of a strand within a loop 1`] = `
+[
+  Strand {
+    "_boundingBox": null,
+    "segments": [
+      Line {
+        "_V": [
+          3,
+          1.5,
+        ],
+        "_boundingBox": null,
+        "firstPoint": [
+          -3,
+          -3,
+        ],
+        "lastPoint": [
+          0,
+          -1.5,
+        ],
+        "precision": 1e-9,
+        "segmentType": "LINE",
+      },
+    ],
+    "strokeType": "STRAND",
+  },
+  Strand {
+    "_boundingBox": null,
+    "segments": [
+      Line {
+        "_V": [
+          1.875,
+          1.5,
+        ],
+        "_boundingBox": null,
+        "firstPoint": [
+          1.125,
+          1.5,
+        ],
+        "lastPoint": [
+          3,
+          3,
+        ],
+        "precision": 1e-9,
+        "segmentType": "LINE",
+      },
+    ],
+    "strokeType": "STRAND",
+  },
+]
+`;
+
+exports[`eraseStrandWithinLoop > should erase the parts of on the border when configured that way 1`] = `
+[
+  Strand {
+    "_boundingBox": null,
+    "segments": [
+      Line {
+        "_V": [
+          4,
+          1.5,
+        ],
+        "_boundingBox": null,
+        "firstPoint": [
+          -3,
+          -3,
+        ],
+        "lastPoint": [
+          1,
+          -1.5,
+        ],
+        "precision": 1e-9,
+        "segmentType": "LINE",
+      },
+    ],
+    "strokeType": "STRAND",
+  },
+  Strand {
+    "_boundingBox": null,
+    "segments": [
+      Line {
+        "_V": [
+          1.875,
+          1.5,
+        ],
+        "_boundingBox": null,
+        "firstPoint": [
+          1.125,
+          1.5,
+        ],
+        "lastPoint": [
+          3,
+          3,
+        ],
+        "precision": 1e-9,
+        "segmentType": "LINE",
+      },
+    ],
+    "strokeType": "STRAND",
+  },
+]
+`;
+
+exports[`eraseStrandWithinLoop > should not erase the parts of on the border when configured that way 1`] = `
+[
+  Strand {
+    "_boundingBox": null,
+    "segments": [
+      Line {
+        "_V": [
+          4,
+          1.5,
+        ],
+        "_boundingBox": null,
+        "firstPoint": [
+          -3,
+          -3,
+        ],
+        "lastPoint": [
+          1,
+          -1.5,
+        ],
+        "precision": 1e-9,
+        "segmentType": "LINE",
+      },
+    ],
+    "strokeType": "STRAND",
+  },
+  Strand {
+    "_boundingBox": null,
+    "segments": [
+      Line {
+        "_V": [
+          -2,
+          0,
+        ],
+        "_boundingBox": null,
+        "firstPoint": [
+          1,
+          -1.5,
+        ],
+        "lastPoint": [
+          -1,
+          -1.5,
+        ],
+        "precision": 1e-9,
+        "segmentType": "LINE",
+      },
+    ],
+    "strokeType": "STRAND",
+  },
+  Strand {
+    "_boundingBox": null,
+    "segments": [
+      Line {
+        "_V": [
+          1.875,
+          1.5,
+        ],
+        "_boundingBox": null,
+        "firstPoint": [
+          1.125,
+          1.5,
+        ],
+        "lastPoint": [
+          3,
+          3,
+        ],
+        "precision": 1e-9,
+        "segmentType": "LINE",
+      },
+    ],
+    "strokeType": "STRAND",
+  },
+]
+`;

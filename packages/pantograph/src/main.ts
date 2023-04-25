@@ -30,7 +30,18 @@ export type {
 } from "./models/exports";
 
 export { draw } from "./draw";
-export { fuse, fuseAll, cut, intersect, offset } from "./operations";
+export {
+  // Surface booleans
+  fuseAll,
+  fuse,
+  cut,
+  intersect,
+  // Strand booleans
+  eraseStrand,
+  confineStrand,
+  // Offset
+  offset,
+} from "./operations";
 
 export { exportSVG, svgBody } from "./export/svg/exportSVG";
 

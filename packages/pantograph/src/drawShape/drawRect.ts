@@ -1,7 +1,7 @@
 import { draw } from "../draw";
 import type { Diagram } from "../models/Diagram";
 
-export function drawRect(width: number, height: number, r: number): Diagram {
+export function drawRect(width: number, height: number, r?: number): Diagram {
   // This will be changed once we support arc of ellipses
   const { rx: inputRx = 0, ry: inputRy = 0 } = { ry: r, rx: r };
 
