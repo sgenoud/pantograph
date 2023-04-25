@@ -17,6 +17,10 @@
     "./models": {
       "import": "./dist/pantograph/models.js",
       "require": "./dist/pantograph/models.cjs"
+    },
+    "./drawShape": {
+      "import": "./dist/pantograph/drawShape.js",
+      "require": "./dist/pantograph/drawShape.cjs"
     }
   },
   "scripts": {

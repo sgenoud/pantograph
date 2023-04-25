@@ -15,6 +15,7 @@ export default defineConfig({
       entry: {
         pantograph: resolve(__dirname, "src/main.ts"),
         "pantograph/models": resolve(__dirname, "src/models/exports.ts"),
+        "pantograph/drawShape": resolve(__dirname, "src/drawShape/index.ts"),
       },
       name: "Pantograph",
     },
