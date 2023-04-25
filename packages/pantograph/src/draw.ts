@@ -1,5 +1,6 @@
 import { chamferSegments, filletSegments } from "./algorithms/filletSegments";
 import { Vector } from "./definitions";
+import { Strand } from "./models/Strand";
 import { Diagram } from "./models/Diagram";
 import { Figure } from "./models/Figure";
 import { Loop } from "./models/Loop";
@@ -22,7 +23,7 @@ function loopySegmentsToDiagram(segments: Segment[]) {
   // Here we will need to do our best to fix cases where the drawing is
   // broken in some way (i.e. self-intersecting loops)
 
-  return new Diagram([new Figure(new Loop(segments))]);
+  return new Diagram([new Figure(new Loop([...segments]))]);
 }
 
 export class DrawingPen {
@@ -279,6 +280,10 @@ export class DrawingPen {
       ...this.pendingSegments,
       ...mirroredSegments,
     ]);
+  }
+
+  asStrand(): Strand {
+    return new Strand([...this.pendingSegments]);
   }
 }
 
