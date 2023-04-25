@@ -190,28 +190,34 @@ export class DrawingPen {
     return this.bulgeArc(distance, 0, bulge);
   }
 
-  tangentArcTo(end: Vector): this {
+  tangentArcTo(end: Vector, tangentAtStart?: Vector): this {
     const previousCurve = this.pendingSegments.at(-1);
 
     if (!previousCurve)
       throw new Error("You need a previous curve to sketch a tangent arc");
 
     this.saveSegment(
-      tangentArc(this.pointer, end, previousCurve.tangentAtLastPoint)
+      tangentArc(
+        this.pointer,
+        end,
+        tangentAtStart ?? previousCurve.tangentAtLastPoint
+      )
     );
 
     this.pointer = end;
     return this;
   }
 
-  tangentArc(xDist: number, yDist: number): this {
+  tangentArc(xDist: number, yDist: number, tangentAtStart?: Vector): this {
     const [x0, y0] = this.pointer;
-    return this.tangentArcTo([xDist + x0, yDist + y0]);
+    return this.tangentArcTo([xDist + x0, yDist + y0], tangentAtStart);
   }
 
   customCorner(radius: number, mode: "fillet" | "chamfer" = "fillet") {
     if (!this.pendingSegments.length)
       throw new Error("You need a segment defined to fillet the angle");
+
+    if (!radius) return this;
 
     this._nextCorner = { mode, radius };
     return this;
