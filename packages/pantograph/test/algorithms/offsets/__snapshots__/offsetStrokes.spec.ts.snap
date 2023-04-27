@@ -1,0 +1,1475 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`offsetStrand > should create an outline that intersects itself 1`] = `
+[
+  Strand {
+    "_boundingBox": null,
+    "segments": [
+      Line {
+        "_V": [
+          1.52817468419245,
+          0,
+        ],
+        "_boundingBox": null,
+        "firstPoint": [
+          0,
+          -0.5,
+        ],
+        "lastPoint": [
+          1.52817468419245,
+          -0.5,
+        ],
+        "precision": 1e-9,
+        "segmentType": "LINE",
+      },
+      Line {
+        "_V": [
+          -1.7854225619062132,
+          -1.071253537143728,
+        ],
+        "_boundingBox": null,
+        "firstPoint": [
+          1.52817468419245,
+          -0.5,
+        ],
+        "lastPoint": [
+          -0.2572478777137633,
+          -1.571253537143728,
+        ],
+        "precision": 1e-9,
+        "segmentType": "LINE",
+      },
+    ],
+    "strokeType": "STRAND",
+  },
+  Loop {
+    "_boundingBox": null,
+    "_clockwise": null,
+    "segments": [
+      Line {
+        "_V": [
+          0.4192431084959054,
+          0,
+        ],
+        "_boundingBox": null,
+        "firstPoint": [
+          4.080756891504095,
+          -0.5,
+        ],
+        "lastPoint": [
+          4.5,
+          -0.5,
+        ],
+        "precision": 1e-9,
+        "segmentType": "LINE",
+      },
+      Line {
+        "_V": [
+          0,
+          -0.37731879764631493,
+        ],
+        "_boundingBox": BoundingBox {
+          "xMax": 4.500000001,
+          "xMin": 4.499999999,
+          "yMax": -0.499999999,
+          "yMin": -0.8773187986463149,
+        },
+        "firstPoint": [
+          4.5,
+          -0.5,
+        ],
+        "lastPoint": [
+          4.5,
+          -0.8773187976463149,
+        ],
+        "precision": 1e-9,
+        "segmentType": "LINE",
+      },
+      Line {
+        "_V": [
+          -0.4192431084959054,
+          0.37731879764631493,
+        ],
+        "_boundingBox": null,
+        "firstPoint": [
+          4.5,
+          -0.8773187976463149,
+        ],
+        "lastPoint": [
+          4.080756891504095,
+          -0.5,
+        ],
+        "precision": 1e-9,
+        "segmentType": "LINE",
+      },
+    ],
+    "strokeType": "LOOP",
+  },
+]
+`;
+
+exports[`offsetStrand > should offset a basic strand 1`] = `
+[
+  Strand {
+    "_boundingBox": null,
+    "segments": [
+      Line {
+        "_V": [
+          1,
+          1,
+        ],
+        "_boundingBox": BoundingBox {
+          "xMax": 0.6464466104067262,
+          "xMin": -0.35355339159327376,
+          "yMax": 1.3535533915932738,
+          "yMin": 0.3535533895932737,
+        },
+        "firstPoint": [
+          -0.35355339059327373,
+          0.35355339059327373,
+        ],
+        "lastPoint": [
+          0.6464466094067263,
+          1.3535533905932737,
+        ],
+        "precision": 1e-9,
+        "segmentType": "LINE",
+      },
+      Arc {
+        "_angularLength": 1.5707963267948966,
+        "_boundingBox": BoundingBox {
+          "xMax": 1.3535533915932738,
+          "xMin": 0.6464466084067263,
+          "yMax": 1.500000001,
+          "yMin": 1.3535533895932736,
+        },
+        "_firstAngle": 2.356194490192345,
+        "_lastAngle": 0.7853981633974483,
+        "_radius": 0.49999999999999994,
+        "center": [
+          1,
+          1,
+        ],
+        "clockwise": true,
+        "firstPoint": [
+          0.6464466094067263,
+          1.3535533905932737,
+        ],
+        "lastPoint": [
+          1.3535533905932737,
+          1.3535533905932737,
+        ],
+        "precision": 1e-9,
+        "segmentType": "ARC",
+      },
+      Line {
+        "_V": [
+          0.6464466094067263,
+          -0.6464466094067262,
+        ],
+        "_boundingBox": BoundingBox {
+          "xMax": 2.000000001,
+          "xMin": 1.3535533895932736,
+          "yMax": 1.3535533915932738,
+          "yMin": 0.7071067801865476,
+        },
+        "firstPoint": [
+          1.3535533905932737,
+          1.3535533905932737,
+        ],
+        "lastPoint": [
+          2,
+          0.7071067811865476,
+        ],
+        "precision": 1e-9,
+        "segmentType": "LINE",
+      },
+      Line {
+        "_V": [
+          0.646446609406726,
+          0.6464466094067262,
+        ],
+        "_boundingBox": BoundingBox {
+          "xMax": 2.646446610406726,
+          "xMin": 1.999999999,
+          "yMax": 1.3535533915932738,
+          "yMin": 0.7071067801865476,
+        },
+        "firstPoint": [
+          2,
+          0.7071067811865476,
+        ],
+        "lastPoint": [
+          2.646446609406726,
+          1.3535533905932737,
+        ],
+        "precision": 1e-9,
+        "segmentType": "LINE",
+      },
+    ],
+    "strokeType": "STRAND",
+  },
+]
+`;
+
+exports[`offsetStrand > should offset a strand that create a loop 1`] = `
+[
+  Loop {
+    "_boundingBox": null,
+    "_clockwise": null,
+    "segments": [
+      Line {
+        "_V": [
+          0.32327576348993925,
+          0.32327576348993925,
+        ],
+        "_boundingBox": null,
+        "firstPoint": [
+          0.6767242365100608,
+          -0.03038254467648671,
+        ],
+        "lastPoint": [
+          1,
+          0.29289321881345254,
+        ],
+        "precision": 1e-9,
+        "segmentType": "LINE",
+      },
+      Line {
+        "_V": [
+          0.29289321881345254,
+          -0.29289321881345254,
+        ],
+        "_boundingBox": BoundingBox {
+          "xMax": 1.2928932198134526,
+          "xMin": 0.999999999,
+          "yMax": 0.29289321981345257,
+          "yMin": -1e-9,
+        },
+        "firstPoint": [
+          1,
+          0.29289321881345254,
+        ],
+        "lastPoint": [
+          1.2928932188134525,
+          0,
+        ],
+        "precision": 1e-9,
+        "segmentType": "LINE",
+      },
+      Line {
+        "_V": [
+          -0.3093284673559653,
+          -0.3093284673559653,
+        ],
+        "_boundingBox": BoundingBox {
+          "xMax": 1.2928932198134526,
+          "xMin": 0.9835647504574873,
+          "yMax": 1e-9,
+          "yMin": -0.30932846835596534,
+        },
+        "firstPoint": [
+          1.2928932188134525,
+          0,
+        ],
+        "lastPoint": [
+          0.9835647514574872,
+          -0.3093284673559653,
+        ],
+        "precision": 1e-9,
+        "segmentType": "LINE",
+      },
+      Line {
+        "_V": [
+          -0.3068405149474265,
+          0.2789459226794786,
+        ],
+        "_boundingBox": null,
+        "firstPoint": [
+          0.9835647514574872,
+          -0.3093284673559653,
+        ],
+        "lastPoint": [
+          0.6767242365100608,
+          -0.03038254467648671,
+        ],
+        "precision": 1e-9,
+        "segmentType": "LINE",
+      },
+    ],
+    "strokeType": "LOOP",
+  },
+]
+`;
+
+exports[`outlineStrand > should create an outline that intersects itself 1`] = `
+Diagram {
+  "_boundingBox": null,
+  "figures": [
+    Figure {
+      "contour": Loop {
+        "_boundingBox": BoundingBox {
+          "xMax": 5.500000001,
+          "xMin": -0.500000001,
+          "yMax": 0.500000001,
+          "yMin": -2.500000001,
+        },
+        "_clockwise": null,
+        "segments": [
+          Line {
+            "_V": [
+              1.52817468419245,
+              0,
+            ],
+            "_boundingBox": BoundingBox {
+              "xMax": 1.52817468519245,
+              "xMin": -1e-9,
+              "yMax": -0.499999999,
+              "yMin": -0.500000001,
+            },
+            "firstPoint": [
+              0,
+              -0.5,
+            ],
+            "lastPoint": [
+              1.52817468419245,
+              -0.5,
+            ],
+            "precision": 1e-9,
+            "segmentType": "LINE",
+          },
+          Line {
+            "_V": [
+              -1.7854225619062132,
+              -1.071253537143728,
+            ],
+            "_boundingBox": BoundingBox {
+              "xMax": 1.52817468519245,
+              "xMin": -0.2572478787137633,
+              "yMax": -0.499999999,
+              "yMin": -1.571253538143728,
+            },
+            "firstPoint": [
+              1.52817468419245,
+              -0.5,
+            ],
+            "lastPoint": [
+              -0.2572478777137633,
+              -1.571253537143728,
+            ],
+            "precision": 1e-9,
+            "segmentType": "LINE",
+          },
+          Arc {
+            "_angularLength": 3.1415926535897927,
+            "_boundingBox": BoundingBox {
+              "xMax": 0.2572478787137633,
+              "xMin": -0.500000001,
+              "yMax": -1.5712535361437279,
+              "yMin": -2.500000001,
+            },
+            "_firstAngle": 2.111215827065481,
+            "_lastAngle": 5.252808480655274,
+            "_radius": 0.49999999999999994,
+            "center": [
+              -2.3800209739481384e-17,
+              -2,
+            ],
+            "clockwise": false,
+            "firstPoint": [
+              -0.2572478777137633,
+              -1.571253537143728,
+            ],
+            "lastPoint": [
+              0.2572478777137633,
+              -2.4287464628562723,
+            ],
+            "precision": 1e-9,
+            "segmentType": "ARC",
+          },
+          Line {
+            "_V": [
+              2.6830281137067997,
+              1.60981686822408,
+            ],
+            "_boundingBox": BoundingBox {
+              "xMax": 2.9402759924205633,
+              "xMin": 0.25724787671376326,
+              "yMax": -0.8189295936321922,
+              "yMin": -2.4287464638562724,
+            },
+            "firstPoint": [
+              0.2572478777137633,
+              -2.4287464628562723,
+            ],
+            "lastPoint": [
+              2.940275991420563,
+              -0.8189295946321922,
+            ],
+            "precision": 1e-9,
+            "segmentType": "LINE",
+          },
+          Line {
+            "_V": [
+              1.7252416427682125,
+              -1.5527174784913909,
+            ],
+            "_boundingBox": BoundingBox {
+              "xMax": 4.665517635188776,
+              "xMin": 2.940275990420563,
+              "yMax": -0.8189295936321922,
+              "yMin": -2.371647074123583,
+            },
+            "firstPoint": [
+              2.940275991420563,
+              -0.8189295946321922,
+            ],
+            "lastPoint": [
+              4.665517634188776,
+              -2.371647073123583,
+            ],
+            "precision": 1e-9,
+            "segmentType": "LINE",
+          },
+          Arc {
+            "_angularLength": 2.3036114285814024,
+            "_boundingBox": BoundingBox {
+              "xMax": 5.500000000999999,
+              "xMin": 4.6655176331887755,
+              "yMax": -1.999999999,
+              "yMin": -2.5000000009999996,
+            },
+            "_firstAngle": 3.979573878598184,
+            "_lastAngle": 0,
+            "_radius": 0.49999999999999956,
+            "center": [
+              5,
+              -2,
+            ],
+            "clockwise": false,
+            "firstPoint": [
+              4.665517634188776,
+              -2.371647073123583,
+            ],
+            "lastPoint": [
+              5.5,
+              -2,
+            ],
+            "precision": 1e-9,
+            "segmentType": "ARC",
+          },
+          Line {
+            "_V": [
+              0,
+              2,
+            ],
+            "_boundingBox": BoundingBox {
+              "xMax": 5.500000001,
+              "xMin": 5.499999999,
+              "yMax": 1e-9,
+              "yMin": -2.000000001,
+            },
+            "firstPoint": [
+              5.5,
+              -2,
+            ],
+            "lastPoint": [
+              5.5,
+              0,
+            ],
+            "precision": 1e-9,
+            "segmentType": "LINE",
+          },
+          Arc {
+            "_angularLength": 1.5707963267948966,
+            "_boundingBox": BoundingBox {
+              "xMax": 5.500000001,
+              "xMin": 4.999999999,
+              "yMax": 0.500000001,
+              "yMin": -1e-9,
+            },
+            "_firstAngle": 0,
+            "_lastAngle": 1.5707963267948966,
+            "_radius": 0.5,
+            "center": [
+              5,
+              0,
+            ],
+            "clockwise": false,
+            "firstPoint": [
+              5.5,
+              0,
+            ],
+            "lastPoint": [
+              5,
+              0.5,
+            ],
+            "precision": 1e-9,
+            "segmentType": "ARC",
+          },
+          Line {
+            "_V": [
+              -5,
+              0,
+            ],
+            "_boundingBox": BoundingBox {
+              "xMax": 5.000000001,
+              "xMin": -1e-9,
+              "yMax": 0.500000001,
+              "yMin": 0.499999999,
+            },
+            "firstPoint": [
+              5,
+              0.5,
+            ],
+            "lastPoint": [
+              0,
+              0.5,
+            ],
+            "precision": 1e-9,
+            "segmentType": "LINE",
+          },
+          Arc {
+            "_angularLength": 3.141592653589793,
+            "_boundingBox": BoundingBox {
+              "xMax": 1e-9,
+              "xMin": -0.500000001,
+              "yMax": 0.500000001,
+              "yMin": -0.500000001,
+            },
+            "_firstAngle": 1.5707963267948966,
+            "_lastAngle": 4.71238898038469,
+            "_radius": 0.5,
+            "center": [
+              0,
+              0,
+            ],
+            "clockwise": false,
+            "firstPoint": [
+              0,
+              0.5,
+            ],
+            "lastPoint": [
+              0,
+              -0.5,
+            ],
+            "precision": 1e-9,
+            "segmentType": "ARC",
+          },
+        ],
+        "strokeType": "LOOP",
+      },
+      "holes": [],
+    },
+    Figure {
+      "contour": Loop {
+        "_boundingBox": BoundingBox {
+          "xMax": 4.500000001,
+          "xMin": 4.0807568905040945,
+          "yMax": -0.499999999,
+          "yMin": -0.8773187986463149,
+        },
+        "_clockwise": null,
+        "segments": [
+          Line {
+            "_V": [
+              0.4192431084959054,
+              0,
+            ],
+            "_boundingBox": BoundingBox {
+              "xMax": 4.500000001,
+              "xMin": 4.0807568905040945,
+              "yMax": -0.499999999,
+              "yMin": -0.500000001,
+            },
+            "firstPoint": [
+              4.080756891504095,
+              -0.5,
+            ],
+            "lastPoint": [
+              4.5,
+              -0.5,
+            ],
+            "precision": 1e-9,
+            "segmentType": "LINE",
+          },
+          Line {
+            "_V": [
+              0,
+              -0.37731879764631493,
+            ],
+            "_boundingBox": BoundingBox {
+              "xMax": 4.500000001,
+              "xMin": 4.499999999,
+              "yMax": -0.499999999,
+              "yMin": -0.8773187986463149,
+            },
+            "firstPoint": [
+              4.5,
+              -0.5,
+            ],
+            "lastPoint": [
+              4.5,
+              -0.8773187976463149,
+            ],
+            "precision": 1e-9,
+            "segmentType": "LINE",
+          },
+          Line {
+            "_V": [
+              -0.4192431084959054,
+              0.37731879764631493,
+            ],
+            "_boundingBox": BoundingBox {
+              "xMax": 4.500000001,
+              "xMin": 4.0807568905040945,
+              "yMax": -0.499999999,
+              "yMin": -0.8773187986463149,
+            },
+            "firstPoint": [
+              4.5,
+              -0.8773187976463149,
+            ],
+            "lastPoint": [
+              4.080756891504095,
+              -0.5,
+            ],
+            "precision": 1e-9,
+            "segmentType": "LINE",
+          },
+        ],
+        "strokeType": "LOOP",
+      },
+      "holes": [],
+    },
+  ],
+}
+`;
+
+exports[`outlineStrand > should outline a basic strand 1`] = `
+Diagram {
+  "_boundingBox": null,
+  "figures": [
+    Figure {
+      "contour": Loop {
+        "_boundingBox": null,
+        "_clockwise": null,
+        "segments": [
+          Line {
+            "_V": [
+              1,
+              1,
+            ],
+            "_boundingBox": BoundingBox {
+              "xMax": 0.6464466104067262,
+              "xMin": -0.35355339159327376,
+              "yMax": 1.3535533915932738,
+              "yMin": 0.3535533895932737,
+            },
+            "firstPoint": [
+              -0.35355339059327373,
+              0.35355339059327373,
+            ],
+            "lastPoint": [
+              0.6464466094067263,
+              1.3535533905932737,
+            ],
+            "precision": 1e-9,
+            "segmentType": "LINE",
+          },
+          Arc {
+            "_angularLength": 1.5707963267948966,
+            "_boundingBox": BoundingBox {
+              "xMax": 1.3535533915932738,
+              "xMin": 0.6464466084067263,
+              "yMax": 1.500000001,
+              "yMin": 1.3535533895932736,
+            },
+            "_firstAngle": 2.356194490192345,
+            "_lastAngle": 0.7853981633974483,
+            "_radius": 0.49999999999999994,
+            "center": [
+              1,
+              1,
+            ],
+            "clockwise": true,
+            "firstPoint": [
+              0.6464466094067263,
+              1.3535533905932737,
+            ],
+            "lastPoint": [
+              1.3535533905932737,
+              1.3535533905932737,
+            ],
+            "precision": 1e-9,
+            "segmentType": "ARC",
+          },
+          Line {
+            "_V": [
+              0.6464466094067263,
+              -0.6464466094067262,
+            ],
+            "_boundingBox": BoundingBox {
+              "xMax": 2.000000001,
+              "xMin": 1.3535533895932736,
+              "yMax": 1.3535533915932738,
+              "yMin": 0.7071067801865476,
+            },
+            "firstPoint": [
+              1.3535533905932737,
+              1.3535533905932737,
+            ],
+            "lastPoint": [
+              2,
+              0.7071067811865476,
+            ],
+            "precision": 1e-9,
+            "segmentType": "LINE",
+          },
+          Line {
+            "_V": [
+              0.646446609406726,
+              0.6464466094067262,
+            ],
+            "_boundingBox": BoundingBox {
+              "xMax": 2.646446610406726,
+              "xMin": 1.999999999,
+              "yMax": 1.3535533915932738,
+              "yMin": 0.7071067801865476,
+            },
+            "firstPoint": [
+              2,
+              0.7071067811865476,
+            ],
+            "lastPoint": [
+              2.646446609406726,
+              1.3535533905932737,
+            ],
+            "precision": 1e-9,
+            "segmentType": "LINE",
+          },
+          Arc {
+            "_angularLength": 3.1415926535897922,
+            "_boundingBox": BoundingBox {
+              "xMax": 3.500000001,
+              "xMin": 2.646446608406726,
+              "yMax": 1.500000001,
+              "yMin": 0.6464466084067263,
+            },
+            "_firstAngle": 2.356194490192345,
+            "_lastAngle": 5.497787143782139,
+            "_radius": 0.5000000000000002,
+            "center": [
+              3,
+              0.9999999999999999,
+            ],
+            "clockwise": true,
+            "firstPoint": [
+              2.646446609406726,
+              1.3535533905932737,
+            ],
+            "lastPoint": [
+              3.353553390593274,
+              0.6464466094067263,
+            ],
+            "precision": 1e-9,
+            "segmentType": "ARC",
+          },
+          Line {
+            "_V": [
+              -1,
+              -1,
+            ],
+            "_boundingBox": BoundingBox {
+              "xMax": 3.353553391593274,
+              "xMin": 2.353553389593274,
+              "yMax": 0.6464466104067262,
+              "yMin": -0.35355339159327376,
+            },
+            "firstPoint": [
+              3.353553390593274,
+              0.6464466094067263,
+            ],
+            "lastPoint": [
+              2.353553390593274,
+              -0.35355339059327373,
+            ],
+            "precision": 1e-9,
+            "segmentType": "LINE",
+          },
+          Arc {
+            "_angularLength": 1.5707963267948966,
+            "_boundingBox": BoundingBox {
+              "xMax": 2.353553391593274,
+              "xMin": 1.6464466084067262,
+              "yMax": -0.3535533895932737,
+              "yMin": -0.5000000010000001,
+            },
+            "_firstAngle": 5.497787143782138,
+            "_lastAngle": 3.9269908169872414,
+            "_radius": 0.5000000000000001,
+            "center": [
+              2,
+              0,
+            ],
+            "clockwise": true,
+            "firstPoint": [
+              2.353553390593274,
+              -0.35355339059327373,
+            ],
+            "lastPoint": [
+              1.6464466094067263,
+              -0.35355339059327373,
+            ],
+            "precision": 1e-9,
+            "segmentType": "ARC",
+          },
+          Line {
+            "_V": [
+              -0.6464466094067263,
+              0.6464466094067263,
+            ],
+            "_boundingBox": BoundingBox {
+              "xMax": 1.6464466104067264,
+              "xMin": 0.999999999,
+              "yMax": 0.29289321981345257,
+              "yMin": -0.35355339159327376,
+            },
+            "firstPoint": [
+              1.6464466094067263,
+              -0.35355339059327373,
+            ],
+            "lastPoint": [
+              1,
+              0.29289321881345254,
+            ],
+            "precision": 1e-9,
+            "segmentType": "LINE",
+          },
+          Line {
+            "_V": [
+              -0.6464466094067263,
+              -0.6464466094067263,
+            ],
+            "_boundingBox": BoundingBox {
+              "xMax": 1.000000001,
+              "xMin": 0.3535533895932737,
+              "yMax": 0.29289321981345257,
+              "yMin": -0.35355339159327376,
+            },
+            "firstPoint": [
+              1,
+              0.29289321881345254,
+            ],
+            "lastPoint": [
+              0.35355339059327373,
+              -0.35355339059327373,
+            ],
+            "precision": 1e-9,
+            "segmentType": "LINE",
+          },
+          Arc {
+            "_angularLength": 3.141592653589793,
+            "_boundingBox": BoundingBox {
+              "xMax": 0.35355339159327376,
+              "xMin": -0.500000001,
+              "yMax": 0.35355339159327376,
+              "yMin": -0.500000001,
+            },
+            "_firstAngle": 5.497787143782138,
+            "_lastAngle": 2.356194490192345,
+            "_radius": 0.49999999999999994,
+            "center": [
+              0,
+              0,
+            ],
+            "clockwise": true,
+            "firstPoint": [
+              0.35355339059327373,
+              -0.35355339059327373,
+            ],
+            "lastPoint": [
+              -0.35355339059327373,
+              0.35355339059327373,
+            ],
+            "precision": 1e-9,
+            "segmentType": "ARC",
+          },
+        ],
+        "strokeType": "LOOP",
+      },
+      "holes": [],
+    },
+  ],
+}
+`;
+
+exports[`outlineStrand > should outline a basic strand with butt end 1`] = `
+Diagram {
+  "_boundingBox": null,
+  "figures": [
+    Figure {
+      "contour": Loop {
+        "_boundingBox": null,
+        "_clockwise": null,
+        "segments": [
+          Line {
+            "_V": [
+              1,
+              1,
+            ],
+            "_boundingBox": BoundingBox {
+              "xMax": 0.6464466104067262,
+              "xMin": -0.35355339159327376,
+              "yMax": 1.3535533915932738,
+              "yMin": 0.3535533895932737,
+            },
+            "firstPoint": [
+              -0.35355339059327373,
+              0.35355339059327373,
+            ],
+            "lastPoint": [
+              0.6464466094067263,
+              1.3535533905932737,
+            ],
+            "precision": 1e-9,
+            "segmentType": "LINE",
+          },
+          Arc {
+            "_angularLength": 1.5707963267948966,
+            "_boundingBox": BoundingBox {
+              "xMax": 1.3535533915932738,
+              "xMin": 0.6464466084067263,
+              "yMax": 1.500000001,
+              "yMin": 1.3535533895932736,
+            },
+            "_firstAngle": 2.356194490192345,
+            "_lastAngle": 0.7853981633974483,
+            "_radius": 0.49999999999999994,
+            "center": [
+              1,
+              1,
+            ],
+            "clockwise": true,
+            "firstPoint": [
+              0.6464466094067263,
+              1.3535533905932737,
+            ],
+            "lastPoint": [
+              1.3535533905932737,
+              1.3535533905932737,
+            ],
+            "precision": 1e-9,
+            "segmentType": "ARC",
+          },
+          Line {
+            "_V": [
+              0.6464466094067263,
+              -0.6464466094067262,
+            ],
+            "_boundingBox": BoundingBox {
+              "xMax": 2.000000001,
+              "xMin": 1.3535533895932736,
+              "yMax": 1.3535533915932738,
+              "yMin": 0.7071067801865476,
+            },
+            "firstPoint": [
+              1.3535533905932737,
+              1.3535533905932737,
+            ],
+            "lastPoint": [
+              2,
+              0.7071067811865476,
+            ],
+            "precision": 1e-9,
+            "segmentType": "LINE",
+          },
+          Line {
+            "_V": [
+              0.646446609406726,
+              0.6464466094067262,
+            ],
+            "_boundingBox": BoundingBox {
+              "xMax": 2.646446610406726,
+              "xMin": 1.999999999,
+              "yMax": 1.3535533915932738,
+              "yMin": 0.7071067801865476,
+            },
+            "firstPoint": [
+              2,
+              0.7071067811865476,
+            ],
+            "lastPoint": [
+              2.646446609406726,
+              1.3535533905932737,
+            ],
+            "precision": 1e-9,
+            "segmentType": "LINE",
+          },
+          Line {
+            "_V": [
+              0.7071067811865479,
+              -0.7071067811865475,
+            ],
+            "_boundingBox": BoundingBox {
+              "xMax": 3.353553391593274,
+              "xMin": 2.646446608406726,
+              "yMax": 1.3535533915932738,
+              "yMin": 0.6464466084067263,
+            },
+            "firstPoint": [
+              2.646446609406726,
+              1.3535533905932737,
+            ],
+            "lastPoint": [
+              3.353553390593274,
+              0.6464466094067263,
+            ],
+            "precision": 1e-9,
+            "segmentType": "LINE",
+          },
+          Line {
+            "_V": [
+              -1,
+              -1,
+            ],
+            "_boundingBox": BoundingBox {
+              "xMax": 3.353553391593274,
+              "xMin": 2.353553389593274,
+              "yMax": 0.6464466104067262,
+              "yMin": -0.35355339159327376,
+            },
+            "firstPoint": [
+              3.353553390593274,
+              0.6464466094067263,
+            ],
+            "lastPoint": [
+              2.353553390593274,
+              -0.35355339059327373,
+            ],
+            "precision": 1e-9,
+            "segmentType": "LINE",
+          },
+          Arc {
+            "_angularLength": 1.5707963267948966,
+            "_boundingBox": BoundingBox {
+              "xMax": 2.353553391593274,
+              "xMin": 1.6464466084067262,
+              "yMax": -0.3535533895932737,
+              "yMin": -0.5000000010000001,
+            },
+            "_firstAngle": 5.497787143782138,
+            "_lastAngle": 3.9269908169872414,
+            "_radius": 0.5000000000000001,
+            "center": [
+              2,
+              0,
+            ],
+            "clockwise": true,
+            "firstPoint": [
+              2.353553390593274,
+              -0.35355339059327373,
+            ],
+            "lastPoint": [
+              1.6464466094067263,
+              -0.35355339059327373,
+            ],
+            "precision": 1e-9,
+            "segmentType": "ARC",
+          },
+          Line {
+            "_V": [
+              -0.6464466094067263,
+              0.6464466094067263,
+            ],
+            "_boundingBox": BoundingBox {
+              "xMax": 1.6464466104067264,
+              "xMin": 0.999999999,
+              "yMax": 0.29289321981345257,
+              "yMin": -0.35355339159327376,
+            },
+            "firstPoint": [
+              1.6464466094067263,
+              -0.35355339059327373,
+            ],
+            "lastPoint": [
+              1,
+              0.29289321881345254,
+            ],
+            "precision": 1e-9,
+            "segmentType": "LINE",
+          },
+          Line {
+            "_V": [
+              -0.6464466094067263,
+              -0.6464466094067263,
+            ],
+            "_boundingBox": BoundingBox {
+              "xMax": 1.000000001,
+              "xMin": 0.3535533895932737,
+              "yMax": 0.29289321981345257,
+              "yMin": -0.35355339159327376,
+            },
+            "firstPoint": [
+              1,
+              0.29289321881345254,
+            ],
+            "lastPoint": [
+              0.35355339059327373,
+              -0.35355339059327373,
+            ],
+            "precision": 1e-9,
+            "segmentType": "LINE",
+          },
+          Line {
+            "_V": [
+              -0.7071067811865475,
+              0.7071067811865475,
+            ],
+            "_boundingBox": BoundingBox {
+              "xMax": 0.35355339159327376,
+              "xMin": -0.35355339159327376,
+              "yMax": 0.35355339159327376,
+              "yMin": -0.35355339159327376,
+            },
+            "firstPoint": [
+              0.35355339059327373,
+              -0.35355339059327373,
+            ],
+            "lastPoint": [
+              -0.35355339059327373,
+              0.35355339059327373,
+            ],
+            "precision": 1e-9,
+            "segmentType": "LINE",
+          },
+        ],
+        "strokeType": "LOOP",
+      },
+      "holes": [],
+    },
+  ],
+}
+`;
+
+exports[`outlineStrand > should outline a strand that create a loop 1`] = `
+Diagram {
+  "_boundingBox": null,
+  "figures": [
+    Figure {
+      "contour": Loop {
+        "_boundingBox": BoundingBox {
+          "xMax": 1.2928932198134526,
+          "xMin": 0.6767242355100608,
+          "yMax": 0.29289321981345257,
+          "yMin": -0.30932846835596534,
+        },
+        "_clockwise": null,
+        "segments": [
+          Line {
+            "_V": [
+              0.32327576348993925,
+              0.32327576348993925,
+            ],
+            "_boundingBox": BoundingBox {
+              "xMax": 1.000000001,
+              "xMin": 0.6767242355100608,
+              "yMax": 0.29289321981345257,
+              "yMin": -0.03038254567648671,
+            },
+            "firstPoint": [
+              0.6767242365100608,
+              -0.03038254467648671,
+            ],
+            "lastPoint": [
+              1,
+              0.29289321881345254,
+            ],
+            "precision": 1e-9,
+            "segmentType": "LINE",
+          },
+          Line {
+            "_V": [
+              0.29289321881345254,
+              -0.29289321881345254,
+            ],
+            "_boundingBox": BoundingBox {
+              "xMax": 1.2928932198134526,
+              "xMin": 0.999999999,
+              "yMax": 0.29289321981345257,
+              "yMin": -1e-9,
+            },
+            "firstPoint": [
+              1,
+              0.29289321881345254,
+            ],
+            "lastPoint": [
+              1.2928932188134525,
+              0,
+            ],
+            "precision": 1e-9,
+            "segmentType": "LINE",
+          },
+          Line {
+            "_V": [
+              -0.3093284673559653,
+              -0.3093284673559653,
+            ],
+            "_boundingBox": BoundingBox {
+              "xMax": 1.2928932198134526,
+              "xMin": 0.9835647504574873,
+              "yMax": 1e-9,
+              "yMin": -0.30932846835596534,
+            },
+            "firstPoint": [
+              1.2928932188134525,
+              0,
+            ],
+            "lastPoint": [
+              0.9835647514574872,
+              -0.3093284673559653,
+            ],
+            "precision": 1e-9,
+            "segmentType": "LINE",
+          },
+          Line {
+            "_V": [
+              -0.3068405149474265,
+              0.2789459226794786,
+            ],
+            "_boundingBox": BoundingBox {
+              "xMax": 0.9835647524574872,
+              "xMin": 0.6767242355100608,
+              "yMax": -0.030382543676486712,
+              "yMin": -0.30932846835596534,
+            },
+            "firstPoint": [
+              0.9835647514574872,
+              -0.3093284673559653,
+            ],
+            "lastPoint": [
+              0.6767242365100608,
+              -0.03038254467648671,
+            ],
+            "precision": 1e-9,
+            "segmentType": "LINE",
+          },
+        ],
+        "strokeType": "LOOP",
+      },
+      "holes": [],
+    },
+    Figure {
+      "contour": Loop {
+        "_boundingBox": BoundingBox {
+          "xMax": 2.500000001,
+          "xMin": -0.6000000009999998,
+          "yMax": 1.500000001,
+          "yMin": -1.500000001,
+        },
+        "_clockwise": null,
+        "segments": [
+          Arc {
+            "_angularLength": 2.156684948094605,
+            "_boundingBox": BoundingBox {
+              "xMax": -0.222292971797972,
+              "xMin": -0.6000000009999998,
+              "yMax": 0.4848138093885755,
+              "yMin": -0.3699700376979719,
+            },
+            "_firstAngle": 1.81788897216962,
+            "_lastAngle": 3.9745739202642247,
+            "_radius": 0.4999999999999999,
+            "center": [
+              -0.09999999999999998,
+              0,
+            ],
+            "clockwise": false,
+            "firstPoint": [
+              -0.222292972797972,
+              0.48481380838857546,
+            ],
+            "lastPoint": [
+              -0.4363363969981562,
+              -0.36997003669797185,
+            ],
+            "precision": 1e-9,
+            "segmentType": "ARC",
+          },
+          Line {
+            "_V": [
+              1.1,
+              -1,
+            ],
+            "_boundingBox": BoundingBox {
+              "xMax": 0.6636636040018438,
+              "xMin": -0.4363363979981562,
+              "yMax": -0.3699700356979718,
+              "yMin": -1.369970037697972,
+            },
+            "firstPoint": [
+              -0.4363363969981562,
+              -0.36997003669797185,
+            ],
+            "lastPoint": [
+              0.6636636030018438,
+              -1.369970036697972,
+            ],
+            "precision": 1e-9,
+            "segmentType": "LINE",
+          },
+          Arc {
+            "_angularLength": 1.5232132235179132,
+            "_boundingBox": BoundingBox {
+              "xMax": 1.3535533915932738,
+              "xMin": 0.6636636020018438,
+              "yMax": -1.3535533895932736,
+              "yMin": -1.500000001,
+            },
+            "_firstAngle": 3.9745739202642247,
+            "_lastAngle": 5.497787143782138,
+            "_radius": 0.5,
+            "center": [
+              1,
+              -1,
+            ],
+            "clockwise": false,
+            "firstPoint": [
+              0.6636636030018438,
+              -1.369970036697972,
+            ],
+            "lastPoint": [
+              1.3535533905932737,
+              -1.3535533905932737,
+            ],
+            "precision": 1e-9,
+            "segmentType": "ARC",
+          },
+          Line {
+            "_V": [
+              1.0000000000000002,
+              1,
+            ],
+            "_boundingBox": BoundingBox {
+              "xMax": 2.353553391593274,
+              "xMin": 1.3535533895932736,
+              "yMax": -0.3535533895932737,
+              "yMin": -1.3535533915932738,
+            },
+            "firstPoint": [
+              1.3535533905932737,
+              -1.3535533905932737,
+            ],
+            "lastPoint": [
+              2.353553390593274,
+              -0.35355339059327373,
+            ],
+            "precision": 1e-9,
+            "segmentType": "LINE",
+          },
+          Arc {
+            "_angularLength": 1.5707963267948966,
+            "_boundingBox": BoundingBox {
+              "xMax": 2.500000001,
+              "xMin": 2.353553389593274,
+              "yMax": 0.35355339159327376,
+              "yMin": -0.35355339159327376,
+            },
+            "_firstAngle": 5.497787143782138,
+            "_lastAngle": 0.785398163397448,
+            "_radius": 0.5000000000000001,
+            "center": [
+              2,
+              0,
+            ],
+            "clockwise": false,
+            "firstPoint": [
+              2.353553390593274,
+              -0.35355339059327373,
+            ],
+            "lastPoint": [
+              2.353553390593274,
+              0.35355339059327373,
+            ],
+            "precision": 1e-9,
+            "segmentType": "ARC",
+          },
+          Line {
+            "_V": [
+              -1.0000000000000002,
+              1,
+            ],
+            "_boundingBox": BoundingBox {
+              "xMax": 2.353553391593274,
+              "xMin": 1.3535533895932736,
+              "yMax": 1.3535533915932738,
+              "yMin": 0.3535533895932737,
+            },
+            "firstPoint": [
+              2.353553390593274,
+              0.35355339059327373,
+            ],
+            "lastPoint": [
+              1.3535533905932737,
+              1.3535533905932737,
+            ],
+            "precision": 1e-9,
+            "segmentType": "LINE",
+          },
+          Arc {
+            "_angularLength": 1.5707963267948966,
+            "_boundingBox": BoundingBox {
+              "xMax": 1.3535533915932738,
+              "xMin": 0.6464466084067263,
+              "yMax": 1.500000001,
+              "yMin": 1.3535533895932736,
+            },
+            "_firstAngle": 0.7853981633974483,
+            "_lastAngle": 2.356194490192345,
+            "_radius": 0.49999999999999994,
+            "center": [
+              1,
+              1,
+            ],
+            "clockwise": false,
+            "firstPoint": [
+              1.3535533905932737,
+              1.3535533905932737,
+            ],
+            "lastPoint": [
+              0.6464466094067263,
+              1.3535533905932737,
+            ],
+            "precision": 1e-9,
+            "segmentType": "ARC",
+          },
+          Line {
+            "_V": [
+              -0.8687395822046983,
+              -0.8687395822046983,
+            ],
+            "_boundingBox": BoundingBox {
+              "xMax": 0.6464466104067262,
+              "xMin": -0.222292973797972,
+              "yMax": 1.3535533915932738,
+              "yMin": 0.48481380738857544,
+            },
+            "firstPoint": [
+              0.6464466094067263,
+              1.3535533905932737,
+            ],
+            "lastPoint": [
+              -0.222292972797972,
+              0.48481380838857546,
+            ],
+            "precision": 1e-9,
+            "segmentType": "LINE",
+          },
+        ],
+        "strokeType": "LOOP",
+      },
+      "holes": [],
+    },
+  ],
+}
+`;
