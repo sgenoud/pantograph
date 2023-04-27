@@ -1,9 +1,9 @@
 import { Figure } from "../../models/Figure";
 import { Diagram } from "../../models/Diagram";
 import { cut, fuseAll } from "../../booleanOperations";
-import { offsetLoop } from "./offsetLoop";
+import { offsetLoop } from "./offsetStroke";
 
-export default function offsetFigures(
+export function offsetFigures(
   figures: Figure[],
   offsetDistance: number
 ): Diagram {
@@ -13,6 +13,23 @@ export default function offsetFigures(
     );
     return cut(offsetLoop(figure.contour, offsetDistance), innerShape);
   });
+
+  return fuseAll(offsetFigures);
+}
+
+export function outlineStrokeFigures(
+  figures: Figure[],
+  width: number
+): Diagram {
+  const absOffset = Math.abs(width / 2);
+
+  const offsetFigures = figures.map((figure) =>
+    fuseAll(
+      figure.allLoops.map((l) => {
+        return cut(offsetLoop(l, absOffset), offsetLoop(l, -absOffset));
+      })
+    )
+  );
 
   return fuseAll(offsetFigures);
 }
