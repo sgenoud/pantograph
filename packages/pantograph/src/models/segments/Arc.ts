@@ -54,7 +54,9 @@ export class Arc extends AbstractSegment<Arc> {
         this.precision
       )
         throw new Error(
-          "Invalid arc, radius does not match between start and end"
+          `Invalid arc, radius does not match between ${reprVector(
+            firstPoint
+          )} and ${reprVector(lastPoint)}} (center ${reprVector(center)})`
         );
     }
   }

@@ -41,6 +41,7 @@ export {
   confineStrand,
   // Offset
   offset,
+  outlineStroke,
 } from "./operations";
 
 export { exportSVG, svgBody } from "./export/svg/exportSVG";
