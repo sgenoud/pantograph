@@ -1,4 +1,11 @@
-import { draw, cut, fuseAll, offset, polarToCartesian } from "../src/main";
+import {
+  draw,
+  cut,
+  fuseAll,
+  offset,
+  outlineStroke,
+  polarToCartesian,
+} from "../src/main";
 
 const drawPolygon = (radius, sides, { bulge = 0, fillet = 0 } = {}) => {
   const angle = 360 / sides;
@@ -8,19 +15,6 @@ const drawPolygon = (radius, sides, { bulge = 0, fillet = 0 } = {}) => {
     if (fillet) pen.customCorner(fillet);
   }
   return pen.close().rotate(90);
-};
-
-const drawStrokedPolygon = (
-  radius,
-  sides,
-  { strokeWidth, bulge, fillet = 0 } = {}
-) => {
-  const outerPolygon = drawPolygon(radius + strokeWidth / 2, sides, {
-    fillet,
-    bulge,
-  });
-  const innerPolygon = offset(outerPolygon, -strokeWidth);
-  return cut(outerPolygon, innerPolygon);
 };
 
 const polarCopy = (drawing, radius, count) => {
@@ -34,12 +28,12 @@ const polarCopy = (drawing, radius, count) => {
 };
 
 export default () => {
-  const shape = drawStrokedPolygon(50, 6, {
-    strokeWidth: 3,
+  const shape = drawPolygon(50, 6, {
     fillet: 10,
     bulge: -0.2,
   }).rotate(45);
-  const copies = polarCopy(shape, 80, 17);
+  const stroked = outlineStroke(shape, 3);
+  const copies = polarCopy(stroked, 80, 17);
 
   return fuseAll(copies.slice());
 };

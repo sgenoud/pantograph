@@ -35,10 +35,17 @@
       }
       .container {
         display: inline-flex;
+        align-items: start;
         gap: 0.5rem;
       }
       #download-btn {
         margin-left: auto;
+        height: fit-content;
+      }
+
+      select {
+        margin-bottom: 0;
+        width: auto;
       }
     </style>
   </head>
@@ -46,9 +53,12 @@
   <body>
     <main>
       <section class="container">
-        <span role="button" onClick="showMandala()">Mandala</span>
-        <span role="button" onClick="showStar()">Star</span>
-        <span role="button" onClick="showDieline()">Dieline</span>
+        <select id="preset-select" onChange="updateSelection()">
+          <option value="mandala">Mandala</option>
+          <option value="star">Star</option>
+          <option value="dieline" selected>Dieline</option>
+          <option value="angle">Angle Gauge</option>
+        </select>
         <a role="button" download="img.svg" id="download-btn">Download</a>
       </section>
       <div id="app"></div>
@@ -57,6 +67,7 @@
         import mandala from "./examples/mandala.js";
         import drawStar from "./examples/star.js";
         import drawDieline from "./examples/box-dieline.js";
+        import drawAngleGauge from "./examples/angle-gauge.js";
 
         const updatePage = (drawing, alreadyExported = false) => {
           const svg = alreadyExported ? drawing : exportSVG(drawing, 1);
@@ -68,19 +79,27 @@
           dl.href = "data:image/svg+xml;utf8," + svg;
         };
 
-        window.showMandala = () => {
-          updatePage(mandala());
+        const show = {
+          mandala: () => {
+            updatePage(mandala());
+          },
+          star: () => {
+            updatePage(drawStar(7));
+          },
+          dieline: () => {
+            updatePage(drawDieline().asSVG(), true);
+          },
+          angle: () => {
+            updatePage(drawAngleGauge());
+          },
         };
 
-        window.showStar = () => {
-          updatePage(drawStar(7));
-        };
+        show.dieline();
 
-        window.showDieline = () => {
-          updatePage(drawDieline().asSVG(), true);
+        window.updateSelection = function () {
+          const selection = document.getElementById("preset-select").value;
+          show[selection]?.();
         };
-
-        showDieline();
       </script>
     </main>
   </body>
