@@ -33,6 +33,13 @@
         max-height: 100vh;
         overflow: hidden;
       }
+      .container {
+        display: inline-flex;
+        gap: 0.5rem;
+      }
+      #download-btn {
+        margin-left: auto;
+      }
     </style>
   </head>
 
@@ -42,6 +49,7 @@
         <span role="button" onClick="showMandala()">Mandala</span>
         <span role="button" onClick="showStar()">Star</span>
         <span role="button" onClick="showDieline()">Dieline</span>
+        <a role="button" download="img.svg" id="download-btn">Download</a>
       </section>
       <div id="app"></div>
       <script type="module">
@@ -55,6 +63,9 @@
           const canvas = document.getElementById("app");
 
           canvas.innerHTML = svg;
+
+          const dl = document.getElementById("download-btn");
+          dl.href = "data:image/svg+xml;utf8," + svg;
         };
 
         window.showMandala = () => {

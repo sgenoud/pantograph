@@ -169,7 +169,7 @@ class Dieline extends Transformable {
       this.folds.map((shape) => shapes.push({ shape, color: "green" }));
     }
 
-    return exportSVG(shapes);
+    return exportSVG(shapes, { unit: "mm" });
   }
 }
 
@@ -182,7 +182,7 @@ const drawBump = (width, height) => {
 
 // A helper class to create bumps for locking parts together without glue
 class FoldBump extends Transformable {
-  constructor(width, paperThickness = 0.1) {
+  constructor(width, paperThickness = 0.2) {
     super();
 
     if (typeof width !== "number") {
@@ -192,12 +192,12 @@ class FoldBump extends Transformable {
       return;
     }
 
-    const pen = drawBump(width, paperThickness * 2);
+    const pen = drawBump(width, paperThickness * 2.5);
 
     this.cut = pen.asStrand();
     this.unfold = pen.close();
 
-    this.bump = drawBump(width - 2 * paperThickness, 3 * paperThickness)
+    this.bump = drawBump(width - 5 * paperThickness, 5 * paperThickness)
       .close()
       .mirror("x");
   }
@@ -220,7 +220,7 @@ class FoldBump extends Transformable {
   }
 }
 
-function basicTray(width, height, depth, { paperThickness = 0.1 } = {}) {
+function basicTray(width, height, depth, { paperThickness = 0.2 } = {}) {
   // The back and front sides are composed of two layers (inside and outside)
   // that fold on top of each other. The inside layer will lock into some fold
   // bumps
@@ -241,7 +241,9 @@ function basicTray(width, height, depth, { paperThickness = 0.1 } = {}) {
     .translateY(height / 2);
 
   // These correspond to the small bumps that lock the flaps without a need for glue
-  const bump = new FoldBump(5, paperThickness).translateY(height / 2);
+
+  const bumpWidth = Math.min(10, width / 5);
+  const bump = new FoldBump(bumpWidth, paperThickness).translateY(height / 2);
   const bumps = [
     bump,
     bump.translateX((-3 * width) / 8),
@@ -278,10 +280,13 @@ function basicTray(width, height, depth, { paperThickness = 0.1 } = {}) {
     .fuseFold(leftSide.mirror("y")); // the right side
 
   // We need to cut in the bottom - and could not merge it before.
-  bumps.forEach((bump) => bump.makeCut(shape));
+  bumps.forEach((bump) => {
+    bump.makeCut(shape);
+    bump.mirror("x").makeCut(shape);
+  });
   return shape;
 }
 
 export default function drawDieline() {
-  return basicTray(86, 63, 10, { paperThickness: 0.1 });
+  return basicTray(30, 20, 15, { paperThickness: 0.2 });
 }
