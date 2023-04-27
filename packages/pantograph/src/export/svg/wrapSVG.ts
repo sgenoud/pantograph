@@ -9,10 +9,24 @@ export function SVGViewbox(bbox: BoundingBox, margin = 1) {
   }`;
 }
 
-export function wrapSVG(body: string, boundingBox: BoundingBox, margin = 1) {
+// The list comes from https://oreillymedia.github.io/Using_SVG/guide/units.html
+export type SVGUnit = "mm" | "cm" | "in" | "pc" | "px" | "pt";
+
+export function wrapSVG(
+  body: string,
+  boundingBox: BoundingBox,
+  margin = 1,
+  unit: null | SVGUnit
+) {
   const vbox = SVGViewbox(boundingBox, margin);
+  const sizes = unit
+    ? `width="${boundingBox.width + 2 * margin}${unit}" height="${
+        boundingBox.height + 2 * margin
+      }${unit}"`
+    : "";
+
   return `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="${vbox}" fill="none" stroke="black" stroke-width="0.2%" vector-effect="non-scaling-stroke">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="${vbox}" fill="none" stroke="black" stroke-width="0.2%" vector-effect="non-scaling-stroke" ${sizes}>
     ${body}
 </svg>`;
 }

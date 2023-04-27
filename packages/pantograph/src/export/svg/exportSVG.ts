@@ -9,7 +9,7 @@ import { svgFigure } from "./svgFigure";
 import { svgLoop } from "./svgLoop";
 import { svgSegmentToPath } from "./svgSegment";
 import { svgStrand } from "./svgStrand";
-import { wrapSVG } from "./wrapSVG";
+import { SVGUnit, wrapSVG } from "./wrapSVG";
 
 type Shape = Loop | Figure | Diagram | Arc | Line | Strand;
 
@@ -45,7 +45,13 @@ const addConfig = (shape: ConfiguredShape, body: string) => {
 
 export function exportSVG(
   shape: ConfiguredShape | ConfiguredShape[],
-  margin = 1
+  {
+    margin = 1,
+    unit = null,
+  }: {
+    margin?: number;
+    unit?: null | SVGUnit;
+  } = {}
 ) {
   if (Array.isArray(shape)) {
     const flipped = shape.map((s) => extractShape(s).mirror());
@@ -56,12 +62,13 @@ export function exportSVG(
       .slice(1)
       .reduce((bbox, s) => bbox.merge(s.boundingBox), flipped[0].boundingBox);
 
-    return wrapSVG(body, bbox);
+    return wrapSVG(body, bbox, margin, unit);
   }
   const flipped = extractShape(shape).mirror();
   return wrapSVG(
     addConfig(shape, svgBody(flipped)),
     flipped.boundingBox,
-    margin
+    margin,
+    unit
   );
 }
