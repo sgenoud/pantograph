@@ -19,15 +19,18 @@ import {
   distance,
 } from "./vectorOperations";
 
-function loopySegmentsToDiagram(segments: Segment[]) {
+function loopySegmentsToDiagram(
+  segments: Segment[],
+  { ignoreChecks = false } = {}
+) {
   // Here we will need to do our best to fix cases where the drawing is
   // broken in some way (i.e. self-intersecting loops)
 
-  return new Diagram([new Figure(new Loop([...segments]))]);
+  return new Diagram([new Figure(new Loop([...segments], { ignoreChecks }))]);
 }
 
 export class DrawingPen {
-  protected pointer: Vector;
+  pointer: Vector;
   protected firstPoint: Vector;
   protected pendingSegments: Segment[];
 
@@ -240,7 +243,7 @@ export class DrawingPen {
     this.pendingSegments.push(...makeCorner(lastSegment, firstSegment, radius));
   }
 
-  close(): Diagram {
+  close(ignoreChecks = false): Diagram {
     if (!this.pendingSegments.length) throw new Error("No segments to close");
     const firstSegment = this.pendingSegments[0];
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -258,10 +261,10 @@ export class DrawingPen {
       this._nextCorner = null;
     }
 
-    return loopySegmentsToDiagram(this.pendingSegments);
+    return loopySegmentsToDiagram(this.pendingSegments, { ignoreChecks });
   }
 
-  closeWithMirror(): Diagram {
+  closeWithMirror(ignoreChecks = false): Diagram {
     if (!this.pendingSegments.length) throw new Error("No segments to close");
 
     const firstSegment = this.pendingSegments[0];
@@ -282,10 +285,10 @@ export class DrawingPen {
     );
     mirroredSegments.reverse();
 
-    return loopySegmentsToDiagram([
-      ...this.pendingSegments,
-      ...mirroredSegments,
-    ]);
+    return loopySegmentsToDiagram(
+      [...this.pendingSegments, ...mirroredSegments],
+      { ignoreChecks }
+    );
   }
 
   asStrand(): Strand {

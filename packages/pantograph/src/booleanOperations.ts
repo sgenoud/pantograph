@@ -14,6 +14,7 @@ import {
   eraseStrandWithinFigure,
   eraseStrandWithinLoop,
 } from "./algorithms/boolean/strandBoolean";
+import { Stroke } from "./main";
 
 export function fuse(
   first: Diagram | Figure | Loop,
@@ -50,7 +51,7 @@ export function intersect(
 }
 
 export function eraseStrand(
-  strand: Strand,
+  strand: Stroke,
   diagram: Diagram | Figure | Loop,
   eraseOnBorder = true
 ): Strand[] {
@@ -62,7 +63,7 @@ export function eraseStrand(
     return eraseStrandWithinFigure(strand, diagram, eraseOnBorder);
   }
 
-  let outStrands: Strand[] = [strand];
+  let outStrands: Strand[] = [new Strand([...strand.segments])];
   diagram.figures.forEach((figure: Figure) => {
     outStrands = outStrands.flatMap((strand: Strand) => {
       return eraseStrandWithinFigure(strand, figure, eraseOnBorder);
@@ -73,7 +74,7 @@ export function eraseStrand(
 }
 
 export function confineStrand(
-  strand: Strand,
+  strand: Stroke,
   diagram: Diagram | Figure | Loop,
   eraseOnBorder = false
 ): Strand[] {
@@ -85,7 +86,7 @@ export function confineStrand(
     return eraseStrandOutsideFigure(strand, diagram, eraseOnBorder);
   }
 
-  let outStrands: Strand[] = [strand];
+  let outStrands: Strand[] = [new Strand([...strand.segments])];
   diagram.figures.forEach((figure: Figure) => {
     outStrands = outStrands.flatMap((strand: Strand) => {
       return eraseStrandOutsideFigure(strand, figure, eraseOnBorder);

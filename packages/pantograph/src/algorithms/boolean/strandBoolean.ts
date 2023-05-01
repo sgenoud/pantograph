@@ -6,11 +6,12 @@ import { findIntersectionsAndOverlaps } from "../intersections";
 import removeDuplicatePoints from "../../utils/removeDuplicatePoints";
 import zip from "../../utils/zip";
 import { strandsBetweenIntersections } from "./strandsBetweenIntersections";
-import { Figure } from "../../main";
+import type { Figure } from "../../models/Figure";
+import type { Stroke } from "../../models/Stroke";
 
 function strandLoopSections(
   loop: Loop,
-  strand: Strand,
+  strand: Stroke,
   precision = 1e-9
 ): Strand[] {
   let allIntersections: Vector[] = [];
@@ -61,7 +62,7 @@ function strandLoopSections(
 }
 
 export function eraseStrandWithinLoop(
-  strand: Strand,
+  strand: Stroke,
   loop: Loop,
   eraseOnBorder = false
 ) {
@@ -77,7 +78,7 @@ export function eraseStrandWithinLoop(
 }
 
 export function eraseStrandOutsideLoop(
-  strand: Strand,
+  strand: Stroke,
   loop: Loop,
   eraseOnBorder = false
 ) {
@@ -93,7 +94,7 @@ export function eraseStrandOutsideLoop(
 }
 
 export function eraseStrandWithinFigure(
-  strand: Strand,
+  strand: Stroke,
   figure: Figure,
   eraseOnBorder = false
 ) {
@@ -111,7 +112,7 @@ export function eraseStrandWithinFigure(
 }
 
 export function eraseStrandOutsideFigure(
-  strand: Strand,
+  strand: Stroke,
   figure: Figure,
   eraseOnBorder = false
 ) {

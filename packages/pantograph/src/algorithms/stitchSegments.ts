@@ -5,6 +5,9 @@ export function stitchSegments(
   segments: Segment[],
   precision = 1e-7
 ): Segment[][] {
+  if (segments.length === 0) return [];
+  if (segments.length === 1) return [segments];
+
   // We create a spacial index of the startpoints
   const startPoints = new Flatbush(segments.length);
   segments.forEach((c) => {

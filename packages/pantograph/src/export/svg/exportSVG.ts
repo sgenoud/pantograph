@@ -10,8 +10,9 @@ import { svgLoop } from "./svgLoop";
 import { svgSegmentToPath } from "./svgSegment";
 import { svgStrand } from "./svgStrand";
 import { SVGUnit, wrapSVG } from "./wrapSVG";
+import type { Stroke } from "../../models/Stroke";
 
-type Shape = Loop | Figure | Diagram | Arc | Line | Strand;
+type Shape = Figure | Diagram | Arc | Line | Stroke;
 
 export function svgBody(shape: Shape) {
   if (shape instanceof Diagram) {
