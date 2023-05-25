@@ -1,4 +1,5 @@
 import { Arc } from "../../models/segments/Arc";
+import { EllipseArc } from "../../models/segments/EllipseArc";
 import { Line } from "../../models/segments/Line";
 import { Segment } from "../../models/segments/Segment";
 
@@ -17,6 +18,19 @@ export function jsonSegment(segment: Segment) {
       lastPoint: segment.lastPoint,
       center: segment.center,
       clockwise: segment.clockwise,
+    };
+  }
+
+  if (segment instanceof EllipseArc) {
+    return {
+      type: segment.segmentType,
+      firstPoint: segment.firstPoint,
+      lastPoint: segment.lastPoint,
+      center: segment.center,
+      clockwise: segment.clockwise,
+      majorRadius: segment.majorRadius,
+      minorRadius: segment.minorRadius,
+      tiltAngle: segment.tiltAngle,
     };
   }
 

@@ -3,6 +3,7 @@ import { Arc } from "../../models/segments/Arc";
 import { Loop } from "../../models/Loop";
 import { Figure } from "../../models/Figure";
 import { Diagram } from "../../models/Diagram";
+import { EllipseArc } from "../../models/segments/EllipseArc";
 
 const importSegment = (json: any) => {
   if (json.type === "LINE") {
@@ -14,6 +15,18 @@ const importSegment = (json: any) => {
       json.lastPoint,
       json.center,
       json.clockwise
+    );
+  }
+  if (json.type === "ELLIPSE_ARC") {
+    return new EllipseArc(
+      json.firstPoint,
+      json.lastPoint,
+      json.center,
+      json.majorRadius,
+      json.minorRadius,
+      json.tiltAngle,
+      json.clockwise,
+      { angleUnits: "rad" }
     );
   }
   throw new Error("Unknown segment type");
@@ -45,7 +58,11 @@ export function importJSON(json: any) {
   if (json.type === "LOOP") {
     return importLoop(json);
   }
-  if (json.type === "LINE" || json.type === "ARC") {
+  if (
+    json.type === "LINE" ||
+    json.type === "ARC" ||
+    json.type === "ELLIPSE_ARC"
+  ) {
     return importSegment(json);
   }
   throw new Error("Unknown shape type");
