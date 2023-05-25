@@ -1,0 +1,186 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`arcEllipseArcIntersection > overlapping ellipses > works with one overlap 1`] = `
+[
+  EllipseArc {
+    "_coefficients": null,
+    "center": [
+      0,
+      0,
+    ],
+    "clockwise": false,
+    "firstPoint": [
+      -2,
+      0,
+    ],
+    "lastPoint": [
+      -0.31286893008046207,
+      -0.9876883405951377,
+    ],
+    "majorRadius": 2,
+    "minorRadius": 1,
+    "precision": 0.000001,
+    "segmentType": "ELLIPSE_ARC",
+    "tiltAngle": 0,
+  },
+]
+`;
+
+exports[`arcEllipseArcIntersection > overlapping ellipses > works with two overlaps 1`] = `
+[
+  EllipseArc {
+    "_coefficients": null,
+    "center": [
+      0,
+      0,
+    ],
+    "clockwise": false,
+    "firstPoint": [
+      0.6180339887498945,
+      -0.9510565162951536,
+    ],
+    "lastPoint": [
+      0,
+      1,
+    ],
+    "majorRadius": 2,
+    "minorRadius": 1,
+    "precision": 0.000001,
+    "segmentType": "ELLIPSE_ARC",
+    "tiltAngle": 0,
+  },
+  EllipseArc {
+    "_coefficients": null,
+    "center": [
+      0,
+      0,
+    ],
+    "clockwise": false,
+    "firstPoint": [
+      -2,
+      0,
+    ],
+    "lastPoint": [
+      -0.31286893008046207,
+      -0.9876883405951377,
+    ],
+    "majorRadius": 2,
+    "minorRadius": 1,
+    "precision": 0.000001,
+    "segmentType": "ELLIPSE_ARC",
+    "tiltAngle": 0,
+  },
+]
+`;
+
+exports[`arcEllipseArcIntersection > overlapping ellipses > works with two overlaps, with rotated ellipses 1`] = `
+[
+  EllipseArc {
+    "_coefficients": null,
+    "center": [
+      0,
+      0,
+    ],
+    "clockwise": false,
+    "firstPoint": [
+      1.0363094196341955,
+      -0.4610176734302223,
+    ],
+    "lastPoint": [
+      -0.5446390350150271,
+      0.838670567945424,
+    ],
+    "majorRadius": 2,
+    "minorRadius": 1,
+    "precision": 0.000001,
+    "segmentType": "ELLIPSE_ARC",
+    "tiltAngle": 0.5759586531581287,
+  },
+  EllipseArc {
+    "_coefficients": null,
+    "center": [
+      0,
+      0,
+    ],
+    "clockwise": false,
+    "firstPoint": [
+      -1.677341135890848,
+      -1.0892780700300542,
+    ],
+    "lastPoint": [
+      0.2755396614342709,
+      -0.9987457737252043,
+    ],
+    "majorRadius": 2,
+    "minorRadius": 1,
+    "precision": 0.000001,
+    "segmentType": "ELLIPSE_ARC",
+    "tiltAngle": 0.5759586531581287,
+  },
+]
+`;
+
+exports[`arcEllipseArcIntersection > should return the intersection points of an arc and an ellipse arc > should work for one direction 1`] = `
+[
+  [
+    -0.3401205058312131,
+    -1.0104433405109907,
+  ],
+  [
+    -1.4066529619990422,
+    -0.8030218877085064,
+  ],
+  [
+    0.3401205058312048,
+    1.0104433405109925,
+  ],
+]
+`;
+
+exports[`arcEllipseArcIntersection > should return the intersection points of an arc and an ellipse arc > should work for the opposite direction 1`] = `
+[
+  [
+    1.4066529619990515,
+    0.8030218877085047,
+  ],
+]
+`;
+
+exports[`arcEllipseArcIntersection > should work for axis aligned ellipses 1`] = `
+[
+  [
+    -1.8371173883849605,
+    -0.395284697025575,
+  ],
+  [
+    1.8371172820973773,
+    0.3952847107472433,
+  ],
+]
+`;
+
+exports[`arcEllipseArcIntersection > should work for tangent common points 1`] = `
+[
+  [
+    -8.940696716308594e-8,
+    -0.9999999999999996,
+  ],
+  [
+    0.00038102339293144435,
+    0.9999999919345096,
+  ],
+]
+`;
+
+exports[`arcEllipseArcIntersection > should work for two common points 1`] = `
+[
+  [
+    -1.7517091212757456,
+    0.4059117020306511,
+  ],
+  [
+    1.4940750915928842,
+    0.43358132713599973,
+  ],
+]
+`;

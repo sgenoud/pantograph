@@ -6,6 +6,10 @@ import { Arc } from "../../models/segments/Arc";
 import { lineArcIntersection } from "./lineArcIntersection";
 import { lineLineIntersection } from "./lineLineIntersection";
 import { arcArcIntersection } from "./arcArcIntersection";
+import { EllipseArc } from "../../models/segments/EllipseArc";
+import { lineEllipseArcIntersection } from "./lineEllipseArcIntersection";
+import { arcEllipseArcIntersection } from "./arcEllipseArcIntersection";
+import { ellipseArcEllipseArcIntersection } from "./ellipseArcEllipseArcIntersection";
 
 export function findIntersections(
   segment1: Segment,
@@ -82,6 +86,55 @@ export function findIntersectionsAndOverlaps(
       return {
         intersections: [],
         overlaps: intersections as Arc[],
+        count: intersections.length,
+      };
+    return {
+      intersections: intersections as Vector[],
+      overlaps: [],
+      count: intersections.length,
+    };
+  }
+
+  if (segment1 instanceof Line && segment2 instanceof EllipseArc) {
+    const intersections = lineEllipseArcIntersection(
+      segment1,
+      segment2,
+      precision
+    );
+    return { intersections, overlaps: [], count: intersections.length };
+  }
+
+  if (segment2 instanceof Line && segment1 instanceof EllipseArc) {
+    const intersections = lineEllipseArcIntersection(
+      segment2,
+      segment1,
+      precision
+    );
+    return { intersections, overlaps: [], count: intersections.length };
+  }
+
+  if (segment1 instanceof Arc && segment2 instanceof EllipseArc) {
+    const intersections = arcEllipseArcIntersection(segment1, segment2);
+    return { intersections, overlaps: [], count: intersections.length };
+  }
+
+  if (segment2 instanceof Arc && segment1 instanceof EllipseArc) {
+    const intersections = arcEllipseArcIntersection(segment2, segment1);
+    return { intersections, overlaps: [], count: intersections.length };
+  }
+
+  if (segment1 instanceof EllipseArc && segment2 instanceof EllipseArc) {
+    const intersections = ellipseArcEllipseArcIntersection(
+      segment1,
+      segment2,
+      true
+    );
+    if (!intersections.length)
+      return { intersections: [], overlaps: [], count: 0 };
+    if (intersections[0] instanceof EllipseArc)
+      return {
+        intersections: [],
+        overlaps: intersections as EllipseArc[],
         count: intersections.length,
       };
     return {

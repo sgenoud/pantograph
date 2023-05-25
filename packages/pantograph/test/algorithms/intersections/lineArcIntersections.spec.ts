@@ -4,7 +4,7 @@ import { lineArcIntersection } from "../../../src/algorithms/intersections/lineA
 import { Line } from "../../../src/models/segments/Line";
 import { Arc } from "../../../src/models/segments/Arc";
 
-describe("lineLineIntersections", () => {
+describe("lineArcIntersections", () => {
   it("should return the intersection point of a line and an arc", () => {
     const line = new Line([-1, -1], [1, 1]);
     const arc = new Arc([-1, 1], [1, -1], [-1, -1], true);

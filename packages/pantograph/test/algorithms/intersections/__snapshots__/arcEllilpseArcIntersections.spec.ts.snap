@@ -1,0 +1,83 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`arcEllipseArcIntersection > for tangent common points > should work for the circle inside the ellipse 1`] = `
+[
+  [
+    0.017452406437295013,
+    -0.999847695156391,
+  ],
+  [
+    -0.01745240643725682,
+    0.9998476951563917,
+  ],
+]
+`;
+
+exports[`arcEllipseArcIntersection > for tangent common points > should work for the ellipse inside the circle 1`] = `
+[
+  [
+    -1.9996953903128885,
+    -0.034904812875090875,
+  ],
+  [
+    1.9996953903128896,
+    0.034904812875090854,
+  ],
+]
+`;
+
+exports[`arcEllipseArcIntersection > should return the intersection points of an arc and an ellipse arc > should work for one direction 1`] = `
+[
+  [
+    -1.2195155270312994,
+    -0.873373848549192,
+  ],
+  [
+    1.3526481231617065,
+    -0.6483386884238435,
+  ],
+  [
+    1.219515527031266,
+    0.8733738485491886,
+  ],
+]
+`;
+
+exports[`arcEllipseArcIntersection > should return the intersection points of an arc and an ellipse arc > should work for the opposite direction 1`] = `
+[
+  [
+    -1.352648123161687,
+    0.648338688423845,
+  ],
+]
+`;
+
+exports[`arcEllipseArcIntersection > should work for axis aligned ellipses 1`] = `
+[
+  [
+    1.2909944574126135,
+    -0.7637626011594909,
+  ],
+  [
+    -1.2909944574126135,
+    -0.7637626011594909,
+  ],
+  [
+    1.2909944553360515,
+    0.7637626046695216,
+  ],
+]
+`;
+
+exports[`arcEllipseArcIntersection > should work for two common points 1`] = `
+[
+  [
+    1.0492960145388914,
+    -0.928096145229026,
+  ],
+  [
+    -0.9049776637673809,
+    -0.8037494292238798,
+  ],
+]
+`;

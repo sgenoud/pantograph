@@ -63,8 +63,40 @@ export class Arc extends AbstractSegment<Arc> {
 
   get info() {
     return `ARC(${reprVector(this.firstPoint)}, ${reprVector(
-      this.lastPoint
+     this.lastPoint
     )}, ${reprVector(this.center)}, ${this.clockwise ? "CW" : "CCW"})`;
+  }
+
+  private _coefficients: {
+    x2: number;
+    xy: number;
+    y2: number;
+    x: number;
+    y: number;
+    c: number;
+  } | null = null;
+  get coefficients(): {
+    x2: number;
+    xy: number;
+    y2: number;
+    x: number;
+    y: number;
+    c: number;
+  } {
+    if (this._coefficients === null) {
+      const [x0, y0] = this.center;
+      const r2 = this.radius * this.radius;
+
+      this._coefficients = {
+        x2: 1 / r2,
+        xy: 0,
+        y2: 1 / r2,
+        x: -(2 * x0) / r2,
+        y: -(2 * y0) / r2,
+        c: (x0 * x0 + y0 * y0 - r2) / r2,
+      };
+    }
+    return this._coefficients;
   }
 
   isValidParameter(t: number): boolean {
