@@ -1,0 +1,89 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`EllipseArc > should compute the bounding box correctly 1`] = `
+BoundingBox {
+  "xMax": 3.746194789103617,
+  "xMin": 0,
+  "yMax": 1.9412661636294257,
+  "yMin": -0.44283978996577733,
+}
+`;
+
+exports[`EllipseArc > should compute the bounding box correctly 2`] = `
+BoundingBox {
+  "xMax": 1.479761115717663,
+  "xMin": -0.03745937083646744,
+  "yMax": 1.6763970413986113,
+  "yMin": 0,
+}
+`;
+
+exports[`svgEllipse > changes the tilt angle as expected 1`] = `
+EllipseArc {
+  "_coefficients": null,
+  "_focals": [
+    [
+      -6.459860961089884,
+      48.87986096108989,
+    ],
+    [
+      50.108681533833916,
+      -7.688681533833915,
+    ],
+  ],
+  "_linearExentricity": 40,
+  "center": [
+    21.824410286372014,
+    20.595589713627987,
+  ],
+  "clockwise": true,
+  "firstPoint": [
+    0,
+    0,
+  ],
+  "lastPoint": [
+    42.42,
+    42.42,
+  ],
+  "majorRadius": 50,
+  "minorRadius": 30,
+  "precision": 0.000001,
+  "segmentType": "ELLIPSE_ARC",
+  "tiltAngle": 2.356194490192345,
+}
+`;
+
+exports[`svgEllipse > draws the correct ellipse with the correct attributes 1`] = `
+EllipseArc {
+  "_coefficients": null,
+  "_focals": [
+    [
+      1.8332406094626617,
+      1.0566252188258825,
+    ],
+    [
+      -3.823613640029719,
+      1.0566252188258825,
+    ],
+  ],
+  "_linearExentricity": 2.8284271247461903,
+  "center": [
+    -0.9951865152835286,
+    1.0566252188258825,
+  ],
+  "clockwise": false,
+  "firstPoint": [
+    0,
+    2,
+  ],
+  "lastPoint": [
+    2,
+    1,
+  ],
+  "majorRadius": 3,
+  "minorRadius": 1,
+  "precision": 0.000001,
+  "segmentType": "ELLIPSE_ARC",
+  "tiltAngle": 0,
+}
+`;

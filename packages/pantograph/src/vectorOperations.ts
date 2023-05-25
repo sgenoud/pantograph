@@ -1,6 +1,7 @@
 import type { Vector } from "./definitions";
 
 export const DEG2RAD = Math.PI / 180;
+export const RAD2DEG = 180 / Math.PI;
 
 export const reprVector = (vector: Vector): string => {
   return `[${vector[0]}, ${vector[1]}]`;
@@ -94,4 +95,8 @@ export function perpendicular(v: Vector): Vector {
 
 export function perpendicularClockwise(v: Vector): Vector {
   return [v[1], -v[0]];
+}
+
+export function isOnAxis(point: Vector, direction: Vector, center: Vector): boolean {
+  return sameVector(center, point) || parallel(subtract(center, point), direction);
 }

@@ -93,6 +93,12 @@ export class TransformationMatrix {
     return [a * x + b * y + c, d * x + e * y + f];
   }
 
+  transformAngle(angle: number): number {
+    const [a, b] = this.transform([Math.cos(angle), Math.sin(angle)]);
+    const [originA, originB] = this.transform([0, 0]);
+    return Math.atan2(b - originB, a - originA);
+  }
+
   keepsOrientation(): boolean {
     const [a, , , , e] = this._matrix;
     return a * e > 0;

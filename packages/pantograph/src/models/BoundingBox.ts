@@ -71,3 +71,7 @@ export class BoundingBox {
     );
   }
 }
+
+export function pointsBoundingBox(points: Vector[]): BoundingBox {
+  return points.reduce((box, point) => box.addPoint(point), new BoundingBox());
+}
