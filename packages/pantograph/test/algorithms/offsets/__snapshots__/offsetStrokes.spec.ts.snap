@@ -11,6 +11,8 @@ exports[`offsetStrand > should create an outline that intersects itself 1`] = `
           0,
         ],
         "_boundingBox": null,
+        "_slope": null,
+        "_yIntercept": null,
         "firstPoint": [
           0,
           -0.5,
@@ -28,6 +30,8 @@ exports[`offsetStrand > should create an outline that intersects itself 1`] = `
           -1.071253537143728,
         ],
         "_boundingBox": null,
+        "_slope": null,
+        "_yIntercept": null,
         "firstPoint": [
           1.52817468419245,
           -0.5,
@@ -52,6 +56,8 @@ exports[`offsetStrand > should create an outline that intersects itself 1`] = `
           0,
         ],
         "_boundingBox": null,
+        "_slope": null,
+        "_yIntercept": null,
         "firstPoint": [
           4.080756891504095,
           -0.5,
@@ -74,6 +80,8 @@ exports[`offsetStrand > should create an outline that intersects itself 1`] = `
           "yMax": -0.499999999,
           "yMin": -0.8773187986463149,
         },
+        "_slope": null,
+        "_yIntercept": null,
         "firstPoint": [
           4.5,
           -0.5,
@@ -91,6 +99,8 @@ exports[`offsetStrand > should create an outline that intersects itself 1`] = `
           0.37731879764631493,
         ],
         "_boundingBox": null,
+        "_slope": null,
+        "_yIntercept": null,
         "firstPoint": [
           4.5,
           -0.8773187976463149,
@@ -124,6 +134,8 @@ exports[`offsetStrand > should offset a basic strand 1`] = `
           "yMax": 1.3535533915932738,
           "yMin": 0.3535533895932737,
         },
+        "_slope": null,
+        "_yIntercept": null,
         "firstPoint": [
           -0.35355339059327373,
           0.35355339059327373,
@@ -143,6 +155,7 @@ exports[`offsetStrand > should offset a basic strand 1`] = `
           "yMax": 1.500000001,
           "yMin": 1.3535533895932736,
         },
+        "_coefficients": null,
         "_firstAngle": 2.356194490192345,
         "_lastAngle": 0.7853981633974483,
         "_radius": 0.49999999999999994,
@@ -173,6 +186,8 @@ exports[`offsetStrand > should offset a basic strand 1`] = `
           "yMax": 1.3535533915932738,
           "yMin": 0.7071067801865476,
         },
+        "_slope": null,
+        "_yIntercept": null,
         "firstPoint": [
           1.3535533905932737,
           1.3535533905932737,
@@ -195,6 +210,8 @@ exports[`offsetStrand > should offset a basic strand 1`] = `
           "yMax": 1.3535533915932738,
           "yMin": 0.7071067801865476,
         },
+        "_slope": null,
+        "_yIntercept": null,
         "firstPoint": [
           2,
           0.7071067811865476,
@@ -224,6 +241,8 @@ exports[`offsetStrand > should offset a strand that create a loop 1`] = `
           0.32327576348993925,
         ],
         "_boundingBox": null,
+        "_slope": null,
+        "_yIntercept": null,
         "firstPoint": [
           0.6767242365100608,
           -0.03038254467648671,
@@ -246,6 +265,8 @@ exports[`offsetStrand > should offset a strand that create a loop 1`] = `
           "yMax": 0.29289321981345257,
           "yMin": -1e-9,
         },
+        "_slope": null,
+        "_yIntercept": null,
         "firstPoint": [
           1,
           0.29289321881345254,
@@ -268,6 +289,8 @@ exports[`offsetStrand > should offset a strand that create a loop 1`] = `
           "yMax": 1e-9,
           "yMin": -0.30932846835596534,
         },
+        "_slope": null,
+        "_yIntercept": null,
         "firstPoint": [
           1.2928932188134525,
           0,
@@ -285,6 +308,8 @@ exports[`offsetStrand > should offset a strand that create a loop 1`] = `
           0.2789459226794786,
         ],
         "_boundingBox": null,
+        "_slope": null,
+        "_yIntercept": null,
         "firstPoint": [
           0.9835647514574872,
           -0.3093284673559653,
@@ -327,6 +352,8 @@ Diagram {
               "yMax": -0.499999999,
               "yMin": -0.500000001,
             },
+            "_slope": null,
+            "_yIntercept": null,
             "firstPoint": [
               0,
               -0.5,
@@ -349,6 +376,8 @@ Diagram {
               "yMax": -0.499999999,
               "yMin": -1.571253538143728,
             },
+            "_slope": null,
+            "_yIntercept": null,
             "firstPoint": [
               1.52817468419245,
               -0.5,
@@ -368,6 +397,7 @@ Diagram {
               "yMax": -1.5712535361437279,
               "yMin": -2.500000001,
             },
+            "_coefficients": null,
             "_firstAngle": 2.111215827065481,
             "_lastAngle": 5.252808480655274,
             "_radius": 0.49999999999999994,
@@ -398,6 +428,8 @@ Diagram {
               "yMax": -0.8189295936321922,
               "yMin": -2.4287464638562724,
             },
+            "_slope": null,
+            "_yIntercept": null,
             "firstPoint": [
               0.2572478777137633,
               -2.4287464628562723,
@@ -420,6 +452,8 @@ Diagram {
               "yMax": -0.8189295936321922,
               "yMin": -2.371647074123583,
             },
+            "_slope": null,
+            "_yIntercept": null,
             "firstPoint": [
               2.940275991420563,
               -0.8189295946321922,
@@ -439,6 +473,7 @@ Diagram {
               "yMax": -1.999999999,
               "yMin": -2.5000000009999996,
             },
+            "_coefficients": null,
             "_firstAngle": 3.979573878598184,
             "_lastAngle": 0,
             "_radius": 0.49999999999999956,
@@ -469,6 +504,8 @@ Diagram {
               "yMax": 1e-9,
               "yMin": -2.000000001,
             },
+            "_slope": null,
+            "_yIntercept": null,
             "firstPoint": [
               5.5,
               -2,
@@ -488,6 +525,7 @@ Diagram {
               "yMax": 0.500000001,
               "yMin": -1e-9,
             },
+            "_coefficients": null,
             "_firstAngle": 0,
             "_lastAngle": 1.5707963267948966,
             "_radius": 0.5,
@@ -518,6 +556,8 @@ Diagram {
               "yMax": 0.500000001,
               "yMin": 0.499999999,
             },
+            "_slope": null,
+            "_yIntercept": null,
             "firstPoint": [
               5,
               0.5,
@@ -537,6 +577,7 @@ Diagram {
               "yMax": 0.500000001,
               "yMin": -0.500000001,
             },
+            "_coefficients": null,
             "_firstAngle": 1.5707963267948966,
             "_lastAngle": 4.71238898038469,
             "_radius": 0.5,
@@ -582,6 +623,8 @@ Diagram {
               "yMax": -0.499999999,
               "yMin": -0.500000001,
             },
+            "_slope": null,
+            "_yIntercept": null,
             "firstPoint": [
               4.080756891504095,
               -0.5,
@@ -604,6 +647,8 @@ Diagram {
               "yMax": -0.499999999,
               "yMin": -0.8773187986463149,
             },
+            "_slope": null,
+            "_yIntercept": null,
             "firstPoint": [
               4.5,
               -0.5,
@@ -626,6 +671,8 @@ Diagram {
               "yMax": -0.499999999,
               "yMin": -0.8773187986463149,
             },
+            "_slope": null,
+            "_yIntercept": null,
             "firstPoint": [
               4.5,
               -0.8773187976463149,
@@ -666,6 +713,8 @@ Diagram {
               "yMax": 1.3535533915932738,
               "yMin": 0.3535533895932737,
             },
+            "_slope": null,
+            "_yIntercept": null,
             "firstPoint": [
               -0.35355339059327373,
               0.35355339059327373,
@@ -685,6 +734,7 @@ Diagram {
               "yMax": 1.500000001,
               "yMin": 1.3535533895932736,
             },
+            "_coefficients": null,
             "_firstAngle": 2.356194490192345,
             "_lastAngle": 0.7853981633974483,
             "_radius": 0.49999999999999994,
@@ -715,6 +765,8 @@ Diagram {
               "yMax": 1.3535533915932738,
               "yMin": 0.7071067801865476,
             },
+            "_slope": null,
+            "_yIntercept": null,
             "firstPoint": [
               1.3535533905932737,
               1.3535533905932737,
@@ -737,6 +789,8 @@ Diagram {
               "yMax": 1.3535533915932738,
               "yMin": 0.7071067801865476,
             },
+            "_slope": null,
+            "_yIntercept": null,
             "firstPoint": [
               2,
               0.7071067811865476,
@@ -756,6 +810,7 @@ Diagram {
               "yMax": 1.500000001,
               "yMin": 0.6464466084067263,
             },
+            "_coefficients": null,
             "_firstAngle": 2.356194490192345,
             "_lastAngle": 5.497787143782139,
             "_radius": 0.5000000000000002,
@@ -786,6 +841,8 @@ Diagram {
               "yMax": 0.6464466104067262,
               "yMin": -0.35355339159327376,
             },
+            "_slope": null,
+            "_yIntercept": null,
             "firstPoint": [
               3.353553390593274,
               0.6464466094067263,
@@ -805,6 +862,7 @@ Diagram {
               "yMax": -0.3535533895932737,
               "yMin": -0.5000000010000001,
             },
+            "_coefficients": null,
             "_firstAngle": 5.497787143782138,
             "_lastAngle": 3.9269908169872414,
             "_radius": 0.5000000000000001,
@@ -835,6 +893,8 @@ Diagram {
               "yMax": 0.29289321981345257,
               "yMin": -0.35355339159327376,
             },
+            "_slope": null,
+            "_yIntercept": null,
             "firstPoint": [
               1.6464466094067263,
               -0.35355339059327373,
@@ -857,6 +917,8 @@ Diagram {
               "yMax": 0.29289321981345257,
               "yMin": -0.35355339159327376,
             },
+            "_slope": null,
+            "_yIntercept": null,
             "firstPoint": [
               1,
               0.29289321881345254,
@@ -876,6 +938,7 @@ Diagram {
               "yMax": 0.35355339159327376,
               "yMin": -0.500000001,
             },
+            "_coefficients": null,
             "_firstAngle": 5.497787143782138,
             "_lastAngle": 2.356194490192345,
             "_radius": 0.49999999999999994,
@@ -924,6 +987,8 @@ Diagram {
               "yMax": 1.3535533915932738,
               "yMin": 0.3535533895932737,
             },
+            "_slope": null,
+            "_yIntercept": null,
             "firstPoint": [
               -0.35355339059327373,
               0.35355339059327373,
@@ -943,6 +1008,7 @@ Diagram {
               "yMax": 1.500000001,
               "yMin": 1.3535533895932736,
             },
+            "_coefficients": null,
             "_firstAngle": 2.356194490192345,
             "_lastAngle": 0.7853981633974483,
             "_radius": 0.49999999999999994,
@@ -973,6 +1039,8 @@ Diagram {
               "yMax": 1.3535533915932738,
               "yMin": 0.7071067801865476,
             },
+            "_slope": null,
+            "_yIntercept": null,
             "firstPoint": [
               1.3535533905932737,
               1.3535533905932737,
@@ -995,6 +1063,8 @@ Diagram {
               "yMax": 1.3535533915932738,
               "yMin": 0.7071067801865476,
             },
+            "_slope": null,
+            "_yIntercept": null,
             "firstPoint": [
               2,
               0.7071067811865476,
@@ -1017,6 +1087,8 @@ Diagram {
               "yMax": 1.3535533915932738,
               "yMin": 0.6464466084067263,
             },
+            "_slope": null,
+            "_yIntercept": null,
             "firstPoint": [
               2.646446609406726,
               1.3535533905932737,
@@ -1039,6 +1111,8 @@ Diagram {
               "yMax": 0.6464466104067262,
               "yMin": -0.35355339159327376,
             },
+            "_slope": null,
+            "_yIntercept": null,
             "firstPoint": [
               3.353553390593274,
               0.6464466094067263,
@@ -1058,6 +1132,7 @@ Diagram {
               "yMax": -0.3535533895932737,
               "yMin": -0.5000000010000001,
             },
+            "_coefficients": null,
             "_firstAngle": 5.497787143782138,
             "_lastAngle": 3.9269908169872414,
             "_radius": 0.5000000000000001,
@@ -1088,6 +1163,8 @@ Diagram {
               "yMax": 0.29289321981345257,
               "yMin": -0.35355339159327376,
             },
+            "_slope": null,
+            "_yIntercept": null,
             "firstPoint": [
               1.6464466094067263,
               -0.35355339059327373,
@@ -1110,6 +1187,8 @@ Diagram {
               "yMax": 0.29289321981345257,
               "yMin": -0.35355339159327376,
             },
+            "_slope": null,
+            "_yIntercept": null,
             "firstPoint": [
               1,
               0.29289321881345254,
@@ -1132,6 +1211,8 @@ Diagram {
               "yMax": 0.35355339159327376,
               "yMin": -0.35355339159327376,
             },
+            "_slope": null,
+            "_yIntercept": null,
             "firstPoint": [
               0.35355339059327373,
               -0.35355339059327373,
@@ -1177,6 +1258,8 @@ Diagram {
               "yMax": 0.29289321981345257,
               "yMin": -0.03038254567648671,
             },
+            "_slope": null,
+            "_yIntercept": null,
             "firstPoint": [
               0.6767242365100608,
               -0.03038254467648671,
@@ -1199,6 +1282,8 @@ Diagram {
               "yMax": 0.29289321981345257,
               "yMin": -1e-9,
             },
+            "_slope": null,
+            "_yIntercept": null,
             "firstPoint": [
               1,
               0.29289321881345254,
@@ -1221,6 +1306,8 @@ Diagram {
               "yMax": 1e-9,
               "yMin": -0.30932846835596534,
             },
+            "_slope": null,
+            "_yIntercept": null,
             "firstPoint": [
               1.2928932188134525,
               0,
@@ -1243,6 +1330,8 @@ Diagram {
               "yMax": -0.030382543676486712,
               "yMin": -0.30932846835596534,
             },
+            "_slope": null,
+            "_yIntercept": null,
             "firstPoint": [
               0.9835647514574872,
               -0.3093284673559653,
@@ -1277,6 +1366,7 @@ Diagram {
               "yMax": 0.4848138093885755,
               "yMin": -0.3699700376979719,
             },
+            "_coefficients": null,
             "_firstAngle": 1.81788897216962,
             "_lastAngle": 3.9745739202642247,
             "_radius": 0.4999999999999999,
@@ -1307,6 +1397,8 @@ Diagram {
               "yMax": -0.3699700356979718,
               "yMin": -1.369970037697972,
             },
+            "_slope": null,
+            "_yIntercept": null,
             "firstPoint": [
               -0.4363363969981562,
               -0.36997003669797185,
@@ -1326,6 +1418,7 @@ Diagram {
               "yMax": -1.3535533895932736,
               "yMin": -1.500000001,
             },
+            "_coefficients": null,
             "_firstAngle": 3.9745739202642247,
             "_lastAngle": 5.497787143782138,
             "_radius": 0.5,
@@ -1356,6 +1449,8 @@ Diagram {
               "yMax": -0.3535533895932737,
               "yMin": -1.3535533915932738,
             },
+            "_slope": null,
+            "_yIntercept": null,
             "firstPoint": [
               1.3535533905932737,
               -1.3535533905932737,
@@ -1375,6 +1470,7 @@ Diagram {
               "yMax": 0.35355339159327376,
               "yMin": -0.35355339159327376,
             },
+            "_coefficients": null,
             "_firstAngle": 5.497787143782138,
             "_lastAngle": 0.785398163397448,
             "_radius": 0.5000000000000001,
@@ -1405,6 +1501,8 @@ Diagram {
               "yMax": 1.3535533915932738,
               "yMin": 0.3535533895932737,
             },
+            "_slope": null,
+            "_yIntercept": null,
             "firstPoint": [
               2.353553390593274,
               0.35355339059327373,
@@ -1424,6 +1522,7 @@ Diagram {
               "yMax": 1.500000001,
               "yMin": 1.3535533895932736,
             },
+            "_coefficients": null,
             "_firstAngle": 0.7853981633974483,
             "_lastAngle": 2.356194490192345,
             "_radius": 0.49999999999999994,
@@ -1454,6 +1553,8 @@ Diagram {
               "yMax": 1.3535533915932738,
               "yMin": 0.48481380738857544,
             },
+            "_slope": null,
+            "_yIntercept": null,
             "firstPoint": [
               0.6464466094067263,
               1.3535533905932737,

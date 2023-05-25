@@ -5,6 +5,7 @@ exports[`filletSegments > should fillet arcs 1`] = `
   Arc {
     "_angularLength": null,
     "_boundingBox": null,
+    "_coefficients": null,
     "_firstAngle": null,
     "_lastAngle": 3.5256563058730768,
     "_radius": 133.82499999999993,
@@ -27,6 +28,7 @@ exports[`filletSegments > should fillet arcs 1`] = `
   Arc {
     "_angularLength": null,
     "_boundingBox": null,
+    "_coefficients": null,
     "_firstAngle": null,
     "_lastAngle": null,
     "_radius": 10,
@@ -49,6 +51,7 @@ exports[`filletSegments > should fillet arcs 1`] = `
   Arc {
     "_angularLength": null,
     "_boundingBox": null,
+    "_coefficients": null,
     "_firstAngle": null,
     "_lastAngle": null,
     "_radius": 133.82500000000024,
@@ -79,6 +82,8 @@ exports[`filletSegments > should fillet two lines at right angle 1`] = `
       0,
     ],
     "_boundingBox": null,
+    "_slope": null,
+    "_yIntercept": null,
     "firstPoint": [
       0,
       0,
@@ -93,6 +98,7 @@ exports[`filletSegments > should fillet two lines at right angle 1`] = `
   Arc {
     "_angularLength": null,
     "_boundingBox": null,
+    "_coefficients": null,
     "_firstAngle": null,
     "_lastAngle": null,
     "_radius": 0.5,
@@ -115,6 +121,8 @@ exports[`filletSegments > should fillet two lines at right angle 1`] = `
   Line {
     "_V": null,
     "_boundingBox": null,
+    "_slope": null,
+    "_yIntercept": null,
     "firstPoint": [
       1,
       0.5,
@@ -137,6 +145,8 @@ exports[`filletSegments > should fillet two lines at right angle 2`] = `
       -0.5,
     ],
     "_boundingBox": null,
+    "_slope": null,
+    "_yIntercept": null,
     "firstPoint": [
       1,
       1,
@@ -151,6 +161,7 @@ exports[`filletSegments > should fillet two lines at right angle 2`] = `
   Arc {
     "_angularLength": null,
     "_boundingBox": null,
+    "_coefficients": null,
     "_firstAngle": null,
     "_lastAngle": null,
     "_radius": 0.5,
@@ -173,6 +184,8 @@ exports[`filletSegments > should fillet two lines at right angle 2`] = `
   Line {
     "_V": null,
     "_boundingBox": null,
+    "_slope": null,
+    "_yIntercept": null,
     "firstPoint": [
       0.5,
       0,
@@ -195,6 +208,8 @@ exports[`filletSegments > should fillet two lines at right angle 3`] = `
       0,
     ],
     "_boundingBox": null,
+    "_slope": null,
+    "_yIntercept": null,
     "firstPoint": [
       0,
       0,
@@ -209,6 +224,7 @@ exports[`filletSegments > should fillet two lines at right angle 3`] = `
   Arc {
     "_angularLength": null,
     "_boundingBox": null,
+    "_coefficients": null,
     "_firstAngle": null,
     "_lastAngle": null,
     "_radius": 0.5,
@@ -231,6 +247,8 @@ exports[`filletSegments > should fillet two lines at right angle 3`] = `
   Line {
     "_V": null,
     "_boundingBox": null,
+    "_slope": null,
+    "_yIntercept": null,
     "firstPoint": [
       -1,
       0.5,
@@ -253,6 +271,8 @@ exports[`filletSegments > should fillet two lines at right angle 4`] = `
       0,
     ],
     "_boundingBox": null,
+    "_slope": null,
+    "_yIntercept": null,
     "firstPoint": [
       0,
       0,
@@ -267,6 +287,7 @@ exports[`filletSegments > should fillet two lines at right angle 4`] = `
   Arc {
     "_angularLength": null,
     "_boundingBox": null,
+    "_coefficients": null,
     "_firstAngle": null,
     "_lastAngle": null,
     "_radius": 0.5,
@@ -289,6 +310,8 @@ exports[`filletSegments > should fillet two lines at right angle 4`] = `
   Line {
     "_V": null,
     "_boundingBox": null,
+    "_slope": null,
+    "_yIntercept": null,
     "firstPoint": [
       -1,
       -0.5,
@@ -311,6 +334,8 @@ exports[`filletSegments > should fillet two lines at right angle 5`] = `
       0,
     ],
     "_boundingBox": null,
+    "_slope": null,
+    "_yIntercept": null,
     "firstPoint": [
       0,
       0,
@@ -325,6 +350,7 @@ exports[`filletSegments > should fillet two lines at right angle 5`] = `
   Arc {
     "_angularLength": null,
     "_boundingBox": null,
+    "_coefficients": null,
     "_firstAngle": null,
     "_lastAngle": null,
     "_radius": 0.5,
@@ -347,6 +373,8 @@ exports[`filletSegments > should fillet two lines at right angle 5`] = `
   Line {
     "_V": null,
     "_boundingBox": null,
+    "_slope": null,
+    "_yIntercept": null,
     "firstPoint": [
       1,
       -0.5,
@@ -369,6 +397,8 @@ exports[`filletSegments > should fillet two lines with a big angle 1`] = `
       -1.6776666777089542,
     ],
     "_boundingBox": null,
+    "_slope": null,
+    "_yIntercept": null,
     "firstPoint": [
       0,
       3,
@@ -383,6 +413,7 @@ exports[`filletSegments > should fillet two lines with a big angle 1`] = `
   Arc {
     "_angularLength": null,
     "_boundingBox": null,
+    "_coefficients": null,
     "_firstAngle": null,
     "_lastAngle": null,
     "_radius": 0.4999999999999999,
@@ -405,6 +436,8 @@ exports[`filletSegments > should fillet two lines with a big angle 1`] = `
   Line {
     "_V": null,
     "_boundingBox": null,
+    "_slope": null,
+    "_yIntercept": null,
     "firstPoint": [
       0.7451731339477929,
       0.7451731339477932,
@@ -427,6 +460,8 @@ exports[`filletSegments > should fillet two lines with a big angle 2`] = `
       1.6776666777089542,
     ],
     "_boundingBox": null,
+    "_slope": null,
+    "_yIntercept": null,
     "firstPoint": [
       0,
       -3,
@@ -441,6 +476,7 @@ exports[`filletSegments > should fillet two lines with a big angle 2`] = `
   Arc {
     "_angularLength": null,
     "_boundingBox": null,
+    "_coefficients": null,
     "_firstAngle": null,
     "_lastAngle": null,
     "_radius": 0.4999999999999999,
@@ -463,6 +499,8 @@ exports[`filletSegments > should fillet two lines with a big angle 2`] = `
   Line {
     "_V": null,
     "_boundingBox": null,
+    "_slope": null,
+    "_yIntercept": null,
     "firstPoint": [
       0.7451731339477929,
       -0.7451731339477932,
@@ -485,6 +523,8 @@ exports[`filletSegments > should fillet two lines with a big angle 3`] = `
       -1.6776666777089542,
     ],
     "_boundingBox": null,
+    "_slope": null,
+    "_yIntercept": null,
     "firstPoint": [
       0,
       3,
@@ -499,6 +539,7 @@ exports[`filletSegments > should fillet two lines with a big angle 3`] = `
   Arc {
     "_angularLength": null,
     "_boundingBox": null,
+    "_coefficients": null,
     "_firstAngle": null,
     "_lastAngle": null,
     "_radius": 0.4999999999999999,
@@ -521,6 +562,8 @@ exports[`filletSegments > should fillet two lines with a big angle 3`] = `
   Line {
     "_V": null,
     "_boundingBox": null,
+    "_slope": null,
+    "_yIntercept": null,
     "firstPoint": [
       -0.7451731339477929,
       0.7451731339477932,
@@ -543,6 +586,8 @@ exports[`filletSegments > should fillet two lines with a big angle 4`] = `
       1.6776666777089542,
     ],
     "_boundingBox": null,
+    "_slope": null,
+    "_yIntercept": null,
     "firstPoint": [
       0,
       -3,
@@ -557,6 +602,7 @@ exports[`filletSegments > should fillet two lines with a big angle 4`] = `
   Arc {
     "_angularLength": null,
     "_boundingBox": null,
+    "_coefficients": null,
     "_firstAngle": null,
     "_lastAngle": null,
     "_radius": 0.4999999999999999,
@@ -579,6 +625,8 @@ exports[`filletSegments > should fillet two lines with a big angle 4`] = `
   Line {
     "_V": null,
     "_boundingBox": null,
+    "_slope": null,
+    "_yIntercept": null,
     "firstPoint": [
       -0.7451731339477929,
       -0.7451731339477932,
@@ -601,6 +649,8 @@ exports[`filletSegments > should fillet two lines with a big counter clockwise a
       17.274624928914665,
     ],
     "_boundingBox": null,
+    "_slope": null,
+    "_yIntercept": null,
     "firstPoint": [
       50,
       0,
@@ -615,6 +665,7 @@ exports[`filletSegments > should fillet two lines with a big counter clockwise a
   Arc {
     "_angularLength": null,
     "_boundingBox": null,
+    "_coefficients": null,
     "_firstAngle": null,
     "_lastAngle": null,
     "_radius": 0.9999999999999117,
@@ -637,6 +688,8 @@ exports[`filletSegments > should fillet two lines with a big counter clockwise a
   Line {
     "_V": null,
     "_boundingBox": null,
+    "_slope": null,
+    "_yIntercept": null,
     "firstPoint": [
       9.907282735005428,
       17.38933279584995,
@@ -659,6 +712,8 @@ exports[`filletSegments > should fillet two lines with a small angle 1`] = `
       0.23604451612588995,
     ],
     "_boundingBox": null,
+    "_slope": null,
+    "_yIntercept": null,
     "firstPoint": [
       0,
       0.2,
@@ -673,6 +728,7 @@ exports[`filletSegments > should fillet two lines with a small angle 1`] = `
   Arc {
     "_angularLength": null,
     "_boundingBox": null,
+    "_coefficients": null,
     "_firstAngle": null,
     "_lastAngle": null,
     "_radius": 0.04999999999999997,
@@ -695,6 +751,8 @@ exports[`filletSegments > should fillet two lines with a small angle 1`] = `
   Line {
     "_V": null,
     "_boundingBox": null,
+    "_slope": null,
+    "_yIntercept": null,
     "firstPoint": [
       0.36164573659441096,
       0.36164573659441107,
@@ -717,6 +775,8 @@ exports[`filletSegments > should fillet two lines with a small angle 2`] = `
       0.3532142275095147,
     ],
     "_boundingBox": null,
+    "_slope": null,
+    "_yIntercept": null,
     "firstPoint": [
       0,
       -0.2,
@@ -731,6 +791,7 @@ exports[`filletSegments > should fillet two lines with a small angle 2`] = `
   Arc {
     "_angularLength": null,
     "_boundingBox": null,
+    "_coefficients": null,
     "_firstAngle": null,
     "_lastAngle": null,
     "_radius": 0.05000000000000003,
@@ -753,6 +814,8 @@ exports[`filletSegments > should fillet two lines with a small angle 2`] = `
   Line {
     "_V": null,
     "_boundingBox": null,
+    "_slope": null,
+    "_yIntercept": null,
     "firstPoint": [
       0.22057878655206611,
       0.2205787865520661,
@@ -775,6 +838,8 @@ exports[`filletSegments > should fillet two lines with a small angle 3`] = `
       0.23604451612588995,
     ],
     "_boundingBox": null,
+    "_slope": null,
+    "_yIntercept": null,
     "firstPoint": [
       0,
       0.2,
@@ -789,6 +854,7 @@ exports[`filletSegments > should fillet two lines with a small angle 3`] = `
   Arc {
     "_angularLength": null,
     "_boundingBox": null,
+    "_coefficients": null,
     "_firstAngle": null,
     "_lastAngle": null,
     "_radius": 0.04999999999999997,
@@ -811,6 +877,8 @@ exports[`filletSegments > should fillet two lines with a small angle 3`] = `
   Line {
     "_V": null,
     "_boundingBox": null,
+    "_slope": null,
+    "_yIntercept": null,
     "firstPoint": [
       -0.36164573659441096,
       0.36164573659441107,
@@ -833,6 +901,8 @@ exports[`filletSegments > should fillet two lines with a small angle 4`] = `
       0.3532142275095147,
     ],
     "_boundingBox": null,
+    "_slope": null,
+    "_yIntercept": null,
     "firstPoint": [
       0,
       -0.2,
@@ -847,6 +917,7 @@ exports[`filletSegments > should fillet two lines with a small angle 4`] = `
   Arc {
     "_angularLength": null,
     "_boundingBox": null,
+    "_coefficients": null,
     "_firstAngle": null,
     "_lastAngle": null,
     "_radius": 0.05000000000000003,
@@ -869,6 +940,8 @@ exports[`filletSegments > should fillet two lines with a small angle 4`] = `
   Line {
     "_V": null,
     "_boundingBox": null,
+    "_slope": null,
+    "_yIntercept": null,
     "firstPoint": [
       -0.22057878655206611,
       0.2205787865520661,
@@ -891,6 +964,8 @@ exports[`filletSegments > should fillet two lines with a small angle 5`] = `
       -0.23604451612588995,
     ],
     "_boundingBox": null,
+    "_slope": null,
+    "_yIntercept": null,
     "firstPoint": [
       0,
       -0.2,
@@ -905,6 +980,7 @@ exports[`filletSegments > should fillet two lines with a small angle 5`] = `
   Arc {
     "_angularLength": null,
     "_boundingBox": null,
+    "_coefficients": null,
     "_firstAngle": null,
     "_lastAngle": null,
     "_radius": 0.04999999999999997,
@@ -927,6 +1003,8 @@ exports[`filletSegments > should fillet two lines with a small angle 5`] = `
   Line {
     "_V": null,
     "_boundingBox": null,
+    "_slope": null,
+    "_yIntercept": null,
     "firstPoint": [
       -0.36164573659441096,
       -0.36164573659441107,
@@ -949,6 +1027,8 @@ exports[`filletSegments > should fillet two lines with a small angle 6`] = `
       -0.3532142275095147,
     ],
     "_boundingBox": null,
+    "_slope": null,
+    "_yIntercept": null,
     "firstPoint": [
       0,
       0.2,
@@ -963,6 +1043,7 @@ exports[`filletSegments > should fillet two lines with a small angle 6`] = `
   Arc {
     "_angularLength": null,
     "_boundingBox": null,
+    "_coefficients": null,
     "_firstAngle": null,
     "_lastAngle": null,
     "_radius": 0.05000000000000003,
@@ -985,6 +1066,8 @@ exports[`filletSegments > should fillet two lines with a small angle 6`] = `
   Line {
     "_V": null,
     "_boundingBox": null,
+    "_slope": null,
+    "_yIntercept": null,
     "firstPoint": [
       -0.22057878655206611,
       -0.2205787865520661,
@@ -1007,6 +1090,8 @@ exports[`filletSegments > should fillet two lines with a small angle 7`] = `
       -0.3532142275095147,
     ],
     "_boundingBox": null,
+    "_slope": null,
+    "_yIntercept": null,
     "firstPoint": [
       0,
       0.2,
@@ -1021,6 +1106,7 @@ exports[`filletSegments > should fillet two lines with a small angle 7`] = `
   Arc {
     "_angularLength": null,
     "_boundingBox": null,
+    "_coefficients": null,
     "_firstAngle": null,
     "_lastAngle": null,
     "_radius": 0.05000000000000003,
@@ -1043,6 +1129,8 @@ exports[`filletSegments > should fillet two lines with a small angle 7`] = `
   Line {
     "_V": null,
     "_boundingBox": null,
+    "_slope": null,
+    "_yIntercept": null,
     "firstPoint": [
       0.22057878655206611,
       -0.2205787865520661,
@@ -1065,6 +1153,8 @@ exports[`filletSegments > should fillet two lines with a small angle 8`] = `
       -0.3532142275095147,
     ],
     "_boundingBox": null,
+    "_slope": null,
+    "_yIntercept": null,
     "firstPoint": [
       0,
       0.2,
@@ -1079,6 +1169,7 @@ exports[`filletSegments > should fillet two lines with a small angle 8`] = `
   Arc {
     "_angularLength": null,
     "_boundingBox": null,
+    "_coefficients": null,
     "_firstAngle": null,
     "_lastAngle": null,
     "_radius": 0.05000000000000003,
@@ -1101,6 +1192,8 @@ exports[`filletSegments > should fillet two lines with a small angle 8`] = `
   Line {
     "_V": null,
     "_boundingBox": null,
+    "_slope": null,
+    "_yIntercept": null,
     "firstPoint": [
       0.22057878655206611,
       -0.2205787865520661,

@@ -3,8 +3,6 @@ import { describe, it, expect } from "vitest";
 import { draw } from "../../../src/draw";
 import { drawRect } from "../../../src/drawShape";
 
-import { debugImg } from "../../debug";
-
 import {
   eraseStrandWithinLoop,
   eraseStrandOutsideLoop,
@@ -82,9 +80,6 @@ describe("eraseStrandOutsideLoop", () => {
       .lineTo([0.5, 1])
       .lineTo([3, 3])
       .asStrand();
-
-    debugImg([r, s]);
-    debugImg(eraseStrandOutsideLoop(s, r, true), "erased");
 
     expect(eraseStrandOutsideLoop(s, r, true)).toMatchSnapshot();
   });

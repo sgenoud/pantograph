@@ -1,0 +1,337 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`draw > should close with a half circle without issue  1`] = `
+Diagram {
+  "_boundingBox": null,
+  "figures": [
+    Figure {
+      "contour": Loop {
+        "_boundingBox": null,
+        "_clockwise": null,
+        "segments": [
+          Arc {
+            "_angularLength": 3.141592653589793,
+            "_boundingBox": BoundingBox {
+              "xMax": 2.414213563373095,
+              "xMin": -1e-9,
+              "yMax": 2.000000001,
+              "yMin": -0.41421356337309523,
+            },
+            "_coefficients": null,
+            "_firstAngle": 3.9269908169872414,
+            "_lastAngle": 0.7853981633974483,
+            "_radius": 1.4142135623730951,
+            "center": [
+              1,
+              1,
+            ],
+            "clockwise": false,
+            "firstPoint": [
+              0,
+              0,
+            ],
+            "lastPoint": [
+              2,
+              2,
+            ],
+            "precision": 1e-9,
+            "segmentType": "ARC",
+          },
+          Line {
+            "_V": [
+              -2,
+              -2,
+            ],
+            "_boundingBox": BoundingBox {
+              "xMax": 2.000000001,
+              "xMin": -1e-9,
+              "yMax": 2.000000001,
+              "yMin": -1e-9,
+            },
+            "_slope": null,
+            "_yIntercept": null,
+            "firstPoint": [
+              2,
+              2,
+            ],
+            "lastPoint": [
+              0,
+              0,
+            ],
+            "precision": 1e-9,
+            "segmentType": "LINE",
+          },
+        ],
+        "strokeType": "LOOP",
+      },
+      "holes": [],
+    },
+  ],
+}
+`;
+
+exports[`draw > should draw half ellipses as expected 1`] = `
+Diagram {
+  "_boundingBox": null,
+  "figures": [
+    Figure {
+      "contour": Loop {
+        "_boundingBox": null,
+        "_clockwise": null,
+        "segments": [
+          EllipseArc {
+            "_boundingBox": BoundingBox {
+              "xMax": 2,
+              "xMin": -0.06066017923040201,
+              "yMax": 2.0606601792304016,
+              "yMin": 0,
+            },
+            "_coefficients": null,
+            "_deltaAngle": 3.1415926957366413,
+            "_ellipseReferenceFrameTransform": TransformationMatrix {
+              "_matrix": [
+                0.7071067811865476,
+                0.7071067811865475,
+                -1.414213562373095,
+                -0.7071067811865475,
+                0.7071067811865476,
+                -1.0536712280462268e-8,
+                0,
+                0,
+                1,
+              ],
+            },
+            "_firstAngle": 3.1415926746632175,
+            "_focals": [
+              [
+                1.9354143392429048,
+                1.9354143541440658,
+              ],
+              [
+                0.06458564585593396,
+                0.06458566075709526,
+              ],
+            ],
+            "_lastAngle": 6.283185286106162,
+            "_linearExentricity": 1.3228756555322954,
+            "_reverseEllipseReferenceFrameTransform": TransformationMatrix {
+              "_matrix": [
+                0.7071067811865476,
+                -0.7071067811865475,
+                0.9999999925494194,
+                0.7071067811865475,
+                0.7071067811865476,
+                1.0000000074505806,
+                0,
+                0,
+                1,
+              ],
+            },
+            "center": [
+              0.9999999925494194,
+              1.0000000074505806,
+            ],
+            "clockwise": true,
+            "firstPoint": [
+              0,
+              0,
+            ],
+            "lastPoint": [
+              2,
+              2,
+            ],
+            "majorRadius": 1.4142135623730951,
+            "minorRadius": 0.5,
+            "precision": 0.000001,
+            "segmentType": "ELLIPSE_ARC",
+            "tiltAngle": 0.7853981633974483,
+          },
+          Line {
+            "_V": [
+              0,
+              -2,
+            ],
+            "_boundingBox": BoundingBox {
+              "xMax": 2.000000001,
+              "xMin": 1.999999999,
+              "yMax": 2.000000001,
+              "yMin": -1e-9,
+            },
+            "_slope": null,
+            "_yIntercept": null,
+            "firstPoint": [
+              2,
+              2,
+            ],
+            "lastPoint": [
+              2,
+              0,
+            ],
+            "precision": 1e-9,
+            "segmentType": "LINE",
+          },
+          Line {
+            "_V": [
+              -2,
+              0,
+            ],
+            "_boundingBox": BoundingBox {
+              "xMax": 2.000000001,
+              "xMin": -1e-9,
+              "yMax": 1e-9,
+              "yMin": -1e-9,
+            },
+            "_slope": null,
+            "_yIntercept": null,
+            "firstPoint": [
+              2,
+              0,
+            ],
+            "lastPoint": [
+              0,
+              0,
+            ],
+            "precision": 1e-9,
+            "segmentType": "LINE",
+          },
+        ],
+        "strokeType": "LOOP",
+      },
+      "holes": [],
+    },
+  ],
+}
+`;
+
+exports[`draw > should draw half ellipses as expected 2`] = `
+Diagram {
+  "_boundingBox": null,
+  "figures": [
+    Figure {
+      "contour": Loop {
+        "_boundingBox": null,
+        "_clockwise": null,
+        "segments": [
+          EllipseArc {
+            "_boundingBox": BoundingBox {
+              "xMax": 2,
+              "xMin": -2.674234673779411,
+              "yMax": 4.674234673779411,
+              "yMin": 0,
+            },
+            "_coefficients": null,
+            "_deltaAngle": 3.1415926873072717,
+            "_ellipseReferenceFrameTransform": TransformationMatrix {
+              "_matrix": [
+                -0.7071067811865475,
+                0.7071067811865476,
+                -8.429369702245282e-8,
+                -0.7071067811865476,
+                -0.7071067811865475,
+                1.414213562373095,
+                0,
+                0,
+                1,
+              ],
+            },
+            "_firstAngle": 1.570796343653636,
+            "_focals": [
+              [
+                -2.3911650511672784,
+                4.391165051167279,
+              ],
+              [
+                4.391164931957989,
+                -2.3911649319579893,
+              ],
+            ],
+            "_lastAngle": 4.71238896352595,
+            "_linearExentricity": 4.795831523312719,
+            "_reverseEllipseReferenceFrameTransform": TransformationMatrix {
+              "_matrix": [
+                -0.7071067811865475,
+                -0.7071067811865476,
+                0.9999999403953552,
+                0.7071067811865476,
+                -0.7071067811865475,
+                1.0000000596046448,
+                0,
+                0,
+                1,
+              ],
+            },
+            "center": [
+              0.9999999403953552,
+              1.0000000596046448,
+            ],
+            "clockwise": true,
+            "firstPoint": [
+              0,
+              0,
+            ],
+            "lastPoint": [
+              2,
+              2,
+            ],
+            "majorRadius": 5,
+            "minorRadius": 1.4142135623730951,
+            "precision": 0.000001,
+            "segmentType": "ELLIPSE_ARC",
+            "tiltAngle": 2.356194490192345,
+          },
+          Line {
+            "_V": [
+              0,
+              -2,
+            ],
+            "_boundingBox": BoundingBox {
+              "xMax": 2.000000001,
+              "xMin": 1.999999999,
+              "yMax": 2.000000001,
+              "yMin": -1e-9,
+            },
+            "_slope": null,
+            "_yIntercept": null,
+            "firstPoint": [
+              2,
+              2,
+            ],
+            "lastPoint": [
+              2,
+              0,
+            ],
+            "precision": 1e-9,
+            "segmentType": "LINE",
+          },
+          Line {
+            "_V": [
+              -2,
+              0,
+            ],
+            "_boundingBox": BoundingBox {
+              "xMax": 2.000000001,
+              "xMin": -1e-9,
+              "yMax": 1e-9,
+              "yMin": -1e-9,
+            },
+            "_slope": null,
+            "_yIntercept": null,
+            "firstPoint": [
+              2,
+              0,
+            ],
+            "lastPoint": [
+              0,
+              0,
+            ],
+            "precision": 1e-9,
+            "segmentType": "LINE",
+          },
+        ],
+        "strokeType": "LOOP",
+      },
+      "holes": [],
+    },
+  ],
+}
+`;
