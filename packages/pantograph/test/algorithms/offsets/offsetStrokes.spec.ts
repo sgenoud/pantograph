@@ -5,7 +5,6 @@ import {
 } from "../../../src/algorithms/offsets/offsetStroke";
 
 import { draw } from "../../../src/draw";
-import { debugImg } from "../../debug";
 
 describe("offsetStrand", () => {
   it("should offset a basic strand", () => {
@@ -63,7 +62,6 @@ describe("outlineStrand", () => {
       .asStrand();
 
     const outline = outlineStrand(strand, 1, "butt");
-    debugImg([{ shape: strand, color: "blue" }, outline]);
 
     expect(outline).toMatchSnapshot();
   });

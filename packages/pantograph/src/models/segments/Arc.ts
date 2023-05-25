@@ -63,7 +63,7 @@ export class Arc extends AbstractSegment<Arc> {
 
   get info() {
     return `ARC(${reprVector(this.firstPoint)}, ${reprVector(
-     this.lastPoint
+      this.lastPoint
     )}, ${reprVector(this.center)}, ${this.clockwise ? "CW" : "CCW"})`;
   }
 
@@ -266,7 +266,8 @@ export class Arc extends AbstractSegment<Arc> {
   }
 
   gradientAt(param: number): Vector {
-    const theta = this.firstAngle + param * this.angularLength;
+    const theta =
+      this.firstAngle + param * this.angularLength * (this.clockwise ? -1 : 1);
     const r = this.radius * this.angularLength;
 
     const x = -r * Math.sin(theta);
