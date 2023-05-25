@@ -28,8 +28,47 @@ const matMult = (m1: Matrix, m2: Matrix): Matrix => {
   ];
 };
 
+const inverse = (m: Matrix): Matrix => {
+  const [a, b, c, d, e, f, g, h, i] = m;
+  const det = a * (e * i - f * h) - b * (d * i - f * g) + c * (d * h - e * g);
+  return [
+    (e * i - f * h) / det,
+    (c * h - b * i) / det,
+    (b * f - c * e) / det,
+    (f * g - d * i) / det,
+    (a * i - c * g) / det,
+    (c * d - a * f) / det,
+    (d * h - e * g) / det,
+    (b * g - a * h) / det,
+    (a * e - b * d) / det,
+  ];
+};
+
+const transpose = (m: Matrix): Matrix => {
+  const [a, b, c, d, e, f, g, h, i] = m;
+  return [a, d, g, b, e, h, c, f, i];
+};
+
 export class TransformationMatrix {
   private _matrix: Matrix = [1, 0, 0, 0, 1, 0, 0, 0, 1];
+
+  constructor(matrix?: Matrix) {
+    if (matrix) this._matrix = [...matrix];
+  }
+
+  clone(): TransformationMatrix {
+    return new TransformationMatrix(this._matrix);
+  }
+
+  transpose(): TransformationMatrix {
+    this._matrix = transpose(this._matrix);
+    return this;
+  }
+
+  inverse(): TransformationMatrix {
+    this._matrix = inverse(this._matrix);
+    return this;
+  }
 
   translate(x: number, y: number): TransformationMatrix {
     this._matrix = matMult(this._matrix, [1, 0, x, 0, 1, y, 0, 0, 1]);
