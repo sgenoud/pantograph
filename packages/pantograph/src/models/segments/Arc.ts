@@ -233,6 +233,16 @@ export class Arc extends AbstractSegment<Arc> {
     return this.isValidParameter(param);
   }
 
+  gradientAt(param: number): Vector {
+    const theta = this.firstAngle + param * this.angularLength;
+    const r = this.radius * this.angularLength;
+
+    const x = -r * Math.sin(theta);
+    const y = r * Math.cos(theta);
+
+    return this.clockwise ? [-x, -y] : [x, y];
+  }
+
   tangentAt(point: Vector): Vector {
     const [r, theta] = polarCoordsFromCenter(point, this.center);
     if (Math.abs(r - this.radius) > this.precision)

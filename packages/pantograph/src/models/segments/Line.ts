@@ -104,6 +104,10 @@ export class Line extends AbstractSegment<Line> {
     return this.isValidParameter(u);
   }
 
+  gradientAt(param: number): Vector {
+    return this.V;
+  }
+
   tangentAt(point: Vector): Vector {
     if (!this.isOnSegment(point)) throw new Error("Point is not on segment");
     return normalize(this.V);
