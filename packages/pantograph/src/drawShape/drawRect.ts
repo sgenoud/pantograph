@@ -1,12 +1,15 @@
 import { draw } from "../draw";
 import type { Diagram } from "../models/Diagram";
 
-export function drawRect(width: number, height: number, r?: number): Diagram {
-  // This will be changed once we support arc of ellipses
-  const { rx: inputRx = 0, ry: inputRy = 0 } = { ry: r, rx: r };
-
-  let rx = Math.min(inputRx, width / 2);
-  let ry = Math.min(inputRy, height / 2);
+export function drawRect(
+  width: number,
+  height: number,
+  r: number | { rx?: number; ry?: number } = 0
+): Diagram {
+  const { rx: inputRx = 0, ry: inputRy = 0 } =
+    typeof r === "number" ? { ry: r, rx: r } : r;
+  let rx = Math.min(inputRx ?? r ?? 0, width / 2);
+  let ry = Math.min(inputRy ?? r ?? 0, height / 2);
 
   const withRadius = rx && ry;
   if (!withRadius) {
@@ -21,8 +24,7 @@ export function drawRect(width: number, height: number, r?: number): Diagram {
     if (withRadius) {
       if (symmetricRadius) sk.tangentArc(xDist, yDist);
       else {
-        throw new Error("disymmetric radius not implemented yet");
-        //sk.ellipse(xDist, yDist, rx, ry, 0, false, true);
+        sk.ellipse(xDist, yDist, rx, ry, 0, false, false);
       }
     }
   };
