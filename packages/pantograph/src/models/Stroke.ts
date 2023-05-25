@@ -101,6 +101,8 @@ export function checkSelfIntersections(
       const otherSegment = segments[otherSegmentIndex];
 
       const intersections = findIntersectionsAndOverlaps(segment, otherSegment);
+      const epsilon = Math.max(segment.precision, otherSegment.precision);
+
       if (intersections.count === 0) return;
       if (intersections.count === 1 && !intersections.overlaps.length) {
         const distance = segmentIndex - otherSegmentIndex;
@@ -108,25 +110,50 @@ export function checkSelfIntersections(
         const intersection = intersections.intersections[0];
 
         if (distance === 1) {
-          if (sameVector(segment.firstPoint, intersection)) return;
+          if (sameVector(segment.firstPoint, intersection, epsilon)) return;
         }
         if (distance === -1) {
-          if (sameVector(segment.lastPoint, intersection)) return;
+          if (sameVector(segment.lastPoint, intersection, epsilon)) return;
         }
         if (distance === segments.length - 1) {
           if (
-            sameVector(segment.lastPoint, intersection) &&
-            sameVector(otherSegment.firstPoint, intersection)
+            sameVector(segment.lastPoint, intersection, epsilon) &&
+            sameVector(otherSegment.firstPoint, intersection, epsilon)
           )
             return;
         }
         if (-distance === segments.length - 1) {
           if (
-            sameVector(segment.firstPoint, intersection) &&
-            sameVector(otherSegment.lastPoint, intersection)
+            sameVector(segment.firstPoint, intersection, epsilon) &&
+            sameVector(otherSegment.lastPoint, intersection, epsilon)
           )
             return;
         }
+      }
+      if (intersections.count === 2 && segments.length === 2) {
+        if (
+          (sameVector(
+            segment.firstPoint,
+            intersections.intersections[0],
+            epsilon
+          ) &&
+            sameVector(
+              segment.lastPoint,
+              intersections.intersections[1],
+              epsilon
+            )) ||
+          (sameVector(
+            segment.firstPoint,
+            intersections.intersections[1],
+            epsilon
+          ) &&
+            sameVector(
+              segment.lastPoint,
+              intersections.intersections[0],
+              epsilon
+            ))
+        )
+          return;
       }
 
       throw new Error(
