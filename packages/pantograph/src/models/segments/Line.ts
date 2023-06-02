@@ -44,6 +44,23 @@ export class Line extends AbstractSegment<Line> {
     return this._V;
   }
 
+  private _slope: number | null = null;
+  get slope(): number {
+    if (this._slope === null) {
+      const [x, y] = this.V;
+      this._slope = y / x;
+    }
+    return this._slope;
+  }
+
+  private _yIntercept: number | null = null;
+  get yIntercept(): number {
+    if (this._yIntercept === null) {
+      this._yIntercept = this.firstPoint[1] - this.slope * this.firstPoint[0];
+    }
+    return this._yIntercept;
+  }
+
   get midPoint(): Vector {
     return add(this.firstPoint, scalarMultiply(this.V, 0.5));
   }
@@ -102,6 +119,10 @@ export class Line extends AbstractSegment<Line> {
 
     const u = dotProduct(pointVec, this.V) / this.squareLength;
     return this.isValidParameter(u);
+  }
+
+  gradientAt(param: number): Vector {
+    return this.V;
   }
 
   tangentAt(point: Vector): Vector {

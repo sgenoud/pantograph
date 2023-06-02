@@ -17,7 +17,10 @@ import {
   add,
   scalarMultiply,
   distance,
+  cartesianToPolar,
+  RAD2DEG,
 } from "./vectorOperations";
+import { svgEllipse } from "./models/segments/EllipseArc";
 
 function loopySegmentsToDiagram(
   segments: Segment[],
@@ -214,6 +217,60 @@ export class DrawingPen {
   tangentArc(xDist: number, yDist: number, tangentAtStart?: Vector): this {
     const [x0, y0] = this.pointer;
     return this.tangentArcTo([xDist + x0, yDist + y0], tangentAtStart);
+  }
+
+  ellipseTo(
+    end: Vector,
+    r0: number,
+    r1: number,
+    xAxisRotation: number,
+    longArc: boolean,
+    sweepFlag: boolean
+  ): this {
+    this.saveSegment(
+      svgEllipse(this.pointer, end, r0, r1, xAxisRotation, longArc, sweepFlag)
+    );
+    this.pointer = end;
+    return this;
+  }
+
+  ellipse(
+    xDist: number,
+    yDist: number,
+    r0: number,
+    r1: number,
+    xAxisRotation: number,
+    longArc: boolean,
+    sweepFlag: boolean
+  ): this {
+    return this.ellipseTo(
+      [xDist + this.pointer[0], yDist + this.pointer[1]],
+      r0,
+      r1,
+      xAxisRotation,
+      longArc,
+      sweepFlag
+    );
+  }
+
+  halfEllipseTo(end: Vector, sagitta: number): this {
+    const [distance, angle] = cartesianToPolar(subtract(end, this.pointer));
+
+    return this.ellipseTo(
+      end,
+      distance / 2,
+      Math.abs(sagitta),
+      angle * RAD2DEG,
+      true,
+      sagitta > 0
+    );
+  }
+
+  halfEllipse(xDist: number, yDist: number, sagitta: number): this {
+    return this.halfEllipseTo(
+      [xDist + this.pointer[0], yDist + this.pointer[1]],
+      sagitta
+    );
   }
 
   customCorner(radius: number, mode: "fillet" | "chamfer" = "fillet") {

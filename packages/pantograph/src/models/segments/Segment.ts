@@ -42,6 +42,8 @@ export abstract class AbstractSegment<
 
   abstract isOnSegment(point: Vector): boolean;
 
+  abstract gradientAt(param: number): Vector;
+
   abstract tangentAt(point: Vector): Vector;
 
   abstract get tangentAtFirstPoint(): Vector;

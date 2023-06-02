@@ -1,9 +1,11 @@
 import { Line } from "../../models/segments/Line";
 import { lineLineParams } from "./lineLineIntersection";
+import { lineEllipseArcIntersection } from "./lineEllipseArcIntersection";
 import type { Vector } from "../../definitions";
 import { Segment } from "../../models/segments/Segment";
 import { sameVector, squareDistance } from "../../vectorOperations";
 import { Arc } from "../../models/segments/Arc";
+import { EllipseArc } from "../../models/segments/EllipseArc";
 
 const rayLineIntersectionsCount = (point: Vector, line: Line) => {
   const intersectionParams = lineLineParams(line, {
@@ -38,6 +40,34 @@ const rayLineIntersectionsCount = (point: Vector, line: Line) => {
   return 1;
 };
 
+class IntersectionCounter {
+  private _count = 0;
+  private readonly segment: Segment;
+
+  constructor(segment: Segment) {
+    this.segment = segment;
+  }
+
+  update(intersectionPoint: Vector, isOnSegment = false) {
+    if (!isOnSegment && !this.segment.isOnSegment(intersectionPoint)) return;
+
+    // We extend the convention of the line ray interaction. We look at the
+    // tangent at the point of intersection. If it is pointing to the top we
+    // consider that the ray is crossing the arc.
+    if (sameVector(intersectionPoint, this.segment.firstPoint)) {
+      this._count += this.segment.tangentAtFirstPoint[1] > 0 ? 1 : 0;
+    } else if (sameVector(intersectionPoint, this.segment.lastPoint)) {
+      this._count += this.segment.tangentAtLastPoint[1] > 0 ? 0 : 1;
+    } else {
+      this._count += 1;
+    }
+  }
+
+  get count() {
+    return this._count;
+  }
+}
+
 const rayArcIntersectionsCount = (point: Vector, arc: Arc) => {
   const epsilon = arc.precision;
 
@@ -65,32 +95,31 @@ const rayArcIntersectionsCount = (point: Vector, arc: Arc) => {
     arc.radius * arc.radius - verticalDistance * verticalDistance
   );
 
-  let intersectionsCount = 0;
-
-  const updateIntersectionsCount = (intersectionPoint: Vector) => {
-    if (!arc.isOnSegment(intersectionPoint)) return;
-
-    // We extend the convention of the line ray interaction. We look at the
-    // tangent at the point of intersection. If it is pointing to the top we
-    // consider that the ray is crossing the arc.
-    if (sameVector(intersectionPoint, arc.firstPoint)) {
-      intersectionsCount += arc.tangentAtFirstPoint[1] > 0 ? 1 : 0;
-    } else if (sameVector(intersectionPoint, arc.lastPoint)) {
-      intersectionsCount += arc.tangentAtLastPoint[1] > 0 ? 0 : 1;
-    } else {
-      intersectionsCount += 1;
-    }
-  };
+  const counter = new IntersectionCounter(arc);
 
   // We might be able to optimise the check on segment, but it is not clear
   // that it is worth it
-  updateIntersectionsCount([arc.center[0] + delta, point[1]]);
+  counter.update([arc.center[0] + delta, point[1]]);
 
   if (pointOutsideCircle) {
-    updateIntersectionsCount([arc.center[0] - delta, point[1]]);
+    counter.update([arc.center[0] - delta, point[1]]);
   }
 
-  return intersectionsCount;
+  return counter.count;
+};
+
+const rayEllipseArcIntersectionsCount = (point: Vector, arc: EllipseArc) => {
+  const end = arc.boundingBox.xMax + arc.boundingBox.width / 2;
+  const ray = new Line(point, [end, point[1]]);
+
+  const counter = new IntersectionCounter(arc);
+  lineEllipseArcIntersection(ray, arc).forEach((intersection) => {
+    // We already know that the intersection is on the ellipse, se we se
+    // isOnSegment as true
+    counter.update(intersection, true);
+  });
+
+  return counter.count;
 };
 
 export function rayIntersectionsCount(point: Vector, segment: Segment): number {
@@ -100,6 +129,10 @@ export function rayIntersectionsCount(point: Vector, segment: Segment): number {
 
   if (segment instanceof Arc) {
     return rayArcIntersectionsCount(point, segment);
+  }
+
+  if (segment instanceof EllipseArc) {
+    return rayEllipseArcIntersectionsCount(point, segment);
   }
 
   throw new Error("Not implemented");

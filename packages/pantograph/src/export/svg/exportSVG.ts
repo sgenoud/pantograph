@@ -11,8 +11,9 @@ import { svgSegmentToPath } from "./svgSegment";
 import { svgStrand } from "./svgStrand";
 import { SVGUnit, wrapSVG } from "./wrapSVG";
 import type { Stroke } from "../../models/Stroke";
+import { EllipseArc } from "../../models/segments/EllipseArc";
 
-type Shape = Figure | Diagram | Arc | Line | Stroke;
+type Shape = Figure | Diagram | Arc | Line | EllipseArc | Stroke;
 
 export function svgBody(shape: Shape) {
   if (shape instanceof Diagram) {
@@ -23,7 +24,11 @@ export function svgBody(shape: Shape) {
     return `<path d="${svgLoop(shape)}" />`;
   } else if (shape instanceof Strand) {
     return `<path d="${svgStrand(shape)}" />`;
-  } else if (shape instanceof Arc || shape instanceof Line) {
+  } else if (
+    shape instanceof Arc ||
+    shape instanceof Line ||
+    shape instanceof EllipseArc
+  ) {
     return `<path d="${`M ${shape.firstPoint.join(" ")}`} ${svgSegmentToPath(
       shape
     )}" />`;

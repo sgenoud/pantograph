@@ -50,12 +50,12 @@ function sameLoops(a: Loop[], b: Loop[]): boolean {
 }
 
 expect.extend({
-  toBeVector(received, expected) {
+  toBeVector(received, expected, precision = 1e-9) {
     const { isNot } = this;
 
     return {
       // do not alter your "pass" based on isNot. Vitest does it for you
-      pass: sameVector(received, expected),
+      pass: sameVector(received, expected, precision),
       message: () =>
         `${repr(received)} is${isNot ? " not" : ""} ${repr(expected)}`,
     };

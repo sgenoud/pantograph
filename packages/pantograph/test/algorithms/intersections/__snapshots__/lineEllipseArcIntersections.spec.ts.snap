@@ -1,0 +1,36 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`lineEllipseArcIntersections > should handle tangent lines to the arc 1`] = `
+[
+  [
+    3.354682271781696,
+    2.178556140060108,
+  ],
+]
+`;
+
+exports[`lineEllipseArcIntersections > should handle vertical lines with the arc 1`] = `
+[
+  [
+    2.575102127571993,
+    2.460965061225817,
+  ],
+  [
+    3.2955918480459747,
+    1.3515081838793719,
+  ],
+]
+`;
+
+exports[`lineEllipseArcIntersections > should return multiple intersections of a line and an arc 1`] = `
+[
+  [
+    -2.675224520712844,
+    -2.675224520712844,
+  ],
+  [
+    -1.004775479287156,
+    -1.004775479287156,
+  ],
+]
+`;

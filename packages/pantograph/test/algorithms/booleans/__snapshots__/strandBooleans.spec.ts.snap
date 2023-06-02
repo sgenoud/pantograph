@@ -11,6 +11,8 @@ exports[`eraseStrandOutsideLoop > should erase the parts of a strand within a lo
           0.5,
         ],
         "_boundingBox": null,
+        "_slope": null,
+        "_yIntercept": null,
         "firstPoint": [
           0,
           -1.5,
@@ -28,6 +30,8 @@ exports[`eraseStrandOutsideLoop > should erase the parts of a strand within a lo
           2,
         ],
         "_boundingBox": null,
+        "_slope": null,
+        "_yIntercept": null,
         "firstPoint": [
           1,
           -1,
@@ -42,6 +46,8 @@ exports[`eraseStrandOutsideLoop > should erase the parts of a strand within a lo
       Line {
         "_V": null,
         "_boundingBox": null,
+        "_slope": null,
+        "_yIntercept": null,
         "firstPoint": [
           0.5,
           1,
@@ -70,6 +76,8 @@ exports[`eraseStrandOutsideLoop > should erase the parts of on the border when c
           2.5,
         ],
         "_boundingBox": null,
+        "_slope": null,
+        "_yIntercept": null,
         "firstPoint": [
           -1,
           -1.5,
@@ -84,6 +92,8 @@ exports[`eraseStrandOutsideLoop > should erase the parts of on the border when c
       Line {
         "_V": null,
         "_boundingBox": null,
+        "_slope": null,
+        "_yIntercept": null,
         "firstPoint": [
           0.5,
           1,
@@ -112,6 +122,8 @@ exports[`eraseStrandOutsideLoop > should not erase the parts of on the border wh
           0,
         ],
         "_boundingBox": null,
+        "_slope": null,
+        "_yIntercept": null,
         "firstPoint": [
           1,
           -1.5,
@@ -135,6 +147,8 @@ exports[`eraseStrandOutsideLoop > should not erase the parts of on the border wh
           2.5,
         ],
         "_boundingBox": null,
+        "_slope": null,
+        "_yIntercept": null,
         "firstPoint": [
           -1,
           -1.5,
@@ -149,6 +163,8 @@ exports[`eraseStrandOutsideLoop > should not erase the parts of on the border wh
       Line {
         "_V": null,
         "_boundingBox": null,
+        "_slope": null,
+        "_yIntercept": null,
         "firstPoint": [
           0.5,
           1,
@@ -177,6 +193,8 @@ exports[`eraseStrandWithinLoop > should erase the parts of a strand within a loo
           1.5,
         ],
         "_boundingBox": null,
+        "_slope": null,
+        "_yIntercept": null,
         "firstPoint": [
           -3,
           -3,
@@ -200,6 +218,8 @@ exports[`eraseStrandWithinLoop > should erase the parts of a strand within a loo
           1.5,
         ],
         "_boundingBox": null,
+        "_slope": null,
+        "_yIntercept": null,
         "firstPoint": [
           1.125,
           1.5,
@@ -228,6 +248,8 @@ exports[`eraseStrandWithinLoop > should erase the parts of on the border when co
           1.5,
         ],
         "_boundingBox": null,
+        "_slope": null,
+        "_yIntercept": null,
         "firstPoint": [
           -3,
           -3,
@@ -251,6 +273,8 @@ exports[`eraseStrandWithinLoop > should erase the parts of on the border when co
           1.5,
         ],
         "_boundingBox": null,
+        "_slope": null,
+        "_yIntercept": null,
         "firstPoint": [
           1.125,
           1.5,
@@ -279,6 +303,8 @@ exports[`eraseStrandWithinLoop > should not erase the parts of on the border whe
           1.5,
         ],
         "_boundingBox": null,
+        "_slope": null,
+        "_yIntercept": null,
         "firstPoint": [
           -3,
           -3,
@@ -302,6 +328,8 @@ exports[`eraseStrandWithinLoop > should not erase the parts of on the border whe
           0,
         ],
         "_boundingBox": null,
+        "_slope": null,
+        "_yIntercept": null,
         "firstPoint": [
           1,
           -1.5,
@@ -325,6 +353,8 @@ exports[`eraseStrandWithinLoop > should not erase the parts of on the border whe
           1.5,
         ],
         "_boundingBox": null,
+        "_slope": null,
+        "_yIntercept": null,
         "firstPoint": [
           1.125,
           1.5,

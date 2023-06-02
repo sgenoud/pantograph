@@ -4,6 +4,7 @@ import { lineLineDistance } from "./lineLineDistance";
 import { lineArcDistance } from "./lineArcDistance";
 import { arcArcDistance } from "./arcArcDistance";
 import type { Segment } from "../../models/segments/Segment";
+import { genericDistance } from "./genericDistance";
 
 export function distance(segment1: Segment, segment2: Segment): number {
   if (segment1 instanceof Line && segment2 instanceof Line) {
@@ -22,5 +23,5 @@ export function distance(segment1: Segment, segment2: Segment): number {
     return arcArcDistance(segment1, segment2);
   }
 
-  throw new Error("Not implemented");
+  return genericDistance(segment1, segment2);
 }
