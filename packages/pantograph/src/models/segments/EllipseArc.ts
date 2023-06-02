@@ -111,23 +111,21 @@ export class EllipseArc extends AbstractSegment<EllipseArc> {
       const [x0, y0] = this.center;
       const a2 = this.majorRadius * this.majorRadius;
       const b2 = this.minorRadius * this.minorRadius;
-      const A = Math.cos(-this.tiltAngle);
-      const B = Math.sin(-this.tiltAngle);
+
+      const cosT = Math.cos(this.tiltAngle);
+      const sinT = Math.sin(this.tiltAngle);
+
+      const A = a2 * sinT * sinT + b2 * cosT * cosT;
+      const B = 2 * (b2 - a2) * sinT * cosT;
+      const C = a2 * cosT * cosT + b2 * sinT * sinT;
 
       this._coefficients = {
-        x2: (A * A) / a2 + (B * B) / b2,
-        xy: (2 * A * B) / b2 - (2 * A * B) / a2,
-        y2: (A * A) / b2 + (B * B) / a2,
-        x:
-          (2 * A * B * y0 - 2 * x0 * A * A) / a2 +
-          (-2 * x0 * B * B - 2 * A * B * y0) / b2,
-        y:
-          (2 * x0 * A * B - 2 * B * B * y0) / a2 +
-          (-2 * x0 * A * B - 2 * A * A * y0) / b2,
-        c:
-          (x0 * x0 * A * A - 2 * x0 * A * B * y0 + B * B * y0 * y0) / a2 +
-          (x0 * x0 * B * B + 2 * x0 * A * B * y0 + A * A * y0 * y0) / b2 -
-          1,
+        x2: A,
+        xy: B,
+        y2: C,
+        x: -2 * A * x0 - B * y0,
+        y: -2 * C * y0 - B * x0,
+        c: A * x0 * x0 + B * x0 * y0 + C * y0 * y0 - a2 * b2,
       };
     }
     return this._coefficients;

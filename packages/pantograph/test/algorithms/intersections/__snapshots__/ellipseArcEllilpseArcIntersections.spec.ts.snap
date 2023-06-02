@@ -123,16 +123,16 @@ exports[`arcEllipseArcIntersection > overlapping ellipses > works with two overl
 exports[`arcEllipseArcIntersection > should return the intersection points of an arc and an ellipse arc > should work for one direction 1`] = `
 [
   [
-    -0.3401205058312131,
-    -1.0104433405109907,
+    -0.34012050583121567,
+    -1.01044334051099,
   ],
   [
-    -1.4066529619990422,
-    -0.8030218877085064,
+    -1.4066529619990402,
+    -0.8030218877085067,
   ],
   [
-    0.3401205058312048,
-    1.0104433405109925,
+    0.3401205058312028,
+    1.010443340510993,
   ],
 ]
 `;
@@ -140,8 +140,8 @@ exports[`arcEllipseArcIntersection > should return the intersection points of an
 exports[`arcEllipseArcIntersection > should return the intersection points of an arc and an ellipse arc > should work for the opposite direction 1`] = `
 [
   [
-    1.4066529619990515,
-    0.8030218877085047,
+    1.4066529619990553,
+    0.8030218877085041,
   ],
 ]
 `;
@@ -149,7 +149,7 @@ exports[`arcEllipseArcIntersection > should return the intersection points of an
 exports[`arcEllipseArcIntersection > should work for axis aligned ellipses 1`] = `
 [
   [
-    -1.8371173883849605,
+    -1.8371173883849603,
     -0.395284697025575,
   ],
   [
@@ -162,12 +162,12 @@ exports[`arcEllipseArcIntersection > should work for axis aligned ellipses 1`] =
 exports[`arcEllipseArcIntersection > should work for tangent common points 1`] = `
 [
   [
-    -8.940696716308594e-8,
+    -0,
     -0.9999999999999996,
   ],
   [
-    0.00038102339293144435,
-    0.9999999919345096,
+    -0,
+    1.0000000080654898,
   ],
 ]
 `;
@@ -175,12 +175,21 @@ exports[`arcEllipseArcIntersection > should work for tangent common points 1`] =
 exports[`arcEllipseArcIntersection > should work for two common points 1`] = `
 [
   [
-    -1.7517091212757456,
-    0.4059117020306511,
+    -1.7517091212776155,
+    0.40591170203063387,
   ],
   [
-    1.4940750915928842,
-    0.43358132713599973,
+    1.4940750915951562,
+    0.4335813271360177,
+  ],
+]
+`;
+
+exports[`arcEllipseArcIntersection > works with natural ellipses 1`] = `
+[
+  [
+    -9.73327832537597,
+    2.4946771419136993,
   ],
 ]
 `;

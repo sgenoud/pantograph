@@ -117,6 +117,23 @@ describe("arcEllipseArcIntersection", () => {
     expect(intersections).toMatchSnapshot();
   });
 
+  it("works with natural ellipses", () => {
+    const arc1 = new EllipseArc([-8, 5], [-10, 0], [-8, 0], 5, 2, 90);
+    const arc2 = new EllipseArc(
+      [-6.123724356957945, 3.5355339059327378],
+      [-24.406964702329226, -5.50455030127395],
+      [-5.088448176547862, -0.3281693992235354],
+      20,
+      4,
+      15
+    );
+    const intersections = ellipseArcEllipseArcIntersection(arc1, arc2, true);
+
+    //debugImg([arc1, arc2, ...intersections.map((p) => dpnt(p))]);
+    expect(intersections.length).toBe(1);
+    expect(intersections).toMatchSnapshot();
+  });
+
   describe("overlapping ellipses", () => {
     it("works with one overlap", () => {
       const ellipseArc = new EllipseArc(

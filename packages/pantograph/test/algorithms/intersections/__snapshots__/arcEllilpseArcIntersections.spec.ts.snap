@@ -3,11 +3,11 @@
 exports[`arcEllipseArcIntersection > for tangent common points > should work for the circle inside the ellipse 1`] = `
 [
   [
-    0.017452406437295013,
+    0.01745240643729501,
     -0.999847695156391,
   ],
   [
-    -0.01745240643725682,
+    -0.017452406437256818,
     0.9998476951563917,
   ],
 ]
@@ -16,11 +16,11 @@ exports[`arcEllipseArcIntersection > for tangent common points > should work for
 exports[`arcEllipseArcIntersection > for tangent common points > should work for the ellipse inside the circle 1`] = `
 [
   [
-    -1.9996953903128885,
+    -1.9996953903128882,
     -0.034904812875090875,
   ],
   [
-    1.9996953903128896,
+    1.9996953903128893,
     0.034904812875090854,
   ],
 ]

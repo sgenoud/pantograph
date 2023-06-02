@@ -4,6 +4,7 @@ import { EllipseArc } from "../../models/segments/EllipseArc";
 import { Arc } from "../../models/segments/Arc";
 import { Vector } from "../../definitions";
 import removeDuplicatePoints from "../../utils/removeDuplicatePoints";
+import { solveGenericPolynomial } from "../solvers/solvePolynomials";
 
 // inspired by https://gist.github.com/drawable/92792f59b6ff8869d8b1
 
@@ -105,25 +106,13 @@ export function ellipseEllipseIntersection(
       c1 * a1 * b2 * b2,
   };
 
-  const polynomialMatrix = new Matrix([
-    [
-      -polynomial.z3 / polynomial.z4,
-      -polynomial.z2 / polynomial.z4,
-      -polynomial.z1 / polynomial.z4,
-      -polynomial.z0 / polynomial.z4,
-    ],
-    [1, 0, 0, 0],
-    [0, 1, 0, 0],
-    [0, 0, 1, 0],
-  ]);
-
-  const eigenValues = new EigenvalueDecomposition(polynomialMatrix);
-
-  const yValues = eigenValues.realEigenvalues.filter(
-    (_, i) => Math.abs(eigenValues.imaginaryEigenvalues[i]) < epsilon
+  const yValues = solveGenericPolynomial(
+    [polynomial.z0, polynomial.z1, polynomial.z2, polynomial.z3, polynomial.z4],
+    epsilon
   );
+
   const points = yValues.flatMap((y) => {
-    const denom = a1 * b2 * y + a1 * d2 - a2 * b1 * y - a1 * d1;
+    const denom = a1 * b2 * y + a1 * d2 - a2 * b1 * y - a2 * d1;
 
     if (denom) {
       const x =
@@ -142,12 +131,17 @@ export function ellipseEllipseIntersection(
     const v = -bb / (2 * a1);
 
     const cc = c1 * y * y + e1 * y + f1;
-    const discriminant = Math.sqrt((bb * bb) / (4 * a1 * a1) - cc / a1);
+    const discriminant = (bb * bb) / (4 * a1 * a1) - cc / a1;
 
-    const x1 = v + discriminant;
-    const x2 = v - discriminant;
+    if (Math.abs(discriminant) < epsilon) {
+      return [[v, y] as Vector];
+    }
+    if (discriminant > 0) {
+      const sqrt = Math.sqrt(discriminant);
+      return [[v + sqrt, y] as Vector, [v - sqrt, y] as Vector];
+    }
 
-    return [[x1, y] as Vector, [x2, y] as Vector];
+    return [];
   });
 
   return removeDuplicatePoints(points, epsilon);
