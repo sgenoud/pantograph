@@ -453,12 +453,13 @@ export class EllipseArc extends AbstractSegment<EllipseArc> {
 
   transform(matrix: TransformationMatrix): EllipseArc {
     const modifiedAngle = matrix.transformAngle(this.tiltAngle);
+    const scaleFactor = matrix.scaleFactor();
     return new EllipseArc(
       matrix.transform(this.firstPoint),
       matrix.transform(this.lastPoint),
       matrix.transform(this.center),
-      this.majorRadius,
-      this.minorRadius,
+      this.majorRadius * scaleFactor,
+      this.minorRadius * scaleFactor,
       modifiedAngle,
       matrix.keepsOrientation() ? this.clockwise : !this.clockwise,
       { angleUnits: "rad" }

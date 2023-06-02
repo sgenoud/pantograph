@@ -142,4 +142,9 @@ export class TransformationMatrix {
     const [a, , , , e] = this._matrix;
     return a * e > 0;
   }
+
+  scaleFactor(): number {
+    const [a, , , d] = this._matrix;
+    return Math.sqrt(a * a + d * d);
+  }
 }

@@ -73,4 +73,20 @@ describe("TransformationMatrix", () => {
       expect(matrix.transform([-2, 0])).toBeVector([2, 0]);
     });
   });
+
+  describe("scaleFactor", () => {
+    it("returns the correct scale factor", () => {
+      const matrix = new TransformationMatrix();
+      matrix.scale(2, [0, 0]);
+
+      expect(matrix.scaleFactor()).toBe(2);
+    });
+
+    it("returns the correct scale factor with scale off center", () => {
+      const matrix = new TransformationMatrix();
+      matrix.scale(2, [12, 20]);
+
+      expect(matrix.scaleFactor()).toBe(2);
+    });
+  });
 });
