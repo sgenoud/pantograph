@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <title>Dielines Example</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"
+    />
+
+    <style>
+      #app {
+        display: flex;
+        flex-grow: 1;
+        flex-shrink: 1;
+      }
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+      body {
+        min-height: 100vh;
+        max-height: 100vh;
+      }
+      main {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+      .container {
+        display: inline-flex;
+        align-items: start;
+        gap: 0.5rem;
+      }
+      #download-btn {
+        margin-left: auto;
+        height: fit-content;
+      }
+
+      select {
+        margin-bottom: 0;
+        width: auto;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <section class="container">
+        <select id="preset-select" onChange="updateSelection()">
+          <option value="noGlue">No Glue Tray</option>
+          <option value="gear">Gear</option>
+        </select>
+        <a role="button" download="img.svg" id="download-btn">Download</a>
+      </section>
+      <div id="app"></div>
+      <script type="module">
+        import { noGlueTray } from "./examples/noGlueTray.ts";
+        import { toothedGear } from "./examples/motorGearPieces.ts";
+
+        const updatePage = (drawing, alreadyExported = true) => {
+          const svg = alreadyExported ? drawing : exportSVG(drawing, 1);
+          const canvas = document.getElementById("app");
+
+          canvas.innerHTML = svg;
+
+          const dl = document.getElementById("download-btn");
+          dl.href = "data:image/svg+xml;utf8," + svg;
+        };
+
+        const show = {
+          noGlue: () => {
+            updatePage(
+              noGlueTray(300, 80, 30, { paperThickness: 0.2 }).asSVG()
+            );
+          },
+          gear: () => {
+            updatePage(toothedGear(100, 10).asSVG());
+          },
+        };
+
+        show.noGlue();
+
+        window.updateSelection = function () {
+          const selection = document.getElementById("preset-select").value;
+          show[selection]?.();
+        };
+      </script>
+    </main>
+  </body>
+</html>

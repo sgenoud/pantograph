@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "nodenext",
+    "target": "es6",
+    "module": "es2015",
+    "strict": true,
+    "preserveSymlinks": false,
+    "sourceMap": true,
+    "skipLibCheck": true,
+    "declaration": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["src", "examples"]
+}
