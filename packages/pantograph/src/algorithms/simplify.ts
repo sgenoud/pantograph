@@ -1,8 +1,8 @@
-import type { Stroke } from "../models/Stroke";
-import { Line } from "../models/segments/Line";
-import { Segment } from "../models/segments/Segment";
-import { parallel, sameVector } from "../vectorOperations";
-import { Arc } from "../models/segments/Arc";
+import type { Stroke } from "../models/Stroke.js";
+import { Line } from "../models/segments/Line.js";
+import { Segment } from "../models/segments/Segment.js";
+import { parallel, sameVector } from "../vectorOperations.js";
+import { Arc } from "../models/segments/Arc.js";
 
 function canExtendSegment(segment1: Segment, segment2: Segment): boolean {
   if (segment1 instanceof Line && segment2 instanceof Line) {

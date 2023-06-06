@@ -1,15 +1,15 @@
-import { Line } from "../../models/segments/Line";
+import { Line } from "../../models/segments/Line.js";
 
-import type { Vector } from "../../definitions";
-import { Segment } from "../../models/segments/Segment";
-import { Arc } from "../../models/segments/Arc";
-import { lineArcIntersection } from "./lineArcIntersection";
-import { lineLineIntersection } from "./lineLineIntersection";
-import { arcArcIntersection } from "./arcArcIntersection";
-import { EllipseArc } from "../../models/segments/EllipseArc";
-import { lineEllipseArcIntersection } from "./lineEllipseArcIntersection";
-import { arcEllipseArcIntersection } from "./arcEllipseArcIntersection";
-import { ellipseArcEllipseArcIntersection } from "./ellipseArcEllipseArcIntersection";
+import type { Vector } from "../../definitions.js";
+import { Segment } from "../../models/segments/Segment.js";
+import { Arc } from "../../models/segments/Arc.js";
+import { lineArcIntersection } from "./lineArcIntersection.js";
+import { lineLineIntersection } from "./lineLineIntersection.js";
+import { arcArcIntersection } from "./arcArcIntersection.js";
+import { EllipseArc } from "../../models/segments/EllipseArc.js";
+import { lineEllipseArcIntersection } from "./lineEllipseArcIntersection.js";
+import { arcEllipseArcIntersection } from "./arcEllipseArcIntersection.js";
+import { ellipseArcEllipseArcIntersection } from "./ellipseArcEllipseArcIntersection.js";
 
 export function findIntersections(
   segment1: Segment,

@@ -1,17 +1,17 @@
-import type { Vector } from "../definitions";
-import { BoundingBox } from "./BoundingBox";
-import type { Figure } from "./Figure";
-import type { TransformationMatrix } from "./TransformationMatrix";
+import type { Vector } from "../definitions.js";
+import { BoundingBox } from "./BoundingBox.js";
+import type { Figure } from "./Figure.js";
+import type { TransformationMatrix } from "./TransformationMatrix.js";
 
 import {
   cutFiguresLists,
   fuseFiguresLists,
   intersectFiguresLists,
 } from "../algorithms/boolean/figureBooleans";
-import { combineDifferentValues } from "../utils/allCombinations";
-import { Transformable } from "./utils/Transformable";
-import { Strand } from "./Strand";
-import type { Stroke } from "./Stroke";
+import { combineDifferentValues } from "../utils/allCombinations.js";
+import { Transformable } from "./utils/Transformable.js";
+import { Strand } from "./Strand.js";
+import type { Stroke } from "./Stroke.js";
 
 export class Diagram extends Transformable<Diagram> {
   figures: Figure[];

@@ -1,5 +1,5 @@
-import type { Strand } from "../../models/Strand";
-import { svgSegmentToPath } from "./svgSegment";
+import type { Strand } from "../../models/Strand.js";
+import { svgSegmentToPath } from "./svgSegment.js";
 
 export function svgStrand(strand: Strand) {
   const start = `M ${strand.firstPoint.join(" ")}`;

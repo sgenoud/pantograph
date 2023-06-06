@@ -1,6 +1,6 @@
-import { Line } from "../../models/segments/Line";
-import { EllipseArc } from "../../models/segments/EllipseArc";
-import { Vector } from "../../definitions";
+import { Line } from "../../models/segments/Line.js";
+import { EllipseArc } from "../../models/segments/EllipseArc.js";
+import { Vector } from "../../definitions.js";
 
 // Using the derivation from http://www.nabla.hr/CS-EllipseAndLine1.htm
 export function lineEllipseArcIntersection(

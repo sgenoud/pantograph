@@ -1,8 +1,8 @@
-import type { Vector } from "../../definitions";
-import { BoundingBox } from "../BoundingBox";
-import type { TransformationMatrix } from "../TransformationMatrix";
-import { reprVector } from "../../vectorOperations";
-import { Transformable } from "../utils/Transformable";
+import type { Vector } from "../../definitions.js";
+import { BoundingBox } from "../BoundingBox.js";
+import type { TransformationMatrix } from "../TransformationMatrix.js";
+import { reprVector } from "../../vectorOperations.js";
+import { Transformable } from "../utils/Transformable.js";
 
 export type Segment = AbstractSegment<any>;
 

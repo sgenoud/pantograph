@@ -1,11 +1,11 @@
-import { Line } from "../../models/segments/Line";
-import { lineLineParams } from "./lineLineIntersection";
-import { lineEllipseArcIntersection } from "./lineEllipseArcIntersection";
-import type { Vector } from "../../definitions";
-import { Segment } from "../../models/segments/Segment";
-import { sameVector, squareDistance } from "../../vectorOperations";
-import { Arc } from "../../models/segments/Arc";
-import { EllipseArc } from "../../models/segments/EllipseArc";
+import { Line } from "../../models/segments/Line.js";
+import { lineLineParams } from "./lineLineIntersection.js";
+import { lineEllipseArcIntersection } from "./lineEllipseArcIntersection.js";
+import type { Vector } from "../../definitions.js";
+import { Segment } from "../../models/segments/Segment.js";
+import { sameVector, squareDistance } from "../../vectorOperations.js";
+import { Arc } from "../../models/segments/Arc.js";
+import { EllipseArc } from "../../models/segments/EllipseArc.js";
 
 const rayLineIntersectionsCount = (point: Vector, line: Line) => {
   const intersectionParams = lineLineParams(line, {

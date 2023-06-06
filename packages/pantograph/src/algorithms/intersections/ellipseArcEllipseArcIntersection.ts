@@ -1,8 +1,8 @@
-import { Vector } from "../../definitions";
-import { EllipseArc } from "../../models/segments/EllipseArc";
-import removeDuplicatePoints from "../../utils/removeDuplicatePoints";
-import { sameVector } from "../../vectorOperations";
-import { ellipseEllipseIntersection } from "./ellipseEllipseIntersection";
+import { Vector } from "../../definitions.js";
+import { EllipseArc } from "../../models/segments/EllipseArc.js";
+import removeDuplicatePoints from "../../utils/removeDuplicatePoints.js";
+import { sameVector } from "../../vectorOperations.js";
+import { ellipseEllipseIntersection } from "./ellipseEllipseIntersection.js";
 
 const complementArc = (arc: EllipseArc): EllipseArc => {
   const {

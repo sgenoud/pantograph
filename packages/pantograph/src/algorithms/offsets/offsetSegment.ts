@@ -1,6 +1,6 @@
-import { Line } from "../../models/segments/Line";
-import { Arc } from "../../models/segments/Arc";
-import { Segment } from "../../models/segments/Segment";
+import { Line } from "../../models/segments/Line.js";
+import { Arc } from "../../models/segments/Arc.js";
+import { Segment } from "../../models/segments/Segment.js";
 import {
   add,
   normalize,
@@ -8,7 +8,7 @@ import {
   scalarMultiply,
   subtract,
 } from "../../vectorOperations";
-import { Vector } from "../../definitions";
+import { Vector } from "../../definitions.js";
 
 export class DegenerateSegment {
   constructor(

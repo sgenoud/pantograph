@@ -1,10 +1,10 @@
-import { Line } from "../../models/segments/Line";
-import { Arc } from "../../models/segments/Arc";
-import { lineLineDistance } from "./lineLineDistance";
-import { lineArcDistance } from "./lineArcDistance";
-import { arcArcDistance } from "./arcArcDistance";
-import type { Segment } from "../../models/segments/Segment";
-import { genericDistance } from "./genericDistance";
+import { Line } from "../../models/segments/Line.js";
+import { Arc } from "../../models/segments/Arc.js";
+import { lineLineDistance } from "./lineLineDistance.js";
+import { lineArcDistance } from "./lineArcDistance.js";
+import { arcArcDistance } from "./arcArcDistance.js";
+import type { Segment } from "../../models/segments/Segment.js";
+import { genericDistance } from "./genericDistance.js";
 
 export function distance(segment1: Segment, segment2: Segment): number {
   if (segment1 instanceof Line && segment2 instanceof Line) {

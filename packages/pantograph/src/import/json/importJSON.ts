@@ -1,9 +1,9 @@
-import { Line } from "../../models/segments/Line";
-import { Arc } from "../../models/segments/Arc";
-import { Loop } from "../../models/Loop";
-import { Figure } from "../../models/Figure";
-import { Diagram } from "../../models/Diagram";
-import { EllipseArc } from "../../models/segments/EllipseArc";
+import { Line } from "../../models/segments/Line.js";
+import { Arc } from "../../models/segments/Arc.js";
+import { Loop } from "../../models/Loop.js";
+import { Figure } from "../../models/Figure.js";
+import { Diagram } from "../../models/Diagram.js";
+import { EllipseArc } from "../../models/segments/EllipseArc.js";
 
 const importSegment = (json: any) => {
   if (json.type === "LINE") {

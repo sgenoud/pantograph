@@ -1,7 +1,7 @@
-import { crossProduct, squareLength, subtract } from "../../vectorOperations";
-import { Line } from "../../models/segments/Line";
-import { Vector } from "../../definitions";
-import removeDuplicatePoints from "../../utils/removeDuplicatePoints";
+import { crossProduct, squareLength, subtract } from "../../vectorOperations.js";
+import { Line } from "../../models/segments/Line.js";
+import { Vector } from "../../definitions.js";
+import removeDuplicatePoints from "../../utils/removeDuplicatePoints.js";
 
 export const lineLineParams = (
   line1: { V: Vector; firstPoint: Vector; precision: number },

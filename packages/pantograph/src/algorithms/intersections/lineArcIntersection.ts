@@ -1,8 +1,8 @@
-import { add, scalarMultiply, distance } from "../../vectorOperations";
-import { Line } from "../../models/segments/Line";
-import { Vector } from "../../definitions";
-import { Arc } from "../../models/segments/Arc";
-import { projectPointOnLine } from "../../utils/projectPointOnLine";
+import { add, scalarMultiply, distance } from "../../vectorOperations.js";
+import { Line } from "../../models/segments/Line.js";
+import { Vector } from "../../definitions.js";
+import { Arc } from "../../models/segments/Arc.js";
+import { projectPointOnLine } from "../../utils/projectPointOnLine.js";
 
 export function lineArcIntersection(
   line: Line,

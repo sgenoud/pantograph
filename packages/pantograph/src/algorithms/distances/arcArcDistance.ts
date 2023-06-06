@@ -4,8 +4,8 @@ import {
   polarAngle,
   subtract,
 } from "../../vectorOperations";
-import type { Arc } from "../../models/segments/Arc";
-import { arcArcIntersection } from "../intersections/arcArcIntersection";
+import type { Arc } from "../../models/segments/Arc.js";
+import { arcArcIntersection } from "../intersections/arcArcIntersection.js";
 
 const overlappingAngles = (arc1: Arc, arc2: Arc): boolean => {
   const p1 = arc1.angleToParam(arc2.firstAngle);

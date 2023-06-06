@@ -1,6 +1,6 @@
-import { Vector } from "../../definitions";
-import { squareDistance } from "../../vectorOperations";
-import { findGlobalMinimum } from "../optimisation/DiRect";
+import { Vector } from "../../definitions.js";
+import { squareDistance } from "../../vectorOperations.js";
+import { findGlobalMinimum } from "../optimisation/DiRect.js";
 
 interface WithParamPoint {
   paramPoint(t: number): Vector;

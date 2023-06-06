@@ -1,5 +1,5 @@
-import type { Line } from "../../models/segments/Line";
-import type { Arc } from "../../models/segments/Arc";
+import type { Line } from "../../models/segments/Line.js";
+import type { Arc } from "../../models/segments/Arc.js";
 import {
   normalize,
   subtract,
@@ -7,8 +7,8 @@ import {
   add,
   scalarMultiply,
 } from "../../vectorOperations";
-import { projectPointOnLine } from "../../utils/projectPointOnLine";
-import { lineArcIntersection } from "../intersections/lineArcIntersection";
+import { projectPointOnLine } from "../../utils/projectPointOnLine.js";
+import { lineArcIntersection } from "../intersections/lineArcIntersection.js";
 
 export function lineArcDistance(line: Line, arc: Arc): number {
   // We might be able to optimise this if necessary

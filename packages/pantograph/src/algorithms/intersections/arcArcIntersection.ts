@@ -1,6 +1,6 @@
-import { Vector } from "../../definitions";
-import { Arc } from "../../models/segments/Arc";
-import removeDuplicatePoints from "../../utils/removeDuplicatePoints";
+import { Vector } from "../../definitions.js";
+import { Arc } from "../../models/segments/Arc.js";
+import removeDuplicatePoints from "../../utils/removeDuplicatePoints.js";
 import {
   add,
   distance,

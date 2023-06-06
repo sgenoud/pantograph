@@ -1,10 +1,10 @@
 import { Matrix, EigenvalueDecomposition } from "ml-matrix";
 
-import { EllipseArc } from "../../models/segments/EllipseArc";
-import { Arc } from "../../models/segments/Arc";
-import { Vector } from "../../definitions";
-import removeDuplicatePoints from "../../utils/removeDuplicatePoints";
-import { solveGenericPolynomial } from "../solvers/solvePolynomials";
+import { EllipseArc } from "../../models/segments/EllipseArc.js";
+import { Arc } from "../../models/segments/Arc.js";
+import { Vector } from "../../definitions.js";
+import removeDuplicatePoints from "../../utils/removeDuplicatePoints.js";
+import { solveGenericPolynomial } from "../solvers/solvePolynomials.js";
 
 // inspired by https://gist.github.com/drawable/92792f59b6ff8869d8b1
 

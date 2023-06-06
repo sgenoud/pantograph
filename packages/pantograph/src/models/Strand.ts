@@ -1,8 +1,8 @@
-import { AbstractStroke } from "./Stroke";
+import { AbstractStroke } from "./Stroke.js";
 
-import { TransformationMatrix } from "./TransformationMatrix";
-import { sameVector } from "../vectorOperations";
-import { simplifySegments } from "../algorithms/simplify";
+import { TransformationMatrix } from "./TransformationMatrix.js";
+import { sameVector } from "../vectorOperations.js";
+import { simplifySegments } from "../algorithms/simplify.js";
 
 export class Strand extends AbstractStroke<Strand> {
   strokeType = "STRAND";

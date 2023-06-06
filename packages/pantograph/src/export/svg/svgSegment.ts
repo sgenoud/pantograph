@@ -1,8 +1,8 @@
-import { Arc } from "../../models/segments/Arc";
-import { EllipseArc } from "../../models/segments/EllipseArc";
-import { Line } from "../../models/segments/Line";
-import { Segment } from "../../models/segments/Segment";
-import { RAD2DEG } from "../../vectorOperations";
+import { Arc } from "../../models/segments/Arc.js";
+import { EllipseArc } from "../../models/segments/EllipseArc.js";
+import { Line } from "../../models/segments/Line.js";
+import { Segment } from "../../models/segments/Segment.js";
+import { RAD2DEG } from "../../vectorOperations.js";
 
 export function svgSegmentToPath(segment: Segment) {
   if (segment instanceof Line) {

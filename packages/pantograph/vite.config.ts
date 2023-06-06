@@ -14,8 +14,8 @@ export default defineConfig({
       // Could also be a dictionary or array of multiple entry points
       entry: {
         pantograph: resolve(__dirname, "src/main.ts"),
-        "pantograph/models": resolve(__dirname, "src/models/exports.ts"),
-        "pantograph/drawShape": resolve(__dirname, "src/drawShape/index.ts"),
+        "pantograph/models": resolve(__dirname, "src/api/models.ts"),
+        "pantograph/drawShape": resolve(__dirname, "src/api/drawShape.ts"),
       },
       name: "Pantograph",
     },
@@ -23,7 +23,7 @@ export default defineConfig({
 
   plugins: [
     dts({
-      rollupTypes: true,
+      outputDir: "dist/types",
     }),
   ],
 });

@@ -1,6 +1,6 @@
-import { Line } from "../../models/segments/Line";
-import { Loop } from "../../models/Loop";
-import { Segment } from "../../models/segments/Segment";
+import { Line } from "../../models/segments/Line.js";
+import { Loop } from "../../models/Loop.js";
+import { Segment } from "../../models/segments/Segment.js";
 import {
   crossProduct,
   sameVector,
@@ -8,15 +8,15 @@ import {
   subtract,
 } from "../../vectorOperations";
 import { distance } from "../distances";
-import { offsetSegment, DegenerateSegment } from "./offsetSegment";
-import { Vector } from "../../definitions";
-import { Arc, tangentArc } from "../../models/segments/Arc";
-import { Diagram } from "../../models/Diagram";
+import { offsetSegment, DegenerateSegment } from "./offsetSegment.js";
+import { Vector } from "../../definitions.js";
+import { Arc, tangentArc } from "../../models/segments/Arc.js";
+import { Diagram } from "../../models/Diagram.js";
 import { findIntersectionsAndOverlaps } from "../intersections";
-import { Figure } from "../../models/Figure";
-import { stitchSegments } from "../stitchSegments";
-import { Stroke } from "../../models/Stroke";
-import { Strand } from "../../models/Strand";
+import { Figure } from "../../models/Figure.js";
+import { stitchSegments } from "../stitchSegments.js";
+import { Stroke } from "../../models/Stroke.js";
+import { Strand } from "../../models/Strand.js";
 
 const PRECISION = 1e-8;
 
@@ -149,7 +149,7 @@ export function rawOffsets(
     previousSegment = segment;
   }
 
-  appendSegment(previousSegment);
+  if (previousSegment) appendSegment(previousSegment);
   return offsettedArray;
 }
 

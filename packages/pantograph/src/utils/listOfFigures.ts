@@ -1,6 +1,6 @@
-import { Diagram } from "../models/Diagram";
-import { Figure } from "../models/Figure";
-import { Loop } from "../models/Loop";
+import { Diagram } from "../models/Diagram.js";
+import { Figure } from "../models/Figure.js";
+import { Loop } from "../models/Loop.js";
 
 export function listOfFigures(shape: Diagram | Figure | Loop): Figure[] {
   if (shape instanceof Figure) {

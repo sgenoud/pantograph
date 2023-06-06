@@ -1,12 +1,12 @@
-import { BoundingBox } from "./BoundingBox";
-import { Vector } from "../definitions";
+import { BoundingBox } from "./BoundingBox.js";
+import { Vector } from "../definitions.js";
 import { findIntersectionsAndOverlaps } from "../algorithms/intersections";
-import { Segment } from "./segments/Segment";
-import { TransformationMatrix } from "./TransformationMatrix";
-import { allCombinations } from "../utils/allCombinations";
-import zip from "../utils/zip";
-import { sameVector } from "../vectorOperations";
-import { Transformable } from "./utils/Transformable";
+import { Segment } from "./segments/Segment.js";
+import { TransformationMatrix } from "./TransformationMatrix.js";
+import { allCombinations } from "../utils/allCombinations.js";
+import zip from "../utils/zip.js";
+import { sameVector } from "../vectorOperations.js";
+import { Transformable } from "./utils/Transformable.js";
 
 export type Stroke = AbstractStroke<any>;
 

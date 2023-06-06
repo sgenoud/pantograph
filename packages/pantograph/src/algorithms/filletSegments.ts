@@ -1,7 +1,7 @@
-import { Vector } from "../definitions";
-import { Line } from "../models/segments/Line";
-import { tangentArc } from "../models/segments/Arc";
-import type { Segment } from "../models/segments/Segment";
+import { Vector } from "../definitions.js";
+import { Line } from "../models/segments/Line.js";
+import { tangentArc } from "../models/segments/Arc.js";
+import type { Segment } from "../models/segments/Segment.js";
 import {
   add,
   crossProduct,
@@ -10,8 +10,8 @@ import {
   scalarMultiply,
 } from "../vectorOperations";
 import { findIntersections } from "./intersections";
-import { DegenerateSegment, offsetSegment } from "./offsets/offsetSegment";
-import { exportJSON } from "../main";
+import { DegenerateSegment, offsetSegment } from "./offsets/offsetSegment.js";
+import { exportJSON } from "../main.js";
 
 function removeCorner(
   firstSegment: Segment,

@@ -1,4 +1,4 @@
-import type { Vector } from "./definitions";
+import type { Vector } from "./definitions.js";
 export { Vector };
 
 export const DEG2RAD = Math.PI / 180;
@@ -27,9 +27,9 @@ export type {
   Segment,
   Line,
   Arc,
-} from "./models/exports";
+} from "./models/exports.js";
 
-export { draw } from "./draw";
+export { draw } from "./draw.js";
 export {
   // Surface booleans
   fuseAll,
@@ -42,9 +42,9 @@ export {
   // Offset
   offset,
   outlineStroke,
-} from "./operations";
+} from "./operations.js";
 
-export { exportSVG, svgBody } from "./export/svg/exportSVG";
+export { exportSVG, svgBody } from "./export/svg/exportSVG.js";
 
-export { exportJSON } from "./export/json/exportJSON";
-export { importJSON } from "./import/json/importJSON";
+export { exportJSON } from "./export/json/exportJSON.js";
+export { importJSON } from "./import/json/importJSON.js";

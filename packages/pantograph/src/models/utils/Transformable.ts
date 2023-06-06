@@ -1,6 +1,6 @@
-import { Vector } from "../../definitions";
-import { DEG2RAD } from "../../vectorOperations";
-import { TransformationMatrix } from "../TransformationMatrix";
+import { Vector } from "../../definitions.js";
+import { DEG2RAD } from "../../vectorOperations.js";
+import { TransformationMatrix } from "../TransformationMatrix.js";
 
 export abstract class Transformable<T> {
   abstract transform(matrix: TransformationMatrix): T;

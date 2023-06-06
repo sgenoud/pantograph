@@ -1,4 +1,4 @@
-import range from "./range";
+import range from "./range.js";
 
 export default function zip<T extends unknown[][]>(
   arrays: T

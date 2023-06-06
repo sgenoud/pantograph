@@ -1,13 +1,13 @@
-import { chamferSegments, filletSegments } from "./algorithms/filletSegments";
-import { Vector } from "./definitions";
-import { Strand } from "./models/Strand";
-import { Diagram } from "./models/Diagram";
-import { Figure } from "./models/Figure";
-import { Loop } from "./models/Loop";
-import { tangentArc, threePointsArc } from "./models/segments/Arc";
-import { Line } from "./models/segments/Line";
-import { Segment } from "./models/segments/Segment";
-import { TransformationMatrix } from "./models/TransformationMatrix";
+import { chamferSegments, filletSegments } from "./algorithms/filletSegments.js";
+import { Vector } from "./definitions.js";
+import { Strand } from "./models/Strand.js";
+import { Diagram } from "./models/Diagram.js";
+import { Figure } from "./models/Figure.js";
+import { Loop } from "./models/Loop.js";
+import { tangentArc, threePointsArc } from "./models/segments/Arc.js";
+import { Line } from "./models/segments/Line.js";
+import { Segment } from "./models/segments/Segment.js";
+import { TransformationMatrix } from "./models/TransformationMatrix.js";
 import {
   polarToCartesian,
   DEG2RAD,
@@ -20,7 +20,7 @@ import {
   cartesianToPolar,
   RAD2DEG,
 } from "./vectorOperations";
-import { svgEllipse } from "./models/segments/EllipseArc";
+import { svgEllipse } from "./models/segments/EllipseArc.js";
 
 function loopySegmentsToDiagram(
   segments: Segment[],

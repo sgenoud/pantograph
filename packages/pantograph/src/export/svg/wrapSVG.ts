@@ -1,4 +1,4 @@
-import { BoundingBox } from "../../models/BoundingBox";
+import { BoundingBox } from "../../models/BoundingBox.js";
 
 export function SVGViewbox(bbox: BoundingBox, margin = 1) {
   const minX = bbox.xMin - margin;

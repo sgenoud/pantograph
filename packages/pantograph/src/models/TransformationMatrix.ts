@@ -1,4 +1,4 @@
-import { Vector } from "../definitions";
+import { Vector } from "../definitions.js";
 
 type Matrix = [
   number,

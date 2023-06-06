@@ -1,2 +1,2 @@
-export * from "./booleanOperations";
-export * from "./offsetOperations";
+export * from "./booleanOperations.js";
+export * from "./offsetOperations.js";

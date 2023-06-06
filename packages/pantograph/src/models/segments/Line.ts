@@ -1,7 +1,7 @@
-import { BoundingBox } from "../BoundingBox";
-import { Vector } from "../../definitions";
-import { TransformationMatrix } from "../TransformationMatrix";
-import removeDuplicatePoints from "../../utils/removeDuplicatePoints";
+import { BoundingBox } from "../BoundingBox.js";
+import { Vector } from "../../definitions.js";
+import { TransformationMatrix } from "../TransformationMatrix.js";
+import removeDuplicatePoints from "../../utils/removeDuplicatePoints.js";
 import {
   add,
   distance,
@@ -15,7 +15,7 @@ import {
   squareDistance,
   subtract,
 } from "../../vectorOperations";
-import { Segment, AbstractSegment } from "./Segment";
+import { Segment, AbstractSegment } from "./Segment.js";
 
 export class Line extends AbstractSegment<Line> {
   segmentType = "LINE";

@@ -1,12 +1,12 @@
-import { Diagram } from "../../models/Diagram";
-import { Figure } from "../../models/Figure";
-import { Loop } from "../../models/Loop";
-import { Arc } from "../../models/segments/Arc";
-import { Line } from "../../models/segments/Line";
-import { jsonDiagram } from "./jsonDiagram";
-import { jsonFigure } from "./jsonFigure";
-import { jsonLoop } from "./jsonLoop";
-import { jsonSegment } from "./jsonSegment";
+import { Diagram } from "../../models/Diagram.js";
+import { Figure } from "../../models/Figure.js";
+import { Loop } from "../../models/Loop.js";
+import { Arc } from "../../models/segments/Arc.js";
+import { Line } from "../../models/segments/Line.js";
+import { jsonDiagram } from "./jsonDiagram.js";
+import { jsonFigure } from "./jsonFigure.js";
+import { jsonLoop } from "./jsonLoop.js";
+import { jsonSegment } from "./jsonSegment.js";
 
 type Shape = Loop | Figure | Diagram | Arc | Line;
 

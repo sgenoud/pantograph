@@ -1,6 +1,6 @@
-import { BoundingBox } from "../BoundingBox";
-import { Vector } from "../../definitions";
-import { TransformationMatrix } from "../TransformationMatrix";
+import { BoundingBox } from "../BoundingBox.js";
+import { Vector } from "../../definitions.js";
+import { TransformationMatrix } from "../TransformationMatrix.js";
 import {
   add,
   cartesianToPolar,
@@ -16,12 +16,12 @@ import {
   squareDistance,
   subtract,
 } from "../../vectorOperations";
-import { Segment, AbstractSegment } from "./Segment";
-import zip from "../../utils/zip";
-import { unitAngle } from "../../utils/unitAngle";
-import { angularDistance } from "../../utils/angularDistance";
-import { Line } from "./Line";
-import { lineLineParams } from "../../algorithms/intersections/lineLineIntersection";
+import { Segment, AbstractSegment } from "./Segment.js";
+import zip from "../../utils/zip.js";
+import { unitAngle } from "../../utils/unitAngle.js";
+import { angularDistance } from "../../utils/angularDistance.js";
+import { Line } from "./Line.js";
+import { lineLineParams } from "../../algorithms/intersections/lineLineIntersection.js";
 
 const polarCoordsFromCenter = (point: Vector, center: Vector) => {
   const vector = subtract(point, center);

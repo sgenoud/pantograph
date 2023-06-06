@@ -1,5 +1,5 @@
-import type { Figure } from "../../models/Figure";
-import { svgLoop } from "./svgLoop";
+import type { Figure } from "../../models/Figure.js";
+import { svgLoop } from "./svgLoop.js";
 
 export function svgFigure(figure: Figure) {
   const path = figure.allLoops.map(svgLoop).join(" ");

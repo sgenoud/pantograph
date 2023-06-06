@@ -1,5 +1,5 @@
-import { Diagram } from "../../models/Diagram";
-import { svgFigure } from "./svgFigure";
+import { Diagram } from "../../models/Diagram.js";
+import { svgFigure } from "./svgFigure.js";
 
 export function svgDiagram(diagram: Diagram) {
   return `<g>

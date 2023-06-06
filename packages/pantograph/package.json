@@ -5,22 +5,39 @@
   "type": "module",
   "main": "./dist/pantograph.cjs",
   "module": "./dist/pantograph.js",
-  "types": "./dist/pantograph.d.ts",
   "files": [
     "dist"
   ],
+  "types": "./dist/types/main.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/pantograph.js",
-      "require": "./dist/pantograph.cjs"
+      "import": {
+        "default": "./dist/pantograph.js",
+        "types": "./dist/types/main.d.ts"
+      },
+      "require": {
+        "default": "./dist/pantograph.cjs",
+        "types": "./dist/types/main.d.ts"
+      }
     },
     "./models": {
-      "import": "./dist/pantograph/models.js",
-      "require": "./dist/pantograph/models.cjs"
+      "import": {
+        "default": "./dist/pantograph/models.js",
+        "types": "./dist/types/api/models.d.ts"
+      },
+      "require": {
+        "default": "./dist/pantograph/models.cjs",
+        "types": "./dist/types/api/drawShape.d.ts"
+      }
     },
     "./drawShape": {
-      "import": "./dist/pantograph/drawShape.js",
-      "require": "./dist/pantograph/drawShape.cjs"
+      "import": {
+        "default": "./dist/pantograph/drawShape.js",
+        "types": "./dist/types/api/drawShape.d.ts"
+      },
+      "require": {
+        "default": "./dist/pantograph/drawShape.cjs"
+      }
     }
   },
   "scripts": {
@@ -37,6 +54,7 @@
   "author": "Steve Genoud",
   "license": "AGPL",
   "devDependencies": {
+    "@microsoft/api-extractor": "^7.35.1",
     "@types/node": "^18.15.5",
     "@typescript-eslint/eslint-plugin": "^5.55.0",
     "@typescript-eslint/parser": "^5.55.0",

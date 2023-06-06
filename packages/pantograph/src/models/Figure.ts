@@ -1,13 +1,13 @@
-import { Vector } from "../definitions";
-import { TransformationMatrix } from "./TransformationMatrix";
-import type { BoundingBox } from "./BoundingBox";
-import { Loop } from "./Loop";
-import { Strand } from "./Strand";
-import type { Stroke } from "./Stroke";
-import { combineDifferentValues } from "../utils/allCombinations";
-import { Transformable } from "./utils/Transformable";
-import { exportJSON } from "../export/json/exportJSON";
-import { stitchSegments } from "../algorithms/stitchSegments";
+import { Vector } from "../definitions.js";
+import { TransformationMatrix } from "./TransformationMatrix.js";
+import type { BoundingBox } from "./BoundingBox.js";
+import { Loop } from "./Loop.js";
+import { Strand } from "./Strand.js";
+import type { Stroke } from "./Stroke.js";
+import { combineDifferentValues } from "../utils/allCombinations.js";
+import { Transformable } from "./utils/Transformable.js";
+import { exportJSON } from "../export/json/exportJSON.js";
+import { stitchSegments } from "../algorithms/stitchSegments.js";
 
 export class Figure extends Transformable<Figure> {
   readonly contour: Loop;

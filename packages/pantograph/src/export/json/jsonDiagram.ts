@@ -1,5 +1,5 @@
-import { Diagram } from "../../models/Diagram";
-import { jsonFigure } from "./jsonFigure";
+import { Diagram } from "../../models/Diagram.js";
+import { jsonFigure } from "./jsonFigure.js";
 
 export function jsonDiagram(diagram: Diagram) {
   return {

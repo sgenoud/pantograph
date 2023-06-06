@@ -1,4 +1,4 @@
-import { Vector } from "../definitions";
+import { Vector } from "../definitions.js";
 
 function overlap1D(
   min1: number,

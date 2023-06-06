@@ -1,7 +1,7 @@
-import { Arc } from "../../models/segments/Arc";
-import { EllipseArc } from "../../models/segments/EllipseArc";
-import { Line } from "../../models/segments/Line";
-import { Segment } from "../../models/segments/Segment";
+import { Arc } from "../../models/segments/Arc.js";
+import { EllipseArc } from "../../models/segments/EllipseArc.js";
+import { Line } from "../../models/segments/Line.js";
+import { Segment } from "../../models/segments/Segment.js";
 
 export function jsonSegment(segment: Segment) {
   if (segment instanceof Line) {

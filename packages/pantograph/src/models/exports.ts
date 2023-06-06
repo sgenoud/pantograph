@@ -1,14 +1,14 @@
-export { Diagram } from "./Diagram";
-export { Figure } from "./Figure";
-export { Loop } from "./Loop";
-export { Strand } from "./Strand";
-export type { Stroke } from "./Stroke";
+export { Diagram } from "./Diagram.js";
+export { Figure } from "./Figure.js";
+export { Loop } from "./Loop.js";
+export { Strand } from "./Strand.js";
+export type { Stroke } from "./Stroke.js";
 
-export { BoundingBox } from "./BoundingBox";
-export { TransformationMatrix } from "./TransformationMatrix";
+export { BoundingBox } from "./BoundingBox.js";
+export { TransformationMatrix } from "./TransformationMatrix.js";
 
-export { Line } from "./segments/Line";
-export { Arc } from "./segments/Arc";
-export type { Segment } from "./segments/Segment";
+export { Line } from "./segments/Line.js";
+export { Arc } from "./segments/Arc.js";
+export type { Segment } from "./segments/Segment.js";
 
-export { Transformable } from "./utils/Transformable";
+export { Transformable } from "./utils/Transformable.js";

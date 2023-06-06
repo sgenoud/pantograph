@@ -1,6 +1,6 @@
-import { BoundingBox, pointsBoundingBox } from "../BoundingBox";
-import { Vector } from "../../definitions";
-import { TransformationMatrix } from "../TransformationMatrix";
+import { BoundingBox, pointsBoundingBox } from "../BoundingBox.js";
+import { Vector } from "../../definitions.js";
+import { TransformationMatrix } from "../TransformationMatrix.js";
 import {
   add,
   DEG2RAD,
@@ -15,11 +15,11 @@ import {
   sameVector,
   scalarMultiply,
 } from "../../vectorOperations";
-import { AbstractSegment } from "./Segment";
-import { unitAngle } from "../../utils/unitAngle";
-import { angularDistance } from "../../utils/angularDistance";
-import zip from "../../utils/zip";
-import { Arc } from "./Arc";
+import { AbstractSegment } from "./Segment.js";
+import { unitAngle } from "../../utils/unitAngle.js";
+import { angularDistance } from "../../utils/angularDistance.js";
+import zip from "../../utils/zip.js";
+import { Arc } from "./Arc.js";
 
 export class EllipseArc extends AbstractSegment<EllipseArc> {
   segmentType = "ELLIPSE_ARC";

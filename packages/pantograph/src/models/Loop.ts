@@ -1,11 +1,11 @@
-import type { Vector } from "../definitions";
-import { rayIntersectionsCount } from "../algorithms/intersections/rayIntersections";
-import { AbstractStroke, checkValidStroke } from "./Stroke";
-import type { TransformationMatrix } from "./TransformationMatrix";
-import { simplifySegments } from "../algorithms/simplify";
-import { Segment } from "./segments/Segment";
-import { sameVector } from "../vectorOperations";
-import { Line } from "./segments/Line";
+import type { Vector } from "../definitions.js";
+import { rayIntersectionsCount } from "../algorithms/intersections/rayIntersections.js";
+import { AbstractStroke, checkValidStroke } from "./Stroke.js";
+import type { TransformationMatrix } from "./TransformationMatrix.js";
+import { simplifySegments } from "../algorithms/simplify.js";
+import { Segment } from "./segments/Segment.js";
+import { sameVector } from "../vectorOperations.js";
+import { Line } from "./segments/Line.js";
 
 export class Loop extends AbstractStroke<Loop> {
   strokeType = "LOOP";

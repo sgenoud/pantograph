@@ -1,4 +1,4 @@
-import type { Vector } from "./definitions";
+import type { Vector } from "./definitions.js";
 
 export const DEG2RAD = Math.PI / 180;
 export const RAD2DEG = 180 / Math.PI;

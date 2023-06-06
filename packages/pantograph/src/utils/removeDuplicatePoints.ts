@@ -1,4 +1,4 @@
-import type { Vector } from "../definitions";
+import type { Vector } from "../definitions.js";
 
 const asFixed = (p: number, precision = 1e-9): string => {
   let num = p;

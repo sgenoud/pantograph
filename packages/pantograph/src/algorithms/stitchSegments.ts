@@ -1,5 +1,5 @@
 import Flatbush from "flatbush";
-import { Segment } from "../models/segments/Segment";
+import { Segment } from "../models/segments/Segment.js";
 
 export function stitchSegments(
   segments: Segment[],
