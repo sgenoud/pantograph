@@ -2,19 +2,19 @@
 
 exports[`EllipseArc > should compute the bounding box correctly 1`] = `
 BoundingBox {
-  "xMax": 3.746194789103617,
-  "xMin": 0,
-  "yMax": 1.9412661636294257,
-  "yMin": -0.44283978996577733,
+  "xMax": 3.7461957891036173,
+  "xMin": -0.000001,
+  "yMax": 1.9412671636294256,
+  "yMin": -0.4428407899657773,
 }
 `;
 
 exports[`EllipseArc > should compute the bounding box correctly 2`] = `
 BoundingBox {
-  "xMax": 1.479761115717663,
-  "xMin": -0.03745937083646744,
-  "yMax": 1.6763970413986113,
-  "yMin": 0,
+  "xMax": 1.4797621157176628,
+  "xMin": -0.037460370836467444,
+  "yMax": 1.6763980413986113,
+  "yMin": -0.000001,
 }
 `;
 

@@ -2,8 +2,6 @@ import { Strand } from "../../models/Strand.js";
 import { Diagram } from "../../models/Diagram.js";
 import { Figure } from "../../models/Figure.js";
 import { Loop } from "../../models/Loop.js";
-import { Arc } from "../../models/segments/Arc.js";
-import { Line } from "../../models/segments/Line.js";
 import { svgDiagram } from "./svgDiagram.js";
 import { svgFigure } from "./svgFigure.js";
 import { svgLoop } from "./svgLoop.js";
@@ -11,9 +9,10 @@ import { svgSegmentToPath } from "./svgSegment.js";
 import { svgStrand } from "./svgStrand.js";
 import { SVGUnit, wrapSVG } from "./wrapSVG.js";
 import type { Stroke } from "../../models/Stroke.js";
-import { EllipseArc } from "../../models/segments/EllipseArc.js";
+import { Segment } from "../../main.js";
+import { isSegment } from "../../models/segments/utils/isSegment.js";
 
-type Shape = Figure | Diagram | Arc | Line | EllipseArc | Stroke;
+type Shape = Figure | Diagram | Stroke | Segment;
 
 export function svgBody(shape: Shape) {
   if (shape instanceof Diagram) {
@@ -24,11 +23,7 @@ export function svgBody(shape: Shape) {
     return `<path d="${svgLoop(shape)}" />`;
   } else if (shape instanceof Strand) {
     return `<path d="${svgStrand(shape)}" />`;
-  } else if (
-    shape instanceof Arc ||
-    shape instanceof Line ||
-    shape instanceof EllipseArc
-  ) {
+  } else if (isSegment(shape)) {
     return `<path d="${`M ${shape.firstPoint.join(" ")}`} ${svgSegmentToPath(
       shape
     )}" />`;

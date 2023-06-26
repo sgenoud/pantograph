@@ -1,4 +1,7 @@
-import { chamferSegments, filletSegments } from "./algorithms/filletSegments.js";
+import {
+  chamferSegments,
+  filletSegments,
+} from "./algorithms/filletSegments.js";
 import { Vector } from "./definitions.js";
 import { Strand } from "./models/Strand.js";
 import { Diagram } from "./models/Diagram.js";
@@ -19,8 +22,61 @@ import {
   distance,
   cartesianToPolar,
   RAD2DEG,
-} from "./vectorOperations";
+  normalize,
+} from "./vectorOperations.js";
 import { svgEllipse } from "./models/segments/EllipseArc.js";
+import { CubicBezier } from "./models/segments/CubicBezier.js";
+
+const parseSmoothCurveConfig = (
+  config?:
+    | number
+    | Vector
+    | {
+        endTangent?: number | Vector;
+        startTangent?: number | Vector;
+        startFactor?: number;
+        endFactor?: number;
+      }
+) => {
+  let conf: {
+    endTangent: number | Vector;
+    startFactor?: number;
+    endFactor?: number;
+    startTangent?: number | Vector;
+  };
+
+  if (!config) conf = { endTangent: [1, 0] };
+  else if (
+    typeof config === "number" ||
+    (Array.isArray(config) && config.length === 2)
+  ) {
+    conf = { endTangent: config };
+  } else {
+    conf = { endTangent: 0, ...config };
+  }
+  const {
+    endTangent: endTgt,
+    startFactor = 1,
+    endFactor = 1,
+    startTangent: startTgt,
+  } = conf;
+
+  let endTangent: Vector;
+  if (typeof endTgt === "number") {
+    endTangent = polarToCartesian(1, endTgt * DEG2RAD);
+  } else {
+    endTangent = endTgt;
+  }
+
+  let startTangent: Vector | undefined;
+  if (typeof startTgt === "number") {
+    startTangent = polarToCartesian(1, startTgt * DEG2RAD);
+  } else {
+    startTangent = startTgt;
+  }
+
+  return { endTangent, startFactor, endFactor, startTangent };
+};
 
 function loopySegmentsToDiagram(
   segments: Segment[],
@@ -270,6 +326,84 @@ export class DrawingPen {
     return this.halfEllipseTo(
       [xDist + this.pointer[0], yDist + this.pointer[1]],
       sagitta
+    );
+  }
+
+  cubicBezierCurveTo(
+    end: Vector,
+    startControlPoint: Vector,
+    endControlPoint: Vector
+  ): this {
+    this.saveSegment(
+      new CubicBezier(this.pointer, end, startControlPoint, endControlPoint)
+    );
+    this.pointer = end;
+    return this;
+  }
+
+  smoothCurveTo(
+    end: Vector,
+    config?:
+      | number
+      | Vector
+      | {
+          endTangent?: number | Vector;
+          startTangent?: number | Vector;
+          startFactor?: number;
+          endFactor?: number;
+        }
+  ): this {
+    const { endTangent, startTangent, startFactor, endFactor } =
+      parseSmoothCurveConfig(config);
+
+    const previousCurve = this.pendingSegments.length
+      ? this.pendingSegments[this.pendingSegments.length - 1]
+      : null;
+
+    const defaultDistance = distance(this.pointer, end) / 3;
+
+    let startPoleDirection: Vector;
+    if (startTangent) {
+      startPoleDirection = startTangent;
+    } else if (!previousCurve) {
+      startPoleDirection = [1, 0];
+    } else {
+      startPoleDirection = previousCurve.tangentAtLastPoint;
+    }
+
+    startPoleDirection = normalize(startPoleDirection);
+    const startControl: Vector = [
+      this.pointer[0] + startPoleDirection[0] * startFactor * defaultDistance,
+      this.pointer[1] + startPoleDirection[1] * startFactor * defaultDistance,
+    ];
+
+    let endPoleDirection = endTangent;
+
+    endPoleDirection = normalize(endPoleDirection);
+    const endControl: Vector = [
+      end[0] - endPoleDirection[0] * endFactor * defaultDistance,
+      end[1] - endPoleDirection[1] * endFactor * defaultDistance,
+    ];
+
+    return this.cubicBezierCurveTo(end, startControl, endControl);
+  }
+
+  smoothCurve(
+    xDist: number,
+    yDist: number,
+    config?:
+      | number
+      | Vector
+      | {
+          endTangent?: number | Vector;
+          startTangent?: number | Vector;
+          startFactor?: number;
+          endFactor?: number;
+        }
+  ) {
+    return this.smoothCurveTo(
+      [xDist + this.pointer[0], yDist + this.pointer[1]],
+      config
     );
   }
 

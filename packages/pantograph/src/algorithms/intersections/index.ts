@@ -3,6 +3,7 @@ import { Line } from "../../models/segments/Line.js";
 import type { Vector } from "../../definitions.js";
 import { Segment } from "../../models/segments/Segment.js";
 import { Arc } from "../../models/segments/Arc.js";
+import { CubicBezier } from "../../models/segments/CubicBezier.js";
 import { lineArcIntersection } from "./lineArcIntersection.js";
 import { lineLineIntersection } from "./lineLineIntersection.js";
 import { arcArcIntersection } from "./arcArcIntersection.js";
@@ -10,6 +11,8 @@ import { EllipseArc } from "../../models/segments/EllipseArc.js";
 import { lineEllipseArcIntersection } from "./lineEllipseArcIntersection.js";
 import { arcEllipseArcIntersection } from "./arcEllipseArcIntersection.js";
 import { ellipseArcEllipseArcIntersection } from "./ellipseArcEllipseArcIntersection.js";
+import { lineCubicBezierIntersection } from "./lineCubicBezierIntersection.js";
+import { arcsCubicBezierIntersection } from "./arcsCubicBezierIntersection.js";
 
 export function findIntersections(
   segment1: Segment,
@@ -142,6 +145,32 @@ export function findIntersectionsAndOverlaps(
       overlaps: [],
       count: intersections.length,
     };
+  }
+
+  if (segment1 instanceof Line && segment2 instanceof CubicBezier) {
+    const intersections = lineCubicBezierIntersection(segment1, segment2);
+    return { intersections, overlaps: [], count: intersections.length };
+  }
+
+  if (segment2 instanceof Line && segment1 instanceof CubicBezier) {
+    const intersections = lineCubicBezierIntersection(segment2, segment1);
+    return { intersections, overlaps: [], count: intersections.length };
+  }
+
+  if (
+    (segment1 instanceof Arc || segment1 instanceof EllipseArc) &&
+    segment2 instanceof CubicBezier
+  ) {
+    const intersections = arcsCubicBezierIntersection(segment1, segment2);
+    return { intersections, overlaps: [], count: intersections.length };
+  }
+
+  if (
+    (segment2 instanceof Arc || segment2 instanceof EllipseArc) &&
+    segment1 instanceof CubicBezier
+  ) {
+    const intersections = arcsCubicBezierIntersection(segment2, segment1);
+    return { intersections, overlaps: [], count: intersections.length };
   }
 
   throw new Error("Not implemented");

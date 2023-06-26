@@ -1,0 +1,15 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`bezierClip > should find three intersections of two bezier curve 1`] = `
+[
+  0.10638101034277356,
+  0.0057950874041885585,
+]
+`;
+
+exports[`bezierClip > should find two intersections of two bezier curve 1`] = `
+[
+  -0.40931707730263966,
+  0.7281585615011987,
+]
+`;

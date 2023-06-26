@@ -36,6 +36,19 @@ export class BoundingBox {
     return this.yMax - this.yMin;
   }
 
+  get center(): Vector {
+    return [(this.xMin + this.xMax) / 2, (this.yMin + this.yMax) / 2];
+  }
+
+  grow(amount: number): BoundingBox {
+    return new BoundingBox(
+      this.xMin - amount,
+      this.yMin - amount,
+      this.xMax + amount,
+      this.yMax + amount
+    );
+  }
+
   contains(point: Vector): boolean {
     const [x, y] = point;
     return (
@@ -68,6 +81,15 @@ export class BoundingBox {
       Math.min(this.yMin, other.yMin),
       Math.max(this.xMax, other.xMax),
       Math.max(this.yMax, other.yMax)
+    );
+  }
+
+  intersection(other: BoundingBox): BoundingBox {
+    return new BoundingBox(
+      Math.max(this.xMin, other.xMin),
+      Math.max(this.yMin, other.yMin),
+      Math.min(this.xMax, other.xMax),
+      Math.min(this.yMax, other.yMax)
     );
   }
 }

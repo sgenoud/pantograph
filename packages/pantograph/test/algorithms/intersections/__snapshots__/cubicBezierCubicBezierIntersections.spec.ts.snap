@@ -1,0 +1,26 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`handleOverlaps > should return the crossing if they intersect 1`] = `
+CubicBezier {
+  "_boundingBox": null,
+  "_polynomialCoefficients": null,
+  "firstControlPoint": [
+    1.8419999999999999,
+    0.516,
+  ],
+  "firstPoint": [
+    1.4759999999999998,
+    0.4679999999999999,
+  ],
+  "lastControlPoint": [
+    2.064,
+    0.492,
+  ],
+  "lastPoint": [
+    2.0880000000000005,
+    0.504,
+  ],
+  "precision": 1e-9,
+  "segmentType": "CUBIC_BEZIER",
+}
+`;

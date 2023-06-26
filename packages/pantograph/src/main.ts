@@ -27,6 +27,8 @@ export type {
   Segment,
   Line,
   Arc,
+  EllipseArc,
+  CubicBezier,
 } from "./models/exports.js";
 
 export { draw } from "./draw.js";

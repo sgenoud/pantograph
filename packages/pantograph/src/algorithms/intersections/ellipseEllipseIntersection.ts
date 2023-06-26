@@ -1,5 +1,3 @@
-import { Matrix, EigenvalueDecomposition } from "ml-matrix";
-
 import { EllipseArc } from "../../models/segments/EllipseArc.js";
 import { Arc } from "../../models/segments/Arc.js";
 import { Vector } from "../../definitions.js";

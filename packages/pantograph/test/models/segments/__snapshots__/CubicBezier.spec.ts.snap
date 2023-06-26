@@ -1,0 +1,284 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`CubicBezier > compute the bounding box correctly 1`] = `
+BoundingBox {
+  "xMax": 1.000000001,
+  "xMin": -1e-9,
+  "yMax": 1.0242480124511752,
+  "yMin": -1e-9,
+}
+`;
+
+exports[`CubicBezier > compute the bounding box correctly 2`] = `
+BoundingBox {
+  "xMax": 0.8535533915932737,
+  "xMin": 0.14644660840672621,
+  "yMax": 1.1123724366957946,
+  "yMin": -0.11237243669579447,
+}
+`;
+
+exports[`CubicBezier > compute the bounding box correctly 3`] = `
+BoundingBox {
+  "xMax": 0.8535533915932737,
+  "xMin": 0.14644660840672621,
+  "yMax": 1.253807934750939,
+  "yMin": -0.11237243669579447,
+}
+`;
+
+exports[`CubicBezier > compute the bounding box correctly 4`] = `
+BoundingBox {
+  "xMax": 1.2055660651099567,
+  "xMin": -0.5566771762210677,
+  "yMax": 1.5844588441917855,
+  "yMin": -1e-9,
+}
+`;
+
+exports[`CubicBezier > splits correctly at many points 1`] = `
+[
+  CubicBezier {
+    "_boundingBox": null,
+    "_polynomialCoefficients": null,
+    "firstControlPoint": [
+      0.0431687270773482,
+      0.7595489984153924,
+    ],
+    "firstPoint": [
+      0.007627564304205525,
+      0.8535533905932737,
+    ],
+    "lastControlPoint": [
+      0.08319276721133112,
+      0.6874513132143174,
+    ],
+    "lastPoint": [
+      0.12651333148609983,
+      0.6328013478811566,
+    ],
+    "precision": 1e-9,
+    "segmentType": "CUBIC_BEZIER",
+  },
+  CubicBezier {
+    "_boundingBox": null,
+    "_polynomialCoefficients": null,
+    "firstControlPoint": [
+      0.16983389576086835,
+      0.5781513825479959,
+    ],
+    "firstPoint": [
+      0.12651333148609983,
+      0.6328013478811566,
+    ],
+    "lastControlPoint": [
+      0.2164509841764224,
+      0.5409491370827498,
+    ],
+    "lastPoint": [
+      0.2651782435127072,
+      0.5167356243765264,
+    ],
+    "precision": 1e-9,
+    "segmentType": "CUBIC_BEZIER",
+  },
+  CubicBezier {
+    "_boundingBox": null,
+    "_polynomialCoefficients": null,
+    "firstControlPoint": [
+      0.2895418731808496,
+      0.5046288680234146,
+    ],
+    "firstPoint": [
+      0.2651782435127072,
+      0.5167356243765264,
+    ],
+    "lastControlPoint": [
+      0.3144330455791747,
+      0.49576929486005833,
+    ],
+    "lastPoint": [
+      0.33970346655517536,
+      0.4895995314978462,
+    ],
+    "precision": 1e-9,
+    "segmentType": "CUBIC_BEZIER",
+  },
+  CubicBezier {
+    "_boundingBox": null,
+    "_polynomialCoefficients": null,
+    "firstControlPoint": [
+      0.36497388753117654,
+      0.483429768135634,
+    ],
+    "firstPoint": [
+      0.33970346655517536,
+      0.4895995314978462,
+    ],
+    "lastControlPoint": [
+      0.3906235570848536,
+      0.47994981457456604,
+    ],
+    "lastPoint": [
+      0.41650418106369863,
+      0.4786022974260306,
+    ],
+    "precision": 1e-9,
+    "segmentType": "CUBIC_BEZIER",
+  },
+  CubicBezier {
+    "_boundingBox": null,
+    "_polynomialCoefficients": null,
+    "firstControlPoint": [
+      0.4682654290213899,
+      0.4759072631289599,
+    ],
+    "firstPoint": [
+      0.41650418106369863,
+      0.4786022974260306,
+    ],
+    "lastControlPoint": [
+      0.5209504946797571,
+      0.4817419744820195,
+    ],
+    "lastPoint": [
+      0.573373024818746,
+      0.49164744437631724,
+    ],
+    "precision": 1e-9,
+    "segmentType": "CUBIC_BEZIER",
+  },
+  CubicBezier {
+    "_boundingBox": null,
+    "_polynomialCoefficients": null,
+    "firstControlPoint": [
+      0.6257955549577343,
+      0.5015529142706151,
+    ],
+    "firstPoint": [
+      0.573373024818746,
+      0.49164744437631724,
+    ],
+    "lastControlPoint": [
+      0.6779555495773437,
+      0.5155291427061512,
+    ],
+    "lastPoint": [
+      0.7286666554575201,
+      0.5291171425740335,
+    ],
+    "precision": 1e-9,
+    "segmentType": "CUBIC_BEZIER",
+  },
+  CubicBezier {
+    "_boundingBox": null,
+    "_polynomialCoefficients": null,
+    "firstControlPoint": [
+      0.7793777613376962,
+      0.5427051424419159,
+    ],
+    "firstPoint": [
+      0.7286666554575201,
+      0.5291171425740335,
+    ],
+    "lastControlPoint": [
+      0.8286399784784387,
+      0.5559049137421445,
+    ],
+    "lastPoint": [
+      0.8752669536596929,
+      0.5642574693658272,
+    ],
+    "precision": 1e-9,
+    "segmentType": "CUBIC_BEZIER",
+  },
+  CubicBezier {
+    "_boundingBox": null,
+    "_polynomialCoefficients": null,
+    "firstControlPoint": [
+      0.945207416431574,
+      0.5767863028013513,
+    ],
+    "firstPoint": [
+      0.8752669536596929,
+      0.5642574693658272,
+    ],
+    "lastControlPoint": [
+      1.0092185847946062,
+      0.5784089009646471,
+    ],
+    "lastPoint": [
+      1.0632965166311048,
+      0.5540761823632041,
+    ],
+    "precision": 1e-9,
+    "segmentType": "CUBIC_BEZIER",
+  },
+  CubicBezier {
+    "_boundingBox": null,
+    "_polynomialCoefficients": null,
+    "firstControlPoint": [
+      1.0813224939099375,
+      0.5459652761627232,
+    ],
+    "firstPoint": [
+      1.0632965166311048,
+      0.5540761823632041,
+    ],
+    "lastControlPoint": [
+      1.0982447782413778,
+      0.5349704458772712,
+    ],
+    "lastPoint": [
+      1.1139150754729188,
+      0.5205343181182366,
+    ],
+    "precision": 1e-9,
+    "segmentType": "CUBIC_BEZIER",
+  },
+  CubicBezier {
+    "_boundingBox": null,
+    "_polynomialCoefficients": null,
+    "firstControlPoint": [
+      1.1452556699360001,
+      0.4916620626001676,
+    ],
+    "firstPoint": [
+      1.1139150754729188,
+      0.5205343181182366,
+    ],
+    "lastControlPoint": [
+      1.1715883159994838,
+      0.4490246171877685,
+    ],
+    "lastPoint": [
+      1.1917266604433148,
+      0.38816299477214755,
+    ],
+    "precision": 1e-9,
+    "segmentType": "CUBIC_BEZIER",
+  },
+  CubicBezier {
+    "_boundingBox": null,
+    "_polynomialCoefficients": null,
+    "firstControlPoint": [
+      1.2118650048871458,
+      0.3273013723565262,
+    ],
+    "firstPoint": [
+      1.1917266604433148,
+      0.38816299477214755,
+    ],
+    "lastControlPoint": [
+      1.2258090477113237,
+      0.24821557293768318,
+    ],
+    "lastPoint": [
+      1.2323724356957944,
+      0.14644660940672616,
+    ],
+    "precision": 1e-9,
+    "segmentType": "CUBIC_BEZIER",
+  },
+]
+`;

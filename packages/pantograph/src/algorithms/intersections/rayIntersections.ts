@@ -6,6 +6,7 @@ import { Segment } from "../../models/segments/Segment.js";
 import { sameVector, squareDistance } from "../../vectorOperations.js";
 import { Arc } from "../../models/segments/Arc.js";
 import { EllipseArc } from "../../models/segments/EllipseArc.js";
+import { CubicBezier } from "../../models/segments/CubicBezier.js";
 
 const rayLineIntersectionsCount = (point: Vector, line: Line) => {
   const intersectionParams = lineLineParams(line, {
@@ -122,6 +123,34 @@ const rayEllipseArcIntersectionsCount = (point: Vector, arc: EllipseArc) => {
   return counter.count;
 };
 
+const rayCubicBezierIntersectionsCount = (
+  point: Vector,
+  curve: CubicBezier
+) => {
+  // We rely on the fact that the ray is horizontal
+
+  const counter = new IntersectionCounter(curve);
+  curve
+    .paramsAtY(point[1])
+    .map((p) => {
+      try {
+        return curve.paramPoint(p);
+      } catch (e) {
+        return null;
+      }
+    })
+    .filter((p) => p !== null)
+    .filter((p) => {
+      const [x] = p!;
+      return x >= point[0];
+    })
+    .forEach((param) => {
+      counter.update(param!, true);
+    });
+
+  return counter.count;
+};
+
 export function rayIntersectionsCount(point: Vector, segment: Segment): number {
   if (segment instanceof Line) {
     return rayLineIntersectionsCount(point, segment);
@@ -133,6 +162,10 @@ export function rayIntersectionsCount(point: Vector, segment: Segment): number {
 
   if (segment instanceof EllipseArc) {
     return rayEllipseArcIntersectionsCount(point, segment);
+  }
+
+  if (segment instanceof CubicBezier) {
+    return rayCubicBezierIntersectionsCount(point, segment);
   }
 
   throw new Error("Not implemented");

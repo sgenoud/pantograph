@@ -9,6 +9,8 @@ export { TransformationMatrix } from "./TransformationMatrix.js";
 
 export { Line } from "./segments/Line.js";
 export { Arc } from "./segments/Arc.js";
+export { EllipseArc } from "./segments/EllipseArc.js";
+export { CubicBezier } from "./segments/CubicBezier.js";
 export type { Segment } from "./segments/Segment.js";
 
 export { Transformable } from "./utils/Transformable.js";
