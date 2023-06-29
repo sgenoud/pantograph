@@ -25,6 +25,7 @@ import {
   normalize,
 } from "./vectorOperations.js";
 import { svgEllipse } from "./models/segments/EllipseArc.js";
+import { QuadraticBezier } from "./models/segments/QuadraticBezier.js";
 import { CubicBezier } from "./models/segments/CubicBezier.js";
 
 const parseSmoothCurveConfig = (
@@ -341,6 +342,12 @@ export class DrawingPen {
     return this;
   }
 
+  quadraticBezierCurveTo(end: Vector, controlPoint: Vector): this {
+    this.saveSegment(new QuadraticBezier(this.pointer, end, controlPoint));
+    this.pointer = end;
+    return this;
+  }
+
   smoothCurveTo(
     end: Vector,
     config?:
@@ -484,6 +491,10 @@ export class DrawingPen {
 
   asStrand(): Strand {
     return new Strand([...this.pendingSegments]);
+  }
+
+  get isClosed(): boolean {
+    return sameVector(this.pointer, this.pendingSegments[0]?.firstPoint);
   }
 }
 

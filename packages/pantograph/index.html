@@ -56,8 +56,9 @@
         <select id="preset-select" onChange="updateSelection()">
           <option value="mandala">Mandala</option>
           <option value="star">Star</option>
-          <option value="dieline" selected>Dieline</option>
+          <option value="dieline">Dieline</option>
           <option value="angle">Angle Gauge</option>
+          <option value="svgEdit" selected>SVG</option>
         </select>
         <a role="button" download="img.svg" id="download-btn">Download</a>
       </section>
@@ -68,6 +69,7 @@
         import drawStar from "./examples/star.js";
         import drawDieline from "./examples/box-dieline.js";
         import drawAngleGauge from "./examples/angle-gauge.js";
+        import svgEdit from "./examples/svgEdit.js";
 
         const updatePage = (drawing, alreadyExported = false) => {
           const svg = alreadyExported ? drawing : exportSVG(drawing, 1);
@@ -92,9 +94,12 @@
           angle: () => {
             updatePage(drawAngleGauge());
           },
+          svgEdit: () => {
+            svgEdit(document.getElementById("app"));
+          },
         };
 
-        show.dieline();
+        show.svgEdit();
 
         window.updateSelection = function () {
           const selection = document.getElementById("preset-select").value;
