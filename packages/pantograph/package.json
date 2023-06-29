@@ -56,6 +56,7 @@
   "devDependencies": {
     "@microsoft/api-extractor": "^7.35.1",
     "@types/node": "^18.15.5",
+    "@types/xmldom": "^0.1.31",
     "@typescript-eslint/eslint-plugin": "^5.55.0",
     "@typescript-eslint/parser": "^5.55.0",
     "eslint": "^8.36.0",
@@ -64,13 +65,15 @@
     "typescript": "^5.0.2",
     "vite": "^4.1.4",
     "vite-plugin-dts": "^2.2.0",
-    "vitest": "^0.29.2"
+    "vitest": "^0.29.2",
+    "xmldom": "^0.6.0"
   },
   "gitHead": "a2b9db5c938cdbd7452e96175b403fac8f4caf5b",
   "dependencies": {
     "-": "^0.0.1",
     "@types/flatbush": "^3.3.0",
     "flatbush": "^4.1.0",
-    "ml-matrix": "^6.10.4"
+    "ml-matrix": "^6.10.4",
+    "path-data-parser": "^0.1.0"
   }
 }

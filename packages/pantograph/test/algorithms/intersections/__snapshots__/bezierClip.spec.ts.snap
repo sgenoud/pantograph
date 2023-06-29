@@ -1,0 +1,42 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`bezierClip > cubic and quadratic bezier > should find the intersection of two bezier curve 1`] = `
+[
+  0.4892354904149274,
+  0.2967398029300029,
+]
+`;
+
+exports[`bezierClip > cubic and quadratic bezier > should find two intersections of two bezier curve 1`] = `
+[
+  [
+    -0.3835135358687378,
+    0.709362363650092,
+  ],
+  [
+    0.4964645457985965,
+    0.821412790119727,
+  ],
+]
+`;
+
+exports[`bezierClip > cubic bezier > should find three intersections of two bezier curve 1`] = `
+[
+  0.5658880883788215,
+  1.0038974747677303,
+]
+`;
+
+exports[`bezierClip > cubic bezier > should find two intersections of two bezier curve 1`] = `
+[
+  -0.4093170772768268,
+  0.7281585614889889,
+]
+`;
+
+exports[`bezierClip > quadratic bezier > should find two intersections of two bezier curve 1`] = `
+[
+  -0.3737131235943163,
+  0.49999853214942713,
+]
+`;

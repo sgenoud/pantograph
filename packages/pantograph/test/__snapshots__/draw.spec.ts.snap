@@ -81,10 +81,10 @@ Diagram {
         "segments": [
           EllipseArc {
             "_boundingBox": BoundingBox {
-              "xMax": 2,
-              "xMin": -0.06066017923040201,
-              "yMax": 2.0606601792304016,
-              "yMin": 0,
+              "xMax": 2.000001,
+              "xMin": -0.06066117923040201,
+              "yMax": 2.0606611792304017,
+              "yMin": -0.000001,
             },
             "_coefficients": null,
             "_deltaAngle": 3.1415926957366413,
@@ -214,10 +214,10 @@ Diagram {
         "segments": [
           EllipseArc {
             "_boundingBox": BoundingBox {
-              "xMax": 2,
-              "xMin": -2.674234673779411,
-              "yMax": 4.674234673779411,
-              "yMin": 0,
+              "xMax": 2.000001,
+              "xMin": -2.6742356737794113,
+              "yMax": 4.674235673779411,
+              "yMin": -0.000001,
             },
             "_coefficients": null,
             "_deltaAngle": 3.1415926873072717,

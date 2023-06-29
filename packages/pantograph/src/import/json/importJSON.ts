@@ -4,6 +4,8 @@ import { Loop } from "../../models/Loop.js";
 import { Figure } from "../../models/Figure.js";
 import { Diagram } from "../../models/Diagram.js";
 import { EllipseArc } from "../../models/segments/EllipseArc.js";
+import { CubicBezier } from "../../models/segments/CubicBezier.js";
+import { QuadraticBezier } from "../../models/segments/QuadraticBezier.js";
 
 const importSegment = (json: any) => {
   if (json.type === "LINE") {
@@ -27,6 +29,21 @@ const importSegment = (json: any) => {
       json.tiltAngle,
       json.clockwise,
       { angleUnits: "rad" }
+    );
+  }
+  if (json.type === "QUADRATIC_BEZIER") {
+    return new QuadraticBezier(
+      json.firstPoint,
+      json.lastPoint,
+      json.controlPoint
+    );
+  }
+  if (json.type === "CUBIC_BEZIER") {
+    return new CubicBezier(
+      json.firstPoint,
+      json.lastPoint,
+      json.firstControlPoint,
+      json.lastControlPoint
     );
   }
   throw new Error("Unknown segment type");
@@ -61,7 +78,8 @@ export function importJSON(json: any) {
   if (
     json.type === "LINE" ||
     json.type === "ARC" ||
-    json.type === "ELLIPSE_ARC"
+    json.type === "ELLIPSE_ARC" ||
+    json.type === "CUBIC_BEZIER"
   ) {
     return importSegment(json);
   }

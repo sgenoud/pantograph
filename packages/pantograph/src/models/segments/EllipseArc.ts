@@ -187,7 +187,7 @@ export class EllipseArc extends AbstractSegment<EllipseArc> {
         this.lastPoint,
         ...ellipseExtrema,
       ];
-      this._boundingBox = pointsBoundingBox(extremaPoints);
+      this._boundingBox = pointsBoundingBox(extremaPoints).grow(this.precision);
     }
 
     return this._boundingBox;

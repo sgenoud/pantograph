@@ -1,0 +1,18 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`lineCubicBezierIntersection > should find intersections in a simple case 1`] = `
+[
+  [
+    0.7618019930204666,
+    1.023603986040933,
+  ],
+  [
+    0.49848113110444375,
+    0.49696226220888706,
+  ],
+  [
+    0.2902834858334786,
+    0.0805669716669567,
+  ],
+]
+`;
