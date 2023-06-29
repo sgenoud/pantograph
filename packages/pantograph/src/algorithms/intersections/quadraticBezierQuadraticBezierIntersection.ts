@@ -1,11 +1,14 @@
 import { Vector } from "../../definitions.js";
-import { CubicBezier } from "../../models/segments/CubicBezier.js";
+import { QuadraticBezier } from "../../models/segments/QuadraticBezier.js";
 import { sameVector } from "../../vectorOperations.js";
 import { bezierClip } from "./bezierClip.js";
 
-export function handleOverlaps(curve1: CubicBezier, curve2: CubicBezier) {
+export function handleOverlaps(
+  curve1: QuadraticBezier,
+  curve2: QuadraticBezier
+) {
   const commonPoints: Vector[] = [];
-  const toTest: [Vector, CubicBezier][] = [
+  const toTest: [Vector, QuadraticBezier][] = [
     [curve1.firstPoint, curve2],
     [curve1.lastPoint, curve2],
     [curve2.firstPoint, curve1],
@@ -45,9 +48,9 @@ export function handleOverlaps(curve1: CubicBezier, curve2: CubicBezier) {
   }
 }
 
-export function cubicBezierCubicBezierIntersection(
-  curve1: CubicBezier,
-  curve2: CubicBezier,
+export function quadraticBezierQuadraticBezierIntersection(
+  curve1: QuadraticBezier,
+  curve2: QuadraticBezier,
   includeOverlaps = false
 ) {
   const epsilon = Math.max(curve1.precision, curve2.precision);

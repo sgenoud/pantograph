@@ -2,6 +2,7 @@ import { Arc } from "../../models/segments/Arc.js";
 import { CubicBezier } from "../../models/segments/CubicBezier.js";
 import { EllipseArc } from "../../models/segments/EllipseArc.js";
 import { Line } from "../../models/segments/Line.js";
+import { QuadraticBezier } from "../../models/segments/QuadraticBezier.js";
 import { Segment } from "../../models/segments/Segment.js";
 import { RAD2DEG } from "../../vectorOperations.js";
 
@@ -24,6 +25,13 @@ export function svgSegmentToPath(segment: Segment) {
     } ${segment.deltaAngle > Math.PI ? "1" : "0"} ${
       segment.clockwise ? "0" : "1"
     } ${formatPoint(segment.lastPoint)}`;
+  }
+
+  if (segment instanceof QuadraticBezier) {
+    return `Q ${[
+      formatPoint(segment.controlPoint),
+      formatPoint(segment.lastPoint),
+    ].join(" ")}`;
   }
 
   if (segment instanceof CubicBezier) {

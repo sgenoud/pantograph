@@ -1,0 +1,240 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QuadraticBezier > compute the bounding box correctly 1`] = `
+BoundingBox {
+  "xMax": 1.000000001,
+  "xMin": -1e-9,
+  "yMax": 1.000000001,
+  "yMin": -1e-9,
+}
+`;
+
+exports[`QuadraticBezier > compute the bounding box correctly 2`] = `
+BoundingBox {
+  "xMax": 0.7533647425304433,
+  "xMin": -1e-9,
+  "yMax": 1.224744872391589,
+  "yMin": -1e-9,
+}
+`;
+
+exports[`QuadraticBezier > compute the bounding box correctly 3`] = `
+BoundingBox {
+  "xMax": 0.17677669629663695,
+  "xMin": -1e-9,
+  "yMax": 1.414213563373095,
+  "yMin": -1e-9,
+}
+`;
+
+exports[`QuadraticBezier > compute the bounding box correctly 4`] = `
+BoundingBox {
+  "xMax": 1.000000001,
+  "xMin": -0.6000000010000001,
+  "yMax": 0.500000001,
+  "yMin": -1e-9,
+}
+`;
+
+exports[`QuadraticBezier > splits correctly at many points 1`] = `
+[
+  QuadraticBezier {
+    "_boundingBox": null,
+    "_polynomialCoefficients": null,
+    "controlPoint": [
+      0.04316872707734828,
+      0.7595489984153921,
+    ],
+    "firstPoint": [
+      0.007627564304205525,
+      0.8535533905932737,
+    ],
+    "lastPoint": [
+      0.08384910600977839,
+      0.6772744168612214,
+    ],
+    "precision": 1e-9,
+    "segmentType": "QUADRATIC_BEZIER",
+  },
+  QuadraticBezier {
+    "_boundingBox": null,
+    "_polynomialCoefficients": null,
+    "controlPoint": [
+      0.12452948494220849,
+      0.5949998353070506,
+    ],
+    "firstPoint": [
+      0.08384910600977839,
+      0.6772744168612214,
+    ],
+    "lastPoint": [
+      0.17034908003392593,
+      0.5244550643765906,
+    ],
+    "precision": 1e-9,
+    "segmentType": "QUADRATIC_BEZIER",
+  },
+  QuadraticBezier {
+    "_boundingBox": null,
+    "_polynomialCoefficients": null,
+    "controlPoint": [
+      0.19325887757978466,
+      0.48918267891136064,
+    ],
+    "firstPoint": [
+      0.17034908003392593,
+      0.5244550643765906,
+    ],
+    "lastPoint": [
+      0.21745347916546517,
+      0.45684274610205844,
+    ],
+    "precision": 1e-9,
+    "segmentType": "QUADRATIC_BEZIER",
+  },
+  QuadraticBezier {
+    "_boundingBox": null,
+    "_polynomialCoefficients": null,
+    "controlPoint": [
+      0.24164808075114574,
+      0.4245028132927562,
+    ],
+    "firstPoint": [
+      0.21745347916546517,
+      0.45684274610205844,
+    ],
+    "lastPoint": [
+      0.26712748637664807,
+      0.39509533313938155,
+    ],
+    "precision": 1e-9,
+    "segmentType": "QUADRATIC_BEZIER",
+  },
+  QuadraticBezier {
+    "_boundingBox": null,
+    "_polynomialCoefficients": null,
+    "controlPoint": [
+      0.31808629762765284,
+      0.3362803728326325,
+    ],
+    "firstPoint": [
+      0.26712748637664807,
+      0.39509533313938155,
+    ],
+    "lastPoint": [
+      0.374184325037945,
+      0.28919522314959434,
+    ],
+    "precision": 1e-9,
+    "segmentType": "QUADRATIC_BEZIER",
+  },
+  QuadraticBezier {
+    "_boundingBox": null,
+    "_polynomialCoefficients": null,
+    "controlPoint": [
+      0.4302823524482371,
+      0.24211007346655614,
+    ],
+    "firstPoint": [
+      0.374184325037945,
+      0.28919522314959434,
+    ],
+    "lastPoint": [
+      0.49151959601781653,
+      0.20675473440722872,
+    ],
+    "precision": 1e-9,
+    "segmentType": "QUADRATIC_BEZIER",
+  },
+  QuadraticBezier {
+    "_boundingBox": null,
+    "_polynomialCoefficients": null,
+    "controlPoint": [
+      0.5527568395873961,
+      0.17139939534790127,
+    ],
+    "firstPoint": [
+      0.49151959601781653,
+      0.20675473440722872,
+    ],
+    "lastPoint": [
+      0.6191332993162628,
+      0.14777386691228483,
+    ],
+    "precision": 1e-9,
+    "segmentType": "QUADRATIC_BEZIER",
+  },
+  QuadraticBezier {
+    "_boundingBox": null,
+    "_polynomialCoefficients": null,
+    "controlPoint": [
+      0.7186979889095635,
+      0.1123355742588599,
+    ],
+    "firstPoint": [
+      0.6191332993162628,
+      0.14777386691228483,
+    ],
+    "lastPoint": [
+      0.8298259148612596,
+      0.10328935550878462,
+    ],
+    "precision": 1e-9,
+    "segmentType": "QUADRATIC_BEZIER",
+  },
+  QuadraticBezier {
+    "_boundingBox": null,
+    "_polynomialCoefficients": null,
+    "controlPoint": [
+      0.8668685568451655,
+      0.10027394925875896,
+    ],
+    "firstPoint": [
+      0.8298259148612596,
+      0.10328935550878462,
+    ],
+    "lastPoint": [
+      0.9051960028688792,
+      0.10019099566466208,
+    ],
+    "precision": 1e-9,
+    "segmentType": "QUADRATIC_BEZIER",
+  },
+  QuadraticBezier {
+    "_boundingBox": null,
+    "_polynomialCoefficients": null,
+    "controlPoint": [
+      0.981850894916321,
+      0.1000250884764684,
+    ],
+    "firstPoint": [
+      0.9051960028688792,
+      0.10019099566466208,
+    ],
+    "lastPoint": [
+      1.0636450031230495,
+      0.11158899191198328,
+    ],
+    "precision": 1e-9,
+    "segmentType": "QUADRATIC_BEZIER",
+  },
+  QuadraticBezier {
+    "_boundingBox": null,
+    "_polynomialCoefficients": null,
+    "controlPoint": [
+      1.145439111329778,
+      0.12315289534749924,
+    ],
+    "firstPoint": [
+      1.0636450031230495,
+      0.11158899191198328,
+    ],
+    "lastPoint": [
+      1.2323724356957944,
+      0.14644660940672616,
+    ],
+    "precision": 1e-9,
+    "segmentType": "QUADRATIC_BEZIER",
+  },
+]
+`;

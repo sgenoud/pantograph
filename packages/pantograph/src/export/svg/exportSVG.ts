@@ -2,6 +2,7 @@ import { Strand } from "../../models/Strand.js";
 import { Diagram } from "../../models/Diagram.js";
 import { Figure } from "../../models/Figure.js";
 import { Loop } from "../../models/Loop.js";
+import { BoundingBox } from "../../models/BoundingBox.js";
 import { svgDiagram } from "./svgDiagram.js";
 import { svgFigure } from "./svgFigure.js";
 import { svgLoop } from "./svgLoop.js";
@@ -44,14 +45,20 @@ const addConfig = (shape: ConfiguredShape, body: string) => {
   return `<g stroke="${color}">${body}</g>`;
 };
 
+const flibBbox = (bbox: BoundingBox) => {
+  return new BoundingBox(bbox.xMin, -bbox.yMax, bbox.xMax, -bbox.yMin);
+};
+
 export function exportSVG(
   shape: ConfiguredShape | ConfiguredShape[],
   {
     margin = 1,
     unit = null,
+    viewBox,
   }: {
     margin?: number;
     unit?: null | SVGUnit;
+    viewBox?: BoundingBox;
   } = {}
 ) {
   if (Array.isArray(shape)) {
@@ -63,12 +70,12 @@ export function exportSVG(
       .slice(1)
       .reduce((bbox, s) => bbox.merge(s.boundingBox), flipped[0].boundingBox);
 
-    return wrapSVG(body, bbox, margin, unit);
+    return wrapSVG(body, viewBox ? flibBbox(viewBox) : bbox, margin, unit);
   }
   const flipped = extractShape(shape).mirror();
   return wrapSVG(
     addConfig(shape, svgBody(flipped)),
-    flipped.boundingBox,
+    viewBox ? flibBbox(viewBox) : flipped.boundingBox,
     margin,
     unit
   );

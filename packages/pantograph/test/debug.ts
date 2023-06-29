@@ -1,11 +1,11 @@
 import terminalImage from "terminal-image";
-import { exportSVG } from "../src/export/svg/exportSVG";
+import { exportSVG } from "../src/export/svg/exportSVG.js";
 
 import fs from "node:fs";
 import { fileURLToPath } from "node:url";
-import { BoundingBox } from "../src/main";
-import { polygon } from "./quickShapes";
-import { drawCircle } from "../src/drawShape";
+import { BoundingBox } from "../src/main.js";
+import { polygon } from "./quickShapes.js";
+import { drawCircle } from "../src/drawShape/drawCircle.js";
 
 // There is a junk drawer of function that I use for debugging.
 
@@ -18,8 +18,16 @@ export function show(image: any) {
   });
 }
 
-export const debugImg = (figures: any, name = "show", dir = "./__debug__") => {
-  const svg = exportSVG(figures);
+export const debugImg = (
+  figures: any,
+  name = "show",
+  {
+    dir = "./__debug__",
+    viewBox,
+    margin = 0,
+  }: { dir?: string; viewBox?: BoundingBox; margin?: number } = {}
+) => {
+  const svg = exportSVG(figures, { margin, viewBox });
   const dirURL = new URL(dir, import.meta.url);
 
   if (!fs.existsSync(fileURLToPath(dirURL))) {

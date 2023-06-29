@@ -1,5 +1,6 @@
 import { Vector } from "../../definitions.js";
 import { CubicBezier } from "../../models/segments/CubicBezier.js";
+import { QuadraticBezier } from "../../models/segments/QuadraticBezier.js";
 import removeDuplicatePoints from "../../utils/removeDuplicatePoints.js";
 import {
   subtract,
@@ -8,6 +9,7 @@ import {
   squareLength,
   perpendicular,
   add,
+  sameVector,
 } from "../../vectorOperations.js";
 
 function orientedDistanceToLine(
@@ -43,11 +45,15 @@ class FatLine {
     public negativeThickness: number,
     public positiveThickness: number
   ) {}
+
+  get width() {
+    return this.positiveThickness - this.negativeThickness;
+  }
 }
 
 const V_3_4 = 3 / 4;
 const V_4_9 = 4 / 9;
-export function fatLineFromCurve(curve: CubicBezier) {
+export function fatLineFromCubicCurve(curve: CubicBezier) {
   const d1 = orientedDistanceToLine(curve.firstControlPoint, curve);
   const d2 = orientedDistanceToLine(curve.lastControlPoint, curve);
 
@@ -62,7 +68,30 @@ export function fatLineFromCurve(curve: CubicBezier) {
   );
 }
 
-export function perpendicularFatLineFromCurve(curve: CubicBezier) {
+export function fatLineFromQuadratic(curve: QuadraticBezier) {
+  const d1 = orientedDistanceToLine(curve.controlPoint, curve);
+
+  return new FatLine(
+    curve.firstPoint,
+    curve.lastPoint,
+    Math.min(0, d1 / 2),
+    Math.max(0, d1 / 2)
+  );
+}
+
+export function fatLineFromCurve(curve: CubicBezier | QuadraticBezier) {
+  if (curve instanceof CubicBezier) {
+    return fatLineFromCubicCurve(curve);
+  }
+  if (curve instanceof QuadraticBezier) {
+    return fatLineFromQuadratic(curve);
+  }
+  throw new Error("Not implemented");
+}
+
+export function perpendicularFatLineFromCurve(
+  curve: CubicBezier | QuadraticBezier
+) {
   const midPoint = curve.paramPoint(0.5);
   const offset = perpendicular(subtract(midPoint, curve.firstPoint));
 
@@ -73,16 +102,25 @@ export function perpendicularFatLineFromCurve(curve: CubicBezier) {
     lastPoint: targetPoint,
   };
 
-  const d1 = orientedDistanceToLine(curve.firstPoint, curvePoints);
-  const d2 = orientedDistanceToLine(curve.firstControlPoint, curvePoints);
-  const d3 = orientedDistanceToLine(curve.lastControlPoint, curvePoints);
-  const d4 = orientedDistanceToLine(curve.lastPoint, curvePoints);
+  const distances = [
+    orientedDistanceToLine(curve.firstPoint, curvePoints),
+    orientedDistanceToLine(curve.lastPoint, curvePoints),
+  ];
+
+  if (curve instanceof CubicBezier) {
+    distances.push(
+      orientedDistanceToLine(curve.firstControlPoint, curvePoints),
+      orientedDistanceToLine(curve.lastControlPoint, curvePoints)
+    );
+  } else if (curve instanceof QuadraticBezier) {
+    distances.push(orientedDistanceToLine(curve.controlPoint, curvePoints));
+  }
 
   return new FatLine(
     midPoint,
     targetPoint,
-    Math.min(d1, d2, d3, d4),
-    Math.max(d1, d2, d3, d4)
+    Math.min(...distances),
+    Math.max(...distances)
   );
 }
 
@@ -124,18 +162,18 @@ class ClippingBounds {
       if (this.to === "end") {
         return 1;
       } else {
-        return 1 - this.to;
+        return this.to;
       }
     } else {
       if (this.to === "end") {
-        return this.from;
+        return 1 - this.from;
       } else {
         return Math.abs(this.from - this.to);
       }
     }
   }
 
-  clipCurve(curve: CubicBezier) {
+  clipCurve(curve: QuadraticBezier | CubicBezier) {
     if (this.from === "start") {
       if (this.to === "end") {
         return curve;
@@ -152,7 +190,64 @@ class ClippingBounds {
   }
 }
 
-class DistanceToFatLineCurve {
+function createDistanceHull(
+  curve: QuadraticBezier | CubicBezier,
+  fatLine: FatLine
+) {
+  if (curve instanceof CubicBezier) {
+    return new DistanceToFatLineCubicCurve([
+      orientedDistanceToLine(curve.firstPoint, fatLine),
+      orientedDistanceToLine(curve.firstControlPoint, fatLine),
+      orientedDistanceToLine(curve.lastControlPoint, fatLine),
+      orientedDistanceToLine(curve.lastPoint, fatLine),
+    ]);
+  }
+  if (curve instanceof QuadraticBezier) {
+    return new DistanceToFatLineQuadraticCurve([
+      orientedDistanceToLine(curve.firstPoint, fatLine),
+      orientedDistanceToLine(curve.controlPoint, fatLine),
+      orientedDistanceToLine(curve.lastPoint, fatLine),
+    ]);
+  }
+  throw new Error("Not implemented");
+}
+
+class DistanceToFatLineQuadraticCurve {
+  public readonly topHull: Vector[] = [];
+  public readonly bottomHull: Vector[] = [];
+
+  constructor(public readonly distances: [number, number, number]) {
+    const [d1, d2, d3] = distances;
+
+    const p1: Vector = [0, d1];
+    const p2: Vector = [1 / 2, d2];
+    const p3: Vector = [1, d3];
+
+    // We want to have the hull defined by these points
+    const midLineSlope = d3 - d1;
+    const midLineIntercept = d1;
+
+    const deltaAtD2 = d2 - (midLineSlope * (1 / 2) + midLineIntercept);
+
+    if (deltaAtD2 > 0) {
+      this.topHull = [p1, p2, p3];
+      this.bottomHull = [p1, p3];
+    } else {
+      this.topHull = [p1, p3];
+      this.bottomHull = [p1, p2, p3];
+    }
+  }
+
+  get startDistance() {
+    return this.distances[0];
+  }
+
+  get endDistance() {
+    return this.distances[2];
+  }
+}
+
+class DistanceToFatLineCubicCurve {
   public readonly topHull: Vector[] = [];
   public readonly bottomHull: Vector[] = [];
 
@@ -214,15 +309,10 @@ class DistanceToFatLineCurve {
 
 export function fatLineIntersections(
   fatLine: FatLine,
-  curve: CubicBezier
+  curve: QuadraticBezier | CubicBezier
 ): ClippingBounds | null {
   // These correspond to the y values of the distance curve
-  const distancesAtParam = new DistanceToFatLineCurve([
-    orientedDistanceToLine(curve.firstPoint, fatLine),
-    orientedDistanceToLine(curve.firstControlPoint, fatLine),
-    orientedDistanceToLine(curve.lastControlPoint, fatLine),
-    orientedDistanceToLine(curve.lastPoint, fatLine),
-  ]);
+  const distancesAtParam = createDistanceHull(curve, fatLine);
 
   // We want to compute the places where the hull of distance is outside of the
   // bound of the fat line
@@ -236,8 +326,8 @@ export function fatLineIntersections(
   );
 
   const endsWithinBounds =
-    distancesAtParam.endDistance > fatLine.negativeThickness &&
-    distancesAtParam.endDistance < fatLine.positiveThickness;
+    distancesAtParam.endDistance >= fatLine.negativeThickness &&
+    distancesAtParam.endDistance <= fatLine.positiveThickness;
 
   if (!t1.length && !t2.length) {
     if (endsWithinBounds) return new ClippingBounds("start", "end");
@@ -265,16 +355,18 @@ export function fatLineIntersections(
 }
 
 export function clipFatLineIntersections(
-  curve1: CubicBezier,
-  curve2: CubicBezier
+  curve1: QuadraticBezier | CubicBezier,
+  curve2: QuadraticBezier | CubicBezier
 ) {
   const fatLine = fatLineFromCurve(curve1);
+
   const limits = fatLineIntersections(fatLine, curve2);
   if (!limits) {
     return null; // there is no intersection
   }
 
   const perpendicularFatLine = perpendicularFatLineFromCurve(curve1);
+
   const perpendicularLimits = fatLineIntersections(
     perpendicularFatLine,
     curve2
@@ -289,7 +381,13 @@ export function clipFatLineIntersections(
   return limits.clipCurve(curve2);
 }
 
-const hullSquareLength = (curve: CubicBezier) => {
+const hullSquareLength = (curve: QuadraticBezier | CubicBezier) => {
+  if (curve instanceof QuadraticBezier) {
+    return (
+      squareLength(subtract(curve.controlPoint, curve.firstPoint)) +
+      squareLength(subtract(curve.controlPoint, curve.lastPoint))
+    );
+  }
   return (
     squareLength(subtract(curve.firstControlPoint, curve.firstPoint)) +
     squareLength(subtract(curve.lastControlPoint, curve.firstControlPoint)) +
@@ -310,12 +408,14 @@ const hullSquareLength = (curve: CubicBezier) => {
  *
  * */
 export function bezierClip(
-  curve1: CubicBezier,
-  curve2: CubicBezier,
+  curve1: CubicBezier | QuadraticBezier,
+  curve2: CubicBezier | QuadraticBezier,
   precision = 1e-9,
   { maxIterations = 100 } = {}
 ): Vector[] {
-  const squarePrecision = precision * precision;
+  // I should understand better how to handle the bottom of the precision
+  // better
+  const squarePrecision = Math.max(precision * precision, Number.EPSILON * 10);
 
   let pCurve = curve1;
   let qCurve = curve2;
@@ -347,6 +447,21 @@ export function bezierClip(
         pCurveClipped.boundingBox.intersection(qCurveClipped.boundingBox)
           .center,
       ];
+    }
+
+    // Another way to detect that we are close enough (i.e. the curves are
+    // nearly a point
+    if (
+      sameVector(pCurveClipped.firstPoint, pCurveClipped.lastPoint) &&
+      qCurveClipped.isOnSegment(pCurveClipped.firstPoint)
+    ) {
+      return [pCurveClipped.firstPoint];
+    }
+    if (
+      sameVector(qCurveClipped.firstPoint, qCurveClipped.lastPoint) &&
+      pCurveClipped.isOnSegment(qCurveClipped.firstPoint)
+    ) {
+      return [qCurveClipped.firstPoint];
     }
 
     if (

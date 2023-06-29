@@ -16,7 +16,7 @@ describe("handleOverlaps", () => {
     const curve1 = new CubicBezier([0, 0], [1, 1], [2, 1], [3, 0]);
     const curve2 = curve1.splitAtParameters([0.33])[0];
 
-    const overlap = handleOverlaps(curve1, curve2);
+    const overlap = handleOverlaps(curve1, curve2)?.[0];
 
     //debugImg([curve1, curve2, { shape: overlap!, color: "blue" }]);
 
@@ -31,7 +31,7 @@ describe("handleOverlaps", () => {
     const curve1 = new CubicBezier([0, 0], [1, 1], [2, 1], [3, 0]);
     const curve2 = curve1.splitAtParameters([0.33])[0];
 
-    const overlap = handleOverlaps(curve2, curve1);
+    const overlap = handleOverlaps(curve2, curve1)?.[0];
 
     //debugImg([curve1, curve2, { shape: overlap!, color: "blue" }]);
 
@@ -45,7 +45,7 @@ describe("handleOverlaps", () => {
   it("should return the full curve if they are the same", () => {
     const curve = new CubicBezier([0, 0], [1, 1], [2, 1], [3, 0]);
 
-    const overlap = handleOverlaps(curve, curve);
+    const overlap = handleOverlaps(curve, curve)?.[0];
 
     expect(overlap).toBeInstanceOf(CubicBezier);
 
@@ -61,7 +61,7 @@ describe("handleOverlaps", () => {
     const curve1 = curve.splitAt([p2])[0];
     const curve2 = curve.splitAt([p1])[1];
 
-    const overlap = handleOverlaps(curve1, curve2);
+    const overlap = handleOverlaps(curve1, curve2)?.[0];
 
     expect(overlap).toBeInstanceOf(CubicBezier);
 

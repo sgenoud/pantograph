@@ -11,8 +11,13 @@ import { EllipseArc } from "../../models/segments/EllipseArc.js";
 import { lineEllipseArcIntersection } from "./lineEllipseArcIntersection.js";
 import { arcEllipseArcIntersection } from "./arcEllipseArcIntersection.js";
 import { ellipseArcEllipseArcIntersection } from "./ellipseArcEllipseArcIntersection.js";
-import { lineCubicBezierIntersection } from "./lineCubicBezierIntersection.js";
+import { lineBezierIntersection } from "./lineBezierIntersection.js";
 import { arcsCubicBezierIntersection } from "./arcsCubicBezierIntersection.js";
+import { QuadraticBezier } from "../../models/segments/QuadraticBezier.js";
+import { arcsQuadraticBezierIntersection } from "./arcsQuadraticBezierIntersection.js";
+import { bezierClip } from "./bezierClip.js";
+import { cubicBezierCubicBezierIntersection } from "./cubicBezierCubicBezierIntersection.js";
+import { quadraticBezierQuadraticBezierIntersection } from "./quadraticBezierQuadraticBezierIntersection.js";
 
 export function findIntersections(
   segment1: Segment,
@@ -147,13 +152,35 @@ export function findIntersectionsAndOverlaps(
     };
   }
 
-  if (segment1 instanceof Line && segment2 instanceof CubicBezier) {
-    const intersections = lineCubicBezierIntersection(segment1, segment2);
+  if (
+    segment1 instanceof Line &&
+    (segment2 instanceof CubicBezier || segment2 instanceof QuadraticBezier)
+  ) {
+    const intersections = lineBezierIntersection(segment1, segment2);
     return { intersections, overlaps: [], count: intersections.length };
   }
 
-  if (segment2 instanceof Line && segment1 instanceof CubicBezier) {
-    const intersections = lineCubicBezierIntersection(segment2, segment1);
+  if (
+    segment2 instanceof Line &&
+    (segment1 instanceof CubicBezier || segment1 instanceof QuadraticBezier)
+  ) {
+    const intersections = lineBezierIntersection(segment2, segment1);
+    return { intersections, overlaps: [], count: intersections.length };
+  }
+
+  if (
+    (segment1 instanceof Arc || segment1 instanceof EllipseArc) &&
+    segment2 instanceof QuadraticBezier
+  ) {
+    const intersections = arcsQuadraticBezierIntersection(segment1, segment2);
+    return { intersections, overlaps: [], count: intersections.length };
+  }
+
+  if (
+    (segment2 instanceof Arc || segment2 instanceof EllipseArc) &&
+    segment1 instanceof QuadraticBezier
+  ) {
+    const intersections = arcsQuadraticBezierIntersection(segment2, segment1);
     return { intersections, overlaps: [], count: intersections.length };
   }
 
@@ -171,6 +198,57 @@ export function findIntersectionsAndOverlaps(
   ) {
     const intersections = arcsCubicBezierIntersection(segment2, segment1);
     return { intersections, overlaps: [], count: intersections.length };
+  }
+
+  if (
+    segment1 instanceof QuadraticBezier &&
+    segment2 instanceof QuadraticBezier
+  ) {
+    const intersections = quadraticBezierQuadraticBezierIntersection(
+      segment1,
+      segment2
+    );
+    if (!intersections.length)
+      return { intersections: [], overlaps: [], count: 0 };
+    if (intersections[0] instanceof QuadraticBezier)
+      return {
+        intersections: [],
+        overlaps: intersections as QuadraticBezier[],
+        count: intersections.length,
+      };
+    return {
+      intersections: intersections as Vector[],
+      overlaps: [],
+      count: intersections.length,
+    };
+  }
+
+  if (
+    (segment1 instanceof QuadraticBezier && segment2 instanceof CubicBezier) ||
+    (segment2 instanceof QuadraticBezier && segment1 instanceof CubicBezier)
+  ) {
+    const intersections = bezierClip(segment1, segment2);
+    return { intersections, overlaps: [], count: intersections.length };
+  }
+
+  if (segment1 instanceof CubicBezier && segment2 instanceof CubicBezier) {
+    const intersections = cubicBezierCubicBezierIntersection(
+      segment1,
+      segment2
+    );
+    if (!intersections.length)
+      return { intersections: [], overlaps: [], count: 0 };
+    if (intersections[0] instanceof CubicBezier)
+      return {
+        intersections: [],
+        overlaps: intersections as CubicBezier[],
+        count: intersections.length,
+      };
+    return {
+      intersections: intersections as Vector[],
+      overlaps: [],
+      count: intersections.length,
+    };
   }
 
   throw new Error("Not implemented");

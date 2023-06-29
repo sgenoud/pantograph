@@ -1,8 +1,13 @@
 import { Line } from "../../models/segments/Line.js";
 import { CubicBezier } from "../../models/segments/CubicBezier.js";
 import { TransformationMatrix } from "../../models/TransformationMatrix.js";
+import { QuadraticBezier } from "../../models/segments/QuadraticBezier.js";
+import { Vector } from "../../definitions.js";
 
-export function lineCubicBezierIntersection(line: Line, curve: CubicBezier) {
+export function lineBezierIntersection(
+  line: Line,
+  curve: CubicBezier | QuadraticBezier
+): Vector[] {
   const [x1, y1] = line.firstPoint;
   const [x2, y2] = line.lastPoint;
 

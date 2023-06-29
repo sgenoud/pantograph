@@ -5,8 +5,9 @@ import {
   /*
     * used for debugging
   fatLineFromCurve,
-  perpendicularFatLineFromCurve,
   fatLineIntersections,
+  perpendicularFatLineFromCurve,
+  perpendicularFatLineFromCurve,
   */
 } from "../../../src/algorithms/intersections/bezierClip";
 import { Line } from "../../../src/models/segments/Line";
@@ -16,6 +17,7 @@ import {
   perpendicular,
   scalarMultiply,
 } from "../../../src/vectorOperations";
+import { QuadraticBezier } from "../../../src/models/segments/QuadraticBezier";
 
 //import { debugImg, dpnt } from "../../debug";
 
@@ -40,59 +42,149 @@ function showFatLine(fatLine: any) {
 }
 
 describe("bezierClip", () => {
-  it("should find the intersection of two bezier curve", () => {
-    const curve1 = new CubicBezier([0, 0], [1, 1], [1, 0], [0, 1]);
+  describe("cubic bezier", () => {
+    it("should find the intersection of two bezier curve", () => {
+      const curve1 = new CubicBezier([0, 0], [1, 1], [1, 0], [0, 1]);
 
-    const rotationPoint = curve1.paramPoint(0.6);
+      const rotationPoint = curve1.paramPoint(0.6);
 
-    const curve2 = curve1.rotate(70, rotationPoint);
-    const intersections = bezierClip(curve1, curve2);
+      const curve2 = curve1.rotate(70, rotationPoint);
+      const intersections = bezierClip(curve1, curve2);
 
-    //debugImg([curve1, curve2, ...intersections.map((i) => dpnt(i))]);
+      //debugImg([curve1, curve2, ...intersections.map((i) => dpnt(i))]);
 
-    expect(intersections.length).toBe(1);
-    expect(intersections[0]).toBeVector(rotationPoint);
+      expect(intersections.length).toBe(1);
+      expect(intersections[0]).toBeVector(rotationPoint);
+    });
+
+    it("should find no intersection when they do not intersect", () => {
+      const curve1 = new CubicBezier([0, 0], [1, 1], [1, 0], [0, 1]);
+      const curve2 = curve1.translateX(-1);
+
+      const intersections = bezierClip(curve1, curve2);
+
+      //debugImg([curve1, curve2, ...intersections.map((i) => dpnt(i))]);
+
+      expect(intersections.length).toBe(0);
+    });
+
+    it("should find two intersections of two bezier curve", () => {
+      const curve1 = new CubicBezier([0, 0], [1, 1], [1, 0], [0, 1])
+        .scale(1.5)
+        .rotate(-40)
+        .translate(-0.5, 0.8);
+      const curve2 = new CubicBezier([-0.5, 0], [1, 0], [-1, 1], [2, 3]);
+
+      const intersections = bezierClip(curve1, curve2);
+
+      //debugImg([curve1, curve2, ...intersections.map((i) => dpnt(i))]);
+
+      expect(intersections.length).toBe(2);
+      expect(intersections[0]).toMatchSnapshot();
+    });
+
+    it("should find three intersections of two bezier curve", () => {
+      const curve1 = new CubicBezier([0, 0], [1, 1], [1.2, 0], [0, 2]);
+      const curve2 = curve1
+        .mirror("x")
+        .translate(-0.1, 1.5)
+        .rotate(-40)
+        .translateX(-0.5);
+
+      const intersections = bezierClip(curve1, curve2);
+
+      //debugImg([curve1, curve2, ...intersections.map((i) => dpnt(i))]);
+
+      expect(intersections.length).toBe(3);
+      expect(intersections[0]).toMatchSnapshot();
+    });
   });
 
-  it("should find no intersection when they do not intersect", () => {
-    const curve1 = new CubicBezier([0, 0], [1, 1], [1, 0], [0, 1]);
-    const curve2 = curve1.translateX(-1);
+  describe("quadratic bezier", () => {
+    it("should find the intersection of two bezier curve", () => {
+      const curve1 = new QuadraticBezier([0, 0], [1, 1], [1, 0]);
 
-    const intersections = bezierClip(curve1, curve2);
+      const rotationPoint = curve1.paramPoint(0.6);
 
-    //debugImg([curve1, curve2, ...intersections.map((i) => dpnt(i))]);
+      const curve2 = curve1.rotate(70, rotationPoint);
+      const intersections = bezierClip(curve1, curve2);
 
-    expect(intersections.length).toBe(0);
+      //debugImg([curve1, curve2, ...intersections.map((i) => dpnt(i))]);
+
+      expect(intersections.length).toBe(1);
+      expect(intersections[0]).toBeVector(rotationPoint);
+    });
+
+    it("should find no intersection when they do not intersect", () => {
+      const curve1 = new QuadraticBezier([0, 0], [1, 1], [1, 0]);
+      const curve2 = curve1.translateX(-1);
+
+      const intersections = bezierClip(curve1, curve2);
+
+      //debugImg([curve1, curve2, ...intersections.map((i) => dpnt(i))]);
+
+      expect(intersections.length).toBe(0);
+    });
+
+    it("should find two intersections of two bezier curve", () => {
+      const curve1 = new QuadraticBezier([0, 0], [1, 1], [1, 0])
+        .scale(1.5)
+        .rotate(-40)
+        .translate(-0.5, 0.6);
+      const curve2 = new QuadraticBezier([-0.5, 0], [1, 0], [-1, 1]);
+
+      const intersections = bezierClip(curve1, curve2);
+
+      //debugImg([curve1, curve2, ...intersections.map((i) => dpnt(i))]);
+
+      expect(intersections.length).toBe(2);
+      expect(intersections[0]).toMatchSnapshot();
+    });
   });
 
-  it("should find two intersections of two bezier curve", () => {
-    const curve1 = new CubicBezier([0, 0], [1, 1], [1, 0], [0, 1])
-      .scale(1.5)
-      .rotate(-40)
-      .translate(-0.5, 0.8);
-    const curve2 = new CubicBezier([-0.5, 0], [1, 0], [-1, 1], [2, 3]);
+  describe("cubic and quadratic bezier", () => {
+    it("should find the intersection of two bezier curve", () => {
+      const curve1 = new CubicBezier([0, 0], [1, 1], [1, 0], [0, 1]);
+      const curve2 = new QuadraticBezier([0, 0], [1, 1], [1, 0]).rotate(
+        90,
+        [0.2, 0.3]
+      );
 
-    const intersections = bezierClip(curve1, curve2);
+      const intersections = bezierClip(curve1, curve2);
 
-    //debugImg([curve1, curve2, ...intersections.map((i) => dpnt(i))]);
+      //debugImg([curve1, curve2, ...intersections.map((i) => dpnt(i))]);
 
-    expect(intersections.length).toBe(2);
-    expect(intersections[0]).toMatchSnapshot();
-  });
+      expect(intersections.length).toBe(1);
+      expect(intersections[0]).toMatchSnapshot();
+    });
 
-  it("should find three intersections of two bezier curve", () => {
-    const curve1 = new CubicBezier([0, 0], [1, 1], [1.2, 0], [0, 2]);
-    const curve2 = curve1
-      .mirror("x")
-      .translate(-0.1, 1.5)
-      .rotate(-40)
-      .translateX(-0.5);
+    it("should find no intersection when they do not intersect", () => {
+      const curve1 = new CubicBezier([0, 0], [1, 1], [1, 0], [0, 1]);
+      const curve2 = new QuadraticBezier([-1, -1], [0, 1], [-1, 0]);
 
-    const intersections = bezierClip(curve1, curve2);
+      const intersections = bezierClip(curve1, curve2);
 
-    //debugImg([curve1, curve2, ...intersections.map((i) => dpnt(i))]);
+      //debugImg([curve1, curve2, ...intersections.map((i) => dpnt(i))]);
 
-    expect(intersections.length).toBe(3);
-    expect(intersections[0]).toMatchSnapshot();
+      expect(intersections.length).toBe(0);
+    });
+
+    it("should find two intersections of two bezier curve", () => {
+      const curve1 = new CubicBezier([0, 0], [1, 1], [1, 0], [0, 1])
+        .scale(1.5)
+        .rotate(-40)
+        .translate(-0.5, 0.8);
+      const curve2 = new QuadraticBezier([-0.5, 0], [1, 0], [-1, 1]).translate(
+        0.2,
+        0.5
+      );
+
+      const intersections = bezierClip(curve1, curve2);
+
+      //debugImg([curve1, curve2, ...intersections.map((i) => dpnt(i))]);
+
+      expect(intersections.length).toBe(2);
+      expect(intersections).toMatchSnapshot();
+    });
   });
 });
