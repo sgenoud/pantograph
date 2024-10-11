@@ -27,6 +27,9 @@ import {
 import { svgEllipse } from "./models/segments/EllipseArc.js";
 import { QuadraticBezier } from "./models/segments/QuadraticBezier.js";
 import { CubicBezier } from "./models/segments/CubicBezier.js";
+import { stitchAsLoops } from "./algorithms/stitchSegments.js";
+import { splitAtSelfIntersections } from "./models/segments/utils/selfIntersections.js";
+import { organiseLoops } from "./algorithms/organiseLoops.js";
 
 const parseSmoothCurveConfig = (
   config?:
@@ -79,26 +82,29 @@ const parseSmoothCurveConfig = (
   return { endTangent, startFactor, endFactor, startTangent };
 };
 
-function loopySegmentsToDiagram(
-  segments: Segment[],
-  { ignoreChecks = false } = {}
-) {
+function loopySegmentsToDiagram(segments: Segment[], precision?: number) {
   // Here we will need to do our best to fix cases where the drawing is
   // broken in some way (i.e. self-intersecting loops)
 
-  return new Diagram([new Figure(new Loop([...segments], { ignoreChecks }))]);
+  // If there are any self intersection we split the loop there and build
+  // multiple loop
+  const loops = stitchAsLoops(splitAtSelfIntersections(segments), precision);
+
+  return new Diagram(organiseLoops(loops));
 }
 
 export class DrawingPen {
   pointer: Vector;
+  protected precision?: number;
   protected firstPoint: Vector;
   protected pendingSegments: Segment[];
 
   protected _nextCorner: { radius: number; mode: "fillet" | "chamfer" } | null;
 
-  constructor(origin: Vector = [0, 0]) {
+  constructor(origin: Vector = [0, 0], precision?: number) {
     this.pointer = origin;
     this.firstPoint = origin;
+    this.precision = precision;
 
     this.pendingSegments = [];
     this._nextCorner = null;
@@ -139,7 +145,7 @@ export class DrawingPen {
   }
 
   lineTo(point: Vector): this {
-    const segment = new Line(this.pointer, point);
+    const segment = new Line(this.pointer, point, this.precision);
     this.pointer = point;
     return this.saveSegment(segment);
   }
@@ -187,7 +193,9 @@ export class DrawingPen {
   }
 
   threePointsArcTo(end: Vector, midPoint: Vector): this {
-    this.saveSegment(threePointsArc(this.pointer, midPoint, end));
+    this.saveSegment(
+      threePointsArc(this.pointer, midPoint, end, this.precision)
+    );
     this.pointer = end;
     return this;
   }
@@ -207,7 +215,7 @@ export class DrawingPen {
 
   sagittaArcTo(end: Vector, sagitta: number): this {
     if (!sagitta) return this.lineTo(end);
-    const chord = new Line(this.pointer, end);
+    const chord = new Line(this.pointer, end, this.precision);
     const norm = perpendicular(chord.tangentAtFirstPoint);
 
     const sagPoint: Vector = add(chord.midPoint, scalarMultiply(norm, sagitta));
@@ -263,7 +271,8 @@ export class DrawingPen {
       tangentArc(
         this.pointer,
         end,
-        tangentAtStart ?? previousCurve.tangentAtLastPoint
+        tangentAtStart ?? previousCurve.tangentAtLastPoint,
+        this.precision
       )
     );
 
@@ -336,14 +345,22 @@ export class DrawingPen {
     endControlPoint: Vector
   ): this {
     this.saveSegment(
-      new CubicBezier(this.pointer, end, startControlPoint, endControlPoint)
+      new CubicBezier(
+        this.pointer,
+        end,
+        startControlPoint,
+        endControlPoint,
+        this.precision
+      )
     );
     this.pointer = end;
     return this;
   }
 
   quadraticBezierCurveTo(end: Vector, controlPoint: Vector): this {
-    this.saveSegment(new QuadraticBezier(this.pointer, end, controlPoint));
+    this.saveSegment(
+      new QuadraticBezier(this.pointer, end, controlPoint, this.precision)
+    );
     this.pointer = end;
     return this;
   }
@@ -441,7 +458,7 @@ export class DrawingPen {
     this.pendingSegments.push(...makeCorner(lastSegment, firstSegment, radius));
   }
 
-  close(ignoreChecks = false): Diagram {
+  close(): Diagram {
     if (!this.pendingSegments.length) throw new Error("No segments to close");
     const firstSegment = this.pendingSegments[0];
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -459,10 +476,10 @@ export class DrawingPen {
       this._nextCorner = null;
     }
 
-    return loopySegmentsToDiagram(this.pendingSegments, { ignoreChecks });
+    return loopySegmentsToDiagram(this.pendingSegments, this.precision);
   }
 
-  closeWithMirror(ignoreChecks = false): Diagram {
+  closeWithMirror(): Diagram {
     if (!this.pendingSegments.length) throw new Error("No segments to close");
 
     const firstSegment = this.pendingSegments[0];
@@ -483,10 +500,10 @@ export class DrawingPen {
     );
     mirroredSegments.reverse();
 
-    return loopySegmentsToDiagram(
-      [...this.pendingSegments, ...mirroredSegments],
-      { ignoreChecks }
-    );
+    return loopySegmentsToDiagram([
+      ...this.pendingSegments,
+      ...mirroredSegments,
+    ]);
   }
 
   asStrand(): Strand {
@@ -498,6 +515,6 @@ export class DrawingPen {
   }
 }
 
-export function draw(origin: Vector = [0, 0]): DrawingPen {
-  return new DrawingPen(origin);
+export function draw(origin: Vector = [0, 0], precision?: number): DrawingPen {
+  return new DrawingPen(origin, precision);
 }

@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 importers:
 
   .:
@@ -41,6 +45,18 @@ importers:
       '-':
         specifier: ^0.0.1
         version: 0.0.1
+      '@thi.ng/adjacency':
+        specifier: ^2.5.51
+        version: 2.5.51
+      '@thi.ng/associative':
+        specifier: ^6.3.60
+        version: 6.3.60
+      '@thi.ng/equiv':
+        specifier: ^2.1.58
+        version: 2.1.58
+      '@thi.ng/geom-accel':
+        specifier: ^3.6.4
+        version: 3.6.4
       '@types/flatbush':
         specifier: ^3.3.0
         version: 3.3.0
@@ -1743,6 +1759,259 @@ packages:
       colors: 1.2.5
       string-argv: 0.3.1
     dev: true
+
+  /@thi.ng/adjacency@2.5.51:
+    resolution: {integrity: sha512-NCYY8XdHBBjGhUXIsOhRsEMvbWGEvBlkHzYnrK/ozHTDBkV8ZBr0HmKHd7pow7QFyPcNTc9KRLHYcqb55QbdVw==}
+    engines: {node: '>=18'}
+    dependencies:
+      '@thi.ng/api': 8.11.2
+      '@thi.ng/arrays': 2.9.6
+      '@thi.ng/bitfield': 2.3.41
+      '@thi.ng/dcons': 3.2.113
+      '@thi.ng/errors': 2.5.7
+      '@thi.ng/sparse': 0.3.118
+    dev: false
+
+  /@thi.ng/api@8.11.2:
+    resolution: {integrity: sha512-5i00GGTZ2E0JXGdcCuQL9HvA8fIxgYdYog3aFku6zmLh5fJCxfZVNNay5LV87Ev5uj3iuaqz0vbl33JuZc6/iw==}
+    engines: {node: '>=18'}
+    dev: false
+
+  /@thi.ng/arrays@2.9.6:
+    resolution: {integrity: sha512-/P4nDvUbvELQ4CdCtN0xzif5wi4ieM55zWKoLJq5FvZA3hLx8aTb60jTu4fW+AF9PsXtkxrckkrm1Wiq53xcjg==}
+    engines: {node: '>=18'}
+    dependencies:
+      '@thi.ng/api': 8.11.2
+      '@thi.ng/checks': 3.6.4
+      '@thi.ng/compare': 2.3.5
+      '@thi.ng/equiv': 2.1.58
+      '@thi.ng/errors': 2.5.7
+      '@thi.ng/random': 3.8.0
+    dev: false
+
+  /@thi.ng/associative@6.3.60:
+    resolution: {integrity: sha512-vJF+Bfg+ZjkiooNSwC9KS+y76GKmGRrb9MpKjJxZxDB0qjf/mCkfyZarBjo+YM1ZdHXMr3UKbiU6AWekwW2EJw==}
+    engines: {node: '>=18'}
+    dependencies:
+      '@thi.ng/api': 8.11.2
+      '@thi.ng/arrays': 2.9.6
+      '@thi.ng/binary': 3.4.25
+      '@thi.ng/checks': 3.6.4
+      '@thi.ng/compare': 2.3.5
+      '@thi.ng/dcons': 3.2.113
+      '@thi.ng/equiv': 2.1.58
+      '@thi.ng/errors': 2.5.7
+      '@thi.ng/random': 3.8.0
+      '@thi.ng/transducers': 9.0.5
+      tslib: 2.6.3
+    dev: false
+
+  /@thi.ng/binary@3.4.25:
+    resolution: {integrity: sha512-jEPRctbN/bBV2FlZ2t4SwEaMXtACKbt1ylZpaw4QmQ/ysjn1HjeR4hbdsAe9ErnFp4GN7SbLECqoK00QEH1uXQ==}
+    engines: {node: '>=18'}
+    dependencies:
+      '@thi.ng/api': 8.11.2
+    dev: false
+
+  /@thi.ng/bitfield@2.3.41:
+    resolution: {integrity: sha512-0EKC7chiu5TEwqG/KF49vPpcM0C6ijHAqgv8gWt90y4S+sLvgPfh1sWWuMUHVAJX2K7giGeYXmnyaI33cuvpaA==}
+    engines: {node: '>=18'}
+    dependencies:
+      '@thi.ng/api': 8.11.2
+      '@thi.ng/binary': 3.4.25
+      '@thi.ng/errors': 2.5.7
+      '@thi.ng/strings': 3.7.33
+    dev: false
+
+  /@thi.ng/checks@3.6.4:
+    resolution: {integrity: sha512-qZugzKHi6v1W6HenPnOmVWm8Tj2iT6to2X+jtkrpwCrzzp9cdN4zqcfpgWn6FcZUgD+Kl1Jvfu7REuiA0sfOCw==}
+    engines: {node: '>=18'}
+    dependencies:
+      tslib: 2.6.3
+    dev: false
+
+  /@thi.ng/compare@2.3.5:
+    resolution: {integrity: sha512-BNNgjMIKWfmrZRBsCemsBlrEAJAQ5Z749UBXitj5nuffhb1zO3OdFrzIzHxqc+RgcNgcmZBYyDfc+DKN7IOcrw==}
+    engines: {node: '>=18'}
+    dependencies:
+      '@thi.ng/api': 8.11.2
+    dev: false
+
+  /@thi.ng/compose@3.0.4:
+    resolution: {integrity: sha512-azTtTzVl39bPm/va/45KrftvLHKetoAq82Cb+HAmqmMSXIyLMqeM2jQhRbcuZdZWD0+W0KC8Tiiu2CrRinOukA==}
+    engines: {node: '>=18'}
+    dependencies:
+      '@thi.ng/api': 8.11.2
+      '@thi.ng/errors': 2.5.7
+    dev: false
+
+  /@thi.ng/dcons@3.2.113:
+    resolution: {integrity: sha512-vp3mzW2E7QM8Le0Kpl+JSF51ERMkHtFLkXiJyZa+3AxEVsSI7m/d80UEBn3jisHalkotIrLP775P4ZT7xQvKcw==}
+    engines: {node: '>=18'}
+    dependencies:
+      '@thi.ng/api': 8.11.2
+      '@thi.ng/checks': 3.6.4
+      '@thi.ng/compare': 2.3.5
+      '@thi.ng/equiv': 2.1.58
+      '@thi.ng/errors': 2.5.7
+      '@thi.ng/random': 3.8.0
+      '@thi.ng/transducers': 9.0.5
+    dev: false
+
+  /@thi.ng/distance@2.4.73:
+    resolution: {integrity: sha512-B36o2eixy4P/FcWvFqY+2AgmIEHL8327TwwwRMYVoLY/H5IWRdqxamPyY04Id29+wgyKDFhIi779EboBmd0nBg==}
+    engines: {node: '>=18'}
+    dependencies:
+      '@thi.ng/api': 8.11.2
+      '@thi.ng/checks': 3.6.4
+      '@thi.ng/errors': 2.5.7
+      '@thi.ng/heaps': 2.1.74
+      '@thi.ng/math': 5.10.13
+      '@thi.ng/vectors': 7.10.31
+    dev: false
+
+  /@thi.ng/equiv@2.1.58:
+    resolution: {integrity: sha512-9qL+16bUJKKmQvB81M4GrZy/dKxq7XR2VZWjDuPBIdugCQyn/1/zV9uHVSVU45OIXIcq71fcZLR0IsBSM5yz6w==}
+    engines: {node: '>=18'}
+    dev: false
+
+  /@thi.ng/errors@2.5.7:
+    resolution: {integrity: sha512-yha1STRQmkTWEFNMHpTlgXETjwyvZfyDZH6o2nfQ8rBMqco270h4BtOOXA+lFn0afXJAZ9iXmCKbPrlMlJvHuQ==}
+    engines: {node: '>=18'}
+    dev: false
+
+  /@thi.ng/geom-accel@3.6.4:
+    resolution: {integrity: sha512-qA6+qbU1dOQUoaIfmWr9oOLmRN59s5YCgZGMHN92ZCobPAIZiokVYmKKNFFolpJKEdWNaxllOBV4Z7rkz2Rqng==}
+    engines: {node: '>=18'}
+    dependencies:
+      '@thi.ng/api': 8.11.2
+      '@thi.ng/arrays': 2.9.6
+      '@thi.ng/checks': 3.6.4
+      '@thi.ng/distance': 2.4.73
+      '@thi.ng/equiv': 2.1.58
+      '@thi.ng/errors': 2.5.7
+      '@thi.ng/geom-api': 4.0.10
+      '@thi.ng/geom-isec': 3.1.0
+      '@thi.ng/heaps': 2.1.74
+      '@thi.ng/math': 5.10.13
+      '@thi.ng/transducers': 9.0.5
+      '@thi.ng/vectors': 7.10.31
+    dev: false
+
+  /@thi.ng/geom-api@4.0.10:
+    resolution: {integrity: sha512-mlH3oPSSvh+AXc6zbOokSoow5KVhoDZELxp8JTdP9O4morS/JROqREX5yxpIpjCKGlShb/wzVqHgq9NtL/bArg==}
+    engines: {node: '>=18'}
+    dependencies:
+      '@thi.ng/api': 8.11.2
+      '@thi.ng/vectors': 7.10.31
+    dev: false
+
+  /@thi.ng/geom-closest-point@2.1.127:
+    resolution: {integrity: sha512-DFzpD1400tEqHcoO02Bah5o7SdzgnPPUs7ZcLP/KK86IrkvUCgiCQKlpjgfbyTNG2bG4QqUmORUebxUnQONucg==}
+    engines: {node: '>=18'}
+    dependencies:
+      '@thi.ng/api': 8.11.2
+      '@thi.ng/math': 5.10.13
+      '@thi.ng/vectors': 7.10.31
+    dev: false
+
+  /@thi.ng/geom-isec@3.1.0:
+    resolution: {integrity: sha512-GVKezSEsVfMh0zqdLfMMRGyQIhLcM3N++Wbzlnt/JVUDwWtYBwkqN2KmT5d63DSYIN80AkyR4OwN/Od6ZKovJQ==}
+    engines: {node: '>=18'}
+    dependencies:
+      '@thi.ng/api': 8.11.2
+      '@thi.ng/geom-api': 4.0.10
+      '@thi.ng/geom-closest-point': 2.1.127
+      '@thi.ng/math': 5.10.13
+      '@thi.ng/vectors': 7.10.31
+    dev: false
+
+  /@thi.ng/heaps@2.1.74:
+    resolution: {integrity: sha512-il+kh/rIfH2i4G3PT553HyT1pvnnMBe5QUZssW+XCWChpg/sBmBXhKeeL6VP2uWPUVpqQJ7m292H6cJNK30b2w==}
+    engines: {node: '>=18'}
+    dependencies:
+      '@thi.ng/api': 8.11.2
+      '@thi.ng/compare': 2.3.5
+      '@thi.ng/equiv': 2.1.58
+    dev: false
+
+  /@thi.ng/hex@2.3.46:
+    resolution: {integrity: sha512-N4tLG+AEmmG55xiOSKn8AMz2jwJMtBHRuZDHu2HkJQqXe9kwthGlkga4hYs46ULqObidU0ZArkaxGhILYcJfHg==}
+    engines: {node: '>=18'}
+    dev: false
+
+  /@thi.ng/math@5.10.13:
+    resolution: {integrity: sha512-EoTRi+D7NzxEuQRx/5FLlswUP/3jxpHDcps5lz2wMBHh7gVqo4EaNv1q74+cPqFraqYb3gGXTnP6MAcsoN7OTA==}
+    engines: {node: '>=18'}
+    dependencies:
+      '@thi.ng/api': 8.11.2
+    dev: false
+
+  /@thi.ng/memoize@3.3.4:
+    resolution: {integrity: sha512-2CAnVMAZ2Oyz9n8vJWIe5tbF5KBWAn33W9oB2DhFLjkDE0LGzZbVGlPmmJ8BDXEl454F2Qyk/Gk+OVChxq82bw==}
+    engines: {node: '>=18'}
+    dependencies:
+      '@thi.ng/api': 8.11.2
+    dev: false
+
+  /@thi.ng/random@3.8.0:
+    resolution: {integrity: sha512-B8dK0vRCfY7O8vGJpjAjax4j8ruuhroPK6qDkcydDegTq0phEAjWoPVkkwE4Jp4KxPfQkz00/3FhyAUdfXurtg==}
+    engines: {node: '>=18'}
+    dependencies:
+      '@thi.ng/api': 8.11.2
+      '@thi.ng/checks': 3.6.4
+      '@thi.ng/errors': 2.5.7
+      '@thi.ng/hex': 2.3.46
+    dev: false
+
+  /@thi.ng/sparse@0.3.118:
+    resolution: {integrity: sha512-DZDbCgxi6632yMeCm6zUMqwudLas7zO5Ig2+SXmj5nDqlqUx8ZsgRT5+lVoR3eMscsQ56SzurAFKk4Z0DmR71A==}
+    engines: {node: '>=18'}
+    dependencies:
+      '@thi.ng/api': 8.11.2
+      '@thi.ng/errors': 2.5.7
+      '@thi.ng/transducers': 9.0.5
+    dev: false
+
+  /@thi.ng/strings@3.7.33:
+    resolution: {integrity: sha512-eKk06B9fKUEx5Sf1HCDwXNUTaQo3/nE5R2gujVBiQOIhXfoT15I2jO6CXKJ6zLnbY1ZnH3xkmLRv4qTTrVNaSg==}
+    engines: {node: '>=18'}
+    dependencies:
+      '@thi.ng/api': 8.11.2
+      '@thi.ng/errors': 2.5.7
+      '@thi.ng/hex': 2.3.46
+      '@thi.ng/memoize': 3.3.4
+    dev: false
+
+  /@thi.ng/transducers@9.0.5:
+    resolution: {integrity: sha512-qUrIBKijNMcY7iFjAHD6wOqq3vP1dAomf9ZeXZnMZ+luJFxJrdp7KsAUx43ucvpJuJDUf0EpFKGHipuZtkvFlw==}
+    engines: {node: '>=18'}
+    dependencies:
+      '@thi.ng/api': 8.11.2
+      '@thi.ng/arrays': 2.9.6
+      '@thi.ng/checks': 3.6.4
+      '@thi.ng/compare': 2.3.5
+      '@thi.ng/compose': 3.0.4
+      '@thi.ng/errors': 2.5.7
+      '@thi.ng/math': 5.10.13
+      '@thi.ng/random': 3.8.0
+    dev: false
+
+  /@thi.ng/vectors@7.10.31:
+    resolution: {integrity: sha512-mjBLtqr6j2YqzaM48+5mzJ5SMKpWIfOpANKhjMVzIn48hKRkeMRIcNFcm9kICitWm3AnVvFYuuOR6cnsBGbzwg==}
+    engines: {node: '>=18'}
+    dependencies:
+      '@thi.ng/api': 8.11.2
+      '@thi.ng/binary': 3.4.25
+      '@thi.ng/checks': 3.6.4
+      '@thi.ng/equiv': 2.1.58
+      '@thi.ng/errors': 2.5.7
+      '@thi.ng/math': 5.10.13
+      '@thi.ng/memoize': 3.3.4
+      '@thi.ng/random': 3.8.0
+      '@thi.ng/strings': 3.7.33
+      '@thi.ng/transducers': 9.0.5
+    dev: false
 
   /@tokenizer/token@0.3.0:
     resolution: {integrity: sha512-OvjF+z51L3ov0OyAU0duzsYuvO01PH7x4t6DJx+guahgTnBHkhJdG7soQeTSFLWN3efnHyibZ4Z8l2EuWwJN3A==}
@@ -3635,6 +3904,7 @@ packages:
   /iconv-lite@0.6.3:
     resolution: {integrity: sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==}
     engines: {node: '>=0.10.0'}
+    requiresBuild: true
     dependencies:
       safer-buffer: 2.1.2
     dev: true
@@ -6041,6 +6311,10 @@ packages:
   /tslib@2.5.0:
     resolution: {integrity: sha512-336iVw3rtn2BUK7ORdIAHTyxHGRIHVReokCR3XjbckJMK7ms8FysBfhLR8IXnAgy7T0PTPNBWKiH514FOW/WSg==}
     dev: true
+
+  /tslib@2.6.3:
+    resolution: {integrity: sha512-xNvxJEOUiWPGhUuUdQgAJPKOOJfGnIyKySOc09XkKsgdUV/3E2zvwZYdejjmRgPCgcym1juLH3226yA7sEFJKQ==}
+    dev: false
 
   /tsutils@3.21.0(typescript@5.0.2):
     resolution: {integrity: sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==}

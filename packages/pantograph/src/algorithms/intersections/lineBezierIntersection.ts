@@ -3,6 +3,7 @@ import { CubicBezier } from "../../models/segments/CubicBezier.js";
 import { TransformationMatrix } from "../../models/TransformationMatrix.js";
 import { QuadraticBezier } from "../../models/segments/QuadraticBezier.js";
 import { Vector } from "../../definitions.js";
+import { sameVector } from "../../vectorOperations.js";
 
 export function lineBezierIntersection(
   line: Line,
@@ -28,5 +29,10 @@ export function lineBezierIntersection(
     })
     .filter((point) => {
       return line.isOnSegment(point);
-    });
+    })
+    .filter(
+      // We keep only unique values
+      (value, index, array) =>
+        array.findIndex((v) => sameVector(v, value)) === index
+    );
 }

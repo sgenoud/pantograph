@@ -50,3 +50,5 @@ export { exportSVG, svgBody } from "./export/svg/exportSVG.js";
 
 export { exportJSON } from "./export/json/exportJSON.js";
 export { importJSON } from "./import/json/importJSON.js";
+
+export { stitchAsLoops, segmentsGraph } from "./algorithms/stitchSegments.js";

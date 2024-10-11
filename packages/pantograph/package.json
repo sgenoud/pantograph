@@ -71,6 +71,10 @@
   "gitHead": "a2b9db5c938cdbd7452e96175b403fac8f4caf5b",
   "dependencies": {
     "-": "^0.0.1",
+    "@thi.ng/adjacency": "^2.5.51",
+    "@thi.ng/associative": "^6.3.60",
+    "@thi.ng/equiv": "^2.1.58",
+    "@thi.ng/geom-accel": "^3.6.4",
     "@types/flatbush": "^3.3.0",
     "flatbush": "^4.1.0",
     "ml-matrix": "^6.10.4",

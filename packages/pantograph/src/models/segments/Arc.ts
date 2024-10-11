@@ -39,9 +39,10 @@ export class Arc extends AbstractSegment<Arc> {
     lastPoint: Vector,
     center: Vector,
     clockwise = false,
-    { ignoreChecks = false } = {}
+    { ignoreChecks = false } = {},
+    precision?: number
   ) {
-    super(firstPoint, lastPoint);
+    super(firstPoint, lastPoint, precision);
     this.center = center;
     this.clockwise = clockwise;
 
@@ -205,7 +206,9 @@ export class Arc extends AbstractSegment<Arc> {
       this.firstPoint,
       this.lastPoint,
       this.center,
-      this.clockwise
+      this.clockwise,
+      {},
+      this.precision
     );
   }
 
@@ -214,7 +217,9 @@ export class Arc extends AbstractSegment<Arc> {
       this.lastPoint,
       this.firstPoint,
       this.center,
-      !this.clockwise
+      !this.clockwise,
+      {},
+      this.precision
     );
   }
 
@@ -343,7 +348,9 @@ export class Arc extends AbstractSegment<Arc> {
         paramsMap.get(startParam) || this.paramPoint(startParam),
         paramsMap.get(nextParam) || this.paramPoint(nextParam),
         this.center,
-        this.clockwise
+        this.clockwise,
+        {},
+        this.precision
       );
       skipped = null;
       return arc;
@@ -355,7 +362,9 @@ export class Arc extends AbstractSegment<Arc> {
       matrix.transform(this.firstPoint),
       matrix.transform(this.lastPoint),
       matrix.transform(this.center),
-      matrix.keepsOrientation() ? this.clockwise : !this.clockwise
+      matrix.keepsOrientation() ? this.clockwise : !this.clockwise,
+      {},
+      this.precision
     );
   }
 }
@@ -363,7 +372,8 @@ export class Arc extends AbstractSegment<Arc> {
 export function threePointsArc(
   firstPoint: Vector,
   midPoint: Vector,
-  lastPoint: Vector
+  lastPoint: Vector,
+  precision?: number
 ) {
   const chord1 = new Line(midPoint, firstPoint);
   const chord2 = new Line(midPoint, lastPoint);
@@ -390,14 +400,16 @@ export function threePointsArc(
     lastPoint,
     add(chord1.midPoint, scalarMultiply(dir1, result.intersectionParam1)),
     clockwise,
-    { ignoreChecks: true }
+    { ignoreChecks: true },
+    precision
   );
 }
 
 export function tangentArc(
   firstPoint: Vector,
   lastPoint: Vector,
-  tangentAtFirstPoint: Vector
+  tangentAtFirstPoint: Vector,
+  precision?: number
 ) {
   const chord = new Line(lastPoint, firstPoint);
   const dir = perpendicular(chord.tangentAtFirstPoint);
@@ -425,7 +437,14 @@ export function tangentArc(
       subtract(center, add(firstPoint, tangentAtFirstPoint))
     ) < 0;
 
-  return new Arc(firstPoint, lastPoint, center, clockwise, {
-    ignoreChecks: true,
-  });
+  return new Arc(
+    firstPoint,
+    lastPoint,
+    center,
+    clockwise,
+    {
+      ignoreChecks: true,
+    },
+    precision
+  );
 }

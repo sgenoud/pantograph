@@ -10,7 +10,12 @@ exports[`offsetStrand > should create an outline that intersects itself 1`] = `
           1.52817468419245,
           0,
         ],
-        "_boundingBox": null,
+        "_boundingBox": BoundingBox {
+          "xMax": 1.52817468519245,
+          "xMin": -1e-9,
+          "yMax": -0.499999999,
+          "yMin": -0.500000001,
+        },
         "_slope": null,
         "_yIntercept": null,
         "firstPoint": [
@@ -29,7 +34,12 @@ exports[`offsetStrand > should create an outline that intersects itself 1`] = `
           -1.7854225619062132,
           -1.071253537143728,
         ],
-        "_boundingBox": null,
+        "_boundingBox": BoundingBox {
+          "xMax": 1.52817468519245,
+          "xMin": -0.2572478787137633,
+          "yMax": -0.499999999,
+          "yMin": -1.571253538143728,
+        },
         "_slope": null,
         "_yIntercept": null,
         "firstPoint": [
@@ -55,7 +65,12 @@ exports[`offsetStrand > should create an outline that intersects itself 1`] = `
           0.4192431084959054,
           0,
         ],
-        "_boundingBox": null,
+        "_boundingBox": BoundingBox {
+          "xMax": 4.500000001,
+          "xMin": 4.0807568905040945,
+          "yMax": -0.499999999,
+          "yMin": -0.500000001,
+        },
         "_slope": null,
         "_yIntercept": null,
         "firstPoint": [
@@ -98,7 +113,12 @@ exports[`offsetStrand > should create an outline that intersects itself 1`] = `
           -0.4192431084959054,
           0.37731879764631493,
         ],
-        "_boundingBox": null,
+        "_boundingBox": BoundingBox {
+          "xMax": 4.500000001,
+          "xMin": 4.0807568905040945,
+          "yMax": -0.499999999,
+          "yMin": -0.8773187986463149,
+        },
         "_slope": null,
         "_yIntercept": null,
         "firstPoint": [
@@ -240,7 +260,12 @@ exports[`offsetStrand > should offset a strand that create a loop 1`] = `
           0.32327576348993925,
           0.32327576348993925,
         ],
-        "_boundingBox": null,
+        "_boundingBox": BoundingBox {
+          "xMax": 1.000000001,
+          "xMin": 0.6767242355100608,
+          "yMax": 0.29289321981345257,
+          "yMin": -0.03038254567648671,
+        },
         "_slope": null,
         "_yIntercept": null,
         "firstPoint": [
@@ -307,7 +332,12 @@ exports[`offsetStrand > should offset a strand that create a loop 1`] = `
           -0.3068405149474265,
           0.2789459226794786,
         ],
-        "_boundingBox": null,
+        "_boundingBox": BoundingBox {
+          "xMax": 0.9835647524574872,
+          "xMin": 0.6767242355100608,
+          "yMax": -0.030382543676486712,
+          "yMin": -0.30932846835596534,
+        },
         "_slope": null,
         "_yIntercept": null,
         "firstPoint": [

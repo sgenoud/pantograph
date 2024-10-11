@@ -29,7 +29,12 @@ exports[`eraseStrandOutsideLoop > should erase the parts of a strand within a lo
           -0.5,
           2,
         ],
-        "_boundingBox": null,
+        "_boundingBox": BoundingBox {
+          "xMax": 1.000000001,
+          "xMin": 0.499999999,
+          "yMax": 1.000000001,
+          "yMin": -1.000000001,
+        },
         "_slope": null,
         "_yIntercept": null,
         "firstPoint": [

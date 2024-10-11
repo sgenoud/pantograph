@@ -9,6 +9,7 @@ import {
   distance,
   normalize,
   perpendicular,
+  reprVector,
   sameVector,
   squareDistance,
   subtract,
@@ -28,12 +29,20 @@ export class CubicBezier extends AbstractSegment<CubicBezier> {
     firstPoint: Vector,
     lastPoint: Vector,
     firstControlPoint: Vector,
-    lastControlPoint: Vector
-    //{ ignoreChecks = false } = {}
+    lastControlPoint: Vector,
+    precision?: number
   ) {
-    super(firstPoint, lastPoint);
+    super(firstPoint, lastPoint, precision);
     this.firstControlPoint = firstControlPoint;
     this.lastControlPoint = lastControlPoint;
+  }
+
+  get info() {
+    return `${this.segmentType}(${reprVector(this.firstPoint)}, ${reprVector(
+      this.lastPoint
+    )}, ${reprVector(this.firstControlPoint)}, ${reprVector(
+      this.lastControlPoint
+    )})`;
   }
 
   get midPoint() {

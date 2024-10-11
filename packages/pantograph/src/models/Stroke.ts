@@ -1,12 +1,12 @@
 import { BoundingBox } from "./BoundingBox.js";
 import { Vector } from "../definitions.js";
-import { findIntersectionsAndOverlaps } from "../algorithms/intersections";
+import { findIntersectionsAndOverlaps } from "../algorithms/intersections/index.js";
 import { Segment } from "./segments/Segment.js";
 import { TransformationMatrix } from "./TransformationMatrix.js";
-import { allCombinations } from "../utils/allCombinations.js";
 import zip from "../utils/zip.js";
 import { sameVector } from "../vectorOperations.js";
 import { Transformable } from "./utils/Transformable.js";
+import { checkSelfIntersections } from "./segments/utils/selfIntersections.js";
 
 export type Stroke = AbstractStroke<any>;
 
@@ -90,82 +90,7 @@ export abstract class AbstractStroke<
   }
 }
 
-export function checkSelfIntersections(
-  segments: Segment[],
-  type = "Stroke"
-): void {
-  allCombinations(segments.length).forEach(
-    ([segmentIndex, otherSegmentIndex]) => {
-      if (segmentIndex === otherSegmentIndex) return;
-      const segment = segments[segmentIndex];
-      const otherSegment = segments[otherSegmentIndex];
-
-      const intersections = findIntersectionsAndOverlaps(segment, otherSegment);
-      const epsilon = Math.max(segment.precision, otherSegment.precision);
-
-      if (intersections.count === 0) return;
-      if (intersections.count === 1 && !intersections.overlaps.length) {
-        const distance = segmentIndex - otherSegmentIndex;
-
-        const intersection = intersections.intersections[0];
-
-        if (distance === 1) {
-          if (sameVector(segment.firstPoint, intersection, epsilon)) return;
-        }
-        if (distance === -1) {
-          if (sameVector(segment.lastPoint, intersection, epsilon)) return;
-        }
-        if (distance === segments.length - 1) {
-          if (
-            sameVector(segment.lastPoint, intersection, epsilon) &&
-            sameVector(otherSegment.firstPoint, intersection, epsilon)
-          )
-            return;
-        }
-        if (-distance === segments.length - 1) {
-          if (
-            sameVector(segment.firstPoint, intersection, epsilon) &&
-            sameVector(otherSegment.lastPoint, intersection, epsilon)
-          )
-            return;
-        }
-      }
-      if (intersections.count === 2 && segments.length === 2) {
-        if (
-          (sameVector(
-            segment.firstPoint,
-            intersections.intersections[0],
-            epsilon
-          ) &&
-            sameVector(
-              segment.lastPoint,
-              intersections.intersections[1],
-              epsilon
-            )) ||
-          (sameVector(
-            segment.firstPoint,
-            intersections.intersections[1],
-            epsilon
-          ) &&
-            sameVector(
-              segment.lastPoint,
-              intersections.intersections[0],
-              epsilon
-            ))
-        )
-          return;
-      }
-
-      throw new Error(
-        `${type} segments must not intersect, but segments ${
-          segment.info
-        } and ${otherSegment.info} do at ${JSON.stringify(
-          intersections.intersections
-        )}`
-      );
-    }
-  );
-}
+export { checkSelfIntersections };
 
 export function checkValidStroke(segments: Segment[], type = "Stroke"): void {
   if (segments.length === 0)

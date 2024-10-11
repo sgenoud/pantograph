@@ -76,11 +76,11 @@ export class Line extends AbstractSegment<Line> {
   }
 
   clone(): Line {
-    return new Line(this.firstPoint, this.lastPoint);
+    return new Line(this.firstPoint, this.lastPoint, this.precision);
   }
 
   reverse(): Line {
-    return new Line(this.lastPoint, this.firstPoint);
+    return new Line(this.lastPoint, this.firstPoint, this.precision);
   }
 
   private _boundingBox: BoundingBox | null = null;
@@ -180,14 +180,15 @@ export class Line extends AbstractSegment<Line> {
 
     return uniquePoints.flatMap((point, index) => {
       if (index === uniquePoints.length - 1) return [];
-      return new Line(point, uniquePoints[index + 1]);
+      return new Line(point, uniquePoints[index + 1], this.precision);
     });
   }
 
   transform(matrix: TransformationMatrix): Line {
     return new Line(
       matrix.transform(this.firstPoint),
-      matrix.transform(this.lastPoint)
+      matrix.transform(this.lastPoint),
+      this.precision
     );
   }
 }

@@ -154,7 +154,7 @@ export function* drawSVGPathGenerator(SVGPath: string) {
 
   for (const command of commands) {
     if (command.key === "Z") {
-      if (pen) yield pen.close(true);
+      if (pen) yield pen.close();
       pen = null;
       continue;
     }
@@ -170,7 +170,7 @@ export function* drawSVGPathGenerator(SVGPath: string) {
         yield pen.isClosed ? pen.close() : pen.asStrand();
       }
 
-      pen = draw(p);
+      pen = draw(p, 1e-6);
       lastPoint = p;
       continue;
     }

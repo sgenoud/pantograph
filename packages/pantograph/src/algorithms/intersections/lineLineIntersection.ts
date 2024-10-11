@@ -1,4 +1,8 @@
-import { crossProduct, squareLength, subtract } from "../../vectorOperations.js";
+import {
+  crossProduct,
+  squareLength,
+  subtract,
+} from "../../vectorOperations.js";
 import { Line } from "../../models/segments/Line.js";
 import { Vector } from "../../definitions.js";
 import removeDuplicatePoints from "../../utils/removeDuplicatePoints.js";

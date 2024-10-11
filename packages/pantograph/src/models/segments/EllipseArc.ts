@@ -45,9 +45,10 @@ export class EllipseArc extends AbstractSegment<EllipseArc> {
     {
       ignoreChecks = false,
       angleUnits = "deg",
-    }: { ignoreChecks?: boolean; angleUnits?: "deg" | "rad" } = {}
+    }: { ignoreChecks?: boolean; angleUnits?: "deg" | "rad" } = {},
+    precision?: number
   ) {
-    super(firstPoint, lastPoint);
+    super(firstPoint, lastPoint, precision);
 
     // Ellipse configuration
     this.center = center;
@@ -148,7 +149,8 @@ export class EllipseArc extends AbstractSegment<EllipseArc> {
       this.minorRadius,
       this.tiltAngle,
       !this.clockwise,
-      { ignoreChecks: true, angleUnits: "rad" }
+      { ignoreChecks: true, angleUnits: "rad" },
+      this.precision
     );
   }
 
@@ -161,7 +163,8 @@ export class EllipseArc extends AbstractSegment<EllipseArc> {
       this.minorRadius,
       this.tiltAngle,
       this.clockwise,
-      { ignoreChecks: true, angleUnits: "rad" }
+      { ignoreChecks: true, angleUnits: "rad" },
+      this.precision
     );
   }
 
@@ -460,7 +463,8 @@ export class EllipseArc extends AbstractSegment<EllipseArc> {
       this.minorRadius * scaleFactor,
       modifiedAngle,
       matrix.keepsOrientation() ? this.clockwise : !this.clockwise,
-      { angleUnits: "rad" }
+      { angleUnits: "rad" },
+      this.precision
     );
   }
 
@@ -509,7 +513,8 @@ export class EllipseArc extends AbstractSegment<EllipseArc> {
         this.minorRadius,
         this.tiltAngle,
         this.clockwise,
-        { angleUnits: "rad" }
+        { angleUnits: "rad" },
+        this.precision
       );
       skipped = null;
       return arc;
@@ -524,7 +529,8 @@ export function svgEllipse(
   r1: number,
   phi: number,
   fA: boolean,
-  fS: boolean
+  fS: boolean,
+  precision?: number
 ): EllipseArc | Arc {
   const { center, rx, ry } = findSVGCenter(
     firstPoint,
@@ -540,7 +546,17 @@ export function svgEllipse(
     return new Arc(firstPoint, lastPoint, center, fS);
   }
 
-  return new EllipseArc(firstPoint, lastPoint, center, rx, ry, phi, fS);
+  return new EllipseArc(
+    firstPoint,
+    lastPoint,
+    center,
+    rx,
+    ry,
+    phi,
+    fS,
+    {},
+    precision
+  );
 }
 
 /*

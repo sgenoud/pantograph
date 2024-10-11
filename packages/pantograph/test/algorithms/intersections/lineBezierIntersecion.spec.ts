@@ -4,7 +4,7 @@ import { lineBezierIntersection } from "../../../src/algorithms/intersections/li
 import { Line } from "../../../src/models/segments/Line.js";
 import { CubicBezier } from "../../../src/models/segments/CubicBezier.js";
 import { QuadraticBezier } from "../../../src/models/segments/QuadraticBezier.js";
-//import { debugImg, dpnt } from "../../debug.js";
+import { debugImg, dpnt } from "../../debug.js";
 
 describe("lineCubicBezierIntersection", () => {
   describe("cubic bézier", () => {
@@ -76,6 +76,35 @@ describe("lineCubicBezierIntersection", () => {
       const intersections = lineBezierIntersection(line, curve);
 
       //debugImg([curve, line, ...intersections.map((i) => dpnt(i))]);
+
+      expect(intersections.length).toBe(0);
+    });
+  });
+
+  describe("bug fixing", () => {
+    it("does not intersect when close to the extremity", () => {
+      const curve = new CubicBezier(
+        [1157.0078, 1082.0576],
+        [1162.5, 1068.7996],
+        [1160.5234, 1078.5420000000001],
+        [1162.5, 1073.7724]
+      );
+
+      const line = new Line([1162.5, 1068.7996], [1162.5, 1068.8]);
+
+      const intersections = lineBezierIntersection(line, curve);
+
+      debugImg(
+        [
+          { shape: line.scale(1e5), color: "blue" },
+          curve.scale(1e5),
+          // ...intersections.map((i) => dpnt(i).scale(1000)),
+        ],
+        "show",
+        {
+          viewBox: line.scale(1e5).boundingBox.grow(1),
+        }
+      );
 
       expect(intersections.length).toBe(0);
     });

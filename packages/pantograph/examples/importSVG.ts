@@ -10,13 +10,10 @@ export function importSVG(svg: string, { width }: { width?: number } = {}) {
   const parser = new DOMParser();
   const doc = parser.parseFromString(svg, "text/html");
 
-  console.log(doc);
-
   let strokes: (Diagram | Strand)[] = [];
 
   for (let path of Array.from(doc.getElementsByTagName("path"))) {
     const commands = path.getAttribute("d");
-    console.log(commands);
     if (commands) strokes.push(...drawSVGPath(commands));
   }
 
@@ -63,8 +60,6 @@ export function importSVG(svg: string, { width }: { width?: number } = {}) {
 
   // TODO: handle fusing of paths as defined by the SVG spec
   strokes = strokes.map((stroke) => stroke.mirror());
-
-  console.log(strokes);
 
   if (width && strokes.length) {
     const bbox = strokes.slice(1).reduce((bbox, stroke) => {

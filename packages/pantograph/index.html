@@ -59,6 +59,7 @@
           <option value="dieline">Dieline</option>
           <option value="angle">Angle Gauge</option>
           <option value="svgEdit" selected>SVG</option>
+          <option value="segmentSoup">Segment Soup</option>
         </select>
         <a role="button" download="img.svg" id="download-btn">Download</a>
       </section>
@@ -70,6 +71,7 @@
         import drawDieline from "./examples/box-dieline.js";
         import drawAngleGauge from "./examples/angle-gauge.js";
         import svgEdit from "./examples/svgEdit.js";
+        import segmentSoup from "./examples/segments-soup.js";
 
         const updatePage = (drawing, alreadyExported = false) => {
           const svg = alreadyExported ? drawing : exportSVG(drawing, 1);
@@ -94,12 +96,15 @@
           angle: () => {
             updatePage(drawAngleGauge());
           },
+          segmentSoup: () => {
+            updatePage(segmentSoup());
+          },
           svgEdit: () => {
             svgEdit(document.getElementById("app"));
           },
         };
 
-        show.svgEdit();
+        show.segmentSoup();
 
         window.updateSelection = function () {
           const selection = document.getElementById("preset-select").value;

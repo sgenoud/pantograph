@@ -31,7 +31,7 @@ export default function svgEdit(element) {
     document.getElementById("images").innerHTML = `
       ${rawImg}
       ${exportSVG(parsedImg)}
-      ${exportSVG(parsedImg.map((i) => cut(i, mvRect)))}
+      ${exportSVG(parsedImg /*.map((i) => cut(i, mvRect))*/)}
   `;
   }
 

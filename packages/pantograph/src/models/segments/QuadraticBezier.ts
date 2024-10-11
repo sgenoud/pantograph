@@ -6,6 +6,7 @@ import {
   distance,
   normalize,
   perpendicular,
+  reprVector,
   sameVector,
   squareDistance,
   subtract,
@@ -23,11 +24,18 @@ export class QuadraticBezier extends AbstractSegment<QuadraticBezier> {
   constructor(
     firstPoint: Vector,
     lastPoint: Vector,
-    controlPoint: Vector
+    controlPoint: Vector,
+    precision?: number
     //{ ignoreChecks = false } = {}
   ) {
-    super(firstPoint, lastPoint);
+    super(firstPoint, lastPoint, precision);
     this.controlPoint = controlPoint;
+  }
+
+  get info() {
+    return `${this.segmentType}(${reprVector(this.firstPoint)}, ${reprVector(
+      this.lastPoint
+    )}, ${reprVector(this.controlPoint)})`;
   }
 
   get midPoint() {

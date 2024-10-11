@@ -9,10 +9,17 @@ export type Segment = AbstractSegment<any>;
 export abstract class AbstractSegment<
   T extends AbstractSegment<T>
 > extends Transformable<T> {
-  constructor(public firstPoint: Vector, public lastPoint: Vector) {
+  constructor(
+    public firstPoint: Vector,
+    public lastPoint: Vector,
+    precision?: number
+  ) {
     super();
     this.firstPoint = firstPoint;
     this.lastPoint = lastPoint;
+    if (precision) {
+      this.precision = precision;
+    }
   }
 
   readonly precision: number = 1e-9;

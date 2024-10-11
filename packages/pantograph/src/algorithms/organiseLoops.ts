@@ -1,5 +1,5 @@
-import { Figure } from "../models/Figure";
-import { Loop } from "../models/Loop";
+import { Figure } from "../models/Figure.js";
+import { Loop } from "../models/Loop.js";
 
 const groupByBoundingBoxOverlap = (loops: Loop[]): Loop[][] => {
   const overlaps = loops.map((loop, i) => {
@@ -102,6 +102,7 @@ const cleanEdgeCases = (groupedLoops: ContainedLoop[]): ContainedLoop[][] => {
 export function organiseLoops(loops: Loop[]): Figure[] {
   const basicGrouping =
     groupByBoundingBoxOverlap(loops).map(addContainmentInfo);
+
   return basicGrouping.flatMap(cleanEdgeCases).map((compounds) => {
     if (compounds.length === 1) return new Figure(compounds[0].loop);
 
