@@ -16,7 +16,7 @@ export class Figure extends Transformable<Figure> {
   constructor(
     contour: Loop,
     holes: Loop[] = [],
-    { ignoreChecks = false } = {}
+    { ignoreChecks = false } = {},
   ) {
     super();
     if (!ignoreChecks) checkIsValidFigure(contour, holes);
@@ -39,14 +39,14 @@ export class Figure extends Transformable<Figure> {
   clone(): Figure {
     return new Figure(
       this.contour.clone(),
-      this.holes.map((hole) => hole.clone())
+      this.holes.map((hole) => hole.clone()),
     );
   }
 
   transform(matrix: TransformationMatrix): Figure {
     return new Figure(
       this.contour.transform(matrix),
-      this.holes.map((hole) => hole.transform(matrix))
+      this.holes.map((hole) => hole.transform(matrix)),
     );
   }
 
@@ -59,7 +59,7 @@ export class Figure extends Transformable<Figure> {
 
   intersects(other: Figure): boolean {
     return this.allLoops.some((loop) =>
-      other.allLoops.some((otherLoop) => loop.intersects(otherLoop))
+      other.allLoops.some((otherLoop) => loop.intersects(otherLoop)),
     );
   }
 
@@ -88,7 +88,8 @@ export function checkIsValidFigure(contour?: Loop, holes: Loop[] = []): void {
   if (
     holes.some(
       (hole) =>
-        !contour.contains(hole.firstPoint) && !contour.onStroke(hole.firstPoint)
+        !contour.contains(hole.firstPoint) &&
+        !contour.onStroke(hole.firstPoint),
     )
   ) {
     throw new Error("Holes must be inside the contour");

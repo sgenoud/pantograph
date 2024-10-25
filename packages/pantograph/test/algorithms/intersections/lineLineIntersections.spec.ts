@@ -15,11 +15,11 @@ describe("lineLineIntersections", () => {
     const line1 = new Line([0, 0], [1, 1]);
 
     expect(
-      lineLineIntersection(line1, new Line([0.5, -0.5], [0.5, 5]))
+      lineLineIntersection(line1, new Line([0.5, -0.5], [0.5, 5])),
     ).toBeVector([0.5, 0.5]);
 
     expect(
-      lineLineIntersection(line1, new Line([0.5, 5], [0.5, -0.5]))
+      lineLineIntersection(line1, new Line([0.5, 5], [0.5, -0.5])),
     ).toBeVector([0.5, 0.5]);
 
     expect(lineLineIntersection(line1, new Line([0, 10], [1, -9]))).toBeVector([
@@ -79,7 +79,7 @@ describe("lineLineIntersections", () => {
     const line1 = new Line([0, 0], [1, 1]);
     const line2 = new Line([0.5, 0.5], [1.5, 1.5]);
     expect(lineLineIntersection(line1, line2, true)).toEqual(
-      new Line([0.5, 0.5], [1, 1])
+      new Line([0.5, 0.5], [1, 1]),
     );
   });
 
@@ -87,7 +87,7 @@ describe("lineLineIntersections", () => {
     const line1 = new Line([0, 0], [1, 1]);
     const line2 = new Line([0, 0], [0.5, 0.5]);
     expect(lineLineIntersection(line1, line2, true)).toEqual(
-      new Line([0, 0], [0.5, 0.5])
+      new Line([0, 0], [0.5, 0.5]),
     );
   });
 
@@ -95,10 +95,10 @@ describe("lineLineIntersections", () => {
     const line1 = new Line([0, 0], [1, 1]);
     const line2 = new Line([1.5, 1.5], [0.5, 0.5]);
     expect(lineLineIntersection(line1, line2, true)).toEqual(
-      new Line([0.5, 0.5], [1, 1])
+      new Line([0.5, 0.5], [1, 1]),
     );
     expect(
-      lineLineIntersection(line1.reverse(), line2.reverse(), true)
+      lineLineIntersection(line1.reverse(), line2.reverse(), true),
     ).toEqual(new Line([0.5, 0.5], [1, 1]));
   });
 

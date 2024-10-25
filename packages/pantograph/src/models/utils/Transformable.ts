@@ -27,7 +27,7 @@ export abstract class Transformable<T> {
   rotate(angle: number, center?: Vector): T {
     const transform = new TransformationMatrix().rotate(
       angle * DEG2RAD,
-      center
+      center,
     );
     return this.transform(transform);
   }

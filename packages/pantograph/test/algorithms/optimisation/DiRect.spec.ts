@@ -5,7 +5,7 @@ import { findGlobalMinimum } from "../../../src/algorithms/optimisation/DiRect.j
 describe("DiRect", () => {
   it("finds the global minimum of a function", () => {
     const result = findGlobalMinimum(
-      (x) => (x[0] - 0.2) ** 2 + (x[1] - 0.3) ** 2 + 2
+      (x) => (x[0] - 0.2) ** 2 + (x[1] - 0.3) ** 2 + 2,
     );
 
     expect(result.fMin).toBeCloseTo(2);

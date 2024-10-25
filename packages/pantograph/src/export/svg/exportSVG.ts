@@ -26,7 +26,7 @@ export function svgBody(shape: Shape) {
     return `<path d="${svgStrand(shape)}" />`;
   } else if (isSegment(shape)) {
     return `<path d="${`M ${shape.firstPoint.join(" ")}`} ${svgSegmentToPath(
-      shape
+      shape,
     )}" />`;
   } else {
     throw new Error("Unknown shape type");
@@ -59,7 +59,7 @@ export function exportSVG(
     margin?: number;
     unit?: null | SVGUnit;
     viewBox?: BoundingBox;
-  } = {}
+  } = {},
 ) {
   if (Array.isArray(shape)) {
     const flipped = shape.map((s) => extractShape(s).mirror());
@@ -77,6 +77,6 @@ export function exportSVG(
     addConfig(shape, svgBody(flipped)),
     viewBox ? flibBbox(viewBox) : flipped.boundingBox,
     margin,
-    unit
+    unit,
   );
 }

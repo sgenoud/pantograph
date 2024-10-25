@@ -10,14 +10,14 @@ export function noGlueTray(
   width: number,
   height: number,
   depth: number,
-  { paperThickness = 0.2 } = {}
+  { paperThickness = 0.2 } = {},
 ) {
   // The back and front sides are composed of two layers (inside and outside)
   // that fold on top of each other. The inside layer will lock into some fold
   // bumps
   const backSide = new Dieline(
     // The back side of the tray
-    drawRect(width - 2 * paperThickness, depth).translateY(depth / 2)
+    drawRect(width - 2 * paperThickness, depth).translateY(depth / 2),
   )
     .fuseFold(
       // the inner side of the back side of the tray (that folds on top of the
@@ -27,7 +27,7 @@ export function noGlueTray(
           contraction: 3 * paperThickness,
           fillet: 0,
         })
-        .translateY(depth)
+        .translateY(depth),
     )
     .translateY(height / 2);
 
@@ -35,7 +35,7 @@ export function noGlueTray(
 
   const bumpWidth = Math.min(10, width / 5);
   const bump = new FoldLockBump(bumpWidth, paperThickness).translateY(
-    height / 2
+    height / 2,
   );
   const bumps = linearDistribution(width, bumpWidth, 1.5, 4).distribute(bump);
   bumps.forEach((bump) => bump.translateY(2 * depth).fuseBump(backSide));
@@ -50,14 +50,14 @@ export function noGlueTray(
         .top(depth, innerFlapHeight, {
           contractionLeft: 2 * paperThickness,
         })
-        .translateY(height / 2)
+        .translateY(height / 2),
     )
     .fuseFold(
       drawFlaps
         .bottom(depth, innerFlapHeight, {
           contractionLeft: 2 * paperThickness,
         })
-        .translateY(-height / 2)
+        .translateY(-height / 2),
     )
     .translateX(-width / 2 - depth / 2);
 

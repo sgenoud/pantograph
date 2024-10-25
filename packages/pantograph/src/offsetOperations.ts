@@ -11,7 +11,7 @@ import { listOfFigures } from "./utils/listOfFigures.js";
 
 export function offset(
   shape: Diagram | Figure | Loop,
-  offsetDistance: number
+  offsetDistance: number,
 ): Diagram {
   return offsetFigures(listOfFigures(shape), offsetDistance);
 }
@@ -19,7 +19,7 @@ export function offset(
 export function outlineStroke(
   shape: Diagram | Figure | Loop | Strand,
   outlineDistance: number,
-  { endCap = "round" }: { endCap?: "butt" | "round" } = {}
+  { endCap = "round" }: { endCap?: "butt" | "round" } = {},
 ): Diagram {
   if (shape instanceof Strand) {
     return outlineStrand(shape, outlineDistance, endCap);

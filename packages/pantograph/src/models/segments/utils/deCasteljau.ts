@@ -14,7 +14,7 @@ function nextNeighborZip<T>(arr: T[]) {
 
 export function deCasteljauWithHistory(
   points: Vector[],
-  t: number
+  t: number,
 ): Vector[][] {
   const nextPoints = nextNeighborZip(points).map(([a, b]) => lerp(a, b, t));
   if (points.length === 2) {

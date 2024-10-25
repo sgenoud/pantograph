@@ -114,7 +114,7 @@ describe("Line", () => {
     it("splits correctly when the segment is near parallel to X", () => {
       const line = new Line(
         [-35.35533905932736, -24.644660940672612],
-        [-35.3553390593274, -95.35533905932736]
+        [-35.3553390593274, -95.35533905932736],
       );
 
       const [first, second] = line.splitAt([

@@ -75,7 +75,7 @@ const intersectionsPolynomial = (arc: EllipseArc | Arc, curve: CubicBezier) => {
 
 export function arcsCubicBezierIntersection(
   arc: EllipseArc | Arc,
-  curve: CubicBezier
+  curve: CubicBezier,
 ): Vector[] {
   const epsilon = Math.max(arc.precision, curve.precision);
 

@@ -4,7 +4,7 @@ import type { Diagram } from "../models/Diagram.js";
 export function drawRect(
   width: number,
   height: number,
-  r: number | { rx?: number; ry?: number } = 0
+  r: number | { rx?: number; ry?: number } = 0,
 ): Diagram {
   const { rx: inputRx = 0, ry: inputRy = 0 } =
     typeof r === "number" ? { ry: r, rx: r } : r;

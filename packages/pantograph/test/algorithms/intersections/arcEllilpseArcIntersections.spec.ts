@@ -98,7 +98,7 @@ describe("arcEllipseArcIntersection", () => {
       2,
       1,
       0,
-      false
+      false,
     ).translateX(-2);
     const intersections = arcEllipseArcIntersection(arc, ellipseArc);
 

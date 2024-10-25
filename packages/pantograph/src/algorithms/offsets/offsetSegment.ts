@@ -13,13 +13,13 @@ import { Vector } from "../../definitions.js";
 export class DegenerateSegment {
   constructor(
     public readonly firstPoint: Vector,
-    public readonly lastPoint: Vector
+    public readonly lastPoint: Vector,
   ) {}
 }
 
 export function offsetSegment(
   segment: Segment,
-  offset: number
+  offset: number,
 ): Segment | DegenerateSegment {
   if (segment instanceof Line) {
     return offsetLine(segment, offset);
@@ -38,18 +38,18 @@ export function offsetLine(line: Line, offset: number): Line {
   const normal = line.normalVector;
   return new Line(
     add(firstPoint, scalarMultiply(normal, offset)),
-    add(lastPoint, scalarMultiply(normal, offset))
+    add(lastPoint, scalarMultiply(normal, offset)),
   );
 }
 
 export function offsetArc(arc: Arc, offset: number): Arc | DegenerateSegment {
   const offsetStartPoint = add(
     arc.firstPoint,
-    scalarMultiply(perpendicular(arc.tangentAtFirstPoint), offset)
+    scalarMultiply(perpendicular(arc.tangentAtFirstPoint), offset),
   );
   const offsetEndPoint = add(
     arc.lastPoint,
-    scalarMultiply(perpendicular(arc.tangentAtLastPoint), offset)
+    scalarMultiply(perpendicular(arc.tangentAtLastPoint), offset),
   );
 
   const orientedOffset = offset * (arc.clockwise ? 1 : -1);

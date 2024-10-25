@@ -11,7 +11,7 @@ import { Transformable } from "./utils/Transformable.js";
 export type Stroke = AbstractStroke<any>;
 
 export abstract class AbstractStroke<
-  T extends AbstractStroke<T>
+  T extends AbstractStroke<T>,
 > extends Transformable<T> {
   readonly segments: Segment[];
 
@@ -50,8 +50,8 @@ export abstract class AbstractStroke<
     return this.segments.some((segment) =>
       other.segments.some(
         (otherSegment) =>
-          findIntersectionsAndOverlaps(segment, otherSegment).count > 0
-      )
+          findIntersectionsAndOverlaps(segment, otherSegment).count > 0,
+      ),
     );
   }
 
@@ -92,7 +92,7 @@ export abstract class AbstractStroke<
 
 export function checkSelfIntersections(
   segments: Segment[],
-  type = "Stroke"
+  type = "Stroke",
 ): void {
   allCombinations(segments.length).forEach(
     ([segmentIndex, otherSegmentIndex]) => {
@@ -135,22 +135,22 @@ export function checkSelfIntersections(
           (sameVector(
             segment.firstPoint,
             intersections.intersections[0],
-            epsilon
+            epsilon,
           ) &&
             sameVector(
               segment.lastPoint,
               intersections.intersections[1],
-              epsilon
+              epsilon,
             )) ||
           (sameVector(
             segment.firstPoint,
             intersections.intersections[1],
-            epsilon
+            epsilon,
           ) &&
             sameVector(
               segment.lastPoint,
               intersections.intersections[0],
-              epsilon
+              epsilon,
             ))
         )
           return;
@@ -160,10 +160,10 @@ export function checkSelfIntersections(
         `${type} segments must not intersect, but segments ${
           segment.info
         } and ${otherSegment.info} do at ${JSON.stringify(
-          intersections.intersections
-        )}`
+          intersections.intersections,
+        )}`,
       );
-    }
+    },
   );
 }
 
@@ -175,9 +175,9 @@ export function checkValidStroke(segments: Segment[], type = "Stroke"): void {
     ([segment, nextSegment]) => {
       if (!sameVector(segment.lastPoint, nextSegment.firstPoint))
         throw new Error(
-          `${type} segments must be connected, but ${segment.info} and ${nextSegment.info} are not`
+          `${type} segments must be connected, but ${segment.info} and ${nextSegment.info} are not`,
         );
-    }
+    },
   );
 
   checkSelfIntersections(segments, type);

@@ -31,18 +31,18 @@ describe("linelineDistance", () => {
     expect(lineLineDistance(line1, new Line([0, 1], [5, 1]))).toBeCloseTo(1);
 
     expect(lineLineDistance(line1, new Line([2, 1], [5, 1]))).toBeCloseTo(
-      Math.sqrt(2)
+      Math.sqrt(2),
     );
     expect(lineLineDistance(line1, new Line([-20, 1], [-2, 1]))).toBeCloseTo(
-      Math.sqrt(2)
+      Math.sqrt(2),
     );
 
     expect(lineLineDistance(new Line([0, 1], [5, 1]), line1)).toBeCloseTo(1);
     expect(lineLineDistance(new Line([2, 1], [5, 1]), line1)).toBeCloseTo(
-      Math.sqrt(2)
+      Math.sqrt(2),
     );
     expect(lineLineDistance(new Line([-20, 1], [-2, 1]), line1)).toBeCloseTo(
-      Math.sqrt(2)
+      Math.sqrt(2),
     );
   });
 });

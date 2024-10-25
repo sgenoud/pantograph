@@ -8,7 +8,7 @@ import { solveGenericPolynomial } from "../solvers/solvePolynomials.js";
 
 export function ellipseEllipseIntersection(
   arc1: EllipseArc | Arc,
-  arc2: EllipseArc
+  arc2: EllipseArc,
 ): Vector[] {
   const epsilon = Math.max(arc1.precision, arc2.precision);
 
@@ -106,7 +106,7 @@ export function ellipseEllipseIntersection(
 
   const yValues = solveGenericPolynomial(
     [polynomial.z0, polynomial.z1, polynomial.z2, polynomial.z3, polynomial.z4],
-    epsilon
+    epsilon,
   );
 
   const points = yValues.flatMap((y) => {

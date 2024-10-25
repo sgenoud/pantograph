@@ -16,7 +16,7 @@ export function wrapSVG(
   body: string,
   boundingBox: BoundingBox,
   margin = 1,
-  unit: null | SVGUnit
+  unit: null | SVGUnit,
 ) {
   const vbox = SVGViewbox(boundingBox, margin);
   const sizes = unit

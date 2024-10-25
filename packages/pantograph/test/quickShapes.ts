@@ -17,7 +17,7 @@ export const polygon = (sortedPoints: Vector[]) => {
   const shape = linesFromPoints(sortedPoints);
   if (!sameVector(sortedPoints[0], sortedPoints[sortedPoints.length - 1])) {
     shape.push(
-      new Line(sortedPoints[sortedPoints.length - 1], sortedPoints[0])
+      new Line(sortedPoints[sortedPoints.length - 1], sortedPoints[0]),
     );
   }
   return new Loop(shape);

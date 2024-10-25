@@ -15,7 +15,7 @@ export class Strand extends AbstractStroke<Strand> {
   clone(): Strand {
     return new Strand(
       this.segments.map((segment) => segment.clone()),
-      { ignoreChecks: true }
+      { ignoreChecks: true },
     );
   }
 
@@ -36,7 +36,7 @@ export class Strand extends AbstractStroke<Strand> {
   transform(matrix: TransformationMatrix): Strand {
     return new Strand(
       this.segments.map((segment) => segment.transform(matrix)),
-      { ignoreChecks: true }
+      { ignoreChecks: true },
     );
   }
 }

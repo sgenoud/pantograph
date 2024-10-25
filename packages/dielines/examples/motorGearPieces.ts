@@ -7,7 +7,7 @@ export function toothedGear(
   outerRadius: number,
   toothDepth: number,
   teethCount = 80,
-  mode = "straight"
+  mode = "straight",
 ) {
   const angle = 360 / teethCount;
   const innerRadius = outerRadius - toothDepth;
@@ -30,7 +30,7 @@ export function teethStrip(
   toothWidth: number,
   toothHeight: number,
   toothDepth: number,
-  teethCount: number
+  teethCount: number,
 ) {
   const totalWidth = toothWidth * 2 + toothDepth;
   const totalHeight = toothHeight * teethCount;
@@ -56,7 +56,7 @@ export function teethStrip(
 export function circleWithPasteFlaps(
   radius: number,
   flapHeight: number,
-  flapWidth: number
+  flapWidth: number,
 ) {
   const perimeter = 2 * Math.PI * radius;
   const flapCount = Math.ceil(perimeter / flapWidth);
@@ -87,7 +87,7 @@ export function smallPasteFlapsStrip(
   width: number,
   height: number,
   flapHeight = 5,
-  flapWidth = 5
+  flapWidth = 5,
 ) {
   const flapCount = Math.ceil(width / flapWidth);
 
@@ -116,7 +116,7 @@ export function smallPasteFlapsStrip(
 export function triangularFlap(
   partWidth: number,
   height: number,
-  foldHeight: number
+  foldHeight: number,
 ) {
   const base = new Dieline(drawRect(partWidth, height));
 
@@ -127,7 +127,7 @@ export function triangularFlap(
           contraction: foldHeight * 2,
           contractionMode: "sharp",
         })
-        .translateY(height / 2)
+        .translateY(height / 2),
     )
     .fuseFold(
       drawFlaps
@@ -135,7 +135,7 @@ export function triangularFlap(
           contraction: foldHeight * 2,
           contractionMode: "sharp",
         })
-        .translateY(-height / 2)
+        .translateY(-height / 2),
     );
 
   return base
@@ -145,7 +145,7 @@ export function triangularFlap(
     .fuseFold(
       drawFlaps
         .right(height, foldHeight, { contractionMode: "sharp" })
-        .translateX(partWidth * 1.5)
+        .translateX(partWidth * 1.5),
     );
 }
 
@@ -154,15 +154,15 @@ export function starExtrusionWithFlaps(
   extrusionDepth,
   sideLength,
   sides,
-  flapHeight
+  flapHeight,
 ) {
   const oneSpike = new Dieline(
-    drawRect(extrusionDepth, sideLength).translateY(sideLength / 2)
+    drawRect(extrusionDepth, sideLength).translateY(sideLength / 2),
   );
   oneSpike.fuseFold(oneSpike.clone().mirror("x"));
 
   const allSpikes = linearSpread(2 * sideLength, sides, "y").distribute(
-    oneSpike
+    oneSpike,
   );
 
   const doubleTriangle = new Dieline(
@@ -170,7 +170,7 @@ export function starExtrusionWithFlaps(
       .vLine(sideLength)
       .line(-flapHeight, -sideLength)
       .closeWithMirror(),
-    { cutLines: [draw([0, 0]).hLine(-flapHeight).asStrand()] }
+    { cutLines: [draw([0, 0]).hLine(-flapHeight).asStrand()] },
   ).translateX(-extrusionDepth / 2);
 
   const triangleSpread = linearSpread(2 * sideLength, sides + 1, "y");
@@ -197,7 +197,7 @@ export function starExtrusionWithFlaps(
         contractionMode: "sharp",
       })
       .translateY(-sideLength * sides),
-    "forwards"
+    "forwards",
   );
 
   return accordeon;

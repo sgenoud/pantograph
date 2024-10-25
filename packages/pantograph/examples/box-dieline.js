@@ -13,7 +13,7 @@ function drawFlap(
     contractionRight: contractionRightInput,
     leftContractionMode,
     rightContractionMode,
-  } = {}
+  } = {},
 ) {
   const contractionLeft = contractionLeftInput ?? contraction;
   const contractionRight = contractionRightInput ?? contraction;
@@ -66,7 +66,7 @@ function leftFlap(
     topContractionMode,
     bottomContractionMode,
     ...options
-  }
+  },
 ) {
   return drawFlap(width, height, {
     contractionLeft: contractionTop,
@@ -150,7 +150,7 @@ class Dieline extends Transformable {
     const newDieline = new Dieline(
       this.body.transform(matrix),
       this.cuts.map((cut) => cut.transform(matrix)),
-      this.folds.map((fold) => fold.transform(matrix))
+      this.folds.map((fold) => fold.transform(matrix)),
     );
 
     return newDieline;
@@ -226,7 +226,7 @@ function basicTray(width, height, depth, { paperThickness = 0.2 } = {}) {
   // bumps
   const backSide = new Dieline(
     // The back side of the tray
-    drawRect(width - 2 * paperThickness, depth).translateY(depth / 2)
+    drawRect(width - 2 * paperThickness, depth).translateY(depth / 2),
   )
     .fuseFold(
       // the inner side of the back side of the tray (that folds on top of the
@@ -236,7 +236,7 @@ function basicTray(width, height, depth, { paperThickness = 0.2 } = {}) {
           contraction: 3 * paperThickness,
           fillet: 0,
         })
-        .translateY(depth)
+        .translateY(depth),
     )
     .translateY(height / 2);
 
@@ -261,14 +261,14 @@ function basicTray(width, height, depth, { paperThickness = 0.2 } = {}) {
         .top(depth, innerFlapHeight, {
           contractionLeft: 2 * paperThickness,
         })
-        .translateY(height / 2)
+        .translateY(height / 2),
     )
     .fuseFold(
       drawFlaps
         .bottom(depth, innerFlapHeight, {
           contractionLeft: 2 * paperThickness,
         })
-        .translateY(-height / 2)
+        .translateY(-height / 2),
     )
     .translateX(-width / 2 - depth / 2);
 

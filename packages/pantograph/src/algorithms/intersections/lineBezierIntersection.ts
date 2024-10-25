@@ -6,7 +6,7 @@ import { Vector } from "../../definitions.js";
 
 export function lineBezierIntersection(
   line: Line,
-  curve: CubicBezier | QuadraticBezier
+  curve: CubicBezier | QuadraticBezier,
 ): Vector[] {
   const [x1, y1] = line.firstPoint;
   const [x2, y2] = line.lastPoint;

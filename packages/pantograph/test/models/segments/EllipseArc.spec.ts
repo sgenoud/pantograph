@@ -56,10 +56,10 @@ describe("EllipseArc", () => {
 
   it("should handle major and minor axes correctly when tilted", () => {
     const arc = new EllipseArc([0, 0], [2, 1], [2, 0], 2, 1, 0, true).rotate(
-      33
+      33,
     );
     const arc2 = new EllipseArc([0, 0], [2, 1], [2, 0], 1, 2, -90, true).rotate(
-      33
+      33,
     );
 
     expect(arc.majorRadius).toBe(2);
@@ -79,7 +79,7 @@ describe("EllipseArc", () => {
 
   it("should handle tilt angle correctly", () => {
     const arc = new EllipseArc([-2, 0], [2, 0], [0, 0], 2, 1, 0, true).rotate(
-      -33
+      -33,
     );
     //debugImg(arc);
     expect(arc.tiltAngle * RAD2DEG).toBeCloseTo(360 - 33);
@@ -105,10 +105,10 @@ describe("EllipseArc", () => {
 
   it("should compute the bounding box correctly", () => {
     const arc = new EllipseArc([0, 0], [2, 1], [2, 0], 2, 1, 0, false).rotate(
-      22
+      22,
     );
     const arc2 = new EllipseArc([0, 0], [2, 1], [2, 0], 2, 1, 0, true).rotate(
-      22
+      22,
     );
     expect(arc.boundingBox).toMatchSnapshot();
     expect(arc2.boundingBox).toMatchSnapshot();

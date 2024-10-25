@@ -16,7 +16,7 @@ const importSegment = (json: any) => {
       json.firstPoint,
       json.lastPoint,
       json.center,
-      json.clockwise
+      json.clockwise,
     );
   }
   if (json.type === "ELLIPSE_ARC") {
@@ -28,14 +28,14 @@ const importSegment = (json: any) => {
       json.minorRadius,
       json.tiltAngle,
       json.clockwise,
-      { angleUnits: "rad" }
+      { angleUnits: "rad" },
     );
   }
   if (json.type === "QUADRATIC_BEZIER") {
     return new QuadraticBezier(
       json.firstPoint,
       json.lastPoint,
-      json.controlPoint
+      json.controlPoint,
     );
   }
   if (json.type === "CUBIC_BEZIER") {
@@ -43,7 +43,7 @@ const importSegment = (json: any) => {
       json.firstPoint,
       json.lastPoint,
       json.firstControlPoint,
-      json.lastControlPoint
+      json.lastControlPoint,
     );
   }
   throw new Error("Unknown segment type");

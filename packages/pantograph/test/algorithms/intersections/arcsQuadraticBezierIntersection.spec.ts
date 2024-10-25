@@ -14,7 +14,7 @@ describe("arcsQuadraticBezierIntersection", () => {
       const arc = new Arc([0, -1.5], [1.5, 0], [0, 0]).rotate(-30);
       const curve = new QuadraticBezier([0, 0], [1, 1], [0, 1.1]).translate(
         0.5,
-        -1.8
+        -1.8,
       );
       const intersections = arcsQuadraticBezierIntersection(arc, curve);
 
@@ -27,7 +27,7 @@ describe("arcsQuadraticBezierIntersection", () => {
       const arc = new Arc([0, -1.5], [1.5, 0], [0, 0]).rotate(-30);
       const curve = new QuadraticBezier([0, 0], [1, 1], [0, 1.1]).translate(
         0.5,
-        -1.5
+        -1.5,
       );
       const intersections = arcsQuadraticBezierIntersection(arc, curve);
 
@@ -59,7 +59,7 @@ describe("arcsQuadraticBezierIntersection", () => {
       const arc = new Arc([0, -1.5], [1.5, 0], [0, 0]).rotate(-30);
       const curve = new QuadraticBezier([0, 0], [1, 1], [1, 0.1]).translate(
         0.5,
-        0
+        0,
       );
       const intersections = arcsQuadraticBezierIntersection(arc, curve);
 
@@ -71,11 +71,11 @@ describe("arcsQuadraticBezierIntersection", () => {
   describe("should return the intersection points of an ellipse arc and cubic curve", () => {
     it("works for 2 intersection points", () => {
       const arc = new EllipseArc([0, 0], [2, 1], [2, 0], 2, 1, 0, true).rotate(
-        5
+        5,
       );
       const curve = new QuadraticBezier([0, 0], [1, 1], [1, 0.1]).translate(
         -0.1,
-        0.2
+        0.2,
       );
       const intersections = arcsQuadraticBezierIntersection(arc, curve);
 
@@ -86,11 +86,11 @@ describe("arcsQuadraticBezierIntersection", () => {
 
     it("works for 1 intersection points", () => {
       const arc = new EllipseArc([0, 0], [2, 1], [2, 0], 2, 1, 0, true).rotate(
-        -25
+        -25,
       );
       const curve = new QuadraticBezier([0, 0], [1, 1], [1, 0.1]).translate(
         -0.6,
-        -0.5
+        -0.5,
       );
       const intersections = arcsQuadraticBezierIntersection(arc, curve);
 
@@ -101,11 +101,11 @@ describe("arcsQuadraticBezierIntersection", () => {
 
     it("works for no intersection points", () => {
       const arc = new EllipseArc([0, 0], [2, 1], [2, 0], 2, 1, 0, true).rotate(
-        5
+        5,
       );
       const curve = new QuadraticBezier([0, 0], [1, 1], [1, 0.1]).translate(
         1,
-        -0.5
+        -0.5,
       );
       const intersections = arcsQuadraticBezierIntersection(arc, curve);
 

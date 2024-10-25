@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "moduleResolution": "nodenext",
-    "target": "es6",
-    "module": "es2015",
+    "moduleResolution": "bundler",
+    "target": "esnext",
+    "module": "esnext",
     "strict": true,
     "preserveSymlinks": false,
     "sourceMap": true,

@@ -15,7 +15,7 @@ describe("arcEllipseArcIntersection", () => {
         3,
         0.5,
         0,
-        true
+        true,
       ).rotate(45);
       const ellipseArc = new EllipseArc([0, 0], [2, 1], [2, 0], 2, 1, 0, false)
         .translateX(-2)
@@ -35,7 +35,7 @@ describe("arcEllipseArcIntersection", () => {
         3,
         0.5,
         0,
-        false
+        false,
       ).rotate(45);
       const ellipseArc = new EllipseArc([0, 0], [2, 1], [2, 0], 2, 1, 0, false)
         .translateX(-2)
@@ -71,7 +71,7 @@ describe("arcEllipseArcIntersection", () => {
       2,
       1,
       0,
-      false
+      false,
     ).translateX(-2);
 
     const intersections = ellipseArcEllipseArcIntersection(arc, ellipseArc);
@@ -104,12 +104,12 @@ describe("arcEllipseArcIntersection", () => {
       2,
       1,
       0,
-      false
+      false,
     ).translateX(-2);
     const intersections = ellipseArcEllipseArcIntersection(
       arc,
       ellipseArc,
-      true
+      true,
     );
 
     //debugImg([arc, ellipseArc, ...intersections.map((p) => dpnt(p))]);
@@ -125,7 +125,7 @@ describe("arcEllipseArcIntersection", () => {
       [-5.088448176547862, -0.3281693992235354],
       20,
       4,
-      15
+      15,
     );
     const intersections = ellipseArcEllipseArcIntersection(arc1, arc2, true);
 
@@ -143,7 +143,7 @@ describe("arcEllipseArcIntersection", () => {
         2,
         1,
         0,
-        false
+        false,
       ).translateX(-2);
 
       const p0 = ellipseArc.paramPoint(-0.2);
@@ -154,7 +154,7 @@ describe("arcEllipseArcIntersection", () => {
       const intersections = ellipseArcEllipseArcIntersection(
         arc,
         ellipseArc,
-        true
+        true,
       );
 
       //debugImg([arc, ellipseArc, ...intersections]);
@@ -171,7 +171,7 @@ describe("arcEllipseArcIntersection", () => {
         2,
         1,
         0,
-        false
+        false,
       ).translateX(-2);
 
       const p0 = ellipseArc.paramPoint(0.4);
@@ -182,7 +182,7 @@ describe("arcEllipseArcIntersection", () => {
       const intersections = ellipseArcEllipseArcIntersection(
         arc,
         ellipseArc,
-        true
+        true,
       );
 
       //debugImg([arc, ellipseArc, ...intersections]);
@@ -199,7 +199,7 @@ describe("arcEllipseArcIntersection", () => {
         2,
         1,
         0,
-        false
+        false,
       ).translateX(-2);
 
       const p0 = ellipseArc.paramPoint(0.4);
@@ -210,7 +210,7 @@ describe("arcEllipseArcIntersection", () => {
       const intersections = ellipseArcEllipseArcIntersection(
         arc.rotate(33),
         ellipseArc.rotate(33),
-        true
+        true,
       );
 
       //debugImg([arc.rotate(33), ellipseArc.rotate(33), ...intersections]);
@@ -227,7 +227,7 @@ describe("arcEllipseArcIntersection", () => {
         2,
         1,
         0,
-        false
+        false,
       ).translateX(-2);
 
       const p0 = ellipseArc.paramPoint(-0.2);
@@ -238,7 +238,7 @@ describe("arcEllipseArcIntersection", () => {
       const intersections = ellipseArcEllipseArcIntersection(
         arc,
         ellipseArc,
-        true
+        true,
       );
 
       //debugImg([arc, ellipseArc, ...intersections]);

@@ -37,7 +37,7 @@ const parseSmoothCurveConfig = (
         startTangent?: number | Vector;
         startFactor?: number;
         endFactor?: number;
-      }
+      },
 ) => {
   let conf: {
     endTangent: number | Vector;
@@ -81,7 +81,7 @@ const parseSmoothCurveConfig = (
 
 function loopySegmentsToDiagram(
   segments: Segment[],
-  { ignoreChecks = false } = {}
+  { ignoreChecks = false } = {},
 ) {
   // Here we will need to do our best to fix cases where the drawing is
   // broken in some way (i.e. self-intersecting loops)
@@ -107,7 +107,7 @@ export class DrawingPen {
   movePointerTo(point: Vector): this {
     if (this.pendingSegments.length)
       throw new Error(
-        "You can only move the pointer if there is no segment defined"
+        "You can only move the pointer if there is no segment defined",
       );
 
     this.pointer = point;
@@ -132,7 +132,7 @@ export class DrawingPen {
       this._nextCorner.mode === "chamfer" ? chamferSegments : filletSegments;
 
     this.pendingSegments.push(
-      ...makeCorner(previousSegment, segment, this._nextCorner.radius)
+      ...makeCorner(previousSegment, segment, this._nextCorner.radius),
     );
     this._nextCorner = null;
     return this;
@@ -196,12 +196,12 @@ export class DrawingPen {
     xDist: number,
     yDist: number,
     viaXDist: number,
-    viaYDist: number
+    viaYDist: number,
   ): this {
     const [x0, y0] = this.pointer;
     return this.threePointsArcTo(
       [x0 + xDist, y0 + yDist],
-      [x0 + viaXDist, y0 + viaYDist]
+      [x0 + viaXDist, y0 + viaYDist],
     );
   }
 
@@ -218,7 +218,7 @@ export class DrawingPen {
   sagittaArc(xDist: number, yDist: number, sagitta: number): this {
     return this.sagittaArcTo(
       [xDist + this.pointer[0], yDist + this.pointer[1]],
-      sagitta
+      sagitta,
     );
   }
 
@@ -241,7 +241,7 @@ export class DrawingPen {
   bulgeArc(xDist: number, yDist: number, bulge: number): this {
     return this.bulgeArcTo(
       [xDist + this.pointer[0], yDist + this.pointer[1]],
-      bulge
+      bulge,
     );
   }
 
@@ -263,8 +263,8 @@ export class DrawingPen {
       tangentArc(
         this.pointer,
         end,
-        tangentAtStart ?? previousCurve.tangentAtLastPoint
-      )
+        tangentAtStart ?? previousCurve.tangentAtLastPoint,
+      ),
     );
 
     this.pointer = end;
@@ -282,10 +282,10 @@ export class DrawingPen {
     r1: number,
     xAxisRotation: number,
     longArc: boolean,
-    sweepFlag: boolean
+    sweepFlag: boolean,
   ): this {
     this.saveSegment(
-      svgEllipse(this.pointer, end, r0, r1, xAxisRotation, longArc, sweepFlag)
+      svgEllipse(this.pointer, end, r0, r1, xAxisRotation, longArc, sweepFlag),
     );
     this.pointer = end;
     return this;
@@ -298,7 +298,7 @@ export class DrawingPen {
     r1: number,
     xAxisRotation: number,
     longArc: boolean,
-    sweepFlag: boolean
+    sweepFlag: boolean,
   ): this {
     return this.ellipseTo(
       [xDist + this.pointer[0], yDist + this.pointer[1]],
@@ -306,7 +306,7 @@ export class DrawingPen {
       r1,
       xAxisRotation,
       longArc,
-      sweepFlag
+      sweepFlag,
     );
   }
 
@@ -319,24 +319,24 @@ export class DrawingPen {
       Math.abs(sagitta),
       angle * RAD2DEG,
       true,
-      sagitta > 0
+      sagitta > 0,
     );
   }
 
   halfEllipse(xDist: number, yDist: number, sagitta: number): this {
     return this.halfEllipseTo(
       [xDist + this.pointer[0], yDist + this.pointer[1]],
-      sagitta
+      sagitta,
     );
   }
 
   cubicBezierCurveTo(
     end: Vector,
     startControlPoint: Vector,
-    endControlPoint: Vector
+    endControlPoint: Vector,
   ): this {
     this.saveSegment(
-      new CubicBezier(this.pointer, end, startControlPoint, endControlPoint)
+      new CubicBezier(this.pointer, end, startControlPoint, endControlPoint),
     );
     this.pointer = end;
     return this;
@@ -358,7 +358,7 @@ export class DrawingPen {
           startTangent?: number | Vector;
           startFactor?: number;
           endFactor?: number;
-        }
+        },
   ): this {
     const { endTangent, startTangent, startFactor, endFactor } =
       parseSmoothCurveConfig(config);
@@ -406,11 +406,11 @@ export class DrawingPen {
           startTangent?: number | Vector;
           startFactor?: number;
           endFactor?: number;
-        }
+        },
   ) {
     return this.smoothCurveTo(
       [xDist + this.pointer[0], yDist + this.pointer[1]],
-      config
+      config,
     );
   }
 
@@ -426,7 +426,7 @@ export class DrawingPen {
 
   protected _customCornerLastWithFirst(
     radius: number,
-    mode: "fillet" | "chamfer" = "fillet"
+    mode: "fillet" | "chamfer" = "fillet",
   ) {
     if (!radius) return;
 
@@ -454,7 +454,7 @@ export class DrawingPen {
     if (this._nextCorner !== null) {
       this._customCornerLastWithFirst(
         this._nextCorner.radius,
-        this._nextCorner.mode
+        this._nextCorner.mode,
       );
       this._nextCorner = null;
     }
@@ -471,21 +471,21 @@ export class DrawingPen {
 
     const mirrorVector = subtract(
       lastSegment.lastPoint,
-      firstSegment.firstPoint
+      firstSegment.firstPoint,
     );
     const mirrorTranform = new TransformationMatrix().mirrorLine(
       mirrorVector,
-      firstSegment.firstPoint
+      firstSegment.firstPoint,
     );
 
     const mirroredSegments = this.pendingSegments.map((segment) =>
-      segment.transform(mirrorTranform).reverse()
+      segment.transform(mirrorTranform).reverse(),
     );
     mirroredSegments.reverse();
 
     return loopySegmentsToDiagram(
       [...this.pendingSegments, ...mirroredSegments],
-      { ignoreChecks }
+      { ignoreChecks },
     );
   }
 

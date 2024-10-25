@@ -55,25 +55,26 @@ const addContainmentInfo = (groupedLoops: Loop[]): ContainedLoop[] => {
 
 const splitMultipleOuterLoops = (
   outerLoops: ContainedLoop[],
-  allLoops: ContainedLoop[]
+  allLoops: ContainedLoop[],
 ): ContainedLoop[][] => {
   return outerLoops.flatMap(({ loop: outerLoop }) => {
     return cleanEdgeCases(
       allLoops.filter(
-        ({ loop, isIn }) => loop === outerLoop || isIn.indexOf(outerLoop) !== -1
-      )
+        ({ loop, isIn }) =>
+          loop === outerLoop || isIn.indexOf(outerLoop) !== -1,
+      ),
     );
   });
 };
 
 const handleNestedLoops = (
   nestedLoops: ContainedLoop[],
-  allLoops: ContainedLoop[]
+  allLoops: ContainedLoop[],
 ): ContainedLoop[][] => {
   const firstLevelOuterLoops = allLoops.filter(({ isIn }) => isIn.length <= 1);
 
   const innerLevelsLoops = cleanEdgeCases(
-    addContainmentInfo(nestedLoops.map(({ loop }) => loop))
+    addContainmentInfo(nestedLoops.map(({ loop }) => loop)),
   );
   return [firstLevelOuterLoops, ...innerLevelsLoops];
 };

@@ -6,7 +6,7 @@ import { Vector } from "../../definitions.js";
 export function lineEllipseArcIntersection(
   line: Line,
   arc: EllipseArc,
-  precision = 1e-9
+  precision = 1e-9,
 ) {
   const lineP = line.transform(arc.ellipseReferenceFrameTransform);
 
@@ -26,7 +26,7 @@ export function lineEllipseArcIntersection(
   const filterIntersectionInRef = (intersections: Vector[]) =>
     intersections
       .map((point) =>
-        arc.reverseEllipseReferenceFrameTransform.transform(point)
+        arc.reverseEllipseReferenceFrameTransform.transform(point),
       )
       .filter((point) => line.isOnSegment(point) && arc.isOnSegment(point));
 

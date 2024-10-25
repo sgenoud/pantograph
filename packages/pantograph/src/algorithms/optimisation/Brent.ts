@@ -9,7 +9,7 @@ function bracket(
   xa = 0.0,
   xb = 1.0,
   grow_limit = 110.0,
-  maxiter = 1000
+  maxiter = 1000,
 ) {
   let denom, fa, fb, fc, funcalls, fw, iter, tmp1, tmp2, val, w, wlim, xc;
 
@@ -119,7 +119,7 @@ class BrentOptimization {
   constructor(
     public readonly func: (x: number) => number,
     public readonly tol = 1.48e-8,
-    public readonly maxiter = 500
+    public readonly maxiter = 500,
   ) {
     this.func = func;
     this.tol = tol;
@@ -169,7 +169,7 @@ class BrentOptimization {
           funcalls = 3;
         } else {
           throw new Error(
-            "Bracketing interval must be length 2 or 3 sequence."
+            "Bracketing interval must be length 2 or 3 sequence.",
           );
         }
       }
@@ -337,7 +337,7 @@ class BrentOptimization {
 export function findScalarMinimum(
   fun: (x: number) => number,
   tolerance = 1e-8,
-  maxIterations = 1000
+  maxIterations = 1000,
 ) {
   const optimiser = new BrentOptimization(fun, tolerance, maxIterations);
   optimiser.setBracket([0, 1]);

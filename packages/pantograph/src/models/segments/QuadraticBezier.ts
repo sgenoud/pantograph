@@ -23,7 +23,7 @@ export class QuadraticBezier extends AbstractSegment<QuadraticBezier> {
   constructor(
     firstPoint: Vector,
     lastPoint: Vector,
-    controlPoint: Vector
+    controlPoint: Vector,
     //{ ignoreChecks = false } = {}
   ) {
     super(firstPoint, lastPoint);
@@ -70,7 +70,7 @@ export class QuadraticBezier extends AbstractSegment<QuadraticBezier> {
     return new QuadraticBezier(
       this.firstPoint,
       this.lastPoint,
-      this.controlPoint
+      this.controlPoint,
     );
   }
 
@@ -78,7 +78,7 @@ export class QuadraticBezier extends AbstractSegment<QuadraticBezier> {
     return new QuadraticBezier(
       this.lastPoint,
       this.firstPoint,
-      this.controlPoint
+      this.controlPoint,
     );
   }
 
@@ -102,7 +102,7 @@ export class QuadraticBezier extends AbstractSegment<QuadraticBezier> {
     if (status.argMin < -this.precision || status.argMin > 1 + this.precision) {
       return Math.min(
         distance(this.firstPoint, element),
-        distance(this.lastPoint, element)
+        distance(this.lastPoint, element),
       );
     }
     return Math.sqrt(status.fMin);
@@ -151,7 +151,7 @@ export class QuadraticBezier extends AbstractSegment<QuadraticBezier> {
 
   splitAtParameters(
     params: number[],
-    paramsMap: null | Map<number, Vector> = null
+    paramsMap: null | Map<number, Vector> = null,
   ): QuadraticBezier[] {
     const splitParams = [...params];
     splitParams.sort((a, b) => a - b);
@@ -181,19 +181,19 @@ export class QuadraticBezier extends AbstractSegment<QuadraticBezier> {
 
       const splitHistory = deCasteljauWithHistory(
         [previousPointInfo.p0, previousPointInfo.p1, this.lastPoint],
-        paramCloseTo1 ? 1 : param
+        paramCloseTo1 ? 1 : param,
       );
 
       const splitPoint = paramCloseTo1
         ? this.lastPoint
-        : paramsMap?.get(originalParam) ?? splitHistory[0][0];
+        : (paramsMap?.get(originalParam) ?? splitHistory[0][0]);
       const newControlPoint = splitHistory[1][0];
       const newNextControlPoint = splitHistory[1][1];
 
       const newSegment = new QuadraticBezier(
         previousPointInfo.p0,
         splitPoint,
-        newControlPoint
+        newControlPoint,
       );
 
       previousPointInfo = {
@@ -209,7 +209,7 @@ export class QuadraticBezier extends AbstractSegment<QuadraticBezier> {
           new QuadraticBezier(
             previousPointInfo.p0,
             this.lastPoint,
-            previousPointInfo.p1
+            previousPointInfo.p1,
           ),
         ];
       }
@@ -235,7 +235,7 @@ export class QuadraticBezier extends AbstractSegment<QuadraticBezier> {
     // We use a map here, because we want to keep the entered split points
     // exactly (no change from the transformation from and to params).
     const paramsMap = new Map<number, Vector>(
-      zip([splitParams, splitPoints]) as [number, Vector][]
+      zip([splitParams, splitPoints]) as [number, Vector][],
     );
 
     return this.splitAtParameters(splitParams, paramsMap);
@@ -245,7 +245,7 @@ export class QuadraticBezier extends AbstractSegment<QuadraticBezier> {
     return new QuadraticBezier(
       matrix.transform(this.firstPoint),
       matrix.transform(this.lastPoint),
-      matrix.transform(this.controlPoint)
+      matrix.transform(this.controlPoint),
     );
   }
 
@@ -287,7 +287,7 @@ export class QuadraticBezier extends AbstractSegment<QuadraticBezier> {
   paramsAtY(y: number) {
     const [z0, z1, z2] = this.polynomialCoefficients[1];
     return solveQuadratic(z0 - y, z1, z2).filter(
-      (z) => z >= -this.precision && z <= 1 + this.precision
+      (z) => z >= -this.precision && z <= 1 + this.precision,
     );
   }
 

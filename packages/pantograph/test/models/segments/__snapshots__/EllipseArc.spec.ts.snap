@@ -20,7 +20,12 @@ BoundingBox {
 
 exports[`svgEllipse > changes the tilt angle as expected 1`] = `
 EllipseArc {
+  "_boundingBox": undefined,
   "_coefficients": null,
+  "_deltaAngle": undefined,
+  "_ellipseReferenceFrameTransform": undefined,
+  "_exentricity": undefined,
+  "_firstAngle": undefined,
   "_focals": [
     [
       -6.459860961089884,
@@ -31,7 +36,10 @@ EllipseArc {
       -7.688681533833915,
     ],
   ],
+  "_lastAngle": undefined,
   "_linearExentricity": 40,
+  "_reverseEllipseReferenceFrameTransform": undefined,
+  "_rotateFromEllipseReferenceFrame": undefined,
   "center": [
     21.824410286372014,
     20.595589713627987,
@@ -55,7 +63,12 @@ EllipseArc {
 
 exports[`svgEllipse > draws the correct ellipse with the correct attributes 1`] = `
 EllipseArc {
+  "_boundingBox": undefined,
   "_coefficients": null,
+  "_deltaAngle": undefined,
+  "_ellipseReferenceFrameTransform": undefined,
+  "_exentricity": undefined,
+  "_firstAngle": undefined,
   "_focals": [
     [
       1.8332406094626617,
@@ -66,7 +79,10 @@ EllipseArc {
       1.0566252188258825,
     ],
   ],
+  "_lastAngle": undefined,
   "_linearExentricity": 2.8284271247461903,
+  "_reverseEllipseReferenceFrameTransform": undefined,
+  "_rotateFromEllipseReferenceFrame": undefined,
   "center": [
     -0.9951865152835286,
     1.0566252188258825,

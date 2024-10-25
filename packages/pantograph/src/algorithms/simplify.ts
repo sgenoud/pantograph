@@ -33,7 +33,7 @@ function extendSegment(segment1: Segment, segment2: Segment): Segment {
       segment1.firstPoint,
       segment2.lastPoint,
       segment1.center,
-      segment1.clockwise
+      segment1.clockwise,
     );
   }
 
@@ -64,7 +64,7 @@ export function simplifySegments(stroke: Stroke): Segment[] | null {
     if (
       canExtendSegment(
         simplifiedSegments[0],
-        simplifiedSegments[simplifiedSegments.length - 1]
+        simplifiedSegments[simplifiedSegments.length - 1],
       )
     ) {
       foundSimplification = true;

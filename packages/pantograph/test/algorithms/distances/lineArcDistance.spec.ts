@@ -20,10 +20,10 @@ describe("linelineDistance", () => {
     expect(lineArcDistance(new Line([2, 5], [2, -5]), arc)).toBeCloseTo(2);
     expect(lineArcDistance(new Line([-2, 5], [-2, -5]), arc)).toBeCloseTo(1.5);
     expect(lineArcDistance(new Line([-1, 0.1], [-1, -0.1]), arc)).toBeCloseTo(
-      0.9807
+      0.9807,
     );
     expect(lineArcDistance(new Line([-0.6, -1.5], [-0.6, 0]), arc)).toBeCloseTo(
-      0.1
+      0.1,
     );
   });
 });

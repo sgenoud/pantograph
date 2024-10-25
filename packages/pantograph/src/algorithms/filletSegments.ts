@@ -16,11 +16,11 @@ import { exportJSON } from "../main.js";
 function removeCorner(
   firstSegment: Segment,
   secondSegment: Segment,
-  radius: number
+  radius: number,
 ) {
   const sinAngle = crossProduct(
     firstSegment.tangentAtLastPoint,
-    secondSegment.tangentAtFirstPoint
+    secondSegment.tangentAtFirstPoint,
   );
 
   // This cover the case when the segments are colinear
@@ -70,14 +70,14 @@ function removeCorner(
 export function filletSegments(
   firstSegment: Segment,
   secondSegment: Segment,
-  radius: number
+  radius: number,
 ) {
   const cornerRemoved = removeCorner(firstSegment, secondSegment, radius);
   if (!cornerRemoved) {
     console.warn(
       "Cannot fillet between segments",
       firstSegment.repr,
-      secondSegment.repr
+      secondSegment.repr,
     );
     return [firstSegment, secondSegment];
   }
@@ -94,14 +94,14 @@ export function filletSegments(
 export function chamferSegments(
   firstSegment: Segment,
   secondSegment: Segment,
-  radius: number
+  radius: number,
 ) {
   const cornerRemoved = removeCorner(firstSegment, secondSegment, radius);
   if (!cornerRemoved) {
     console.warn(
       "Cannot chamfer between segments",
       firstSegment.repr,
-      secondSegment.repr
+      secondSegment.repr,
     );
     return [firstSegment, secondSegment];
   }

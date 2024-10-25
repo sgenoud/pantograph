@@ -32,7 +32,7 @@ export function linearDistribution(
   totalWidth: number,
   objectWidth: number,
   gapShare = 3,
-  margin = 0
+  margin = 0,
 ) {
   if (totalWidth <= objectWidth * 2) {
     throw new Error("totalWidth must be greater than twice the objectWidth");
@@ -40,14 +40,14 @@ export function linearDistribution(
 
   const objectsCount = Math.max(
     Math.floor((totalWidth - 2 * margin) / (objectWidth * (gapShare + 1))),
-    2
+    2,
   );
   const freeSpace = totalWidth - 2 * margin - objectsCount * objectWidth;
   const gapSize = freeSpace / (objectsCount - 1);
   const points: number[] = [];
   for (let i = 0; i < objectsCount; i++) {
     points.push(
-      margin + i * (objectWidth + gapSize) - totalWidth / 2 + objectWidth / 2
+      margin + i * (objectWidth + gapSize) - totalWidth / 2 + objectWidth / 2,
     );
   }
   return new PointsDistribution(points.map((p) => [p, 0]));
@@ -56,7 +56,7 @@ export function linearDistribution(
 export function linearSpread(
   gap: number,
   count: number,
-  direction: "x" | "y" = "x"
+  direction: "x" | "y" = "x",
 ) {
   const totalLength = gap * (count - 1);
   const points: number[] = [];
@@ -64,6 +64,6 @@ export function linearSpread(
     points.push(i * gap - totalLength / 2);
   }
   return new PointsDistribution(
-    points.map((p) => (direction.toLowerCase() === "x" ? [p, 0] : [0, p]))
+    points.map((p) => (direction.toLowerCase() === "x" ? [p, 0] : [0, p])),
   );
 }

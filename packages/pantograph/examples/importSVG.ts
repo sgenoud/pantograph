@@ -37,8 +37,8 @@ export function importSVG(svg: string, { width }: { width?: number } = {}) {
     strokes.push(
       drawRect(width, height, { rx, ry }).translate(
         x + width / 2,
-        y + height / 2
-      )
+        y + height / 2,
+      ),
     );
   }
 

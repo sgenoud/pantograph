@@ -20,7 +20,7 @@ describe("figure booleans", () => {
     it("should fuse holes", () => {
       const fusedFigures = fuseFiguresLists(
         [rectInRect],
-        [squareFig(2).transform(translation({ x: 1 }))]
+        [squareFig(2).transform(translation({ x: 1 }))],
       );
       expect(fusedFigures.length).toBe(1);
       expect(fusedFigures[0].contour).toBeLoop(rect(4, 4));
@@ -32,7 +32,7 @@ describe("figure booleans", () => {
     it("should fuse contour and keep holes", () => {
       const fusedFigures = fuseFiguresLists(
         [rectInRect.transform(translation({ x: -2 }))],
-        [rectInRect.transform(translation({ x: 2 }))]
+        [rectInRect.transform(translation({ x: 2 }))],
       );
       expect(fusedFigures.length).toBe(1);
       expect(fusedFigures[0].contour).toBeLoop(rect(8, 4));
@@ -45,7 +45,7 @@ describe("figure booleans", () => {
     it("should fuse contour and fuse holes", () => {
       const fusedFigures = fuseFiguresLists(
         [rectInRect.transform(translation({ x: -0.5 }))],
-        [rectInRect.transform(translation({ x: 0.5 }))]
+        [rectInRect.transform(translation({ x: 0.5 }))],
       );
       expect(fusedFigures.length).toBe(1);
       expect(fusedFigures[0].contour).toBeLoop(rect(5, 4));
@@ -70,7 +70,7 @@ describe("figure booleans", () => {
           [4, 0],
           [4, 4],
           [0, 4],
-        ])
+        ]),
       );
       expect(fusedFigures[0].holes).toBeEquivalentLoops([
         polygon([
@@ -122,12 +122,12 @@ describe("figure booleans", () => {
           [1, 1],
           [1, 3],
           [-3, 3],
-        ])
+        ]),
       );
       expect(cutFigures[0].holes).toEqual([]);
 
       expect(cutFigures[1].contour).toBeLoop(
-        rect(1, 1).transform(translation({ x: 2.5, y: 2.5 }))
+        rect(1, 1).transform(translation({ x: 2.5, y: 2.5 })),
       );
       expect(cutFigures[1].holes).toEqual([]);
     });
@@ -152,7 +152,7 @@ describe("figure booleans", () => {
           [-1, -1],
           [-1, 1],
           [0, 1],
-        ])
+        ]),
       );
       expect(cutFigures[0].holes).toEqual([]);
     });
@@ -185,7 +185,7 @@ describe("figure booleans", () => {
         ]),
       ]);
       expect(cutFigures[1].contour).toBeLoop(
-        rect(1, 2).transform(translation({ x: 0.5 }))
+        rect(1, 2).transform(translation({ x: 0.5 })),
       );
     });
 
@@ -207,12 +207,12 @@ describe("figure booleans", () => {
           [1, 1],
           [1, 3],
           [-3, 3],
-        ])
+        ]),
       );
       expect(cutFigures[0].holes).toBeEquivalentLoops([rect(1, 1)]);
 
       expect(cutFigures[1].contour).toBeLoop(
-        rect(1, 1).transform(translation({ x: 2.5, y: 2.5 }))
+        rect(1, 1).transform(translation({ x: 2.5, y: 2.5 })),
       );
       expect(cutFigures[1].holes).toEqual([]);
     });
@@ -239,7 +239,7 @@ describe("figure booleans", () => {
           [2.5, -2.5],
           [-2.5, -2.5],
           [-2.5, 2.5],
-        ])
+        ]),
       );
 
       expect(cutFigures[0].holes).toEqual([]);
@@ -251,7 +251,7 @@ describe("figure booleans", () => {
           [-1, 3],
           [3, 3],
           [3, -1],
-        ])
+        ]),
       );
       expect(cutFigures[1].holes).toEqual([]);
     });

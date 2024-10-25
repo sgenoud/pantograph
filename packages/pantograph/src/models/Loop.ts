@@ -42,7 +42,7 @@ export class Loop extends AbstractStroke<Loop> {
   clone(): Loop {
     return new Loop(
       this.segments.map((segment) => segment.clone()),
-      { ignoreChecks: true }
+      { ignoreChecks: true },
     );
   }
 
@@ -55,7 +55,7 @@ export class Loop extends AbstractStroke<Loop> {
   transform(matrix: TransformationMatrix): Loop {
     return new Loop(
       this.segments.map((segment) => segment.transform(matrix)),
-      { ignoreChecks: true }
+      { ignoreChecks: true },
     );
   }
 

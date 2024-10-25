@@ -43,7 +43,7 @@ export function solveCubic(
   in_c0: number,
   in_c1: number,
   in_c2: number,
-  in_c3: number
+  in_c3: number,
 ) {
   const c2 = in_c2 / (3 * in_c3);
   const c1 = in_c1 / (3 * in_c3);
@@ -82,7 +82,7 @@ export function solveQuartic(
   c1: number,
   c2: number,
   c3: number,
-  c4: number
+  c4: number,
 ) {
   // This doesn't special-case c0 = 0.
   if (c4 == 0) {
@@ -103,7 +103,7 @@ export function solveQuartic(
       b / (K_Q * K_Q),
       c / (K_Q * K_Q * K_Q),
       d / (K_Q * K_Q * K_Q * K_Q),
-      i != 0
+      i != 0,
     );
     if (result !== null) {
       for (let j = 0; j < result.length; j++) {
@@ -125,7 +125,7 @@ function solve_quartic_inner(
   b: number,
   c: number,
   d: number,
-  rescale: boolean
+  rescale: boolean,
 ) {
   const result = factor_quartic_inner(a, b, c, d, rescale);
   if (result !== null && result.length == 4) {
@@ -145,7 +145,7 @@ function factor_quartic_inner(
   b: number,
   c: number,
   d: number,
-  rescale: boolean
+  rescale: boolean,
 ) {
   function calc_eps_q(a1: number, b1: number, a2: number, b2: number) {
     const eps_a = eps_rel(a1 + a2, a);
@@ -402,7 +402,7 @@ function copysign(x: number, y: number) {
 
 export function solveGenericPolynomial(
   coefficients: number[],
-  epsilon = 1e-9
+  epsilon = 1e-9,
 ): number[] {
   if (coefficients[coefficients.length - 1] == 0) {
     return solveGenericPolynomial(coefficients.slice(0, -1), epsilon);
@@ -423,6 +423,6 @@ export function solveGenericPolynomial(
   const eigenValues = new EigenvalueDecomposition(polynomialMatrix);
 
   return eigenValues.realEigenvalues.filter(
-    (_, i) => Math.abs(eigenValues.imaginaryEigenvalues[i]) < epsilon
+    (_, i) => Math.abs(eigenValues.imaginaryEigenvalues[i]) < epsilon,
   );
 }

@@ -31,12 +31,12 @@ export function lineArcDistance(line: Line, arc: Arc): number {
 
     if (circleCenterLineDistance - arc.radius > line.precision) {
       const centerLineDirection = normalize(
-        subtract(closestPointOnLine, arc.center)
+        subtract(closestPointOnLine, arc.center),
       );
 
       const closestPointOnCircle = add(
         arc.center,
-        scalarMultiply(centerLineDirection, arc.radius)
+        scalarMultiply(centerLineDirection, arc.radius),
       );
 
       if (arc.isOnSegment(closestPointOnCircle)) {
@@ -49,6 +49,6 @@ export function lineArcDistance(line: Line, arc: Arc): number {
     arc.distanceFrom(line.firstPoint),
     arc.distanceFrom(line.lastPoint),
     line.distanceFrom(arc.firstPoint),
-    line.distanceFrom(arc.lastPoint)
+    line.distanceFrom(arc.lastPoint),
   );
 }

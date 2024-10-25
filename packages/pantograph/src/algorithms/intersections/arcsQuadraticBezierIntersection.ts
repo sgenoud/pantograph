@@ -12,7 +12,7 @@ import { QuadraticBezier } from "../../models/segments/QuadraticBezier.js";
 
 const intersectionsPolynomial = (
   arc: EllipseArc | Arc,
-  curve: QuadraticBezier
+  curve: QuadraticBezier,
 ): [number, number, number, number, number] => {
   const [[p0, p1, p2], [q0, q1, q2]] = curve.polynomialCoefficients;
 
@@ -58,7 +58,7 @@ const intersectionsPolynomial = (
 
 export function arcsQuadraticBezierIntersection(
   arc: EllipseArc | Arc,
-  curve: QuadraticBezier
+  curve: QuadraticBezier,
 ): Vector[] {
   const epsilon = Math.max(arc.precision, curve.precision);
 

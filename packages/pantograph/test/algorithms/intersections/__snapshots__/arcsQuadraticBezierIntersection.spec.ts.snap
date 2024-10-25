@@ -1,49 +1,5 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`arcsCubicBezierIntersection > should return the intersection points of an arc and cubic curve > works for 1 intersection points 1`] = `
-[
-  [
-    0.9856923801013043,
-    -1.1306681793568911,
-  ],
-]
-`;
-
-exports[`arcsCubicBezierIntersection > should return the intersection points of an arc and cubic curve > works for 2 intersection points 1`] = `
-[
-  [
-    1.2838079110064191,
-    -0.7757817010199046,
-  ],
-  [
-    1.000365116046977,
-    -1.1177073116859892,
-  ],
-]
-`;
-
-exports[`arcsCubicBezierIntersection > should return the intersection points of an ellipse arc and cubic curve > works for 1 intersection points 1`] = `
-[
-  [
-    0.22520814189493277,
-    0.5233615256349221,
-  ],
-]
-`;
-
-exports[`arcsCubicBezierIntersection > should return the intersection points of an ellipse arc and cubic curve > works for 2 intersection points 1`] = `
-[
-  [
-    0.02865713630405221,
-    0.22060248734679613,
-  ],
-  [
-    0.397261614379911,
-    0.6717676341327191,
-  ],
-]
-`;
-
 exports[`arcsQuadraticBezierIntersection > should return the intersection points of an arc and cubic curve > works for 1 intersection points 1`] = `
 [
   [

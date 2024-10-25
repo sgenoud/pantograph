@@ -25,7 +25,7 @@ export class Dieline extends Transformable<Dieline> {
       foldLines?: Stroke[];
       foldLinesBackwards?: Stroke[];
       foldLinesForwards?: Stroke[];
-    } = {}
+    } = {},
   ) {
     super();
     this.body = body;
@@ -61,7 +61,7 @@ export class Dieline extends Transformable<Dieline> {
 
   fuseFold(
     fold: Diagram | Dieline,
-    direction: "forwards" | "backwards" = "backwards"
+    direction: "forwards" | "backwards" = "backwards",
   ) {
     const otherBody: Diagram = fold instanceof Dieline ? fold.body : fold;
 
@@ -95,7 +95,7 @@ export class Dieline extends Transformable<Dieline> {
   cutShape(shape: Diagram) {
     this.body = cut(this.body, shape);
     this.cutLines = this.cutLines.flatMap((cut) =>
-      eraseStrand(cut, shape, true)
+      eraseStrand(cut, shape, true),
     );
     this.eraseFolds(shape);
     return this;
@@ -103,10 +103,10 @@ export class Dieline extends Transformable<Dieline> {
 
   eraseFolds(shape: Diagram) {
     this.foldLinesBackwards = this.foldLinesBackwards.flatMap((fold) =>
-      eraseStrand(fold, shape, true)
+      eraseStrand(fold, shape, true),
     );
     this.foldLinesForwards = this.foldLinesForwards.flatMap((fold) =>
-      eraseStrand(fold, shape, true)
+      eraseStrand(fold, shape, true),
     );
   }
 
@@ -114,10 +114,10 @@ export class Dieline extends Transformable<Dieline> {
     const newDieline = new Dieline(this.body.transform(matrix), {
       cutLines: this.cutLines.map((cut) => cut.transform(matrix)),
       foldLinesForwards: this.foldLinesForwards.map((fold) =>
-        fold.transform(matrix)
+        fold.transform(matrix),
       ),
       foldLinesBackwards: this.foldLinesBackwards.map((fold) =>
-        fold.transform(matrix)
+        fold.transform(matrix),
       ),
     });
 
@@ -135,13 +135,13 @@ export class Dieline extends Transformable<Dieline> {
 
     if (this.foldLinesBackwards.length) {
       this.foldLinesBackwards.map((shape) =>
-        shapes.push({ shape, color: "green" })
+        shapes.push({ shape, color: "green" }),
       );
     }
 
     if (this.foldLinesForwards.length) {
       this.foldLinesForwards.map((shape) =>
-        shapes.push({ shape, color: "blue" })
+        shapes.push({ shape, color: "blue" }),
       );
     }
 

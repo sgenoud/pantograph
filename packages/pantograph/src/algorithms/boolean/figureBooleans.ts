@@ -37,7 +37,7 @@ export function fuseIntersectingFigures(figures: Figure[]) {
       }
 
       const doListIntersect = figure.some((f) =>
-        otherFigure.some((s) => f.intersects(s))
+        otherFigure.some((s) => f.intersects(s)),
       );
       if (!doListIntersect) return;
 
@@ -64,7 +64,7 @@ export function fuseFigures(first: Figure, second: Figure) {
   const inner2Fused = first.holes.flatMap((c) => cutLoops(c, second.contour));
 
   const innerIntersections = allPairs(first.holes, second.holes).flatMap(
-    ([first, second]) => intersectLoops(first, second)
+    ([first, second]) => intersectLoops(first, second),
   );
 
   return organiseLoops([
@@ -83,7 +83,7 @@ export function cutFigures(first: Figure, second: Figure): Figure[] {
   if (first.isFull) {
     const cutContour = cutLoops(first.contour, second.contour);
     const cutHoles = second.holes.flatMap((c) =>
-      intersectLoops(c, first.contour)
+      intersectLoops(c, first.contour),
     );
     // We might be able to assume that the contour and the holes are already
     // distinct figures.
@@ -96,7 +96,7 @@ export function cutFigures(first: Figure, second: Figure): Figure[] {
       } else {
         const fusedCuts = fuseFiguresLists(
           first.holes.map((h) => new Figure(h)),
-          [second]
+          [second],
         );
 
         return organiseLoops([
@@ -123,13 +123,13 @@ export function intersectFigures(first: Figure, second: Figure): Figure[] {
   let out = organiseLoops(outerIntersection);
   out = cutFiguresLists(
     out,
-    first.holes.map((h) => new Figure(h))
+    first.holes.map((h) => new Figure(h)),
   );
 
   // Here we need to do the cut in two steps, because the holes might intersect
   return cutFiguresLists(
     out,
-    second.holes.map((h) => new Figure(h))
+    second.holes.map((h) => new Figure(h)),
   );
 }
 
@@ -189,7 +189,7 @@ export function cutFiguresLists(first: Figure[], second: Figure[]): Figure[] {
 
 export function intersectFiguresLists(
   first: Figure[],
-  second: Figure[]
+  second: Figure[],
 ): Figure[] {
   if (!first.length || !second.length) {
     return [];

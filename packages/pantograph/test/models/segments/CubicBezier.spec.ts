@@ -14,7 +14,7 @@ describe("CubicBezier", () => {
     expect(curve.translateX(5).isOnSegment([5.5, 0.5])).toBe(true);
     expect(curve.translateY(5).isOnSegment([0.5, 5.5])).toBe(true);
     expect(
-      curve.rotate(-45, [0.5, 0.5]).translateX(5).isOnSegment([5.5, 0.5])
+      curve.rotate(-45, [0.5, 0.5]).translateX(5).isOnSegment([5.5, 0.5]),
     ).toBe(true);
   });
 
@@ -161,14 +161,14 @@ describe("CubicBezier", () => {
 
     const curve2 = new CubicBezier([0, 0], [1, 1], [1, 0.1], [0, 1.2]).rotate(
       15,
-      [0.5, 0.5]
+      [0.5, 0.5],
     );
     //debugImg([{ shape: curve2, color: "red" }, drawBbox(curve2)]);
     expect(curve2.boundingBox).toMatchSnapshot();
 
     const curve3 = new CubicBezier([0, 0], [1, 1], [1, 0.5], [0, 1.8]).rotate(
       15,
-      [0.5, 0.5]
+      [0.5, 0.5],
     );
     //debugImg([{ shape: curve3, color: "red" }, drawBbox(curve3)]);
     expect(curve3.boundingBox).toMatchSnapshot();

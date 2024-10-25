@@ -90,7 +90,7 @@ export class Line extends AbstractSegment<Line> {
         Math.min(this.firstPoint[0], this.lastPoint[0]) - this.precision,
         Math.min(this.firstPoint[1], this.lastPoint[1]) - this.precision,
         Math.max(this.firstPoint[0], this.lastPoint[0]) + this.precision,
-        Math.max(this.firstPoint[1], this.lastPoint[1]) + this.precision
+        Math.max(this.firstPoint[1], this.lastPoint[1]) + this.precision,
       );
     }
     return this._boundingBox;
@@ -157,7 +157,7 @@ export class Line extends AbstractSegment<Line> {
     splitPoints.forEach((point) => {
       if (!this.isOnSegment(point))
         throw new Error(
-          `Point ${reprVector(point)} is not on segment ${this.repr}`
+          `Point ${reprVector(point)} is not on segment ${this.repr}`,
         );
     });
 
@@ -175,7 +175,7 @@ export class Line extends AbstractSegment<Line> {
     }
 
     uniquePoints.sort(
-      (a, b) => defaultDir * (a[comparisonAxis] - b[comparisonAxis])
+      (a, b) => defaultDir * (a[comparisonAxis] - b[comparisonAxis]),
     );
 
     return uniquePoints.flatMap((point, index) => {
@@ -187,7 +187,7 @@ export class Line extends AbstractSegment<Line> {
   transform(matrix: TransformationMatrix): Line {
     return new Line(
       matrix.transform(this.firstPoint),
-      matrix.transform(this.lastPoint)
+      matrix.transform(this.lastPoint),
     );
   }
 }

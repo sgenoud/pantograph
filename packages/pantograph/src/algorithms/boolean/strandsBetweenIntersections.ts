@@ -6,7 +6,7 @@ import { sameVector } from "../../vectorOperations";
 export function* strandsBetweenIntersections(
   segments: Segment[],
   allIntersections: Vector[],
-  allCommonSegments: Segment[]
+  allCommonSegments: Segment[],
 ): Generator<Strand> {
   const endsAtIntersection = (segment: Segment) => {
     return allIntersections.some((intersection) => {

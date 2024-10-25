@@ -3,7 +3,17 @@
 exports[`arcEllipseArcIntersection > overlapping ellipses > works with one overlap 1`] = `
 [
   EllipseArc {
+    "_boundingBox": undefined,
     "_coefficients": null,
+    "_deltaAngle": undefined,
+    "_ellipseReferenceFrameTransform": undefined,
+    "_exentricity": undefined,
+    "_firstAngle": undefined,
+    "_focals": undefined,
+    "_lastAngle": undefined,
+    "_linearExentricity": undefined,
+    "_reverseEllipseReferenceFrameTransform": undefined,
+    "_rotateFromEllipseReferenceFrame": undefined,
     "center": [
       0,
       0,
@@ -29,7 +39,17 @@ exports[`arcEllipseArcIntersection > overlapping ellipses > works with one overl
 exports[`arcEllipseArcIntersection > overlapping ellipses > works with two overlaps 1`] = `
 [
   EllipseArc {
+    "_boundingBox": undefined,
     "_coefficients": null,
+    "_deltaAngle": undefined,
+    "_ellipseReferenceFrameTransform": undefined,
+    "_exentricity": undefined,
+    "_firstAngle": undefined,
+    "_focals": undefined,
+    "_lastAngle": undefined,
+    "_linearExentricity": undefined,
+    "_reverseEllipseReferenceFrameTransform": undefined,
+    "_rotateFromEllipseReferenceFrame": undefined,
     "center": [
       0,
       0,
@@ -50,7 +70,17 @@ exports[`arcEllipseArcIntersection > overlapping ellipses > works with two overl
     "tiltAngle": 0,
   },
   EllipseArc {
+    "_boundingBox": undefined,
     "_coefficients": null,
+    "_deltaAngle": undefined,
+    "_ellipseReferenceFrameTransform": undefined,
+    "_exentricity": undefined,
+    "_firstAngle": undefined,
+    "_focals": undefined,
+    "_lastAngle": undefined,
+    "_linearExentricity": undefined,
+    "_reverseEllipseReferenceFrameTransform": undefined,
+    "_rotateFromEllipseReferenceFrame": undefined,
     "center": [
       0,
       0,
@@ -76,7 +106,17 @@ exports[`arcEllipseArcIntersection > overlapping ellipses > works with two overl
 exports[`arcEllipseArcIntersection > overlapping ellipses > works with two overlaps, with rotated ellipses 1`] = `
 [
   EllipseArc {
+    "_boundingBox": undefined,
     "_coefficients": null,
+    "_deltaAngle": undefined,
+    "_ellipseReferenceFrameTransform": undefined,
+    "_exentricity": undefined,
+    "_firstAngle": undefined,
+    "_focals": undefined,
+    "_lastAngle": undefined,
+    "_linearExentricity": undefined,
+    "_reverseEllipseReferenceFrameTransform": undefined,
+    "_rotateFromEllipseReferenceFrame": undefined,
     "center": [
       0,
       0,
@@ -97,7 +137,17 @@ exports[`arcEllipseArcIntersection > overlapping ellipses > works with two overl
     "tiltAngle": 0.5759586531581287,
   },
   EllipseArc {
+    "_boundingBox": undefined,
     "_coefficients": null,
+    "_deltaAngle": undefined,
+    "_ellipseReferenceFrameTransform": undefined,
+    "_exentricity": undefined,
+    "_firstAngle": undefined,
+    "_focals": undefined,
+    "_lastAngle": undefined,
+    "_linearExentricity": undefined,
+    "_reverseEllipseReferenceFrameTransform": undefined,
+    "_rotateFromEllipseReferenceFrame": undefined,
     "center": [
       0,
       0,

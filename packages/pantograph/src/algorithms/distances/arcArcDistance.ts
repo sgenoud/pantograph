@@ -52,6 +52,6 @@ export function arcArcDistance(arc1: Arc, arc2: Arc): number {
     arc1.distanceFrom(arc2.firstPoint),
     arc1.distanceFrom(arc2.lastPoint),
     arc2.distanceFrom(arc1.firstPoint),
-    arc2.distanceFrom(arc1.lastPoint)
+    arc2.distanceFrom(arc1.lastPoint),
   );
 }

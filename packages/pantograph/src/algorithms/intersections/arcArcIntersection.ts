@@ -31,7 +31,7 @@ const handleOverlaps = (arc1: Arc, arc2: Arc): Arc[] => {
       arc2.isOnSegment(arc1.lastPoint) ? arc1.lastPoint : null,
       arc1.isOnSegment(arc2.firstPoint) ? arc2.firstPoint : null,
       arc1.isOnSegment(arc2.lastPoint) ? arc2.lastPoint : null,
-    ].filter((p) => p !== null) as Vector[]
+    ].filter((p) => p !== null) as Vector[],
     // We sort by the param value of the first arc. This means that the points
     // will be sorted with the same orientation than arc1
   ).sort((a, b) => arc1.pointToParam(a) - arc1.pointToParam(b));
@@ -58,7 +58,7 @@ const handleOverlaps = (arc1: Arc, arc2: Arc): Arc[] => {
         points[0 + startIndex],
         points[1 + startIndex],
         arc1.center,
-        arc1.clockwise
+        arc1.clockwise,
       ),
     ];
   } else if (points.length === 4) {
@@ -74,7 +74,7 @@ export function arcArcIntersection(
   arc1: Arc,
   arc2: Arc,
   includeOverlaps = false,
-  precision?: number
+  precision?: number,
 ): Vector[] | Arc[] {
   const epsilon = precision ? precision : arc1.precision;
   const centersDistance = distance(arc1.center, arc2.center);
@@ -117,7 +117,7 @@ export function arcArcIntersection(
     const orientation = isOutsideTangent || arc1.radius > arc2.radius ? 1 : -1;
     const intersectionPoint = add(
       arc1.center,
-      scalarMultiply(centersVector, orientation * arc1.radius)
+      scalarMultiply(centersVector, orientation * arc1.radius),
     );
 
     if (
@@ -138,11 +138,11 @@ export function arcArcIntersection(
 
   const midPoint = add(
     arc1.center,
-    scalarMultiply(centersVector, radiusToChord)
+    scalarMultiply(centersVector, radiusToChord),
   );
 
   const halfChord = Math.sqrt(
-    arc1.radius * arc1.radius - radiusToChord * radiusToChord
+    arc1.radius * arc1.radius - radiusToChord * radiusToChord,
   );
 
   const chordVector = perpendicular(centersVector);

@@ -25,7 +25,7 @@ const complementArc = (arc: EllipseArc): EllipseArc => {
     {
       ignoreChecks: true,
       angleUnits: "rad",
-    }
+    },
   );
 };
 
@@ -45,7 +45,7 @@ const handleOverlaps = (arc1: EllipseArc, arc2: EllipseArc): EllipseArc[] => {
       arc1.minorRadius,
       arc1.tiltAngle,
       arc1.clockwise,
-      { ignoreChecks: true, angleUnits: "rad" }
+      { ignoreChecks: true, angleUnits: "rad" },
     );
 
   const points = removeDuplicatePoints(
@@ -54,7 +54,7 @@ const handleOverlaps = (arc1: EllipseArc, arc2: EllipseArc): EllipseArc[] => {
       arc2.isOnSegment(arc1.lastPoint) ? arc1.lastPoint : null,
       arc1.isOnSegment(arc2.firstPoint) ? arc2.firstPoint : null,
       arc1.isOnSegment(arc2.lastPoint) ? arc2.lastPoint : null,
-    ].filter((p) => p !== null) as Vector[]
+    ].filter((p) => p !== null) as Vector[],
     // We sort by the param value of the first arc. This means that the points
     // will be sorted with the same orientation than arc1
   ).sort((a, b) => arc1.pointToParam(a) - arc1.pointToParam(b));
@@ -86,7 +86,7 @@ const handleOverlaps = (arc1: EllipseArc, arc2: EllipseArc): EllipseArc[] => {
 export function ellipseArcEllipseArcIntersection(
   arc1: EllipseArc,
   arc2: EllipseArc,
-  includeOverlaps = false
+  includeOverlaps = false,
 ): Vector[] | EllipseArc[] {
   const epsilon = Math.max(arc1.precision, arc2.precision);
   const sameEllipse =

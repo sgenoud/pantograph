@@ -10,7 +10,7 @@ export const reprVector = (vector: Vector): string => {
 export const sameVector = (
   [x0, y0]: Vector,
   [x1, y1]: Vector,
-  precision = 1e-9
+  precision = 1e-9,
 ): boolean => {
   return Math.abs(x0 - x1) <= precision && Math.abs(y0 - y1) <= precision;
 };
@@ -37,7 +37,7 @@ export const scalarMultiply = ([x0, y0]: Vector, scalar: number): Vector => {
 
 export const squareDistance = (
   [x0, y0]: Vector,
-  [x1, y1]: Vector = [0, 0]
+  [x1, y1]: Vector = [0, 0],
 ): number => {
   return (x0 - x1) ** 2 + (y0 - y1) ** 2;
 };
@@ -97,6 +97,12 @@ export function perpendicularClockwise(v: Vector): Vector {
   return [v[1], -v[0]];
 }
 
-export function isOnAxis(point: Vector, direction: Vector, center: Vector): boolean {
-  return sameVector(center, point) || parallel(subtract(center, point), direction);
+export function isOnAxis(
+  point: Vector,
+  direction: Vector,
+  center: Vector,
+): boolean {
+  return (
+    sameVector(center, point) || parallel(subtract(center, point), direction)
+  );
 }

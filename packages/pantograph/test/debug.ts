@@ -25,7 +25,7 @@ export const debugImg = (
     dir = "./__debug__",
     viewBox,
     margin = 0,
-  }: { dir?: string; viewBox?: BoundingBox; margin?: number } = {}
+  }: { dir?: string; viewBox?: BoundingBox; margin?: number } = {},
 ) => {
   const svg = exportSVG(figures, { margin, viewBox });
   const dirURL = new URL(dir, import.meta.url);
@@ -44,7 +44,7 @@ export const dpnt = (point: any, radius = 0.05) => {
 
 export const printPolygon = (p: any) =>
   console.log(
-    `polygon(${JSON.stringify(p.segments.map((s: any) => s.firstPoint))})`
+    `polygon(${JSON.stringify(p.segments.map((s: any) => s.firstPoint))})`,
   );
 
 export const drawBbox = (shape: { boundingBox: BoundingBox }) => {

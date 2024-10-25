@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 
-const dielines = require('..');
+const dielines = require("..");
 
-describe('dielines', () => {
-    it('needs tests');
+describe("dielines", () => {
+  it("needs tests");
 });

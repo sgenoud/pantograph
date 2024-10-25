@@ -11,7 +11,7 @@ function segmentPosition(intersectionParam: number) {
 const handleBetween = (
   lineBetween: Line,
   otherLine: Line,
-  otherPosition: "before" | "after"
+  otherPosition: "before" | "after",
 ) => {
   if (otherPosition === "before")
     return lineBetween.distanceFrom(otherLine.firstPoint);
@@ -26,7 +26,7 @@ export function lineLineDistance(line1: Line, line2: Line): number {
   if (intersectionParams === "parallel") {
     return Math.min(
       line1.distanceFrom(line2.firstPoint),
-      line1.distanceFrom(line2.lastPoint)
+      line1.distanceFrom(line2.lastPoint),
     );
   }
 

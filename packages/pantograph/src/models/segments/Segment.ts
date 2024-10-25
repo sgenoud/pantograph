@@ -7,9 +7,12 @@ import { Transformable } from "../utils/Transformable.js";
 export type Segment = AbstractSegment<any>;
 
 export abstract class AbstractSegment<
-  T extends AbstractSegment<T>
+  T extends AbstractSegment<T>,
 > extends Transformable<T> {
-  constructor(public firstPoint: Vector, public lastPoint: Vector) {
+  constructor(
+    public firstPoint: Vector,
+    public lastPoint: Vector,
+  ) {
     super();
     this.firstPoint = firstPoint;
     this.lastPoint = lastPoint;
@@ -21,7 +24,7 @@ export abstract class AbstractSegment<
 
   get repr() {
     return `${this.segmentType} ${reprVector(this.firstPoint)} - ${reprVector(
-      this.lastPoint
+      this.lastPoint,
     )}`;
   }
   get info() {

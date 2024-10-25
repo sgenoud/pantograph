@@ -50,7 +50,7 @@ test.each([-75, -50, -25, -10, -1, 1, 10, 25, 50])(
     const offsetD = offset(d, offsetVal);
 
     expect(exportJSON(offsetD)).toMatchSnapshot();
-  }
+  },
 );
 
 test.each([-10, -7, -5, -2, -1, 1, 20])(
@@ -60,5 +60,5 @@ test.each([-10, -7, -5, -2, -1, 1, 20])(
     const offsetD = offset(d, offsetVal);
 
     expect(exportJSON(offsetD)).toMatchSnapshot();
-  }
+  },
 );

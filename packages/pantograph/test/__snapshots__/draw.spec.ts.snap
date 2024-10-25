@@ -101,6 +101,7 @@ Diagram {
                 1,
               ],
             },
+            "_exentricity": undefined,
             "_firstAngle": 3.1415926746632175,
             "_focals": [
               [
@@ -127,6 +128,7 @@ Diagram {
                 1,
               ],
             },
+            "_rotateFromEllipseReferenceFrame": undefined,
             "center": [
               0.9999999925494194,
               1.0000000074505806,
@@ -234,6 +236,7 @@ Diagram {
                 1,
               ],
             },
+            "_exentricity": undefined,
             "_firstAngle": 1.570796343653636,
             "_focals": [
               [
@@ -260,6 +263,7 @@ Diagram {
                 1,
               ],
             },
+            "_rotateFromEllipseReferenceFrame": undefined,
             "center": [
               0.9999999403953552,
               1.0000000596046448,

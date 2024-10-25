@@ -28,7 +28,7 @@ function drawFlap(
     contractionRight: contractionRightInput,
     leftContractionMode,
     rightContractionMode,
-  }: HorizontalFlapOptions = {}
+  }: HorizontalFlapOptions = {},
 ) {
   const contractionLeft = contractionLeftInput ?? contraction;
   const contractionRight = contractionRightInput ?? contraction;
@@ -67,7 +67,7 @@ function drawFlap(
 export function topFlap(
   width: number,
   height: number,
-  options: HorizontalFlapOptions = {}
+  options: HorizontalFlapOptions = {},
 ) {
   return drawFlap(width, height, options);
 }
@@ -75,7 +75,7 @@ export function topFlap(
 export function bottomFlap(
   width: number,
   height: number,
-  options: HorizontalFlapOptions = {}
+  options: HorizontalFlapOptions = {},
 ) {
   return drawFlap(width, height, options).mirror("x");
 }
@@ -89,7 +89,7 @@ export function leftFlap(
     topContractionMode,
     bottomContractionMode,
     ...options
-  }: VerticalFlapTopOptions = {}
+  }: VerticalFlapTopOptions = {},
 ) {
   return drawFlap(width, height, {
     contractionLeft: contractionTop,
@@ -103,7 +103,7 @@ export function leftFlap(
 export function rightFlap(
   width: number,
   height: number,
-  options: VerticalFlapTopOptions = {}
+  options: VerticalFlapTopOptions = {},
 ) {
   return leftFlap(width, height, options).mirror("y");
 }

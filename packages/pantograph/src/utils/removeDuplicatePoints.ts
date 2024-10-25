@@ -7,14 +7,14 @@ const asFixed = (p: number, precision = 1e-9): string => {
 };
 export default function removeDuplicatePoints(
   points: Vector[],
-  precision = 1e-9
+  precision = 1e-9,
 ): Vector[] {
   return Array.from(
     new Map(
       points.map(([p0, p1]) => [
         `[${asFixed(p0, precision)},${asFixed(p1, precision)}]`,
         [p0, p1] as Vector,
-      ])
-    ).values()
+      ]),
+    ).values(),
   );
 }

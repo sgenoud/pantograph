@@ -54,11 +54,11 @@ describe("rayIntersectionsCount", () => {
         [-7.421792193014102, 39.703081476706785],
         [53.26056233274296, 29.249999999999968],
         [-7.721149961268838e-14, -98.57534959858313],
-        true
+        true,
       );
 
       expect(
-        rayIntersectionsCount([-45.281051156689436, 32.28959569290916], arc)
+        rayIntersectionsCount([-45.281051156689436, 32.28959569290916], arc),
       ).toBe(1);
     });
 
@@ -67,7 +67,7 @@ describe("rayIntersectionsCount", () => {
         [38.52710211020566, 42.26221778725147],
         [34.48816871800838, 46.554145764976006],
         [137.3302811663715, 139.2876747992915],
-        true
+        true,
       );
 
       const point: [number, number] = [-38.52710211020651, 42.262217787250734];
@@ -110,7 +110,7 @@ describe("rayIntersectionsCount", () => {
     it("should return 3 if the ray crosses the curve thrice", () => {
       const curve = new CubicBezier([0, 0], [1, 1], [1, 0.1], [0, 1.2]).rotate(
         -70,
-        [0.5, 0.5]
+        [0.5, 0.5],
       );
       //debugImg([curve, { shape: drawRay([-1, 0.5], curve), color: "blue" }]);
       expect(rayIntersectionsCount([-1, 0.5], curve)).toBe(3);

@@ -40,7 +40,7 @@ describe("boolean for loops", () => {
           [-1, -1],
           [-2, -1],
           [-2, 1],
-        ])
+        ]),
       );
     });
 
@@ -215,7 +215,7 @@ describe("boolean for loops", () => {
 
       const cut = cutLoops(loops[0], loops[1]);
       expect(cut[0].simplify()).toBeLoop(
-        rect(2, 2).transform(translation({ y: -2 }))
+        rect(2, 2).transform(translation({ y: -2 })),
       );
     });
 
@@ -290,7 +290,7 @@ describe("boolean for loops", () => {
       const intersected = intersectLoops(loops[0], loops[1]);
       expect(intersected.length).toEqual(1);
       expect(intersected[0]).toBeLoop(
-        rect(1, 2).transform(translation({ x: 0.5 }))
+        rect(1, 2).transform(translation({ x: 0.5 })),
       );
     });
 
@@ -380,11 +380,11 @@ describe("boolean for loops", () => {
         rect(1, 1).transform(translation({ x: 0.5, y: -1.5 })),
       ];
       expect(intersectLoops(loops[0], loops[1])).toBeEquivalentLoops(
-        smallRects
+        smallRects,
       );
 
       expect(intersectLoops(loops[1], loops[0])).toBeEquivalentLoops(
-        smallRects
+        smallRects,
       );
     });
 

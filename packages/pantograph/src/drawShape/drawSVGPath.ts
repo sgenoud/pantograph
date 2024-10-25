@@ -9,7 +9,7 @@ const parseArgs = (
   previousControls: {
     control1?: null | Vector;
     control2?: null | Vector;
-  }
+  },
 ):
   | { p: Vector; control1: Vector; control2: Vector }
   | { p: Vector }
@@ -121,7 +121,7 @@ const parseArgs = (
     // The radius can be defined as smaller than what is needed. We need to fix
     // it in that case.
     const distance = Math.sqrt(
-      (previousPoint[0] - x) ** 2 + (previousPoint[1] - y) ** 2
+      (previousPoint[0] - x) ** 2 + (previousPoint[1] - y) ** 2,
     );
     const bigRadius = Math.max(rx, ry);
     let a = rx;

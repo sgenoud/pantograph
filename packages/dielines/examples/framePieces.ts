@@ -7,13 +7,13 @@ export function basicRectangularBody(
   sectionWidth: number,
   height: number,
   sectionDepth: number,
-  pasteFlapHeight: number
+  pasteFlapHeight: number,
 ) {
   const leftPane = drawRect(sectionDepth, height).translateX(
-    -sectionWidth - sectionDepth / 2
+    -sectionWidth - sectionDepth / 2,
   );
   const frontPane = drawRect(sectionWidth, height).translateX(
-    -sectionWidth / 2
+    -sectionWidth / 2,
   );
 
   const body = new Dieline(leftPane).fuseFold(frontPane);
@@ -21,7 +21,7 @@ export function basicRectangularBody(
   body.fuseFold(
     drawFlaps
       .left(height, pasteFlapHeight, { contractionMode: "sharp" })
-      .translateX(-sectionWidth - sectionDepth)
+      .translateX(-sectionWidth - sectionDepth),
   );
 
   return body;
@@ -32,13 +32,13 @@ export function rectangularBodyWithEndTabs(
   height: number,
   sectionDepth: number,
   pasteFlapHeight: number,
-  endTabHeight: number
+  endTabHeight: number,
 ) {
   const body = basicRectangularBody(
     sectionWidth,
     height,
     sectionDepth,
-    pasteFlapHeight
+    pasteFlapHeight,
   );
 
   const verticalLine = draw([0, -endTabHeight / 2])
@@ -60,7 +60,7 @@ export function rectangularBodyWithEndTabs(
         horizontalLine,
         horizontalLine.translateX(-sectionWidth - sectionDepth),
       ],
-    }
+    },
   ).translateY(height / 2 + endTabHeight / 2);
 
   return body.fuseBody(topTabs).fuseBody(topTabs.mirror("x"));

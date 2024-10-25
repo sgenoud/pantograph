@@ -7,7 +7,7 @@ import { projectPointOnLine } from "../../utils/projectPointOnLine.js";
 export function lineArcIntersection(
   line: Line,
   arc: Arc,
-  precision?: number
+  precision?: number,
 ): Vector[] {
   const epsilon = precision ? precision : line.precision;
 
@@ -35,7 +35,7 @@ export function lineArcIntersection(
   // delta corresponds to the length between the project center on the line and
   // the crossing points
   const delta = Math.sqrt(
-    arc.radius * arc.radius - centerDistance * centerDistance
+    arc.radius * arc.radius - centerDistance * centerDistance,
   );
 
   // We might be able to optimise the check on segment, but it is not clear

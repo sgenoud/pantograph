@@ -4,7 +4,7 @@ function overlap1D(
   min1: number,
   max1: number,
   min2: number,
-  max2: number
+  max2: number,
 ): boolean {
   return min1 <= max2 && max1 >= min2;
 }
@@ -20,7 +20,7 @@ export class BoundingBox {
     xMin = Infinity,
     yMin = Infinity,
     xMax = -Infinity,
-    yMax = -Infinity
+    yMax = -Infinity,
   ) {
     this.xMin = xMin;
     this.yMin = yMin;
@@ -45,7 +45,7 @@ export class BoundingBox {
       this.xMin - amount,
       this.yMin - amount,
       this.xMax + amount,
-      this.yMax + amount
+      this.yMax + amount,
     );
   }
 
@@ -71,7 +71,7 @@ export class BoundingBox {
       Math.min(this.yMin, y),
 
       Math.max(this.xMax, x),
-      Math.max(this.yMax, y)
+      Math.max(this.yMax, y),
     );
   }
 
@@ -80,7 +80,7 @@ export class BoundingBox {
       Math.min(this.xMin, other.xMin),
       Math.min(this.yMin, other.yMin),
       Math.max(this.xMax, other.xMax),
-      Math.max(this.yMax, other.yMax)
+      Math.max(this.yMax, other.yMax),
     );
   }
 
@@ -89,7 +89,7 @@ export class BoundingBox {
       Math.max(this.xMin, other.xMin),
       Math.max(this.yMin, other.yMin),
       Math.min(this.xMax, other.xMax),
-      Math.min(this.yMax, other.yMax)
+      Math.min(this.yMax, other.yMax),
     );
   }
 }

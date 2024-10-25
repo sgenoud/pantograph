@@ -2,7 +2,7 @@ export function angularDistance(
   angle1: number,
   angle2: number,
   clockwise: boolean,
-  precision = 1e-9
+  precision = 1e-9,
 ) {
   let relDistance = angle2 - angle1;
 

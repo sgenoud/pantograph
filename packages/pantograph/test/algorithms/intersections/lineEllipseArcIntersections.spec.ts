@@ -27,7 +27,7 @@ describe("lineEllipseArcIntersections", () => {
       2,
       1,
       0,
-      false
+      false,
     ).translate(-3.2, -2);
     const intersections = lineEllipseArcIntersection(line, arc);
 
@@ -49,7 +49,7 @@ describe("lineEllipseArcIntersections", () => {
   it("should handle tangent lines to the arc", () => {
     const line = new Line([4, -1], [4, 1]).rotate(33);
     const arc = new EllipseArc([0, 0], [2, 1], [2, 0], 2, 1, 0, false).rotate(
-      33
+      33,
     );
 
     const intersections = lineEllipseArcIntersection(line, arc);
@@ -62,7 +62,7 @@ describe("lineEllipseArcIntersections", () => {
   it("should handle vertical lines with the arc", () => {
     const line = new Line([3.5, -1], [3.5, 1]).rotate(33);
     const arc = new EllipseArc([0, 0], [2, 1], [2, 0], 2, 1, 0, false).rotate(
-      33
+      33,
     );
 
     const intersections = lineEllipseArcIntersection(line, arc);
@@ -75,7 +75,7 @@ describe("lineEllipseArcIntersections", () => {
   it("should return nothing when there is not intersection", () => {
     const line = new Line([12, -1], [12, 1]);
     const arc = new EllipseArc([0, 0], [2, 1], [2, 0], 2, 1, 0, false).rotate(
-      33
+      33,
     );
 
     const intersections = lineEllipseArcIntersection(line, arc);

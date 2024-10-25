@@ -21,11 +21,11 @@ describe("Arc", () => {
       expect(arc.isOnSegment([0, 0])).toBe(true);
       expect(arc.isOnSegment([1, 1])).toBe(true);
       expect(
-        arc.isOnSegment(add([0, 1], polarToCartesian(1, -Math.PI / 4)))
+        arc.isOnSegment(add([0, 1], polarToCartesian(1, -Math.PI / 4))),
       ).toBe(true);
 
       expect(
-        arc.isOnSegment(add([0, 1], polarToCartesian(1, Math.PI / 4)))
+        arc.isOnSegment(add([0, 1], polarToCartesian(1, Math.PI / 4))),
       ).toBe(false);
     });
 
@@ -36,11 +36,11 @@ describe("Arc", () => {
       expect(arc.isOnSegment([0, 0])).toBe(true);
       expect(arc.isOnSegment([1, 1])).toBe(true);
       expect(
-        arc.isOnSegment(add([0, 1], polarToCartesian(1, Math.PI / 4)))
+        arc.isOnSegment(add([0, 1], polarToCartesian(1, Math.PI / 4))),
       ).toBe(true);
 
       expect(
-        arc.isOnSegment(add([0, 1], polarToCartesian(1, -Math.PI / 4)))
+        arc.isOnSegment(add([0, 1], polarToCartesian(1, -Math.PI / 4))),
       ).toBe(false);
     });
   });

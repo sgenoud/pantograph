@@ -1,4 +1,8 @@
-import { crossProduct, squareLength, subtract } from "../../vectorOperations.js";
+import {
+  crossProduct,
+  squareLength,
+  subtract,
+} from "../../vectorOperations.js";
 import { Line } from "../../models/segments/Line.js";
 import { Vector } from "../../definitions.js";
 import removeDuplicatePoints from "../../utils/removeDuplicatePoints.js";
@@ -6,7 +10,7 @@ import removeDuplicatePoints from "../../utils/removeDuplicatePoints.js";
 export const lineLineParams = (
   line1: { V: Vector; firstPoint: Vector; precision: number },
   line2: { V: Vector; firstPoint: Vector; precision: number },
-  precision?: number
+  precision?: number,
 ):
   | "parallel"
   | {
@@ -54,7 +58,7 @@ export function lineLineIntersection(
   line1: Line,
   line2: Line,
   includeOverlaps = false,
-  precision?: number
+  precision?: number,
 ): null | Vector | Line {
   const intersectionParams = lineLineParams(line1, line2, precision);
   if (intersectionParams === "parallel") {
@@ -67,7 +71,7 @@ export function lineLineIntersection(
         line2.isOnSegment(line1.lastPoint) ? line1.lastPoint : null,
         line1.isOnSegment(line2.firstPoint) ? line2.firstPoint : null,
         line1.isOnSegment(line2.lastPoint) ? line2.lastPoint : null,
-      ].filter((p) => p !== null) as Vector[]
+      ].filter((p) => p !== null) as Vector[],
     ).sort((a, b) => a[0] - b[0]);
 
     if (points.length === 0) return null;
@@ -79,7 +83,7 @@ export function lineLineIntersection(
     else {
       console.error(points);
       throw new Error(
-        "Unexpected number of points while intersecting parallel lines"
+        "Unexpected number of points while intersecting parallel lines",
       );
     }
   }

@@ -45,7 +45,7 @@ export class EllipseArc extends AbstractSegment<EllipseArc> {
     {
       ignoreChecks = false,
       angleUnits = "deg",
-    }: { ignoreChecks?: boolean; angleUnits?: "deg" | "rad" } = {}
+    }: { ignoreChecks?: boolean; angleUnits?: "deg" | "rad" } = {},
   ) {
     super(firstPoint, lastPoint);
 
@@ -59,7 +59,7 @@ export class EllipseArc extends AbstractSegment<EllipseArc> {
 
     const radTiltAngle = angleUnits === "deg" ? tiltAngle * DEG2RAD : tiltAngle;
     this.tiltAngle = unitAngle(
-      majorOrdered ? radTiltAngle : radTiltAngle + Math.PI / 2
+      majorOrdered ? radTiltAngle : radTiltAngle + Math.PI / 2,
     );
     this.clockwise = clockwise;
 
@@ -71,21 +71,21 @@ export class EllipseArc extends AbstractSegment<EllipseArc> {
       if (!this.isPointOnEllipse(firstPoint)) {
         throw new Error(
           `First point ${reprVector(
-            firstPoint
-          )} not on the ellipse defined by ${this.info}`
+            firstPoint,
+          )} not on the ellipse defined by ${this.info}`,
         );
       }
       if (!this.isPointOnEllipse(lastPoint)) {
         throw new Error(
           `Last point ${reprVector(lastPoint)} not on the ellipse defined by ${
             this.info
-          }`
+          }`,
         );
       }
 
       if (Math.abs(this.majorRadius - this.minorRadius) < this.precision) {
         throw new Error(
-          `Both radii should be different, create an arc instead`
+          `Both radii should be different, create an arc instead`,
         );
       }
     }
@@ -133,7 +133,7 @@ export class EllipseArc extends AbstractSegment<EllipseArc> {
 
   get info() {
     return `ELLIPSE_ARC(${reprVector(this.firstPoint)}, ${reprVector(
-      this.lastPoint
+      this.lastPoint,
     )}, ${reprVector(this.center)}, ${this.majorRadius}, ${this.minorRadius}, ${
       this.tiltAngle * RAD2DEG
     }, ${this.clockwise ? "CW" : "CCW"})`;
@@ -148,7 +148,7 @@ export class EllipseArc extends AbstractSegment<EllipseArc> {
       this.minorRadius,
       this.tiltAngle,
       !this.clockwise,
-      { ignoreChecks: true, angleUnits: "rad" }
+      { ignoreChecks: true, angleUnits: "rad" },
     );
   }
 
@@ -161,7 +161,7 @@ export class EllipseArc extends AbstractSegment<EllipseArc> {
       this.minorRadius,
       this.tiltAngle,
       this.clockwise,
-      { ignoreChecks: true, angleUnits: "rad" }
+      { ignoreChecks: true, angleUnits: "rad" },
     );
   }
 
@@ -198,7 +198,7 @@ export class EllipseArc extends AbstractSegment<EllipseArc> {
     if (this._linearExentricity === undefined) {
       this._linearExentricity = Math.sqrt(
         this.majorRadius * this.majorRadius -
-          this.minorRadius * this.minorRadius
+          this.minorRadius * this.minorRadius,
       );
     }
     return this._linearExentricity;
@@ -241,14 +241,14 @@ export class EllipseArc extends AbstractSegment<EllipseArc> {
   pointToParam(point: Vector): number {
     if (!this.isPointOnEllipse(point)) {
       throw new Error(
-        `Point ${reprVector(point)} not on the ellipse defined by ${this.repr}`
+        `Point ${reprVector(point)} not on the ellipse defined by ${this.repr}`,
       );
     }
 
     const param = this.thetaToParam(this.pointTheta(point));
     if (!this.isValidParameter(param))
       throw new Error(
-        `Point ${reprVector(point)} is not on segment ${this.repr}`
+        `Point ${reprVector(point)} is not on segment ${this.repr}`,
       );
 
     return param;
@@ -284,7 +284,7 @@ export class EllipseArc extends AbstractSegment<EllipseArc> {
     const pPrime = this.ellipseReferenceFrameTransform.transform(point);
     const theta = Math.atan2(
       pPrime[1] / this.minorRadius,
-      pPrime[0] / this.majorRadius
+      pPrime[0] / this.majorRadius,
     );
     return unitAngle(theta);
   }
@@ -316,15 +316,15 @@ export class EllipseArc extends AbstractSegment<EllipseArc> {
     if (sameVector(point, this.center)) {
       closestPoint = add(
         this.center,
-        scalarMultiply(perpendicular(this.majorAxis), this.minorRadius)
+        scalarMultiply(perpendicular(this.majorAxis), this.minorRadius),
       );
     } else {
       closestPoint = this.reverseEllipseReferenceFrameTransform.transform(
         closestPointOnEllipse(
           this.majorRadius,
           this.minorRadius,
-          this.ellipseReferenceFrameTransform.transform(point)
-        )
+          this.ellipseReferenceFrameTransform.transform(point),
+        ),
       );
     }
 
@@ -334,7 +334,7 @@ export class EllipseArc extends AbstractSegment<EllipseArc> {
       return distance(point, closestPoint);
     } else if (isOnAxis(point, this.majorAxis, this.center)) {
       const complementaryTheta = unitAngle(
-        2 * Math.PI - this.pointTheta(point)
+        2 * Math.PI - this.pointTheta(point),
       );
       const param = this.thetaToParam(complementaryTheta);
       if (this.isValidParameter(param)) {
@@ -343,7 +343,7 @@ export class EllipseArc extends AbstractSegment<EllipseArc> {
     }
     return Math.min(
       distance(point, this.firstPoint),
-      distance(point, this.lastPoint)
+      distance(point, this.lastPoint),
     );
   }
 
@@ -373,7 +373,7 @@ export class EllipseArc extends AbstractSegment<EllipseArc> {
   get rotateFromEllipseReferenceFrame(): TransformationMatrix {
     if (this._rotateFromEllipseReferenceFrame === undefined) {
       this._rotateFromEllipseReferenceFrame = new TransformationMatrix().rotate(
-        this.tiltAngle
+        this.tiltAngle,
       );
     }
     return this._rotateFromEllipseReferenceFrame;
@@ -401,7 +401,7 @@ export class EllipseArc extends AbstractSegment<EllipseArc> {
       this._deltaAngle = angularDistance(
         this.firstAngle,
         this.lastAngle,
-        this.clockwise
+        this.clockwise,
       );
     }
     return this._deltaAngle;
@@ -460,7 +460,7 @@ export class EllipseArc extends AbstractSegment<EllipseArc> {
       this.minorRadius * scaleFactor,
       modifiedAngle,
       matrix.keepsOrientation() ? this.clockwise : !this.clockwise,
-      { angleUnits: "rad" }
+      { angleUnits: "rad" },
     );
   }
 
@@ -485,8 +485,8 @@ export class EllipseArc extends AbstractSegment<EllipseArc> {
     const paramsMap = new Map<number, Vector>(
       zip([allParams, [this.firstPoint, this.lastPoint, ...splitPoints]]) as [
         number,
-        Vector
-      ][]
+        Vector,
+      ][],
     );
     allParams.sort((a, b) => a - b);
 
@@ -509,7 +509,7 @@ export class EllipseArc extends AbstractSegment<EllipseArc> {
         this.minorRadius,
         this.tiltAngle,
         this.clockwise,
-        { angleUnits: "rad" }
+        { angleUnits: "rad" },
       );
       skipped = null;
       return arc;
@@ -524,7 +524,7 @@ export function svgEllipse(
   r1: number,
   phi: number,
   fA: boolean,
-  fS: boolean
+  fS: boolean,
 ): EllipseArc | Arc {
   const { center, rx, ry } = findSVGCenter(
     firstPoint,
@@ -533,7 +533,7 @@ export function svgEllipse(
     r1,
     phi * DEG2RAD,
     !fA,
-    fS
+    fS,
   );
 
   if (Math.abs(rx - ry) < 1e-9) {
@@ -553,7 +553,7 @@ function findSVGCenter(
   ry: number,
   phi: number,
   fA: boolean,
-  fS: boolean
+  fS: boolean,
 ): { center: Vector; rx: number; ry: number } {
   if (rx < 0) {
     rx = -rx;
@@ -617,7 +617,7 @@ function findSVGCenter(
 function closestPointOnEllipse(
   majorRadius: number,
   minorRadius: number,
-  point: Vector
+  point: Vector,
 ): Vector {
   const px = Math.abs(point[0]);
   const py = Math.abs(point[1]);

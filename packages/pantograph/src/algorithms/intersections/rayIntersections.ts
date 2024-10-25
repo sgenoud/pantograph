@@ -94,7 +94,7 @@ const rayArcIntersectionsCount = (point: Vector, arc: Arc) => {
   // delta corresponds to the length between the project center on the line and
   // the crossing points
   const delta = Math.sqrt(
-    arc.radius * arc.radius - verticalDistance * verticalDistance
+    arc.radius * arc.radius - verticalDistance * verticalDistance,
   );
 
   const counter = new IntersectionCounter(arc);
@@ -126,7 +126,7 @@ const rayEllipseArcIntersectionsCount = (point: Vector, arc: EllipseArc) => {
 
 const rayBezierIntersectionsCount = (
   point: Vector,
-  curve: CubicBezier | QuadraticBezier
+  curve: CubicBezier | QuadraticBezier,
 ) => {
   // We rely on the fact that the ray is horizontal
 

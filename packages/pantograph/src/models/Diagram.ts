@@ -54,7 +54,7 @@ export class Diagram extends Transformable<Diagram> {
 
   intersects(other: Diagram): boolean {
     return this.figures.some((figure) =>
-      other.figures.some((otherFigure) => figure.intersects(otherFigure))
+      other.figures.some((otherFigure) => figure.intersects(otherFigure)),
     );
   }
 
@@ -65,7 +65,7 @@ export class Diagram extends Transformable<Diagram> {
       }
 
       return other.figures.flatMap((otherFigure) =>
-        figure.overlappingStrands(otherFigure)
+        figure.overlappingStrands(otherFigure),
       );
     });
   }

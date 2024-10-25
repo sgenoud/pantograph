@@ -12,7 +12,7 @@ import type { Stroke } from "../../models/Stroke";
 function strandLoopSections(
   loop: Loop,
   strand: Stroke,
-  precision = 1e-9
+  precision = 1e-9,
 ): Strand[] {
   let allIntersections: Vector[] = [];
   const allCommonSegments: Segment[] = [];
@@ -26,7 +26,7 @@ function strandLoopSections(
       const { intersections, overlaps } = findIntersectionsAndOverlaps(
         strandSegment,
         loopSegment,
-        precision
+        precision,
       );
 
       allIntersections.push(...intersections);
@@ -46,7 +46,7 @@ function strandLoopSections(
 
   const strandSegments = zip([strand.segments, splitPoints] as [
     Segment[],
-    Vector[][]
+    Vector[][],
   ]).flatMap(([segment, intersections]: [Segment, Vector[]]): Segment[] => {
     if (!intersections.length) return [segment];
     return segment.splitAt(intersections);
@@ -56,15 +56,15 @@ function strandLoopSections(
     strandsBetweenIntersections(
       strandSegments,
       allIntersections,
-      allCommonSegments
-    )
+      allCommonSegments,
+    ),
   );
 }
 
 export function eraseStrandWithinLoop(
   strand: Stroke,
   loop: Loop,
-  eraseOnBorder = false
+  eraseOnBorder = false,
 ) {
   const strands = strandLoopSections(loop, strand);
 
@@ -80,7 +80,7 @@ export function eraseStrandWithinLoop(
 export function eraseStrandOutsideLoop(
   strand: Stroke,
   loop: Loop,
-  eraseOnBorder = false
+  eraseOnBorder = false,
 ) {
   const strands = strandLoopSections(loop, strand);
 
@@ -96,16 +96,16 @@ export function eraseStrandOutsideLoop(
 export function eraseStrandWithinFigure(
   strand: Stroke,
   figure: Figure,
-  eraseOnBorder = false
+  eraseOnBorder = false,
 ) {
   const outsideStrands = eraseStrandWithinLoop(
     strand,
     figure.contour,
-    eraseOnBorder
+    eraseOnBorder,
   );
 
   const inLoopStrand = figure.holes.flatMap((hole: Loop) =>
-    eraseStrandOutsideLoop(strand, hole, eraseOnBorder)
+    eraseStrandOutsideLoop(strand, hole, eraseOnBorder),
   );
 
   return [...outsideStrands, ...inLoopStrand];
@@ -114,17 +114,17 @@ export function eraseStrandWithinFigure(
 export function eraseStrandOutsideFigure(
   strand: Stroke,
   figure: Figure,
-  eraseOnBorder = false
+  eraseOnBorder = false,
 ) {
   let insideStrands = eraseStrandOutsideLoop(
     strand,
     figure.contour,
-    eraseOnBorder
+    eraseOnBorder,
   );
 
   figure.holes.forEach((hole: Loop) => {
     insideStrands = insideStrands.flatMap((strand) =>
-      eraseStrandWithinLoop(strand, hole, eraseOnBorder)
+      eraseStrandWithinLoop(strand, hole, eraseOnBorder),
     );
   });
 

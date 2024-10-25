@@ -3,7 +3,7 @@ export function findZeroViaNewton(
   fPrime: (x: number) => number,
   x0: number,
   precision = 1e-6,
-  maxIterations = 100
+  maxIterations = 100,
 ): null | number {
   let x = x0;
   let iteration = 0;

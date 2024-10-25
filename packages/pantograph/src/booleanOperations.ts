@@ -18,42 +18,42 @@ import { Stroke } from "./main";
 
 export function fuse(
   first: Diagram | Figure | Loop,
-  second: Diagram | Figure | Loop
+  second: Diagram | Figure | Loop,
 ): Diagram {
   return new Diagram(
-    fuseFiguresLists(listOfFigures(first), listOfFigures(second))
+    fuseFiguresLists(listOfFigures(first), listOfFigures(second)),
   );
 }
 
 export function fuseAll(shapes: (Diagram | Figure | Loop)[]): Diagram {
   return shapes.reduce(
     (acc: Diagram, shape: Diagram | Figure | Loop) => fuse(acc, shape),
-    new Diagram()
+    new Diagram(),
   );
 }
 
 export function cut(
   first: Diagram | Figure | Loop,
-  second: Diagram | Figure | Loop
+  second: Diagram | Figure | Loop,
 ): Diagram {
   return new Diagram(
-    cutFiguresLists(listOfFigures(first), listOfFigures(second))
+    cutFiguresLists(listOfFigures(first), listOfFigures(second)),
   );
 }
 
 export function intersect(
   first: Diagram | Figure | Loop,
-  second: Diagram | Figure | Loop
+  second: Diagram | Figure | Loop,
 ): Diagram {
   return new Diagram(
-    intersectFiguresLists(listOfFigures(first), listOfFigures(second))
+    intersectFiguresLists(listOfFigures(first), listOfFigures(second)),
   );
 }
 
 export function eraseStrand(
   strand: Stroke,
   diagram: Diagram | Figure | Loop,
-  eraseOnBorder = true
+  eraseOnBorder = true,
 ): Strand[] {
   if (diagram instanceof Loop) {
     return eraseStrandWithinLoop(strand, diagram, eraseOnBorder);
@@ -76,7 +76,7 @@ export function eraseStrand(
 export function confineStrand(
   strand: Stroke,
   diagram: Diagram | Figure | Loop,
-  eraseOnBorder = false
+  eraseOnBorder = false,
 ): Strand[] {
   if (diagram instanceof Loop) {
     return eraseStrandOutsideLoop(strand, diagram, eraseOnBorder);

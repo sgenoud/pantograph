@@ -9,7 +9,7 @@ type Matrix = [
   number,
   number,
   number,
-  number
+  number,
 ];
 
 const matMult = (m1: Matrix, m2: Matrix): Matrix => {

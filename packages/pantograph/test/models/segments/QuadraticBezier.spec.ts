@@ -18,7 +18,7 @@ describe("QuadraticBezier", () => {
     expect(curve.translateY(5).isOnSegment([0.75, 5.25])).toBe(true);
 
     expect(
-      curve.rotate(-45, [0.75, 0.25]).translateX(5).isOnSegment([5.75, 0.25])
+      curve.rotate(-45, [0.75, 0.25]).translateX(5).isOnSegment([5.75, 0.25]),
     ).toBe(true);
   });
 

@@ -9,7 +9,7 @@ interface WithParamPoint {
 export function genericDistance(
   segment1: WithParamPoint,
   segment2: WithParamPoint,
-  precision = 1e-9
+  precision = 1e-9,
 ): number {
   const result = findGlobalMinimum((t) => {
     const p1 = segment1.paramPoint(t[0]);

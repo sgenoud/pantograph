@@ -39,7 +39,7 @@ export class Arc extends AbstractSegment<Arc> {
     lastPoint: Vector,
     center: Vector,
     clockwise = false,
-    { ignoreChecks = false } = {}
+    { ignoreChecks = false } = {},
   ) {
     super(firstPoint, lastPoint);
     this.center = center;
@@ -55,15 +55,15 @@ export class Arc extends AbstractSegment<Arc> {
       )
         throw new Error(
           `Invalid arc, radius does not match between ${reprVector(
-            firstPoint
-          )} and ${reprVector(lastPoint)}} (center ${reprVector(center)})`
+            firstPoint,
+          )} and ${reprVector(lastPoint)}} (center ${reprVector(center)})`,
         );
     }
   }
 
   get info() {
     return `ARC(${reprVector(this.firstPoint)}, ${reprVector(
-      this.lastPoint
+      this.lastPoint,
     )}, ${reprVector(this.center)}, ${this.clockwise ? "CW" : "CCW"})`;
   }
 
@@ -116,7 +116,7 @@ export class Arc extends AbstractSegment<Arc> {
       this._angularLength = angularDistance(
         this.firstAngle,
         this.lastAngle,
-        this.clockwise
+        this.clockwise,
       );
     }
     return this._angularLength;
@@ -127,8 +127,8 @@ export class Arc extends AbstractSegment<Arc> {
       this.center,
       polarToCartesian(
         this.radius,
-        this.firstAngle + t * this.angularLength * (this.clockwise ? -1 : 1)
-      )
+        this.firstAngle + t * this.angularLength * (this.clockwise ? -1 : 1),
+      ),
     );
   }
 
@@ -136,13 +136,13 @@ export class Arc extends AbstractSegment<Arc> {
     const [r, theta] = polarCoordsFromCenter(point, this.center);
     if (Math.abs(r - this.radius) > this.precision)
       throw new Error(
-        `Point ${reprVector(point)} is not on segment ${this.repr}`
+        `Point ${reprVector(point)} is not on segment ${this.repr}`,
       );
 
     const param = this.angleToParam(theta);
     if (!this.isValidParameter(param))
       throw new Error(
-        `Point ${reprVector(point)} is not on segment ${this.repr}`
+        `Point ${reprVector(point)} is not on segment ${this.repr}`,
       );
 
     return param;
@@ -205,7 +205,7 @@ export class Arc extends AbstractSegment<Arc> {
       this.firstPoint,
       this.lastPoint,
       this.center,
-      this.clockwise
+      this.clockwise,
     );
   }
 
@@ -214,7 +214,7 @@ export class Arc extends AbstractSegment<Arc> {
       this.lastPoint,
       this.firstPoint,
       this.center,
-      !this.clockwise
+      !this.clockwise,
     );
   }
 
@@ -236,7 +236,7 @@ export class Arc extends AbstractSegment<Arc> {
           : Math.max(this.firstPoint[0], this.lastPoint[0]) + this.precision,
         validAngle(Math.PI / 2)
           ? this.center[1] + extendedR
-          : Math.max(this.firstPoint[1], this.lastPoint[1]) + this.precision
+          : Math.max(this.firstPoint[1], this.lastPoint[1]) + this.precision,
       );
     }
     return this._boundingBox;
@@ -250,8 +250,8 @@ export class Arc extends AbstractSegment<Arc> {
     return Math.sqrt(
       Math.min(
         squareDistance(point, this.firstPoint),
-        squareDistance(point, this.lastPoint)
-      )
+        squareDistance(point, this.lastPoint),
+      ),
     );
   }
 
@@ -323,8 +323,8 @@ export class Arc extends AbstractSegment<Arc> {
     const paramsMap = new Map<number, Vector>(
       zip([allParams, [this.firstPoint, this.lastPoint, ...splitPoints]]) as [
         number,
-        Vector
-      ][]
+        Vector,
+      ][],
     );
     allParams.sort((a, b) => a - b);
 
@@ -343,7 +343,7 @@ export class Arc extends AbstractSegment<Arc> {
         paramsMap.get(startParam) || this.paramPoint(startParam),
         paramsMap.get(nextParam) || this.paramPoint(nextParam),
         this.center,
-        this.clockwise
+        this.clockwise,
       );
       skipped = null;
       return arc;
@@ -355,7 +355,7 @@ export class Arc extends AbstractSegment<Arc> {
       matrix.transform(this.firstPoint),
       matrix.transform(this.lastPoint),
       matrix.transform(this.center),
-      matrix.keepsOrientation() ? this.clockwise : !this.clockwise
+      matrix.keepsOrientation() ? this.clockwise : !this.clockwise,
     );
   }
 }
@@ -363,7 +363,7 @@ export class Arc extends AbstractSegment<Arc> {
 export function threePointsArc(
   firstPoint: Vector,
   midPoint: Vector,
-  lastPoint: Vector
+  lastPoint: Vector,
 ) {
   const chord1 = new Line(midPoint, firstPoint);
   const chord2 = new Line(midPoint, lastPoint);
@@ -373,7 +373,7 @@ export function threePointsArc(
 
   const result = lineLineParams(
     { firstPoint: chord1.midPoint, V: dir1, precision: 1e-9 },
-    { firstPoint: chord2.midPoint, V: dir2, precision: 1e-9 }
+    { firstPoint: chord2.midPoint, V: dir2, precision: 1e-9 },
   );
 
   if (result === "parallel")
@@ -382,7 +382,7 @@ export function threePointsArc(
   const clockwise =
     crossProduct(
       subtract(firstPoint, midPoint),
-      subtract(lastPoint, midPoint)
+      subtract(lastPoint, midPoint),
     ) > 0;
 
   return new Arc(
@@ -390,14 +390,14 @@ export function threePointsArc(
     lastPoint,
     add(chord1.midPoint, scalarMultiply(dir1, result.intersectionParam1)),
     clockwise,
-    { ignoreChecks: true }
+    { ignoreChecks: true },
   );
 }
 
 export function tangentArc(
   firstPoint: Vector,
   lastPoint: Vector,
-  tangentAtFirstPoint: Vector
+  tangentAtFirstPoint: Vector,
 ) {
   const chord = new Line(lastPoint, firstPoint);
   const dir = perpendicular(chord.tangentAtFirstPoint);
@@ -408,7 +408,7 @@ export function tangentArc(
       firstPoint: firstPoint,
       V: perpendicular(tangentAtFirstPoint),
       precision: 1e-9,
-    }
+    },
   );
 
   if (result === "parallel")
@@ -416,13 +416,13 @@ export function tangentArc(
 
   const center = add(
     chord.midPoint,
-    scalarMultiply(dir, result.intersectionParam1)
+    scalarMultiply(dir, result.intersectionParam1),
   );
 
   const clockwise =
     crossProduct(
       subtract(center, firstPoint),
-      subtract(center, add(firstPoint, tangentAtFirstPoint))
+      subtract(center, add(firstPoint, tangentAtFirstPoint)),
     ) < 0;
 
   return new Arc(firstPoint, lastPoint, center, clockwise, {

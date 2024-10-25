@@ -17,7 +17,7 @@ describe("genericDistance", () => {
       [275.99266686420884, 24.676735625661472],
       [377.5646496724898, 167.5240988148737],
       [256.25, 146.25],
-      false
+      false,
     );
 
     expect(genericDistance(a1, a2)).toBeCloseTo(25);
@@ -30,10 +30,10 @@ describe("genericDistance", () => {
     expect(genericDistance(arc1, arc2)).toBeCloseTo(0.1);
     expect(genericDistance(arc2, arc1)).toBeCloseTo(0.1);
     expect(genericDistance(arc1, arc2.rotate(180, arc1.center))).toBeCloseTo(
-      1.36176
+      1.36176,
     );
     expect(genericDistance(arc2.rotate(180, arc1.center), arc1)).toBeCloseTo(
-      1.36176
+      1.36176,
     );
   });
 
@@ -45,7 +45,7 @@ describe("genericDistance", () => {
       3,
       0.5,
       0,
-      true
+      true,
     ).rotate(45);
 
     const p = ellipse.paramPoint(0.5235);

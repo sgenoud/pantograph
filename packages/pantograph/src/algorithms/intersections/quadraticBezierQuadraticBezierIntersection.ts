@@ -5,7 +5,7 @@ import { bezierClip } from "./bezierClip.js";
 
 export function handleOverlaps(
   curve1: QuadraticBezier,
-  curve2: QuadraticBezier
+  curve2: QuadraticBezier,
 ) {
   const commonPoints: Vector[] = [];
   const toTest: [Vector, QuadraticBezier][] = [
@@ -51,7 +51,7 @@ export function handleOverlaps(
 export function quadraticBezierQuadraticBezierIntersection(
   curve1: QuadraticBezier,
   curve2: QuadraticBezier,
-  includeOverlaps = false
+  includeOverlaps = false,
 ) {
   const epsilon = Math.max(curve1.precision, curve2.precision);
 

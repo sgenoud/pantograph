@@ -21,7 +21,7 @@ export class FoldLockBump extends Transformable<FoldLockBump> {
   bump: Diagram;
   constructor(
     width: number | { cut: Strand; unfold: Diagram; bump: Diagram },
-    paperThickness = 0.2
+    paperThickness = 0.2,
   ) {
     super();
 

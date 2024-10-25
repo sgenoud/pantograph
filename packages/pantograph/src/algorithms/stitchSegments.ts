@@ -3,7 +3,7 @@ import { Segment } from "../models/segments/Segment.js";
 
 export function stitchSegments(
   segments: Segment[],
-  precision = 1e-7
+  precision = 1e-7,
 ): Segment[][] {
   if (segments.length === 0) return [];
   if (segments.length === 1) return [segments];
@@ -44,7 +44,7 @@ export function stitchSegments(
         x - precision,
         y - precision,
         x + precision,
-        y + precision
+        y + precision,
       );
 
       const indexDistance = (otherIndex: number) =>

@@ -28,7 +28,7 @@ export class CubicBezier extends AbstractSegment<CubicBezier> {
     firstPoint: Vector,
     lastPoint: Vector,
     firstControlPoint: Vector,
-    lastControlPoint: Vector
+    lastControlPoint: Vector,
     //{ ignoreChecks = false } = {}
   ) {
     super(firstPoint, lastPoint);
@@ -56,7 +56,7 @@ export class CubicBezier extends AbstractSegment<CubicBezier> {
         const c = -p1 + p2;
 
         return solveQuadratic(c, b, a).filter(
-          (r) => r >= -this.precision && r <= 1 + this.precision
+          (r) => r >= -this.precision && r <= 1 + this.precision,
         );
       };
 
@@ -76,7 +76,7 @@ export class CubicBezier extends AbstractSegment<CubicBezier> {
       this.firstPoint,
       this.lastPoint,
       this.firstControlPoint,
-      this.lastControlPoint
+      this.lastControlPoint,
     );
   }
 
@@ -85,7 +85,7 @@ export class CubicBezier extends AbstractSegment<CubicBezier> {
       this.lastPoint,
       this.firstPoint,
       this.lastControlPoint,
-      this.firstControlPoint
+      this.firstControlPoint,
     );
   }
 
@@ -111,7 +111,7 @@ export class CubicBezier extends AbstractSegment<CubicBezier> {
     if (status.argMin < -this.precision || status.argMin > 1 + this.precision) {
       return Math.min(
         distance(this.firstPoint, element),
-        distance(this.lastPoint, element)
+        distance(this.lastPoint, element),
       );
     }
     return Math.sqrt(status.fMin);
@@ -167,7 +167,7 @@ export class CubicBezier extends AbstractSegment<CubicBezier> {
 
   splitAtParameters(
     params: number[],
-    paramsMap: null | Map<number, Vector> = null
+    paramsMap: null | Map<number, Vector> = null,
   ): CubicBezier[] {
     const splitParams = [...params];
     splitParams.sort((a, b) => a - b);
@@ -203,12 +203,12 @@ export class CubicBezier extends AbstractSegment<CubicBezier> {
           previousPointInfo.p2,
           this.lastPoint,
         ],
-        paramCloseTo1 ? 1 : param
+        paramCloseTo1 ? 1 : param,
       );
 
       const splitPoint = paramCloseTo1
         ? this.lastPoint
-        : paramsMap?.get(originalParam) ?? splitHistory[0][0];
+        : (paramsMap?.get(originalParam) ?? splitHistory[0][0]);
       const newLastControlPoint = splitHistory[1][0];
       const newFirstControlPoint = splitHistory[2][0];
       const nextFirstControlPoint = splitHistory[1][1];
@@ -218,7 +218,7 @@ export class CubicBezier extends AbstractSegment<CubicBezier> {
         previousPointInfo.p0,
         splitPoint,
         newFirstControlPoint,
-        newLastControlPoint
+        newLastControlPoint,
       );
 
       previousPointInfo = {
@@ -236,7 +236,7 @@ export class CubicBezier extends AbstractSegment<CubicBezier> {
             previousPointInfo.p0,
             this.lastPoint,
             previousPointInfo.p1,
-            previousPointInfo.p2
+            previousPointInfo.p2,
           ),
         ];
       }
@@ -262,7 +262,7 @@ export class CubicBezier extends AbstractSegment<CubicBezier> {
     // We use a map here, because we want to keep the entered split points
     // exactly (no change from the transformation from and to params).
     const paramsMap = new Map<number, Vector>(
-      zip([splitParams, splitPoints]) as [number, Vector][]
+      zip([splitParams, splitPoints]) as [number, Vector][],
     );
 
     return this.splitAtParameters(splitParams, paramsMap);
@@ -273,7 +273,7 @@ export class CubicBezier extends AbstractSegment<CubicBezier> {
       matrix.transform(this.firstPoint),
       matrix.transform(this.lastPoint),
       matrix.transform(this.firstControlPoint),
-      matrix.transform(this.lastControlPoint)
+      matrix.transform(this.lastControlPoint),
     );
   }
 
@@ -326,7 +326,7 @@ export class CubicBezier extends AbstractSegment<CubicBezier> {
   paramsAtY(y: number) {
     const [z0, z1, z2, z3] = this.polynomialCoefficients[1];
     return solveCubic(z0 - y, z1, z2, z3).filter(
-      (z) => z >= -this.precision && z <= 1 + this.precision
+      (z) => z >= -this.precision && z <= 1 + this.precision,
     );
   }
 

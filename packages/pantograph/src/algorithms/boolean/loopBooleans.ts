@@ -42,7 +42,7 @@ const rotateToStartAtSegment = (segments: Segment[], segment: Segment) => {
     if (startIndex === -1) {
       console.error(
         reversedSegments.map((c) => c.repr),
-        segment.repr
+        segment.repr,
       );
       throw new Error("Failed to rotate to segment start");
     }
@@ -60,7 +60,7 @@ type IntersectionStrand = [Strand, Strand | "same"];
 function removeNonCrossingPoint(
   allIntersections: Vector[],
   segmentedCurve: Segment[],
-  loopToCheck: Loop
+  loopToCheck: Loop,
 ) {
   return allIntersections.filter((intersection: Vector) => {
     const segmentsOfIntersection = segmentedCurve.filter((s) => {
@@ -94,7 +94,7 @@ function removeNonCrossingPoint(
 function loopIntersectionStrands(
   first: Loop,
   second: Loop,
-  precision?: number
+  precision?: number,
 ): IntersectionStrand[] | null {
   // For each segment of each blueprint we figure out where the intersection
   // points are.
@@ -113,7 +113,7 @@ function loopIntersectionStrands(
       const { intersections, overlaps } = findIntersectionsAndOverlaps(
         thisSegments,
         otherSegments,
-        precision
+        precision,
       );
 
       allIntersections.push(...intersections);
@@ -140,19 +140,19 @@ function loopIntersectionStrands(
   // We further split the segments at the intersections
   const cutCurve = ([segment, intersections]: [
     Segment,
-    Vector[]
+    Vector[],
   ]): Segment[] => {
     if (!intersections.length) return [segment];
     return segment.splitAt(intersections);
   };
   let firstCurveSegments = zip([first.segments, firstCurvePoints] as [
     Segment[],
-    Vector[][]
+    Vector[][],
   ]).flatMap(cutCurve);
 
   let secondCurveSegments = zip([second.segments, secondCurvePoints] as [
     Segment[],
-    Vector[][]
+    Vector[][],
   ]).flatMap(cutCurve);
 
   // We need to remove intersection points that are not crossing into each
@@ -161,7 +161,7 @@ function loopIntersectionStrands(
   allIntersections = removeNonCrossingPoint(
     allIntersections,
     firstCurveSegments,
-    second
+    second,
   );
 
   if (!allIntersections.length && !allCommonSegments.length) return null;
@@ -176,11 +176,11 @@ function loopIntersectionStrands(
     const startSegment = allCommonSegments[0];
     firstCurveSegments = rotateToStartAtSegment(
       firstCurveSegments,
-      startSegment
+      startSegment,
     );
     secondCurveSegments = rotateToStartAtSegment(
       secondCurveSegments,
-      startSegment
+      startSegment,
     );
   }
 
@@ -189,22 +189,22 @@ function loopIntersectionStrands(
     strandsBetweenIntersections(
       firstCurveSegments,
       allIntersections,
-      allCommonSegments
-    )
+      allCommonSegments,
+    ),
   );
 
   let strandsFromSecond = Array.from(
     strandsBetweenIntersections(
       secondCurveSegments,
       allIntersections,
-      allCommonSegments
-    )
+      allCommonSegments,
+    ),
   );
 
   if (
     !sameVector(
       strandsFromSecond[0].lastPoint,
-      strandsFromFirst[0].lastPoint
+      strandsFromFirst[0].lastPoint,
     ) ||
     (allCommonSegments.length > 0 && strandsFromSecond[0].segmentsCount !== 1)
   ) {
@@ -239,7 +239,7 @@ function mergeStrandsAsLoop(strands: Strand[]) {
   if (!sameVector(outStrand.firstPoint, outStrand.lastPoint)) {
     console.error(
       reprVector(outStrand.firstPoint),
-      reprVector(outStrand.lastPoint)
+      reprVector(outStrand.lastPoint),
     );
     throw new Error("Bug in the intersection algo on non closing strand");
   }
@@ -249,7 +249,7 @@ function mergeStrandsAsLoop(strands: Strand[]) {
 
 function mergeDiscontinuities(
   inputStrands: Strand[],
-  discontinuities: number[]
+  discontinuities: number[],
 ) {
   const strands = zip([
     discontinuities.slice(0, -1),
@@ -259,7 +259,7 @@ function mergeDiscontinuities(
   });
 
   let lastStrand = inputStrands.slice(
-    discontinuities[discontinuities.length - 1]
+    discontinuities[discontinuities.length - 1],
   );
   if (discontinuities[0] !== 0) {
     lastStrand = lastStrand.concat(inputStrands.slice(0, discontinuities[0]));
@@ -282,7 +282,7 @@ function groupLoops(inputStrands: Strand[]): Loop[] {
         return index;
       }
       return [];
-    }
+    },
   );
 
   try {
@@ -329,7 +329,7 @@ export function loopBooleanOperation(
   }: {
     firstInside: "keep" | "remove";
     secondInside: "keep" | "remove";
-  }
+  },
 ):
   | Loop[]
   | { identical: true }

@@ -48,7 +48,7 @@ export function handleOverlaps(curve1: CubicBezier, curve2: CubicBezier) {
 export function cubicBezierCubicBezierIntersection(
   curve1: CubicBezier,
   curve2: CubicBezier,
-  includeOverlaps = false
+  includeOverlaps = false,
 ) {
   const epsilon = Math.max(curve1.precision, curve2.precision);
 

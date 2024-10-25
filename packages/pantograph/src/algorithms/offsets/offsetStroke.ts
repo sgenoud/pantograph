@@ -23,7 +23,7 @@ const PRECISION = 1e-8;
 export function rawOffsets(
   segmentsToOffset: Segment[],
   offset: number,
-  loop = true
+  loop = true,
 ): Segment[] {
   const offsetSegments: OffsetSegmentPair[] = segmentsToOffset.map((c) => ({
     offset: offsetSegment(c, offset),
@@ -52,7 +52,7 @@ export function rawOffsets(
       !sameVector(segment.offset.firstPoint, segment.offset.lastPoint)
     ) {
       offsettedArray.push(
-        new Line(segment.offset.firstPoint, segment.offset.lastPoint)
+        new Line(segment.offset.firstPoint, segment.offset.lastPoint),
       );
     }
   };
@@ -91,7 +91,7 @@ export function rawOffsets(
         findIntersectionsAndOverlaps(
           previousSegment.offset,
           segment.offset,
-          PRECISION / 100
+          PRECISION / 100,
         );
       intersections = [
         ...pointIntersections,
@@ -108,7 +108,7 @@ export function rawOffsets(
 
         const originalEndpoint = previousSegment?.original.lastPoint;
         const distances = intersections.map((i) =>
-          squareDistance(i, originalEndpoint)
+          squareDistance(i, originalEndpoint),
         );
         intersection = intersections[distances.indexOf(Math.min(...distances))];
       }
@@ -139,7 +139,7 @@ export function rawOffsets(
     const clockwise =
       crossProduct(
         subtract(firstPoint, center),
-        subtract(previousLastPoint, center)
+        subtract(previousLastPoint, center),
       ) > 0;
 
     const joiner = new Arc(previousLastPoint, firstPoint, center, clockwise);
@@ -159,7 +159,7 @@ interface OffsetSegmentPair {
 }
 
 function findOffsetSelfIntersections(
-  segments: Segment[]
+  segments: Segment[],
 ): Map<number, Vector[]> {
   // We remove the self intersections with the use the the algorithm as described in
   // https://github.com/jbuckmccready/CavalierContours#offset-algorithm-and-stepwise-example
@@ -202,7 +202,7 @@ function findOffsetSelfIntersections(
 
 function findIntersections(
   segments: Segment[],
-  intersectWith: Segment[]
+  intersectWith: Segment[],
 ): Map<number, Vector[]> {
   const allIntersections: Map<number, Vector[]> = new Map();
   const updateIntersections = (index: number, newPoints: Vector[]) => {
@@ -237,7 +237,7 @@ function findIntersections(
 function findEndIntersections(
   segments: Segment[],
   strand: Strand,
-  offset: number
+  offset: number,
 ) {
   const circle = new Loop([
     new Arc([-offset, 0], [offset, 0], [0, 0], true),
@@ -266,7 +266,7 @@ function mergeIntersectionMaps(maps: Map<number, Vector[]>[]) {
 
 function splitSegmentsAtIntersections(
   intersections: Map<number, Vector[]>,
-  segments: Segment[]
+  segments: Segment[],
 ): Segment[] {
   return segments.flatMap((segment, index) => {
     if (!intersections.has(index)) return segment;
@@ -281,7 +281,7 @@ function splitSegmentsAtIntersections(
 function pruneDegenerateSegments(
   segments: Segment[],
   originalStroke: Stroke,
-  offset: number
+  offset: number,
 ): Segment[] {
   // We remove all the segments that are closer to the original segment than the offset
   return segments.filter((segment) => {
@@ -313,7 +313,7 @@ export function offsetLoop(loop: Loop, offset: number): Diagram {
   }
   const splitSegments = splitSegmentsAtIntersections(
     allIntersections,
-    offsettedArray
+    offsettedArray,
   );
 
   // We remove all the segments that are closer to the original segment than the offset
@@ -350,7 +350,7 @@ export function offsetStrand(strand: Strand, offset: number): Stroke[] {
   }
   const splitSegments = splitSegmentsAtIntersections(
     allIntersections,
-    offsettedArray
+    offsettedArray,
   );
 
   // We remove all the segments that are closer to the original segment than the offset
@@ -369,12 +369,12 @@ export function offsetStrand(strand: Strand, offset: number): Stroke[] {
 export function outlineStrand(
   strand: Strand,
   width: number,
-  endCap: "round" | "butt" = "round"
+  endCap: "round" | "butt" = "round",
 ): Diagram {
   const offset = width / 2;
   const frontOffsettedArray = rawOffsets(strand.segments, offset, false);
   const backOffsettedArray = rawOffsets(strand.segments, -offset, false).map(
-    (s) => s.reverse()
+    (s) => s.reverse(),
   );
   backOffsettedArray.reverse();
 
@@ -383,7 +383,7 @@ export function outlineStrand(
       return tangentArc(
         fromSegment.lastPoint,
         toSegment.firstPoint,
-        fromSegment.tangentAtLastPoint
+        fromSegment.tangentAtLastPoint,
       );
     }
     return new Line(fromSegment.lastPoint, toSegment.firstPoint);
@@ -393,12 +393,12 @@ export function outlineStrand(
     ...frontOffsettedArray,
     makeJoiner(
       frontOffsettedArray[frontOffsettedArray.length - 1],
-      backOffsettedArray[0]
+      backOffsettedArray[0],
     ),
     ...backOffsettedArray,
     makeJoiner(
       backOffsettedArray[backOffsettedArray.length - 1],
-      frontOffsettedArray[0]
+      frontOffsettedArray[0],
     ),
   ];
 
@@ -410,7 +410,7 @@ export function outlineStrand(
   }
   const splitSegments = splitSegmentsAtIntersections(
     allIntersections,
-    offsettedArray
+    offsettedArray,
   );
 
   // We remove all the segments that are closer to the original segment than the offset

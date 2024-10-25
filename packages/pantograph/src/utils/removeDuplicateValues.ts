@@ -5,9 +5,9 @@ const asFixed = (p: number, precision = 1e-9): string => {
 };
 export default function removeDuplicateValues(
   points: number[],
-  precision = 1e-9
+  precision = 1e-9,
 ): number[] {
   return Array.from(
-    new Map(points.map((p) => [asFixed(p, precision), p])).values()
+    new Map(points.map((p) => [asFixed(p, precision), p])).values(),
   );
 }

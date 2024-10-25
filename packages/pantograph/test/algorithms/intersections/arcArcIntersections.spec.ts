@@ -74,26 +74,26 @@ describe("arcArcIntersections", () => {
 
     // We go with all the orientation combinations
     expect(arcArcIntersection(arc1, arc2.reverse(), false)[0]).toBeVector(
-      intersections[0]
+      intersections[0],
     );
     expect(arcArcIntersection(arc1.reverse(), arc2, false)[0]).toBeVector(
-      intersections[0]
+      intersections[0],
     );
     expect(
-      arcArcIntersection(arc1.reverse(), arc2.reverse(), false)[0]
+      arcArcIntersection(arc1.reverse(), arc2.reverse(), false)[0],
     ).toBeVector(intersections[0]);
 
     expect(arcArcIntersection(arc2, arc1, false)[0]).toBeVector(
-      intersections[0]
+      intersections[0],
     );
     expect(arcArcIntersection(arc2, arc1.reverse(), false)[0]).toBeVector(
-      intersections[0]
+      intersections[0],
     );
     expect(arcArcIntersection(arc2.reverse(), arc1, false)[0]).toBeVector(
-      intersections[0]
+      intersections[0],
     );
     expect(
-      arcArcIntersection(arc2.reverse(), arc1.reverse(), false)[0]
+      arcArcIntersection(arc2.reverse(), arc1.reverse(), false)[0],
     ).toBeVector(intersections[0]);
   });
 
@@ -122,7 +122,7 @@ describe("arcArcIntersections", () => {
       expect(intersections.length).toBe(1);
 
       expect(
-        (intersections[0] as Arc).isSame(new Arc([3, 0], [0, 3], [0, 0]))
+        (intersections[0] as Arc).isSame(new Arc([3, 0], [0, 3], [0, 0])),
       ).toBe(true);
     });
 
@@ -134,7 +134,7 @@ describe("arcArcIntersections", () => {
       expect(intersections.length).toBe(1);
 
       expect(
-        (intersections[0] as Arc).isSame(new Arc([3, 0], [0, 3], [0, 0]))
+        (intersections[0] as Arc).isSame(new Arc([3, 0], [0, 3], [0, 0])),
       ).toBe(true);
     });
 

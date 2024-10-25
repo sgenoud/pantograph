@@ -147,7 +147,7 @@ describe("bezierClip", () => {
       const curve1 = new CubicBezier([0, 0], [1, 1], [1, 0], [0, 1]);
       const curve2 = new QuadraticBezier([0, 0], [1, 1], [1, 0]).rotate(
         90,
-        [0.2, 0.3]
+        [0.2, 0.3],
       );
 
       const intersections = bezierClip(curve1, curve2);
@@ -176,7 +176,7 @@ describe("bezierClip", () => {
         .translate(-0.5, 0.8);
       const curve2 = new QuadraticBezier([-0.5, 0], [1, 0], [-1, 1]).translate(
         0.2,
-        0.5
+        0.5,
       );
 
       const intersections = bezierClip(curve1, curve2);

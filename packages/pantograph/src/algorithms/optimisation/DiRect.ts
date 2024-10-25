@@ -10,7 +10,7 @@
 function binarySearch<T>(
   array: T[],
   value: T,
-  comparator: (a: T, b: T) => number
+  comparator: (a: T, b: T) => number,
 ): number {
   let low = 0;
   let high = array.length - 1;
@@ -31,7 +31,7 @@ function binarySearch<T>(
 function binaryInsert<T>(
   array: T[],
   value: T,
-  comparator: (a: T, b: T) => number
+  comparator: (a: T, b: T) => number,
 ) {
   const index = binarySearch(array, value, comparator);
   if (index < 0) {
@@ -129,12 +129,15 @@ class DivisionRectangle {
 
   public index: string;
 
-  constructor(public x: number, public y: number) {
+  constructor(
+    public x: number,
+    public y: number,
+  ) {
     this.xLength = Math.pow(3, -x);
     this.yLength = Math.pow(3, -y);
 
     this.diagonal = Math.sqrt(
-      this.xLength * this.xLength + this.yLength * this.yLength
+      this.xLength * this.xLength + this.yLength * this.yLength,
     );
     this.diagonalBucketIndex = x + y;
 
@@ -154,7 +157,7 @@ export class DiRectOptimisation {
     public fcn: ([x, y]: [number, number]) => number,
     public endTolerance = 1e-8,
     public maxIterations = 1000,
-    public epsilon = 1e-6
+    public epsilon = 1e-6,
   ) {
     this.fcn = fcn;
     this.epsilon = epsilon;
@@ -273,7 +276,7 @@ class Interval {
   constructor(
     public center: [number, number],
     public value: number,
-    public rectangle: DivisionRectangle
+    public rectangle: DivisionRectangle,
   ) {}
 }
 
@@ -281,13 +284,13 @@ export function findGlobalMinimum(
   fun: (x: [number, number]) => number,
   tolerance = 1e-8,
   maxIterations = 1000,
-  epsilon = 1e-6
+  epsilon = 1e-6,
 ) {
   const optimiser = new DiRectOptimisation(
     fun,
     tolerance,
     maxIterations,
-    epsilon
+    epsilon,
   );
   return optimiser.run();
 }
