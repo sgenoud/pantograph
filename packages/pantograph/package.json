@@ -38,6 +38,15 @@
       "require": {
         "default": "./dist/pantograph/drawShape.cjs"
       }
+    },
+    "./svg": {
+      "import": {
+        "default": "./dist/pantograph/svg.js",
+        "types": "./dist/types/src/api/svg.d.ts"
+      },
+      "require": {
+        "default": "./dist/pantograph/svg.cjs"
+      }
     }
   },
   "scripts": {

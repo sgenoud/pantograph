@@ -1,6 +1,6 @@
 import { BoundingBox } from "../../models/BoundingBox.js";
 
-export function SVGViewbox(bbox: BoundingBox, margin = 1) {
+export function svgViewbox(bbox: BoundingBox, margin = 1) {
   const minX = bbox.xMin - margin;
   const minY = bbox.yMin - margin;
 
@@ -18,7 +18,7 @@ export function wrapSVG(
   margin = 1,
   unit: null | SVGUnit,
 ) {
-  const vbox = SVGViewbox(boundingBox, margin);
+  const vbox = svgViewbox(boundingBox, margin);
   const sizes = unit
     ? `width="${boundingBox.width + 2 * margin}${unit}" height="${
         boundingBox.height + 2 * margin

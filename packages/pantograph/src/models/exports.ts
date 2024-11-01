@@ -11,6 +11,9 @@ export { Line } from "./segments/Line.js";
 export { Arc } from "./segments/Arc.js";
 export { EllipseArc } from "./segments/EllipseArc.js";
 export { CubicBezier } from "./segments/CubicBezier.js";
+export { QuadraticBezier } from "./segments/QuadraticBezier.js";
 export type { Segment } from "./segments/Segment.js";
+
+export { isSegment } from "./segments/utils/isSegment.js";
 
 export { Transformable } from "./utils/Transformable.js";
