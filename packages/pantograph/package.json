@@ -8,7 +8,7 @@
   "files": [
     "dist"
   ],
-  "types": "./dist/types/main.d.ts",
+  "types": "./dist/types/src/main.d.ts",
   "exports": {
     ".": {
       "import": {
@@ -61,7 +61,7 @@
     "svg"
   ],
   "author": "Steve Genoud",
-  "license": "AGPL",
+  "license": "MIT",
   "devDependencies": {
     "@microsoft/api-extractor": "^7.47.11",
     "@types/node": "^22.7.9",

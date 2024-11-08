@@ -11,7 +11,7 @@
   ],
   "author": "Steve Genoud <steve@sgenoud.com>",
   "homepage": "https://github.com/sgenoud/pantograph#readme",
-  "license": "AGPL-3.0-or-later",
+  "license": "MIT",
   "main": "lib/dielines.js",
   "directories": {
     "lib": "lib",
