@@ -1574,3 +1574,305 @@ Diagram {
   ],
 }
 `;
+
+exports[`outlineStrand > should work on simple cubic bezier 1`] = `
+Diagram {
+  "_boundingBox": null,
+  "figures": [
+    Figure {
+      "contour": Loop {
+        "_boundingBox": null,
+        "_clockwise": null,
+        "segments": [
+          CubicBezier {
+            "_boundingBox": BoundingBox {
+              "xMax": 1.3075408898090088,
+              "xMin": -0.03325950626188697,
+              "yMax": -0.4988925779283045,
+              "yMin": -1.3078732174163115,
+            },
+            "_polynomialCoefficients": [
+              [
+                -0.03325950526188697,
+                3.414735985192219,
+                -3.381297317409211,
+                1.3073617262878876,
+              ],
+              [
+                -0.4988925789283045,
+                -0.2276490656794814,
+                -0.8806133755538847,
+                0.2992818037453593,
+              ],
+            ],
+            "firstControlPoint": [
+              1.1049858231355194,
+              -0.574775600821465,
+            ],
+            "firstPoint": [
+              -0.03325950526188697,
+              -0.4988925789283045,
+            ],
+            "lastControlPoint": [
+              1.1161320457298556,
+              -0.9441964145659203,
+            ],
+            "lastPoint": [
+              1.3075408888090088,
+              -1.3078732164163114,
+            ],
+            "precision": 1e-9,
+            "segmentType": "CUBIC_BEZIER",
+          },
+          CubicBezier {
+            "_boundingBox": BoundingBox {
+              "xMax": 2.3591226764207884,
+              "xMin": 1.3075408878090087,
+              "yMax": -1.3078732154163113,
+              "yMin": -2.1850631589433043,
+            },
+            "_polynomialCoefficients": null,
+            "firstControlPoint": [
+              1.476465718968518,
+              -1.6288303937193787,
+            ],
+            "firstPoint": [
+              1.3075408888090088,
+              -1.3078732164163114,
+            ],
+            "lastControlPoint": [
+              1.7215364340963786,
+              -1.9512815361243538,
+            ],
+            "lastPoint": [
+              2.3591226754207884,
+              -2.185063157943304,
+            ],
+            "precision": 1e-9,
+            "segmentType": "CUBIC_BEZIER",
+          },
+          CubicBezier {
+            "_boundingBox": BoundingBox {
+              "xMax": 5.000000001,
+              "xMin": 2.3591226744207883,
+              "yMax": -2.185063156943304,
+              "yMin": -2.500000001,
+            },
+            "_polynomialCoefficients": [
+              [
+                2.3591226754207884,
+                1.5042972102033492,
+                0.8968418932362052,
+                0.23973822113965682,
+              ],
+              [
+                -2.185063157943304,
+                -0.551575643741228,
+                0.15834076131236863,
+                0.07829804037216359,
+              ],
+            ],
+            "firstControlPoint": [
+              2.8605550788219043,
+              -2.368921705857047,
+            ],
+            "firstPoint": [
+              2.3591226754207884,
+              -2.185063157943304,
+            ],
+            "lastControlPoint": [
+              3.6609347799684224,
+              -2.5,
+            ],
+            "lastPoint": [
+              5,
+              -2.5,
+            ],
+            "precision": 1e-9,
+            "segmentType": "CUBIC_BEZIER",
+          },
+          Arc {
+            "_angularLength": 3.141592653589793,
+            "_boundingBox": BoundingBox {
+              "xMax": 5.500000001,
+              "xMin": 4.999999999,
+              "yMax": -1.499999999,
+              "yMin": -2.500000001,
+            },
+            "_coefficients": {
+              "c": 115,
+              "x": -40,
+              "x2": 4,
+              "xy": 0,
+              "y": 16,
+              "y2": 4,
+            },
+            "_firstAngle": 4.71238898038469,
+            "_lastAngle": 1.5707963267948966,
+            "_radius": 0.5,
+            "center": [
+              5,
+              -2,
+            ],
+            "clockwise": false,
+            "firstPoint": [
+              5,
+              -2.5,
+            ],
+            "lastPoint": [
+              5,
+              -1.5,
+            ],
+            "precision": 1e-9,
+            "segmentType": "ARC",
+          },
+          CubicBezier {
+            "_boundingBox": BoundingBox {
+              "xMax": 5.000000001,
+              "xMin": 2.7033773235792116,
+              "yMax": -1.2461868410566956,
+              "yMin": -1.500000001,
+            },
+            "_polynomialCoefficients": [
+              [
+                5,
+                -3.482804339905268,
+                1.3839434433448226,
+                -0.19776177886034274,
+              ],
+              [
+                -1.5,
+                0,
+                0.2817651175711404,
+                -0.027951959627836143,
+              ],
+            ],
+            "firstControlPoint": [
+              3.8390652200315776,
+              -1.5,
+            ],
+            "firstPoint": [
+              5,
+              -1.5,
+            ],
+            "lastControlPoint": [
+              3.1394449211780957,
+              -1.4060782941429533,
+            ],
+            "lastPoint": [
+              2.7033773245792116,
+              -1.2461868420566957,
+            ],
+            "precision": 1e-9,
+            "segmentType": "CUBIC_BEZIER",
+          },
+          CubicBezier {
+            "_boundingBox": BoundingBox {
+              "xMax": 2.7033773255792117,
+              "xMin": 2.192459110190991,
+              "yMax": -0.8421267825836889,
+              "yMin": -1.2461868430566958,
+            },
+            "_polynomialCoefficients": null,
+            "firstControlPoint": [
+              2.403463565903621,
+              -1.1362184638756458,
+            ],
+            "firstPoint": [
+              2.7033773245792116,
+              -1.2461868420566957,
+            ],
+            "lastControlPoint": [
+              2.273534281031482,
+              -0.9961696062806213,
+            ],
+            "lastPoint": [
+              2.192459111190991,
+              -0.8421267835836889,
+            ],
+            "precision": 1e-9,
+            "segmentType": "CUBIC_BEZIER",
+          },
+          CubicBezier {
+            "_boundingBox": BoundingBox {
+              "xMax": 2.192459112190991,
+              "xMin": 0.03325950426188697,
+              "yMax": 0.49889257992830455,
+              "yMin": -0.8421267845836891,
+            },
+            "_polynomialCoefficients": [
+              [
+                2.192459111190991,
+                -0.9257734707625405,
+                0.959212138545551,
+                -2.1926382737121144,
+              ],
+              [
+                -0.8421267835836891,
+                1.758969594448827,
+                0.1327679643178079,
+                -0.5507181962546412,
+              ],
+            ],
+            "firstControlPoint": [
+              1.8838679542701442,
+              -0.2558035854340801,
+            ],
+            "firstPoint": [
+              2.192459111190991,
+              -0.8421267835836891,
+            ],
+            "lastControlPoint": [
+              1.895014176864481,
+              0.3747756008214649,
+            ],
+            "lastPoint": [
+              0.03325950526188697,
+              0.4988925789283045,
+            ],
+            "precision": 1e-9,
+            "segmentType": "CUBIC_BEZIER",
+          },
+          Arc {
+            "_angularLength": 3.1415926535897927,
+            "_boundingBox": BoundingBox {
+              "xMax": 0.03325950626188697,
+              "xMin": -0.500000001,
+              "yMax": 0.500000001,
+              "yMin": -0.49889257992830455,
+            },
+            "_coefficients": {
+              "c": -1,
+              "x": 5.538820279408269e-17,
+              "x2": 4,
+              "xy": 0,
+              "y": -3.692546852938846e-18,
+              "y2": 4,
+            },
+            "_firstAngle": 1.5042281630190728,
+            "_lastAngle": 4.6458208166088655,
+            "_radius": 0.5,
+            "center": [
+              -6.923525349260336e-18,
+              4.615683566173558e-19,
+            ],
+            "clockwise": false,
+            "firstPoint": [
+              0.03325950526188697,
+              0.4988925789283045,
+            ],
+            "lastPoint": [
+              -0.03325950526188697,
+              -0.4988925789283045,
+            ],
+            "precision": 1e-9,
+            "segmentType": "ARC",
+          },
+        ],
+        "strokeType": "LOOP",
+      },
+      "holes": [],
+    },
+  ],
+}
+`;

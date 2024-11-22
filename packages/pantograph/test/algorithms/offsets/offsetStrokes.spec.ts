@@ -87,4 +87,12 @@ describe("outlineStrand", () => {
 
     expect(outlineStrand(strand, -1)).toMatchSnapshot();
   });
+
+  it("should work on simple cubic bezier", () => {
+    const strand = draw()
+      .cubicBezierCurveTo([5, -2], [3, -0.2], [0, -2])
+      .asStrand();
+
+    expect(outlineStrand(strand, -1)).toMatchSnapshot();
+  });
 });

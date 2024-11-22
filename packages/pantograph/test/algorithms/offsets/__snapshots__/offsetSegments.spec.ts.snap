@@ -1,0 +1,70 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`offsetSegments > offsetBezier > offsets a bezier 1`] = `
+[
+  QuadraticBezier {
+    "_boundingBox": null,
+    "_polynomialCoefficients": null,
+    "controlPoint": [
+      0.580952380952381,
+      0.4,
+    ],
+    "firstPoint": [
+      0,
+      0.4,
+    ],
+    "lastPoint": [
+      0.8735088935932649,
+      0.49058443033131666,
+    ],
+    "precision": 1e-9,
+    "segmentType": "QUADRATIC_BEZIER",
+  },
+  QuadraticBezier {
+    "_boundingBox": null,
+    "_polynomialCoefficients": null,
+    "controlPoint": [
+      0.9317546119113013,
+      0.5099996697706621,
+    ],
+    "firstPoint": [
+      0.8735088935932649,
+      0.49058443033131666,
+    ],
+    "lastPoint": [
+      0.9671572875253809,
+      0.5328427124746189,
+    ],
+    "precision": 1e-9,
+    "segmentType": "QUADRATIC_BEZIER",
+  },
+  DegenerateSegment {
+    "firstPoint": [
+      0.9671572875253813,
+      0.5328427124746193,
+    ],
+    "lastPoint": [
+      0.9333333333333335,
+      0.4444444444444444,
+    ],
+  },
+  QuadraticBezier {
+    "_boundingBox": null,
+    "_polynomialCoefficients": null,
+    "controlPoint": [
+      0.9333333333333335,
+      0.5666666666666667,
+    ],
+    "firstPoint": [
+      0.9333333333333335,
+      0.4444444444444444,
+    ],
+    "lastPoint": [
+      0.7171572875253811,
+      0.7171572875253809,
+    ],
+    "precision": 1e-9,
+    "segmentType": "QUADRATIC_BEZIER",
+  },
+]
+`;

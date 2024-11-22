@@ -40,30 +40,35 @@ export class CubicBezier extends AbstractSegment<CubicBezier> {
     return this.paramPoint(0.5);
   }
 
+  private _extremaInDirection(idx: 0 | 1) {
+    const [p1, p2, p3, p4] = [
+      this.firstPoint[idx],
+      this.firstControlPoint[idx],
+      this.lastControlPoint[idx],
+      this.lastPoint[idx],
+    ];
+
+    const a = -p1 + 3 * p2 - 3 * p3 + p4;
+    const b = 2 * p1 - 4 * p2 + 2 * p3;
+    const c = -p1 + p2;
+
+    return solveQuadratic(c, b, a).filter(
+      (r) => r >= -this.precision && r <= 1 + this.precision,
+    );
+  }
+
+  getParametersOfExtrema() {
+    return Array.from(
+      new Set(this._extremaInDirection(0).concat(this._extremaInDirection(1))),
+    );
+  }
+
   _boundingBox: BoundingBox | null = null;
   get boundingBox(): BoundingBox {
     if (this._boundingBox === null) {
-      const extremaInDir = (idx: number) => {
-        const [p1, p2, p3, p4] = [
-          this.firstPoint[idx],
-          this.firstControlPoint[idx],
-          this.lastControlPoint[idx],
-          this.lastPoint[idx],
-        ];
-
-        const a = -p1 + 3 * p2 - 3 * p3 + p4;
-        const b = 2 * p1 - 4 * p2 + 2 * p3;
-        const c = -p1 + p2;
-
-        return solveQuadratic(c, b, a).filter(
-          (r) => r >= -this.precision && r <= 1 + this.precision,
-        );
-      };
-
       this._boundingBox = pointsBoundingBox([
         this.firstPoint,
-        ...extremaInDir(0).map((t) => this.paramPoint(t)),
-        ...extremaInDir(1).map((t) => this.paramPoint(t)),
+        ...this.getParametersOfExtrema().map((t) => this.paramPoint(t)),
         this.lastPoint,
       ]).grow(this.precision);
     }
@@ -157,12 +162,20 @@ export class CubicBezier extends AbstractSegment<CubicBezier> {
     return normalize(subtract(this.firstControlPoint, this.firstPoint));
   }
   get tangentAtLastPoint() {
-    return normalize(subtract(this.lastControlPoint, this.lastPoint));
+    return normalize(subtract(this.lastPoint, this.lastControlPoint));
   }
 
   normalAt(point: Vector): Vector {
     const tgt = this.tangentAt(point);
     return perpendicular(tgt);
+  }
+
+  get normalAtFirstPoint() {
+    return perpendicular(this.tangentAtFirstPoint);
+  }
+
+  get normalAtLastPoint() {
+    return perpendicular(this.tangentAtLastPoint);
   }
 
   splitAtParameters(

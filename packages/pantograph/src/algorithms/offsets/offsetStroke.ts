@@ -8,7 +8,11 @@ import {
   subtract,
 } from "../../vectorOperations";
 import { distance } from "../distances";
-import { offsetSegment, DegenerateSegment } from "./offsetSegment.js";
+import {
+  offsetSegment,
+  DegenerateSegment,
+  OffsettableSegment,
+} from "./offsetSegment.js";
 import { Vector } from "../../definitions.js";
 import { Arc, tangentArc } from "../../models/segments/Arc.js";
 import { Diagram } from "../../models/Diagram.js";
@@ -17,11 +21,32 @@ import { Figure } from "../../models/Figure.js";
 import { stitchSegments } from "../stitchSegments.js";
 import { Stroke } from "../../models/Stroke.js";
 import { Strand } from "../../models/Strand.js";
+import { splitIntoOffsetSafeBezier } from "../safeBezierSplit.js";
+import { CubicBezier, QuadraticBezier } from "../../models/exports.js";
 
 const PRECISION = 1e-8;
 
+export const transformForOffset = (
+  segments: Segment[],
+): OffsettableSegment[] => {
+  return segments.flatMap((segment: Segment): OffsettableSegment[] => {
+    if (segment instanceof Line) {
+      return [segment];
+    } else if (segment instanceof Arc) {
+      return [segment];
+    } else if (
+      segment instanceof QuadraticBezier ||
+      segment instanceof CubicBezier
+    ) {
+      return splitIntoOffsetSafeBezier(segment);
+    } else {
+      return [new Line(segment.firstPoint, segment.lastPoint)];
+    }
+  });
+};
+
 export function rawOffsets(
-  segmentsToOffset: Segment[],
+  segmentsToOffset: OffsettableSegment[],
   offset: number,
   loop = true,
 ): Segment[] {
@@ -143,6 +168,7 @@ export function rawOffsets(
       ) > 0;
 
     const joiner = new Arc(previousLastPoint, firstPoint, center, clockwise);
+    //const joiner = new Line(previousLastPoint, firstPoint);
 
     appendSegment(previousSegment);
     offsettedArray.push(joiner);
@@ -294,7 +320,8 @@ function pruneDegenerateSegments(
 
 export function offsetLoop(loop: Loop, offset: number): Diagram {
   const correctedOffset = loop.clockwise ? offset : -offset;
-  const offsettedArray = rawOffsets(loop.segments, correctedOffset);
+  const transformedSegments = transformForOffset(loop.segments);
+  const offsettedArray = rawOffsets(transformedSegments, correctedOffset);
 
   if (offsettedArray.length < 2) return new Diagram();
 
@@ -333,8 +360,9 @@ export function offsetLoop(loop: Loop, offset: number): Diagram {
 }
 
 export function offsetStrand(strand: Strand, offset: number): Stroke[] {
-  const offsettedArray = rawOffsets(strand.segments, offset, false);
-  const backOffsettedArray = rawOffsets(strand.segments, -offset, false);
+  const transformedSegments = transformForOffset(strand.segments);
+  const offsettedArray = rawOffsets(transformedSegments, offset, false);
+  const backOffsettedArray = rawOffsets(transformedSegments, -offset, false);
 
   // We remove the self intersections with the use the the algorithm as described in
   // https://github.com/jbuckmccready/CavalierContours#offset-algorithm-and-stepwise-example
@@ -372,10 +400,13 @@ export function outlineStrand(
   endCap: "round" | "butt" = "round",
 ): Diagram {
   const offset = width / 2;
-  const frontOffsettedArray = rawOffsets(strand.segments, offset, false);
-  const backOffsettedArray = rawOffsets(strand.segments, -offset, false).map(
-    (s) => s.reverse(),
-  );
+  const transformedSegments = transformForOffset(strand.segments);
+  const frontOffsettedArray = rawOffsets(transformedSegments, offset, false);
+  const backOffsettedArray = rawOffsets(
+    transformedSegments,
+    -offset,
+    false,
+  ).map((s) => s.reverse());
   backOffsettedArray.reverse();
 
   const makeJoiner = (fromSegment: Segment, toSegment: Segment) => {

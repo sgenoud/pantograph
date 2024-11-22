@@ -3,12 +3,16 @@ import { Arc } from "../../models/segments/Arc.js";
 import { Segment } from "../../models/segments/Segment.js";
 import {
   add,
-  normalize,
+  distance,
+  dotProduct,
   perpendicular,
   scalarMultiply,
   subtract,
 } from "../../vectorOperations";
 import { Vector } from "../../definitions.js";
+import { CubicBezier, QuadraticBezier } from "../../models/exports.js";
+import { fullLineIntersection } from "../intersections/fullLinesIntersection.js";
+import { SafeCubicBezier, SafeQuadraticBezier } from "../safeBezierSplit.js";
 
 export class DegenerateSegment {
   constructor(
@@ -17,8 +21,14 @@ export class DegenerateSegment {
   ) {}
 }
 
+export type OffsettableSegment =
+  | Line
+  | Arc
+  | SafeCubicBezier
+  | SafeQuadraticBezier;
+
 export function offsetSegment(
-  segment: Segment,
+  segment: OffsettableSegment,
   offset: number,
 ): Segment | DegenerateSegment {
   if (segment instanceof Line) {
@@ -27,6 +37,10 @@ export function offsetSegment(
 
   if (segment instanceof Arc) {
     return offsetArc(segment, offset);
+  }
+
+  if (segment instanceof QuadraticBezier || segment instanceof CubicBezier) {
+    return offsetSafeBezier(segment, offset);
   }
 
   throw new Error("Not implemented");
@@ -59,4 +73,110 @@ export function offsetArc(arc: Arc, offset: number): Arc | DegenerateSegment {
   }
 
   return new Arc(offsetStartPoint, offsetEndPoint, arc.center, arc.clockwise);
+}
+
+function computeControlPointOffset(
+  origin: Vector,
+  controlPoint: Vector,
+  tangent: Vector,
+  newPoint: Vector,
+  precision: number,
+): Vector {
+  const newControlPoint = fullLineIntersection(
+    {
+      V: tangent,
+      firstPoint: newPoint,
+      precision: precision,
+    },
+    {
+      V: subtract(controlPoint, origin),
+      firstPoint: origin,
+      precision: precision,
+    },
+  );
+
+  if (newControlPoint === "parallel") {
+    throw new Error(
+      "Parallel lines not expected in safe bezier offset control point calculation",
+    );
+  }
+
+  return newControlPoint;
+}
+
+export function offsetSafeBezier(
+  curve: SafeQuadraticBezier | SafeCubicBezier,
+  offset: number,
+): typeof curve | DegenerateSegment {
+  const { firstPoint, lastPoint, normalAtFirstPoint, normalAtLastPoint } =
+    curve;
+
+  const origin = fullLineIntersection(
+    { V: normalAtFirstPoint, firstPoint, precision: curve.precision },
+    { V: normalAtLastPoint, firstPoint: lastPoint, precision: curve.precision },
+  );
+
+  const offsetStartPoint = add(
+    firstPoint,
+    scalarMultiply(normalAtFirstPoint, offset),
+  );
+  const offsetEndPoint = add(
+    lastPoint,
+    scalarMultiply(normalAtLastPoint, offset),
+  );
+
+  if (origin === "parallel") {
+    throw new Error("Parallel lines not expected in safe bezier offset");
+  }
+
+  const offsetTowardsOrigin =
+    dotProduct(subtract(origin, firstPoint), normalAtFirstPoint) * offset > 0;
+  if (offsetTowardsOrigin) {
+    const minDistance = Math.min(
+      distance(firstPoint, origin),
+      distance(lastPoint, origin),
+    );
+
+    if (minDistance < offset) {
+      return new DegenerateSegment(offsetStartPoint, offsetEndPoint);
+    }
+  }
+
+  if (curve instanceof QuadraticBezier) {
+    const newControlPoint = computeControlPointOffset(
+      origin,
+      curve.controlPoint,
+      curve.tangentAtFirstPoint,
+      offsetStartPoint,
+      curve.precision,
+    );
+
+    return new QuadraticBezier(
+      offsetStartPoint,
+      offsetEndPoint,
+      newControlPoint,
+    );
+  }
+
+  const newControlPoint1 = computeControlPointOffset(
+    origin,
+    curve.firstControlPoint,
+    curve.tangentAtFirstPoint,
+    offsetStartPoint,
+    curve.precision,
+  );
+  const newControlPoint2 = computeControlPointOffset(
+    origin,
+    curve.lastControlPoint,
+    curve.tangentAtLastPoint,
+    offsetEndPoint,
+    curve.precision,
+  );
+
+  return new CubicBezier(
+    offsetStartPoint,
+    offsetEndPoint,
+    newControlPoint1,
+    newControlPoint2,
+  );
 }

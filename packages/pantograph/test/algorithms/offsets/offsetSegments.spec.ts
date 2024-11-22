@@ -4,10 +4,14 @@ import {
   DegenerateSegment,
   offsetArc,
   offsetLine,
+  offsetSafeBezier,
 } from "../../../src/algorithms/offsets/offsetSegment";
 import { Arc } from "../../../src/models/segments/Arc";
 import { Line } from "../../../src/models/segments/Line";
 import { distance } from "../../../src/vectorOperations";
+import { QuadraticBezier } from "../../../src/models/exports";
+import { splitIntoOffsetSafeBezier } from "../../../src/algorithms/safeBezierSplit";
+import { debugImg, dpnt } from "../../debug";
 
 describe("offsetSegments", () => {
   describe("offsetLine", () => {
@@ -90,6 +94,41 @@ describe("offsetSegments", () => {
 
       expect(offset.firstPoint).toBeVector([0, -0.5]);
       expect(offset.lastPoint).toBeVector([-0.5, 0]);
+    });
+  });
+
+  describe.only("offsetBezier", () => {
+    const formatCurve = (
+      curve: QuadraticBezier | DegenerateSegment,
+      color = "red",
+    ) => {
+      if (curve instanceof QuadraticBezier) {
+        return { shape: curve, color };
+      }
+      return {
+        shape: new Line(curve.firstPoint, curve.lastPoint),
+        color: "yellow",
+      };
+    };
+
+    it("offsets a bezier", () => {
+      const bezier = new QuadraticBezier([0, 0], [1, 1], [2, 0]);
+      const safe = splitIntoOffsetSafeBezier(bezier);
+
+      /*
+    debugImg(
+      [
+        { shape: bezier, color: "blue" },
+        ...safe.map((b) => formatCurve(offsetSafeBezier(b, -0.4), "red")),
+        ...safe.map((b) => formatCurve(offsetSafeBezier(b, -0.2), "red")),
+        ...safe.map((b) => formatCurve(offsetSafeBezier(b, 0.2), "green")),
+        ...safe.map((b) => formatCurve(offsetSafeBezier(b, 0.5), "green")),
+      ],
+      "safe",
+    );
+    */
+
+      expect(safe.map((s) => offsetSafeBezier(s, 0.4))).toMatchSnapshot();
     });
   });
 });
