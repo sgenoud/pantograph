@@ -1,0 +1,34 @@
+{
+  "name": "replicad-pantograph",
+  "version": "0.8.1",
+  "description": "A function to return the shrink wrapped version of a replicad drawing",
+  "author": "Steve Genoud <steve@sgenoud.com>",
+  "homepage": "https://github.com/sgenoud/pantograph",
+  "license": "MIT",
+  "private": false,
+  "files": [
+    "dist"
+  ],
+  "module": "dist/es/replicad-pantograph.js",
+  "types": "dist/es/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.1",
+    "@rollup/plugin-node-resolve": "^15.3.0",
+    "@rollup/plugin-typescript": "^12.1.1",
+    "eslint": "^8.57.1",
+    "prettier": "^3.3.3",
+    "rollup": "^4.24.4",
+    "rollup-plugin-replace-imports-with-vars": "^1.1.0",
+    "typescript": "^5.6.3"
+  },
+  "peerDependencies": {
+    "replicad": "*"
+  },
+  "dependencies": {
+    "pantograph2d": "workspace:^"
+  }
+}
