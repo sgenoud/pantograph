@@ -21,8 +21,14 @@ import { Figure } from "../../models/Figure.js";
 import { stitchSegments } from "../stitchSegments.js";
 import { Stroke } from "../../models/Stroke.js";
 import { Strand } from "../../models/Strand.js";
-import { splitIntoOffsetSafeBezier } from "../safeBezierSplit.js";
-import { CubicBezier, QuadraticBezier } from "../../models/exports.js";
+import { splitIntoOffsetSafeBezier } from "../conversions/bezierToSafeBezier.js";
+import {
+  CubicBezier,
+  EllipseArc,
+  QuadraticBezier,
+} from "../../models/exports.js";
+import { approximateEllipticalArcAsCubicBeziers } from "../conversions/ellipseToBezier.js";
+
 
 const PRECISION = 1e-8;
 
@@ -34,6 +40,10 @@ export const transformForOffset = (
       return [segment];
     } else if (segment instanceof Arc) {
       return [segment];
+    } else if (segment instanceof EllipseArc) {
+      return approximateEllipticalArcAsCubicBeziers(segment).flatMap((c) =>
+        splitIntoOffsetSafeBezier(c),
+      );
     } else if (
       segment instanceof QuadraticBezier ||
       segment instanceof CubicBezier

@@ -12,7 +12,10 @@ import {
 import { Vector } from "../../definitions.js";
 import { CubicBezier, QuadraticBezier } from "../../models/exports.js";
 import { fullLineIntersection } from "../intersections/fullLinesIntersection.js";
-import { SafeCubicBezier, SafeQuadraticBezier } from "../safeBezierSplit.js";
+import {
+  SafeCubicBezier,
+  SafeQuadraticBezier,
+} from "../conversions/bezierToSafeBezier.js";
 
 export class DegenerateSegment {
   constructor(

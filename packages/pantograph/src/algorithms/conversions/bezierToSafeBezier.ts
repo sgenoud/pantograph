@@ -1,11 +1,11 @@
-import { CubicBezier } from "../models/segments/CubicBezier";
-import { QuadraticBezier } from "../models/segments/QuadraticBezier";
+import { CubicBezier } from "../../models/segments/CubicBezier";
+import { QuadraticBezier } from "../../models/segments/QuadraticBezier";
 import {
   angle,
   dotProduct,
   perpendicular,
   subtract,
-} from "../vectorOperations";
+} from "../../vectorOperations";
 
 // This is based on https://github.com/Pomax/bezierjs
 
