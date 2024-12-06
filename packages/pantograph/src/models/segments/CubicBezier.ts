@@ -24,6 +24,8 @@ export class CubicBezier extends AbstractSegment<CubicBezier> {
   readonly firstControlPoint: Vector;
   readonly lastControlPoint: Vector;
 
+  precision = 1e-6;
+
   constructor(
     firstPoint: Vector,
     lastPoint: Vector,
@@ -344,6 +346,9 @@ export class CubicBezier extends AbstractSegment<CubicBezier> {
   }
 
   pointToParam(point: Vector) {
+    if (sameVector(point, this.firstPoint, this.precision)) return 0;
+    if (sameVector(point, this.lastPoint, this.precision)) return 1;
+
     const potentialParams = this.paramsAtY(point[1]);
     if (potentialParams.length === 0) {
       throw new Error("Point is not on the curve");
