@@ -2,6 +2,9 @@ import { expect, test } from "vitest";
 import { draw } from "../src/draw";
 import { offset } from "../src/offsetOperations";
 import { exportJSON } from "../src/export/json/exportJSON";
+import { Diagram } from "../src/main";
+import { debugImg, dpnt } from "./debug";
+import { convertToArcsAndLines } from "../src/conversionOperations";
 
 const ex1Vertexes: [number, number, number][] = [
   [100, 100, -0.5],
@@ -60,5 +63,53 @@ test.each([-10, -7, -5, -2, -1, 1, 20])(
     const offsetD = offset(d, offsetVal);
 
     expect(exportJSON(offsetD)).toMatchSnapshot();
+  },
+);
+
+const splineVase = ({
+  height = 100,
+  baseWidth = 20,
+  lowerCircleRadius = 1.5,
+  lowerCirclPosition = 0.25,
+  higherCircleRadius = 0.75,
+  higherCirclePosition = 0.75,
+  topRadius = 0.9,
+  bottomHeavy = true,
+} = {}) => {
+  const splinesConfig = [
+    { position: lowerCirclPosition, radius: lowerCircleRadius },
+    {
+      position: higherCirclePosition,
+      radius: higherCircleRadius,
+      startFactor: bottomHeavy ? 3 : 1,
+    },
+    { position: 1, radius: topRadius, startFactor: bottomHeavy ? 3 : 1 },
+  ];
+
+  const sketchVaseProfile = draw().hLine(baseWidth);
+
+  splinesConfig.forEach(({ position, radius, startFactor }) => {
+    sketchVaseProfile.smoothCurveTo([baseWidth * radius, height * position], {
+      endTangent: [0, 1],
+      startFactor,
+    });
+  });
+  return sketchVaseProfile.lineTo([0, height]).closeWithMirror();
+};
+
+test.skip.each([-10, -5, -3, -2, -0.5, -1, 1, 2, 3, 5, 10])(
+  "offset vase, with offset %d",
+  (offsetVal) => {
+    const vase = convertToArcsAndLines(splineVase());
+
+    // I need to fix some things with the offset algorithm!
+
+    /*
+    debugImg(
+      [{ shape: vase, color: "red" }, offset(vase, offsetVal)],
+      `vase-${offsetVal}`,
+    );
+    */
+    expect(offset(vase, offsetVal)).toMatchSnapshot();
   },
 );

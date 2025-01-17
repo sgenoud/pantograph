@@ -1,0 +1,52 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`biarcWithoutInflexion > computes the right arcs for a simple case 1`] = `
+[
+  Arc {
+    "_angularLength": null,
+    "_boundingBox": null,
+    "_coefficients": null,
+    "_firstAngle": null,
+    "_lastAngle": null,
+    "_radius": null,
+    "center": [
+      0.33566264181060906,
+      -0.0671325283621218,
+    ],
+    "clockwise": true,
+    "firstPoint": [
+      0,
+      0,
+    ],
+    "lastPoint": [
+      0.3356626418106091,
+      0.2751775437531584,
+    ],
+    "precision": 1e-9,
+    "segmentType": "ARC",
+  },
+  Arc {
+    "_angularLength": null,
+    "_boundingBox": null,
+    "_coefficients": null,
+    "_firstAngle": null,
+    "_lastAngle": null,
+    "_radius": 0.9395149019425492,
+    "center": [
+      0.3356626418106093,
+      -0.6643373581893908,
+    ],
+    "clockwise": true,
+    "firstPoint": [
+      0.3356626418106091,
+      0.2751775437531584,
+    ],
+    "lastPoint": [
+      1,
+      0,
+    ],
+    "precision": 1e-9,
+    "segmentType": "ARC",
+  },
+]
+`;

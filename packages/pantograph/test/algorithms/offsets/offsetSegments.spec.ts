@@ -10,8 +10,8 @@ import { Arc } from "../../../src/models/segments/Arc";
 import { Line } from "../../../src/models/segments/Line";
 import { distance } from "../../../src/vectorOperations";
 import { QuadraticBezier } from "../../../src/models/exports";
-import { splitIntoOffsetSafeBezier } from "../../../src/algorithms/safeBezierSplit";
-import { debugImg, dpnt } from "../../debug";
+import { splitIntoOffsetSafeBezier } from "../../../src/algorithms/conversions/bezierToSafeBezier";
+//import { debugImg, dpnt } from "../../debug";
 
 describe("offsetSegments", () => {
   describe("offsetLine", () => {
@@ -97,7 +97,7 @@ describe("offsetSegments", () => {
     });
   });
 
-  describe.only("offsetBezier", () => {
+  describe("offsetBezier", () => {
     const formatCurve = (
       curve: QuadraticBezier | DegenerateSegment,
       color = "red",

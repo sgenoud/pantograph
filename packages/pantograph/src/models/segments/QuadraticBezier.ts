@@ -3,10 +3,12 @@ import { solveQuadratic } from "../../algorithms/solvers/solvePolynomials.js";
 import { Vector } from "../../definitions.js";
 import zip from "../../utils/zip.js";
 import {
+  add,
   distance,
   normalize,
   perpendicular,
   sameVector,
+  scalarMultiply,
   squareDistance,
   subtract,
 } from "../../vectorOperations.js";
@@ -135,6 +137,16 @@ export class QuadraticBezier extends AbstractSegment<QuadraticBezier> {
     };
 
     return [f(0), f(1)] as Vector;
+  }
+
+  secondDerivativeAt(_: number) {
+    return scalarMultiply(
+      subtract(
+        add(this.firstPoint, this.lastPoint),
+        scalarMultiply(this.controlPoint, 2),
+      ),
+      2,
+    );
   }
 
   tangentAt(point: Vector) {

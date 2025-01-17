@@ -6,10 +6,12 @@ import {
 import { Vector } from "../../definitions.js";
 import zip from "../../utils/zip.js";
 import {
+  add,
   distance,
   normalize,
   perpendicular,
   sameVector,
+  scalarMultiply,
   squareDistance,
   subtract,
 } from "../../vectorOperations.js";
@@ -23,8 +25,6 @@ export class CubicBezier extends AbstractSegment<CubicBezier> {
 
   readonly firstControlPoint: Vector;
   readonly lastControlPoint: Vector;
-
-  precision = 1e-6;
 
   constructor(
     firstPoint: Vector,
@@ -63,6 +63,37 @@ export class CubicBezier extends AbstractSegment<CubicBezier> {
     return Array.from(
       new Set(this._extremaInDirection(0).concat(this._extremaInDirection(1))),
     );
+  }
+
+  private get alignedCurve() {
+    const translation = [-this.firstPoint[0], -this.firstPoint[1]];
+    const chord = subtract(this.lastPoint, this.firstPoint);
+
+    const angle = Math.atan2(chord[1], chord[0]);
+
+    const transformation = new TransformationMatrix();
+    transformation.translate(translation[0], translation[1]);
+    transformation.rotate(-angle);
+
+    return this.transform(transformation);
+  }
+
+  getInflexionParameters() {
+    const aligned = this.alignedCurve;
+    const [x2, y2] = aligned.firstControlPoint;
+    const [x3, y3] = aligned.lastControlPoint;
+    const [x4, _] = aligned.lastPoint;
+
+    const a = x3 * y2;
+    const b = x4 * y2;
+    const c = x2 * y3;
+    const d = x4 * y3;
+
+    const x = -3 * a + 2 * b + 3 * c - d;
+    const y = 3 * a - b - 3 * c;
+    const z = c - a;
+
+    return solveQuadratic(z, y, x).filter((t) => t >= 0 && t <= 1);
   }
 
   _boundingBox: BoundingBox | null = null;
@@ -153,6 +184,19 @@ export class CubicBezier extends AbstractSegment<CubicBezier> {
       a * p1p0[0] + b * p2p1[0] + c * p3p2[0],
       a * p1p0[1] + b * p2p1[1] + c * p3p2[1],
     ] as Vector;
+  }
+
+  secondDerivativeAt(t: number) {
+    const p0p2 = add(this.firstPoint, this.lastControlPoint);
+    const p1_2 = scalarMultiply(this.firstControlPoint, 2);
+
+    const p1p3 = add(this.firstControlPoint, this.lastPoint);
+    const p2_2 = scalarMultiply(this.lastControlPoint, 2);
+
+    const t1 = scalarMultiply(subtract(p0p2, p1_2), 6 * (1 - t));
+    const t2 = scalarMultiply(subtract(p1p3, p2_2), 6 * t);
+
+    return add(t1, t2);
   }
 
   tangentAt(point: Vector) {
@@ -340,9 +384,9 @@ export class CubicBezier extends AbstractSegment<CubicBezier> {
 
   paramsAtY(y: number) {
     const [z0, z1, z2, z3] = this.polynomialCoefficients[1];
-    return solveCubic(z0 - y, z1, z2, z3).filter(
-      (z) => z >= -this.precision && z <= 1 + this.precision,
-    );
+    return solveCubic(z0 - y, z1, z2, z3).filter((z) => {
+      return z >= -this.precision && z <= 1 + this.precision;
+    });
   }
 
   pointToParam(point: Vector) {

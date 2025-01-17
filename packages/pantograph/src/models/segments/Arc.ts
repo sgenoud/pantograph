@@ -399,7 +399,7 @@ export function tangentArc(
   lastPoint: Vector,
   tangentAtFirstPoint: Vector,
 ) {
-  const chord = new Line(lastPoint, firstPoint);
+  const chord = new Line(firstPoint, lastPoint);
   const dir = perpendicular(chord.tangentAtFirstPoint);
 
   const result = lineLineParams(
@@ -428,4 +428,43 @@ export function tangentArc(
   return new Arc(firstPoint, lastPoint, center, clockwise, {
     ignoreChecks: true,
   });
+}
+
+export function biarcWithoutInflexion(
+  firstPoint: Vector,
+  lastPoint: Vector,
+  tangentAtFirstPoint: Vector,
+  tangentAtLastPoint: Vector,
+): [Arc, Arc] {
+  const result = lineLineParams(
+    { firstPoint, V: tangentAtFirstPoint, precision: 1e-9 },
+    { firstPoint: lastPoint, V: tangentAtLastPoint, precision: 1e-9 },
+  );
+
+  if (result === "parallel")
+    throw new Error("Cannot create an arc from three colinear points");
+
+  const controlPoint = add(
+    firstPoint,
+    scalarMultiply(tangentAtFirstPoint, result.intersectionParam1),
+  );
+
+  const w0 = distance(controlPoint, lastPoint);
+  const w1 = distance(controlPoint, firstPoint);
+  const w2 = distance(firstPoint, lastPoint);
+
+  const p0 = scalarMultiply(firstPoint, w0);
+  const p1 = scalarMultiply(lastPoint, w1);
+  const p2 = scalarMultiply(controlPoint, w2);
+
+  const junction = scalarMultiply(add(add(p0, p1), p2), 1 / (w0 + w1 + w2));
+
+  return [
+    tangentArc(firstPoint, junction, tangentAtFirstPoint),
+    tangentArc(
+      lastPoint,
+      junction,
+      scalarMultiply(tangentAtLastPoint, -1),
+    ).reverse(),
+  ];
 }

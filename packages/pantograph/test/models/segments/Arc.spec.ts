@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import {
   Arc,
+  biarcWithoutInflexion,
   tangentArc,
   threePointsArc,
 } from "../../../src/models/segments/Arc";
@@ -9,6 +10,8 @@ import {
   normalize,
   polarToCartesian,
 } from "../../../src/vectorOperations";
+
+import { debugImg, dpnt } from "../../debug.js";
 
 import { translation } from "../../quickShapes";
 
@@ -209,5 +212,21 @@ describe("tangentArc arc", () => {
 
   it("fails on two points that are collinear with the direction", () => {
     expect(() => tangentArc([0, 0], [1, 1], [1, 1])).toThrow();
+  });
+});
+
+describe("biarcWithoutInflexion", () => {
+  it("computes the right arcs for a simple case", () => {
+    const arcs = biarcWithoutInflexion([0, 0], [1, 0], [0.2, 1], [1, -1]);
+    debugImg(
+      [...arcs, dpnt([0.02, 0.1], 0.01), dpnt([1.1, -0.1], 0.01)],
+      "biarc",
+    );
+    expect(arcs).toMatchSnapshot();
+  });
+  it("fails on two tangents that are collinear", () => {
+    expect(() =>
+      biarcWithoutInflexion([0, 0], [1, 1], [1, 1], [1, 1]),
+    ).toThrow();
   });
 });
