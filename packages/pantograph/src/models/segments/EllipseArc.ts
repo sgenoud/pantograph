@@ -351,8 +351,8 @@ export class EllipseArc extends AbstractSegment<EllipseArc> {
   get ellipseReferenceFrameTransform(): TransformationMatrix {
     if (this._ellipseReferenceFrameTransform === undefined) {
       this._ellipseReferenceFrameTransform = new TransformationMatrix()
-        .rotate(-this.tiltAngle)
-        .translate(-this.center[0], -this.center[1]);
+        .translate(-this.center[0], -this.center[1])
+        .rotate(-this.tiltAngle);
     }
     return this._ellipseReferenceFrameTransform;
   }
@@ -363,8 +363,8 @@ export class EllipseArc extends AbstractSegment<EllipseArc> {
   get reverseEllipseReferenceFrameTransform(): TransformationMatrix {
     if (this._reverseEllipseReferenceFrameTransform === undefined) {
       this._reverseEllipseReferenceFrameTransform = new TransformationMatrix()
-        .translate(this.center[0], this.center[1])
-        .rotate(this.tiltAngle);
+        .rotate(this.tiltAngle)
+        .translate(this.center[0], this.center[1]);
     }
     return this._reverseEllipseReferenceFrameTransform;
   }

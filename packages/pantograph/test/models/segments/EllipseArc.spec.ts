@@ -5,7 +5,7 @@ import {
   svgEllipse,
 } from "../../../src/models/segments/EllipseArc";
 import { add, scalarMultiply } from "../../../src/vectorOperations";
-import { debugImg, dpnt } from "../../debug";
+import { debugImg, dpnt, drawBbox } from "../../debug";
 
 describe("EllipseArc", () => {
   it("should handle major and minor axes correctly", () => {
@@ -110,6 +110,10 @@ describe("EllipseArc", () => {
     const arc2 = new EllipseArc([0, 0], [2, 1], [2, 0], 2, 1, 0, true).rotate(
       22,
     );
+
+    debugImg([arc, drawBbox(arc)], "debug");
+    debugImg([arc2, drawBbox(arc2)], "debug2");
+
     expect(arc.boundingBox).toMatchSnapshot();
     expect(arc2.boundingBox).toMatchSnapshot();
   });

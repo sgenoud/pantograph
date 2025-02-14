@@ -81,9 +81,9 @@ export class TransformationMatrix {
 
     const rotationMatrix: Matrix = [cos, -sin, 0, sin, cos, 0, 0, 0, 1];
 
-    if (center) this.translate(center[0], center[1]);
-    this._matrix = matMult(rotationMatrix, this._matrix);
     if (center) this.translate(-center[0], -center[1]);
+    this._matrix = matMult(rotationMatrix, this._matrix);
+    if (center) this.translate(center[0], center[1]);
 
     return this;
   }
@@ -103,25 +103,25 @@ export class TransformationMatrix {
 
     const angle = Math.atan2(b, a);
 
-    if (point) this.translate(point[0], point[1]);
-    this.rotate(angle);
-    this.mirrorX();
-    this.rotate(-angle);
     if (point) this.translate(-point[0], -point[1]);
+    this.rotate(-angle);
+    this.mirrorX();
+    this.rotate(angle);
+    if (point) this.translate(point[0], point[1]);
     return this;
   }
 
   mirrorCenter(center?: Vector): TransformationMatrix {
-    if (center) this.translate(center[0], center[1]);
-    this._matrix = matMult(this._matrix, [-1, 0, 0, 0, -1, 0, 0, 0, 1]);
     if (center) this.translate(-center[0], -center[1]);
+    this._matrix = matMult([-1, 0, 0, 0, -1, 0, 0, 0, 1], this._matrix);
+    if (center) this.translate(center[0], center[1]);
     return this;
   }
 
   scale(scalar: number, center?: Vector): TransformationMatrix {
-    if (center) this.translate(center[0], center[1]);
-    this._matrix = matMult(this._matrix, [scalar, 0, 0, 0, scalar, 0, 0, 0, 1]);
     if (center) this.translate(-center[0], -center[1]);
+    this._matrix = matMult([scalar, 0, 0, 0, scalar, 0, 0, 0, 1], this._matrix);
+    if (center) this.translate(center[0], center[1]);
 
     return this;
   }

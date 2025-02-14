@@ -38,8 +38,8 @@ describe("QuadraticBezier", () => {
 
   it("splits correctly in one point", () => {
     const curve = new QuadraticBezier([0, 0], [1, 1], [1, 0.1])
-      .rotate(-15, [0.5, 0.5])
-      .translateX(0.12);
+      .translateX(0.12)
+      .rotate(-15, [0.5, 0.5]);
 
     const curves = curve.splitAt([curve.paramPoint(0.66)]);
 
@@ -56,8 +56,8 @@ describe("QuadraticBezier", () => {
 
   it("splits correctly in multiple points", () => {
     const curve = new QuadraticBezier([0, 0], [1, 1], [1, 0.1])
-      .rotate(-15, [0.5, 0.5])
-      .translateX(0.12);
+      .translateX(0.12)
+      .rotate(-15, [0.5, 0.5]);
 
     const curves = curve.splitAt([
       curve.paramPoint(0.75),
@@ -79,8 +79,8 @@ describe("QuadraticBezier", () => {
 
   it("splits correctly in multiple points and ignores duplicates", () => {
     const curve = new QuadraticBezier([0, 0], [1, 1], [1, 0.1])
-      .rotate(-15, [0.5, 0.5])
-      .translateX(0.12);
+      .translateX(0.12)
+      .rotate(-15, [0.5, 0.5]);
 
     const curves = curve.splitAt([
       curve.paramPoint(0.75),

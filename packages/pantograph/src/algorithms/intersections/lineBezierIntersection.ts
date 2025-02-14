@@ -12,8 +12,8 @@ export function lineBezierIntersection(
   const [x2, y2] = line.lastPoint;
 
   const transform = new TransformationMatrix()
-    .rotate(-Math.atan2(y2 - y1, x2 - x1))
-    .translate(-x1, -y1);
+    .translate(-x1, -y1)
+    .rotate(-Math.atan2(y2 - y1, x2 - x1));
 
   const inverseTransform = transform.clone().inverse();
 
