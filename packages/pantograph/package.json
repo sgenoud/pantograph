@@ -1,6 +1,6 @@
 {
   "name": "pantograph2d",
-  "version": "0.8.1",
+  "version": "0.9.0",
   "description": "Pantograph, the pure JS 2D CAD library",
   "type": "module",
   "main": "./dist/pantograph.cjs",
