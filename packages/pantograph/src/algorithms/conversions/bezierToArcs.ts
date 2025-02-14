@@ -146,7 +146,6 @@ function bezierSegmentToArcs(segment: Bezier, precision = 1e-4, v = 0): Arc[] {
     Math.abs(Math.sqrt(d2) - biarc[1].radius),
   );
 
-  console.log("distance", d1, d2, maxDist);
   if (maxDist < precision) {
     return biarc;
   }
@@ -172,7 +171,6 @@ export function approximateBezierCurveAsArcs(
   const params = segment.getParametersOfExtrema();
   if (segment instanceof CubicBezier) {
     const inflexionPoints = segment.getInflexionParameters();
-    console.log(inflexionPoints);
     params.push(...inflexionPoints);
   }
   const segments = segment.splitAtParameters(params);

@@ -71,7 +71,7 @@ export class TransformationMatrix {
   }
 
   translate(x: number, y: number): TransformationMatrix {
-    this._matrix = matMult(this._matrix, [1, 0, x, 0, 1, y, 0, 0, 1]);
+    this._matrix = matMult([1, 0, x, 0, 1, y, 0, 0, 1], this._matrix);
     return this;
   }
 
@@ -82,19 +82,19 @@ export class TransformationMatrix {
     const rotationMatrix: Matrix = [cos, -sin, 0, sin, cos, 0, 0, 0, 1];
 
     if (center) this.translate(center[0], center[1]);
-    this._matrix = matMult(this._matrix, rotationMatrix);
+    this._matrix = matMult(rotationMatrix, this._matrix);
     if (center) this.translate(-center[0], -center[1]);
 
     return this;
   }
 
   mirrorX(): TransformationMatrix {
-    this._matrix = matMult(this._matrix, [1, 0, 0, 0, -1, 0, 0, 0, 1]);
+    this._matrix = matMult([1, 0, 0, 0, -1, 0, 0, 0, 1], this._matrix);
     return this;
   }
 
   mirrorY(): TransformationMatrix {
-    this._matrix = matMult(this._matrix, [-1, 0, 0, 0, 1, 0, 0, 0, 1]);
+    this._matrix = matMult([-1, 0, 0, 0, 1, 0, 0, 0, 1], this._matrix);
     return this;
   }
 

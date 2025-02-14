@@ -2,8 +2,7 @@ import { expect, test } from "vitest";
 import { draw } from "../src/draw";
 import { offset } from "../src/offsetOperations";
 import { exportJSON } from "../src/export/json/exportJSON";
-import { Diagram } from "../src/main";
-import { debugImg, dpnt } from "./debug";
+//import { debugImg, dpnt } from "./debug";
 import { convertToArcsAndLines } from "../src/conversionOperations";
 
 const ex1Vertexes: [number, number, number][] = [
@@ -97,7 +96,7 @@ const splineVase = ({
   return sketchVaseProfile.lineTo([0, height]).closeWithMirror();
 };
 
-test.skip.each([-10, -5, -3, -2, -0.5, -1, 1, 2, 3, 5, 10])(
+test.each([-10, -5, -3, -2, -0.5, -1, 1, 2, 3, 5, 10])(
   "offset vase, with offset %d",
   (offsetVal) => {
     const vase = convertToArcsAndLines(splineVase());
