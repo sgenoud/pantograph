@@ -44,6 +44,10 @@ export {
   // Offset
   offset,
   outlineStroke,
+  // Features
+  fillet,
+  chamfer,
+  selectCorners,
 } from "./operations.js";
 
 export { exportSVG, svgBody } from "./export/svg/exportSVG.js";
