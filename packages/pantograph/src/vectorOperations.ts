@@ -54,9 +54,9 @@ export function dotProduct([x0, y0]: Vector, [x1, y1]: Vector): number {
   return x0 * x1 + y0 * y1;
 }
 
-export const angle = ([x0, y0]: Vector, [x1, y1]: Vector = [0, 0]): number => {
+export function angle([x0, y0]: Vector, [x1, y1]: Vector = [0, 0]): number {
   return Math.atan2(y1 * x0 - y0 * x1, x0 * x1 + y0 * y1);
-};
+}
 
 export function normalize([x0, y0]: Vector): Vector {
   const l = distance([x0, y0]);

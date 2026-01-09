@@ -1,4 +1,6 @@
-import { parsePath, absolutize } from "path-data-parser";
+import * as pathDataParser from "path-data-parser";
+
+const { parsePath, absolutize } = pathDataParser;
 
 import { draw, DrawingPen } from "../draw.js";
 import { Vector } from "../definitions.js";
