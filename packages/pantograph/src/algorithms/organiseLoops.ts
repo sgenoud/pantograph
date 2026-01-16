@@ -1,6 +1,56 @@
 import { Figure } from "../models/Figure";
 import { Loop } from "../models/Loop";
 
+const nearlyEqual = (a: number, b: number, epsilon = 1e-7) =>
+  Math.abs(a - b) <= epsilon;
+
+const boundingBoxesEquivalent = (a: Loop, b: Loop) => {
+  const boxA = a.boundingBox;
+  const boxB = b.boundingBox;
+  return (
+    nearlyEqual(boxA.xMin, boxB.xMin) &&
+    nearlyEqual(boxA.yMin, boxB.yMin) &&
+    nearlyEqual(boxA.xMax, boxB.xMax) &&
+    nearlyEqual(boxA.yMax, boxB.yMax)
+  );
+};
+
+const loopsAreEquivalent = (a: Loop, b: Loop): boolean => {
+  if (a.segmentsCount !== b.segmentsCount) return false;
+  if (!boundingBoxesEquivalent(a, b)) return false;
+
+  const aSegments = a.segments;
+  const bSegments = b.segments;
+  const segmentCount = aSegments.length;
+
+  const matchesFrom = (startIndex: number, direction: 1 | -1) => {
+    for (let i = 0; i < segmentCount; i += 1) {
+      const bIndex =
+        (startIndex + direction * i + segmentCount) % segmentCount;
+      if (!aSegments[i].isSame(bSegments[bIndex])) return false;
+    }
+    return true;
+  };
+
+  for (let i = 0; i < segmentCount; i += 1) {
+    if (!aSegments[0].isSame(bSegments[i])) continue;
+    if (matchesFrom(i, 1) || matchesFrom(i, -1)) return true;
+  }
+
+  return false;
+};
+
+const dedupeEquivalentLoops = (loops: Loop[]) => {
+  const unique: Loop[] = [];
+  loops.forEach((loop) => {
+    if (unique.some((existing) => loopsAreEquivalent(loop, existing))) {
+      return;
+    }
+    unique.push(loop);
+  });
+  return unique;
+};
+
 const groupByBoundingBoxOverlap = (loops: Loop[]): Loop[][] => {
   const overlaps = loops.map((loop, i) => {
     return loops
@@ -101,8 +151,9 @@ const cleanEdgeCases = (groupedLoops: ContainedLoop[]): ContainedLoop[][] => {
  * This algorithm assumes non intersecting loops.
  */
 export function organiseLoops(loops: Loop[]): Figure[] {
+  const uniqueLoops = dedupeEquivalentLoops(loops);
   const basicGrouping =
-    groupByBoundingBoxOverlap(loops).map(addContainmentInfo);
+    groupByBoundingBoxOverlap(uniqueLoops).map(addContainmentInfo);
   return basicGrouping.flatMap(cleanEdgeCases).map((compounds) => {
     if (compounds.length === 1) return new Figure(compounds[0].loop);
 

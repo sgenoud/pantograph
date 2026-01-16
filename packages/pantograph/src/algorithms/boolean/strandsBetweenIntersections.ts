@@ -14,9 +14,25 @@ export function* strandsBetweenIntersections(
     });
   };
 
-  const isCommonSegment = (commonSegment: Segment) => {
-    return allCommonSegments.some((segment) => {
-      return commonSegment.isSame(segment);
+  const isSegmentWithinCommonSegment = (
+    segment: Segment,
+    commonSegment: Segment,
+  ) => {
+    if (segment.segmentType !== commonSegment.segmentType) return false;
+    if (!commonSegment.isOnSegment(segment.firstPoint)) return false;
+    if (!commonSegment.isOnSegment(segment.lastPoint)) return false;
+    if (segment.segmentType !== "LINE") {
+      return commonSegment.isOnSegment(segment.midPoint);
+    }
+    return true;
+  };
+
+  const isCommonSegment = (segment: Segment) => {
+    return allCommonSegments.some((commonSegment) => {
+      return (
+        segment.isSame(commonSegment) ||
+        isSegmentWithinCommonSegment(segment, commonSegment)
+      );
     });
   };
 
