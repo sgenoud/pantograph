@@ -348,7 +348,7 @@ class ReDrawingPen extends DrawingPen {
 
   // @ts-expect-error forcing a different type
   closeWithMirror(): Drawing {
-    return new Drawing(super.close());
+    return new Drawing(super.closeWithMirror());
   }
 }
 
