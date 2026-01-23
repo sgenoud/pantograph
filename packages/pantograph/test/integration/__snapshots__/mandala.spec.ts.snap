@@ -11056,7 +11056,7 @@ Diagram {
           "_clockwise": null,
           "segments": [
             Arc {
-              "_angularLength": 0.032736519892398785,
+              "_angularLength": 0.03273651989239923,
               "_boundingBox": BoundingBox {
                 "xMax": -34.07324563066242,
                 "xMin": -35.913930921483676,
@@ -11065,7 +11065,7 @@ Diagram {
               },
               "_coefficients": null,
               "_firstAngle": 3.5666938373141845,
-              "_lastAngle": 3.5339573174217858,
+              "_lastAngle": 3.5339573174217853,
               "_radius": 141.47746206513173,
               "center": [
                 94.81229902864274,
@@ -13220,7 +13220,7 @@ Diagram {
               "segmentType": "ARC",
             },
             Arc {
-              "_angularLength": 0.09437968012226872,
+              "_angularLength": 0.09437968012226916,
               "_boundingBox": BoundingBox {
                 "xMax": 30.925667701174238,
                 "xMin": 26.16833088795438,
@@ -13228,7 +13228,7 @@ Diagram {
                 "yMin": -67.54824852217779,
               },
               "_coefficients": null,
-              "_firstAngle": 2.824351450464847,
+              "_firstAngle": 2.8243514504648473,
               "_lastAngle": 2.729971770342578,
               "_radius": 141.4774620651317,
               "center": [

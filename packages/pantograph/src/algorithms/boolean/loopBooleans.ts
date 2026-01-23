@@ -95,6 +95,7 @@ function loopIntersectionStrands(
   first: Loop,
   second: Loop,
   precision?: number,
+  expandCommonStrands = false,
 ): IntersectionStrand[] | null {
   // For each segment of each blueprint we figure out where the intersection
   // points are.
@@ -135,11 +136,7 @@ function loopIntersectionStrands(
 
   // If there is only one intersection point we consider that the loops
   // are not intersecting
-  if (
-    (!allIntersections.length || allIntersections.length === 1) &&
-    !allCommonSegments.length
-  )
-    return null;
+  if (!allIntersections.length || allIntersections.length === 1) return null;
 
   // We further split the segments at the intersections
   const cutCurve = ([segment, intersections]: [
@@ -221,22 +218,32 @@ function loopIntersectionStrands(
   }
 
   return zip([strandsFromFirst, strandsFromSecond]).map(([first, second]) => {
-    const isStrandCommon = (strand: Strand) =>
-      strand.segments.every((segment) =>
-        allCommonSegments.some(
-          (commonSegment) =>
-            segment.isSame(commonSegment) ||
-            (segment.segmentType === commonSegment.segmentType &&
-              commonSegment.isOnSegment(segment.firstPoint) &&
-              commonSegment.isOnSegment(segment.lastPoint) &&
-              (segment.segmentType === "LINE" ||
-                commonSegment.isOnSegment(segment.midPoint))),
-        ),
-      );
+    if (expandCommonStrands) {
+      const isStrandCommon = (strand: Strand) =>
+        strand.segments.every((segment) =>
+          allCommonSegments.some(
+            (commonSegment) =>
+              segment.isSame(commonSegment) ||
+              (segment.segmentType === commonSegment.segmentType &&
+                commonSegment.isOnSegment(segment.firstPoint) &&
+                commonSegment.isOnSegment(segment.lastPoint) &&
+                (segment.segmentType === "LINE" ||
+                  commonSegment.isOnSegment(segment.midPoint))),
+          ),
+        );
 
-    if (isStrandCommon(first)) {
+      if (isStrandCommon(first)) {
+        return [first, "same"];
+      }
+    } else if (
+      first.segmentsCount === 1 &&
+      allCommonSegments.some((commonSegment) => {
+        return first.segments[0].isSame(commonSegment);
+      })
+    ) {
       return [first, "same"];
     }
+
     return [first, second];
   });
 }
@@ -357,7 +364,12 @@ export function loopBooleanOperation(
       secondCurveInFirst: boolean;
       identical: false;
     } {
-  const strands = loopIntersectionStrands(first, second);
+  const strands = loopIntersectionStrands(
+    first,
+    second,
+    undefined,
+    firstBoundaryInside || secondBoundaryInside,
+  );
 
   // The case where we have no intersections
   if (!strands) {
@@ -534,6 +546,7 @@ export const intersectLoops = (
 ): Loop[] => {
   const firstBoundaryInside = boundary?.firstBoundaryInside ?? false;
   const secondBoundaryInside = boundary?.secondBoundaryInside ?? false;
+  const useBoundaryChecks = firstBoundaryInside || secondBoundaryInside;
 
   const loopInsideOrOnBoundary = (
     inner: Loop,
@@ -544,11 +557,13 @@ export const intersectLoops = (
       outer.contains(segment.midPoint, { strokeIsInside: boundaryInside }),
     );
 
-  if (loopInsideOrOnBoundary(first, second, secondBoundaryInside)) {
-    return [first];
-  }
-  if (loopInsideOrOnBoundary(second, first, firstBoundaryInside)) {
-    return [second];
+  if (useBoundaryChecks) {
+    if (loopInsideOrOnBoundary(first, second, secondBoundaryInside)) {
+      return [first];
+    }
+    if (loopInsideOrOnBoundary(second, first, firstBoundaryInside)) {
+      return [second];
+    }
   }
 
   const result = loopBooleanOperation(first, second, {
