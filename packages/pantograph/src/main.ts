@@ -31,7 +31,7 @@ export type {
   CubicBezier,
 } from "./models/exports.js";
 
-export { draw } from "./draw.js";
+export { draw, DrawingPen } from "./draw.js";
 export {
   // Surface booleans
   fuseAll,
