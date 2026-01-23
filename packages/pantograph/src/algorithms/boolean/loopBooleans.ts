@@ -135,7 +135,11 @@ function loopIntersectionStrands(
 
   // If there is only one intersection point we consider that the loops
   // are not intersecting
-  if (!allIntersections.length || allIntersections.length === 1) return null;
+  if (
+    (!allIntersections.length || allIntersections.length === 1) &&
+    !allCommonSegments.length
+  )
+    return null;
 
   // We further split the segments at the intersections
   const cutCurve = ([segment, intersections]: [
@@ -217,12 +221,20 @@ function loopIntersectionStrands(
   }
 
   return zip([strandsFromFirst, strandsFromSecond]).map(([first, second]) => {
-    if (
-      first.segmentsCount === 1 &&
-      allCommonSegments.some((commonSegment) => {
-        return first.segments[0].isSame(commonSegment);
-      })
-    ) {
+    const isStrandCommon = (strand: Strand) =>
+      strand.segments.every((segment) =>
+        allCommonSegments.some(
+          (commonSegment) =>
+            segment.isSame(commonSegment) ||
+            (segment.segmentType === commonSegment.segmentType &&
+              commonSegment.isOnSegment(segment.firstPoint) &&
+              commonSegment.isOnSegment(segment.lastPoint) &&
+              (segment.segmentType === "LINE" ||
+                commonSegment.isOnSegment(segment.midPoint))),
+        ),
+      );
+
+    if (isStrandCommon(first)) {
       return [first, "same"];
     }
     return [first, second];
@@ -320,16 +332,23 @@ const prependStrandList = (strandList: Strand[], strand: Strand) => {
   }
 };
 
+type BoundaryOptions = {
+  firstBoundaryInside?: boolean;
+  secondBoundaryInside?: boolean;
+};
+
 export function loopBooleanOperation(
   first: Loop,
   second: Loop,
   {
     firstInside,
     secondInside,
+    firstBoundaryInside = false,
+    secondBoundaryInside = false,
   }: {
     firstInside: "keep" | "remove";
     secondInside: "keep" | "remove";
-  },
+  } & BoundaryOptions,
 ):
   | Loop[]
   | { identical: true }
@@ -343,10 +362,14 @@ export function loopBooleanOperation(
   // The case where we have no intersections
   if (!strands) {
     const firstStrandPoint = first.segments[0].midPoint;
-    const firstCurveInSecond = second.contains(firstStrandPoint);
+    const firstCurveInSecond = second.contains(firstStrandPoint, {
+      strokeIsInside: secondBoundaryInside,
+    });
 
     const secondStrandPoint = second.segments[0].midPoint;
-    const secondCurveInFirst = first.contains(secondStrandPoint);
+    const secondCurveInFirst = first.contains(secondStrandPoint, {
+      strokeIsInside: firstBoundaryInside,
+    });
 
     return {
       identical: false,
@@ -394,7 +417,9 @@ export function loopBooleanOperation(
     // or not of the other closed loop
 
     const firstSegmentPoint = firstStrand.segments[0].midPoint;
-    const firstSegmentInSecondShape = second.contains(firstSegmentPoint);
+    const firstSegmentInSecondShape = second.contains(firstSegmentPoint, {
+      strokeIsInside: secondBoundaryInside,
+    });
 
     if (
       (firstInside === "keep" && firstSegmentInSecondShape) ||
@@ -405,7 +430,9 @@ export function loopBooleanOperation(
     }
 
     const secondSegmentPoint = secondStrand.segments[0].midPoint;
-    const secondSegmentInFirstShape = first.contains(secondSegmentPoint);
+    const secondSegmentInFirstShape = first.contains(secondSegmentPoint, {
+      strokeIsInside: firstBoundaryInside,
+    });
 
     if (
       (secondInside === "keep" && secondSegmentInFirstShape) ||
@@ -444,10 +471,15 @@ export function loopBooleanOperation(
   return groupLoops(s);
 }
 
-export const fuseLoops = (first: Loop, second: Loop): Loop[] => {
+export const fuseLoops = (
+  first: Loop,
+  second: Loop,
+  boundary?: BoundaryOptions,
+): Loop[] => {
   const result = loopBooleanOperation(first, second, {
     firstInside: "remove",
     secondInside: "remove",
+    ...boundary,
   });
 
   if (Array.isArray(result)) return result;
@@ -467,10 +499,15 @@ export const fuseLoops = (first: Loop, second: Loop): Loop[] => {
   return [first, second];
 };
 
-export const cutLoops = (first: Loop, second: Loop): Loop[] => {
+export const cutLoops = (
+  first: Loop,
+  second: Loop,
+  boundary?: BoundaryOptions,
+): Loop[] => {
   const result = loopBooleanOperation(first, second, {
     firstInside: "remove",
     secondInside: "keep",
+    ...boundary,
   });
 
   if (Array.isArray(result)) return result;
@@ -490,10 +527,34 @@ export const cutLoops = (first: Loop, second: Loop): Loop[] => {
   return [first];
 };
 
-export const intersectLoops = (first: Loop, second: Loop): Loop[] => {
+export const intersectLoops = (
+  first: Loop,
+  second: Loop,
+  boundary?: BoundaryOptions,
+): Loop[] => {
+  const firstBoundaryInside = boundary?.firstBoundaryInside ?? false;
+  const secondBoundaryInside = boundary?.secondBoundaryInside ?? false;
+
+  const loopInsideOrOnBoundary = (
+    inner: Loop,
+    outer: Loop,
+    boundaryInside: boolean,
+  ) =>
+    inner.segments.every((segment) =>
+      outer.contains(segment.midPoint, { strokeIsInside: boundaryInside }),
+    );
+
+  if (loopInsideOrOnBoundary(first, second, secondBoundaryInside)) {
+    return [first];
+  }
+  if (loopInsideOrOnBoundary(second, first, firstBoundaryInside)) {
+    return [second];
+  }
+
   const result = loopBooleanOperation(first, second, {
     firstInside: "keep",
     secondInside: "keep",
+    ...boundary,
   });
 
   if (Array.isArray(result)) return result;

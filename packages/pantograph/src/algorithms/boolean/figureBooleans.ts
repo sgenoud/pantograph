@@ -83,7 +83,7 @@ export function cutFigures(first: Figure, second: Figure): Figure[] {
   if (first.isFull) {
     const cutContour = cutLoops(first.contour, second.contour);
     const cutHoles = second.holes.flatMap((c) =>
-      intersectLoops(c, first.contour),
+      intersectLoops(c, first.contour, { firstBoundaryInside: true }),
     );
     // We might be able to assume that the contour and the holes are already
     // distinct figures.

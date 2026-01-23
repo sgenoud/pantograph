@@ -48,8 +48,13 @@ export class Diagram extends Transformable<Diagram> {
     return new Diagram(this.figures.map((figure) => figure.transform(matrix)));
   }
 
-  contains(point: Vector): boolean {
-    return this.figures.some((figure) => figure.contains(point));
+  contains(
+    point: Vector,
+    { strokeIsInside = false }: { strokeIsInside?: boolean } = {},
+  ): boolean {
+    return this.figures.some((figure) =>
+      figure.contains(point, { strokeIsInside }),
+    );
   }
 
   intersects(other: Diagram): boolean {

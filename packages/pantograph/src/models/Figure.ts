@@ -50,10 +50,13 @@ export class Figure extends Transformable<Figure> {
     );
   }
 
-  contains(point: Vector): boolean {
+  contains(
+    point: Vector,
+    { strokeIsInside = false }: { strokeIsInside?: boolean } = {},
+  ): boolean {
     return (
-      this.contour.contains(point) &&
-      !this.holes.some((hole) => hole.contains(point))
+      this.contour.contains(point, { strokeIsInside }) &&
+      !this.holes.some((hole) => hole.contains(point, { strokeIsInside }))
     );
   }
 

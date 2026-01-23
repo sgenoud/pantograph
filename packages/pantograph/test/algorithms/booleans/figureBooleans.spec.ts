@@ -94,6 +94,14 @@ describe("figure booleans", () => {
       expect(cutFigures[0].holes).toBeEquivalentLoops([rect(2, 2)]);
     });
 
+    it("keeps a contour on a hole boundary", () => {
+      const cutFigures = cutFiguresLists([squareFig(2)], [holedFig(4, 2)]);
+
+      expect(cutFigures.length).toBe(1);
+      expect(cutFigures[0].contour).toBeLoop(rect(2, 2));
+      expect(cutFigures[0].holes).toEqual([]);
+    });
+
     it("cuts within a cut", () => {
       const cutFigures = cutFiguresLists([squareFig(6)], [rectInRect]);
 

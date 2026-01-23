@@ -59,8 +59,11 @@ export class Loop extends AbstractStroke<Loop> {
     );
   }
 
-  contains(point: Vector): boolean {
-    if (this.onStroke(point)) return false;
+  contains(
+    point: Vector,
+    { strokeIsInside = false }: { strokeIsInside?: boolean } = {},
+  ): boolean {
+    if (this.onStroke(point)) return strokeIsInside;
     if (!this.boundingBox.contains(point)) return false;
 
     const intersections = this.segments.reduce((acc, segment) => {
