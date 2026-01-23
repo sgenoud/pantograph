@@ -356,6 +356,19 @@ function redraw(p?: Point2D) {
   return new ReDrawingPen(p);
 }
 
+export function wrapDrawing<TThis, TArgs extends any[]>(
+  fn: (this: TThis, ...args: TArgs) => Diagram,
+) {
+  return function (this: TThis, ...args: TArgs): Drawing {
+    return new Drawing(fn.apply(this, args));
+  };
+}
+
+export const drawCircle = wrapDrawing(drawShape.drawCircle);
+export const drawRect = wrapDrawing(drawShape.drawRect);
+export const drawEllipse = wrapDrawing(drawShape.drawEllipse);
+export const drawPolysides = wrapDrawing(drawShape.drawPolysides);
+
 export {
   sketchOnPlane,
   initStudioIntegration,

@@ -27,7 +27,7 @@
       },
       "require": {
         "default": "./dist/pantograph/models.cjs",
-        "types": "./dist/types/src/api/drawShape.d.ts"
+        "types": "./dist/types/src/api/models.d.ts"
       }
     },
     "./drawShape": {
