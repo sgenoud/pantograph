@@ -48,6 +48,9 @@ export {
   fillet,
   chamfer,
   selectCorners,
+  // Tesselation
+  tesselate,
+  tesselatePoints,
 } from "./operations.js";
 
 export { exportSVG, svgBody } from "./export/svg/exportSVG.js";
