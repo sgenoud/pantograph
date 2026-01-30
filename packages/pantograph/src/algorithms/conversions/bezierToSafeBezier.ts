@@ -25,7 +25,7 @@ export type SafeVersion<T> = T extends CubicBezier
     : never;
 
 function isOffsetSafeBezier(segment: Bezier): segment is SafeBezier {
-  if (segment instanceof CubicBezier) {
+  if (CubicBezier.isInstance(segment)) {
     // We check that both control points are on the same side of the chord
     const chord = subtract(segment.lastPoint, segment.firstPoint);
     const v2 = subtract(segment.firstControlPoint, segment.firstPoint);

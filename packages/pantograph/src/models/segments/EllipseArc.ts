@@ -21,6 +21,8 @@ import { angularDistance } from "../../utils/angularDistance.js";
 import zip from "../../utils/zip.js";
 import { Arc } from "./Arc.js";
 
+const ELLIPSE_ARC_INSTANCE = Symbol.for("pantograph:EllipseArc");
+
 export class EllipseArc extends AbstractSegment<EllipseArc> {
   segmentType = "ELLIPSE_ARC";
 
@@ -33,6 +35,15 @@ export class EllipseArc extends AbstractSegment<EllipseArc> {
   readonly center: Vector;
   readonly tiltAngle: number;
   readonly clockwise: boolean;
+
+  static isInstance(value: unknown): value is EllipseArc {
+    return (
+      !!value &&
+      (value as { [ELLIPSE_ARC_INSTANCE]?: boolean })[
+        ELLIPSE_ARC_INSTANCE
+      ] === true
+    );
+  }
 
   constructor(
     firstPoint: Vector,
@@ -48,6 +59,7 @@ export class EllipseArc extends AbstractSegment<EllipseArc> {
     }: { ignoreChecks?: boolean; angleUnits?: "deg" | "rad" } = {},
   ) {
     super(firstPoint, lastPoint);
+    Object.defineProperty(this, ELLIPSE_ARC_INSTANCE, { value: true });
 
     // Ellipse configuration
     this.center = center;

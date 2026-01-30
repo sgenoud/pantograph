@@ -80,10 +80,10 @@ export function fatLineFromQuadratic(curve: QuadraticBezier) {
 }
 
 export function fatLineFromCurve(curve: CubicBezier | QuadraticBezier) {
-  if (curve instanceof CubicBezier) {
+  if (CubicBezier.isInstance(curve)) {
     return fatLineFromCubicCurve(curve);
   }
-  if (curve instanceof QuadraticBezier) {
+  if (QuadraticBezier.isInstance(curve)) {
     return fatLineFromQuadratic(curve);
   }
   throw new Error("Not implemented");
@@ -107,12 +107,12 @@ export function perpendicularFatLineFromCurve(
     orientedDistanceToLine(curve.lastPoint, curvePoints),
   ];
 
-  if (curve instanceof CubicBezier) {
+  if (CubicBezier.isInstance(curve)) {
     distances.push(
       orientedDistanceToLine(curve.firstControlPoint, curvePoints),
       orientedDistanceToLine(curve.lastControlPoint, curvePoints),
     );
-  } else if (curve instanceof QuadraticBezier) {
+  } else if (QuadraticBezier.isInstance(curve)) {
     distances.push(orientedDistanceToLine(curve.controlPoint, curvePoints));
   }
 
@@ -194,7 +194,7 @@ function createDistanceHull(
   curve: QuadraticBezier | CubicBezier,
   fatLine: FatLine,
 ) {
-  if (curve instanceof CubicBezier) {
+  if (CubicBezier.isInstance(curve)) {
     return new DistanceToFatLineCubicCurve([
       orientedDistanceToLine(curve.firstPoint, fatLine),
       orientedDistanceToLine(curve.firstControlPoint, fatLine),
@@ -202,7 +202,7 @@ function createDistanceHull(
       orientedDistanceToLine(curve.lastPoint, fatLine),
     ]);
   }
-  if (curve instanceof QuadraticBezier) {
+  if (QuadraticBezier.isInstance(curve)) {
     return new DistanceToFatLineQuadraticCurve([
       orientedDistanceToLine(curve.firstPoint, fatLine),
       orientedDistanceToLine(curve.controlPoint, fatLine),
@@ -382,7 +382,7 @@ export function clipFatLineIntersections(
 }
 
 const hullSquareLength = (curve: QuadraticBezier | CubicBezier) => {
-  if (curve instanceof QuadraticBezier) {
+  if (QuadraticBezier.isInstance(curve)) {
     return (
       squareLength(subtract(curve.controlPoint, curve.firstPoint)) +
       squareLength(subtract(curve.controlPoint, curve.lastPoint))

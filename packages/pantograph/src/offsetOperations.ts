@@ -21,7 +21,7 @@ export function outlineStroke(
   outlineDistance: number,
   { endCap = "round" }: { endCap?: "butt" | "round" } = {},
 ): Diagram {
-  if (shape instanceof Strand) {
+  if (Strand.isInstance(shape)) {
     return outlineStrand(shape, outlineDistance, endCap);
   }
   return outlineStrokeFigures(listOfFigures(shape), outlineDistance);

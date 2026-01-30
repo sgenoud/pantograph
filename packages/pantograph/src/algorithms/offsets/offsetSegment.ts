@@ -17,11 +17,26 @@ import {
   SafeQuadraticBezier,
 } from "../conversions/bezierToSafeBezier.js";
 
+const DEGENERATE_SEGMENT_INSTANCE = Symbol.for(
+  "pantograph:DegenerateSegment",
+);
+
 export class DegenerateSegment {
+  static isInstance(value: unknown): value is DegenerateSegment {
+    return (
+      !!value &&
+      (value as { [DEGENERATE_SEGMENT_INSTANCE]?: boolean })[
+        DEGENERATE_SEGMENT_INSTANCE
+      ] === true
+    );
+  }
+
   constructor(
     public readonly firstPoint: Vector,
     public readonly lastPoint: Vector,
-  ) {}
+  ) {
+    Object.defineProperty(this, DEGENERATE_SEGMENT_INSTANCE, { value: true });
+  }
 }
 
 export type OffsettableSegment =
@@ -34,15 +49,15 @@ export function offsetSegment(
   segment: OffsettableSegment,
   offset: number,
 ): Segment | DegenerateSegment {
-  if (segment instanceof Line) {
+  if (Line.isInstance(segment)) {
     return offsetLine(segment, offset);
   }
 
-  if (segment instanceof Arc) {
+  if (Arc.isInstance(segment)) {
     return offsetArc(segment, offset);
   }
 
-  if (segment instanceof QuadraticBezier || segment instanceof CubicBezier) {
+  if (QuadraticBezier.isInstance(segment) || CubicBezier.isInstance(segment)) {
     return offsetSafeBezier(segment, offset);
   }
 
@@ -145,7 +160,7 @@ export function offsetSafeBezier(
     }
   }
 
-  if (curve instanceof QuadraticBezier) {
+  if (QuadraticBezier.isInstance(curve)) {
     const newControlPoint = computeControlPointOffset(
       origin,
       curve.controlPoint,

@@ -3,9 +3,24 @@ import { AbstractStroke } from "./Stroke.js";
 import { TransformationMatrix } from "./TransformationMatrix.js";
 import { sameVector } from "../vectorOperations.js";
 import { simplifySegments } from "../algorithms/simplify.js";
+import type { Segment } from "./segments/Segment.js";
+
+const STRAND_INSTANCE = Symbol.for("pantograph:Strand");
 
 export class Strand extends AbstractStroke<Strand> {
   strokeType = "STRAND";
+
+  static isInstance(value: unknown): value is Strand {
+    return (
+      !!value &&
+      (value as { [STRAND_INSTANCE]?: boolean })[STRAND_INSTANCE] === true
+    );
+  }
+
+  constructor(segments: Segment[], { ignoreChecks = false } = {}) {
+    super(segments, { ignoreChecks });
+    Object.defineProperty(this, STRAND_INSTANCE, { value: true });
+  }
   reverse(): Strand {
     const reversedSegments = this.segments.map((segment) => segment.reverse());
     reversedSegments.reverse();

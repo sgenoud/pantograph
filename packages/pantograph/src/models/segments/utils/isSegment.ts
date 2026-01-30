@@ -14,5 +14,5 @@ export const ALL_SEGMENT_CLASSES = [
 ];
 
 export function isSegment(s: unknown): s is Segment {
-  return ALL_SEGMENT_CLASSES.some((cls) => s instanceof cls);
+  return ALL_SEGMENT_CLASSES.some((cls) => cls.isInstance(s));
 }

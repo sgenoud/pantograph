@@ -7,11 +7,20 @@ import { Segment } from "./segments/Segment.js";
 import { sameVector } from "../vectorOperations.js";
 import { Line } from "./segments/Line.js";
 
+const LOOP_INSTANCE = Symbol.for("pantograph:Loop");
+
 export class Loop extends AbstractStroke<Loop> {
   strokeType = "LOOP";
 
+  static isInstance(value: unknown): value is Loop {
+    return (
+      !!value && (value as { [LOOP_INSTANCE]?: boolean })[LOOP_INSTANCE] === true
+    );
+  }
+
   constructor(segments: Segment[], { ignoreChecks = false } = {}) {
     super(segments, { ignoreChecks: true });
+    Object.defineProperty(this, LOOP_INSTANCE, { value: true });
     if (!ignoreChecks) checkValidLoop(segments);
   }
 
@@ -19,7 +28,7 @@ export class Loop extends AbstractStroke<Loop> {
   get clockwise(): boolean {
     if (this._clockwise === null) {
       const vertices = this.segments.flatMap((c) => {
-        if (!(c instanceof Line)) {
+        if (!Line.isInstance(c)) {
           // We just go with a simple approximation here, we should use some extrema
           // points instead, but this is quick (and good enough for now)
           return [c.firstPoint, c.paramPoint(0.5)];

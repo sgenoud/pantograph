@@ -6,14 +6,14 @@ import { QuadraticBezier } from "../../models/segments/QuadraticBezier.js";
 import { Segment } from "../../models/segments/Segment.js";
 
 export function jsonSegment(segment: Segment) {
-  if (segment instanceof Line) {
+  if (Line.isInstance(segment)) {
     return {
       type: segment.segmentType,
       firstPoint: segment.firstPoint,
       lastPoint: segment.lastPoint,
     };
   }
-  if (segment instanceof Arc) {
+  if (Arc.isInstance(segment)) {
     return {
       type: segment.segmentType,
       firstPoint: segment.firstPoint,
@@ -23,7 +23,7 @@ export function jsonSegment(segment: Segment) {
     };
   }
 
-  if (segment instanceof EllipseArc) {
+  if (EllipseArc.isInstance(segment)) {
     return {
       type: segment.segmentType,
       firstPoint: segment.firstPoint,
@@ -36,7 +36,7 @@ export function jsonSegment(segment: Segment) {
     };
   }
 
-  if (segment instanceof QuadraticBezier) {
+  if (QuadraticBezier.isInstance(segment)) {
     return {
       type: segment.segmentType,
       firstPoint: segment.firstPoint,
@@ -45,7 +45,7 @@ export function jsonSegment(segment: Segment) {
     };
   }
 
-  if (segment instanceof CubicBezier) {
+  if (CubicBezier.isInstance(segment)) {
     return {
       type: segment.segmentType,
       firstPoint: segment.firstPoint,

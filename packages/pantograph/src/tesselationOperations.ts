@@ -101,11 +101,11 @@ function tesselatePoints(
   shape: Diagram | Figure | Loop | Strand | Segment,
   options: TesselateSegmentOptions = {},
 ) {
-  if (shape instanceof Diagram) {
+  if (Diagram.isInstance(shape)) {
     return shape.figures.flatMap((figure) => tesselatePoints(figure, options));
   }
 
-  if (shape instanceof Figure) {
+  if (Figure.isInstance(shape)) {
     const contour = orientPoints(
       stitchSegmentPoints(shape.contour.segments, options),
       false,
@@ -116,11 +116,11 @@ function tesselatePoints(
     return [contour, ...holes];
   }
 
-  if (shape instanceof Loop) {
+  if (Loop.isInstance(shape)) {
     return [orientPoints(stitchSegmentPoints(shape.segments, options), false)];
   }
 
-  if (shape instanceof Strand) {
+  if (Strand.isInstance(shape)) {
     return [stitchSegmentPoints(shape.segments, options)];
   }
 

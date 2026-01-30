@@ -24,7 +24,7 @@ export function findIntersections(
   segment2: Segment,
   precision?: number,
 ): Vector[] {
-  if (segment1 instanceof Line && segment2 instanceof Line) {
+  if (Line.isInstance(segment1) && Line.isInstance(segment2)) {
     const intersection = lineLineIntersection(
       segment1,
       segment2,
@@ -34,13 +34,13 @@ export function findIntersections(
     if (intersection === null) return [];
     return [intersection as Vector];
   }
-  if (segment1 instanceof Line && segment2 instanceof Arc) {
+  if (Line.isInstance(segment1) && Arc.isInstance(segment2)) {
     return lineArcIntersection(segment1, segment2, precision);
   }
-  if (segment1 instanceof Arc && segment2 instanceof Line) {
+  if (Arc.isInstance(segment1) && Line.isInstance(segment2)) {
     return lineArcIntersection(segment2, segment1, precision);
   }
-  if (segment1 instanceof Arc && segment2 instanceof Arc) {
+  if (Arc.isInstance(segment1) && Arc.isInstance(segment2)) {
     return arcArcIntersection(segment1, segment2, false, precision) as Vector[];
   }
 
@@ -53,7 +53,7 @@ export function findIntersectionsAndOverlaps(
   precision?: number,
 ): { intersections: Vector[]; overlaps: Segment[]; count: number } {
   // If we have two lines, checks are fast enough to not use bounding boxes
-  if (segment1 instanceof Line && segment2 instanceof Line) {
+  if (Line.isInstance(segment1) && Line.isInstance(segment2)) {
     const intersection = lineLineIntersection(
       segment1,
       segment2,
@@ -62,7 +62,7 @@ export function findIntersectionsAndOverlaps(
     );
     if (intersection === null)
       return { intersections: [], overlaps: [], count: 0 };
-    if (intersection instanceof Line)
+    if (Line.isInstance(intersection))
       return { intersections: [], overlaps: [intersection], count: 1 };
     return { intersections: [intersection], overlaps: [], count: 1 };
   }
@@ -71,17 +71,17 @@ export function findIntersectionsAndOverlaps(
     return { intersections: [], overlaps: [], count: 0 };
   }
 
-  if (segment1 instanceof Line && segment2 instanceof Arc) {
+  if (Line.isInstance(segment1) && Arc.isInstance(segment2)) {
     const intersections = lineArcIntersection(segment1, segment2, precision);
     return { intersections, overlaps: [], count: intersections.length };
   }
 
-  if (segment1 instanceof Arc && segment2 instanceof Line) {
+  if (Arc.isInstance(segment1) && Line.isInstance(segment2)) {
     const intersections = lineArcIntersection(segment2, segment1, precision);
     return { intersections, overlaps: [], count: intersections.length };
   }
 
-  if (segment1 instanceof Arc && segment2 instanceof Arc) {
+  if (Arc.isInstance(segment1) && Arc.isInstance(segment2)) {
     const intersections = arcArcIntersection(
       segment1,
       segment2,
@@ -90,7 +90,7 @@ export function findIntersectionsAndOverlaps(
     );
     if (!intersections.length)
       return { intersections: [], overlaps: [], count: 0 };
-    if (intersections[0] instanceof Arc)
+    if (Arc.isInstance(intersections[0]))
       return {
         intersections: [],
         overlaps: intersections as Arc[],
@@ -103,7 +103,7 @@ export function findIntersectionsAndOverlaps(
     };
   }
 
-  if (segment1 instanceof Line && segment2 instanceof EllipseArc) {
+  if (Line.isInstance(segment1) && EllipseArc.isInstance(segment2)) {
     const intersections = lineEllipseArcIntersection(
       segment1,
       segment2,
@@ -112,7 +112,7 @@ export function findIntersectionsAndOverlaps(
     return { intersections, overlaps: [], count: intersections.length };
   }
 
-  if (segment2 instanceof Line && segment1 instanceof EllipseArc) {
+  if (Line.isInstance(segment2) && EllipseArc.isInstance(segment1)) {
     const intersections = lineEllipseArcIntersection(
       segment2,
       segment1,
@@ -121,17 +121,17 @@ export function findIntersectionsAndOverlaps(
     return { intersections, overlaps: [], count: intersections.length };
   }
 
-  if (segment1 instanceof Arc && segment2 instanceof EllipseArc) {
+  if (Arc.isInstance(segment1) && EllipseArc.isInstance(segment2)) {
     const intersections = arcEllipseArcIntersection(segment1, segment2);
     return { intersections, overlaps: [], count: intersections.length };
   }
 
-  if (segment2 instanceof Arc && segment1 instanceof EllipseArc) {
+  if (Arc.isInstance(segment2) && EllipseArc.isInstance(segment1)) {
     const intersections = arcEllipseArcIntersection(segment2, segment1);
     return { intersections, overlaps: [], count: intersections.length };
   }
 
-  if (segment1 instanceof EllipseArc && segment2 instanceof EllipseArc) {
+  if (EllipseArc.isInstance(segment1) && EllipseArc.isInstance(segment2)) {
     const intersections = ellipseArcEllipseArcIntersection(
       segment1,
       segment2,
@@ -139,7 +139,7 @@ export function findIntersectionsAndOverlaps(
     );
     if (!intersections.length)
       return { intersections: [], overlaps: [], count: 0 };
-    if (intersections[0] instanceof EllipseArc)
+    if (EllipseArc.isInstance(intersections[0]))
       return {
         intersections: [],
         overlaps: intersections as EllipseArc[],
@@ -153,56 +153,56 @@ export function findIntersectionsAndOverlaps(
   }
 
   if (
-    segment1 instanceof Line &&
-    (segment2 instanceof CubicBezier || segment2 instanceof QuadraticBezier)
+    Line.isInstance(segment1) &&
+    (CubicBezier.isInstance(segment2) || QuadraticBezier.isInstance(segment2))
   ) {
     const intersections = lineBezierIntersection(segment1, segment2);
     return { intersections, overlaps: [], count: intersections.length };
   }
 
   if (
-    segment2 instanceof Line &&
-    (segment1 instanceof CubicBezier || segment1 instanceof QuadraticBezier)
+    Line.isInstance(segment2) &&
+    (CubicBezier.isInstance(segment1) || QuadraticBezier.isInstance(segment1))
   ) {
     const intersections = lineBezierIntersection(segment2, segment1);
     return { intersections, overlaps: [], count: intersections.length };
   }
 
   if (
-    (segment1 instanceof Arc || segment1 instanceof EllipseArc) &&
-    segment2 instanceof QuadraticBezier
+    (Arc.isInstance(segment1) || EllipseArc.isInstance(segment1)) &&
+    QuadraticBezier.isInstance(segment2)
   ) {
     const intersections = arcsQuadraticBezierIntersection(segment1, segment2);
     return { intersections, overlaps: [], count: intersections.length };
   }
 
   if (
-    (segment2 instanceof Arc || segment2 instanceof EllipseArc) &&
-    segment1 instanceof QuadraticBezier
+    (Arc.isInstance(segment2) || EllipseArc.isInstance(segment2)) &&
+    QuadraticBezier.isInstance(segment1)
   ) {
     const intersections = arcsQuadraticBezierIntersection(segment2, segment1);
     return { intersections, overlaps: [], count: intersections.length };
   }
 
   if (
-    (segment1 instanceof Arc || segment1 instanceof EllipseArc) &&
-    segment2 instanceof CubicBezier
+    (Arc.isInstance(segment1) || EllipseArc.isInstance(segment1)) &&
+    CubicBezier.isInstance(segment2)
   ) {
     const intersections = arcsCubicBezierIntersection(segment1, segment2);
     return { intersections, overlaps: [], count: intersections.length };
   }
 
   if (
-    (segment2 instanceof Arc || segment2 instanceof EllipseArc) &&
-    segment1 instanceof CubicBezier
+    (Arc.isInstance(segment2) || EllipseArc.isInstance(segment2)) &&
+    CubicBezier.isInstance(segment1)
   ) {
     const intersections = arcsCubicBezierIntersection(segment2, segment1);
     return { intersections, overlaps: [], count: intersections.length };
   }
 
   if (
-    segment1 instanceof QuadraticBezier &&
-    segment2 instanceof QuadraticBezier
+    QuadraticBezier.isInstance(segment1) &&
+    QuadraticBezier.isInstance(segment2)
   ) {
     const intersections = quadraticBezierQuadraticBezierIntersection(
       segment1,
@@ -210,7 +210,7 @@ export function findIntersectionsAndOverlaps(
     );
     if (!intersections.length)
       return { intersections: [], overlaps: [], count: 0 };
-    if (intersections[0] instanceof QuadraticBezier)
+    if (QuadraticBezier.isInstance(intersections[0]))
       return {
         intersections: [],
         overlaps: intersections as QuadraticBezier[],
@@ -224,21 +224,21 @@ export function findIntersectionsAndOverlaps(
   }
 
   if (
-    (segment1 instanceof QuadraticBezier && segment2 instanceof CubicBezier) ||
-    (segment2 instanceof QuadraticBezier && segment1 instanceof CubicBezier)
+    (QuadraticBezier.isInstance(segment1) && CubicBezier.isInstance(segment2)) ||
+    (QuadraticBezier.isInstance(segment2) && CubicBezier.isInstance(segment1))
   ) {
     const intersections = bezierClip(segment1, segment2);
     return { intersections, overlaps: [], count: intersections.length };
   }
 
-  if (segment1 instanceof CubicBezier && segment2 instanceof CubicBezier) {
+  if (CubicBezier.isInstance(segment1) && CubicBezier.isInstance(segment2)) {
     const intersections = cubicBezierCubicBezierIntersection(
       segment1,
       segment2,
     );
     if (!intersections.length)
       return { intersections: [], overlaps: [], count: 0 };
-    if (intersections[0] instanceof CubicBezier)
+    if (CubicBezier.isInstance(intersections[0]))
       return {
         intersections: [],
         overlaps: intersections as CubicBezier[],

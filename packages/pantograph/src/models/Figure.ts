@@ -9,7 +9,16 @@ import { Transformable } from "./utils/Transformable.js";
 import { exportJSON } from "../export/json/exportJSON.js";
 import { stitchSegments } from "../algorithms/stitchSegments.js";
 
+const FIGURE_INSTANCE = Symbol.for("pantograph:Figure");
+
 export class Figure extends Transformable<Figure> {
+  static isInstance(value: unknown): value is Figure {
+    return (
+      !!value &&
+      (value as { [FIGURE_INSTANCE]?: boolean })[FIGURE_INSTANCE] === true
+    );
+  }
+
   readonly contour: Loop;
   readonly holes: Loop[];
 
@@ -19,6 +28,7 @@ export class Figure extends Transformable<Figure> {
     { ignoreChecks = false } = {},
   ) {
     super();
+    Object.defineProperty(this, FIGURE_INSTANCE, { value: true });
     if (!ignoreChecks) checkIsValidFigure(contour, holes);
     this.contour = contour;
     this.holes = holes;
@@ -67,7 +77,7 @@ export class Figure extends Transformable<Figure> {
   }
 
   overlappingStrands(other: Figure | Stroke): Strand[] {
-    const otherStrokes = other instanceof Figure ? other.allLoops : [other];
+    const otherStrokes = Figure.isInstance(other) ? other.allLoops : [other];
     const overlappingSegments = this.allLoops.flatMap((loop) => {
       return otherStrokes.flatMap((otherLoop) => {
         return loop.overlappingSegments(otherLoop);

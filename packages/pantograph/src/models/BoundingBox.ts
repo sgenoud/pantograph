@@ -1,5 +1,7 @@
 import { Vector } from "../definitions.js";
 
+const BOUNDING_BOX_INSTANCE = Symbol.for("pantograph:BoundingBox");
+
 function overlap1D(
   min1: number,
   max1: number,
@@ -10,6 +12,15 @@ function overlap1D(
 }
 
 export class BoundingBox {
+  static isInstance(value: unknown): value is BoundingBox {
+    return (
+      !!value &&
+      (value as { [BOUNDING_BOX_INSTANCE]?: boolean })[
+        BOUNDING_BOX_INSTANCE
+      ] === true
+    );
+  }
+
   readonly xMin: number;
   readonly yMin: number;
 
@@ -22,6 +33,7 @@ export class BoundingBox {
     xMax = -Infinity,
     yMax = -Infinity,
   ) {
+    Object.defineProperty(this, BOUNDING_BOX_INSTANCE, { value: true });
     this.xMin = xMin;
     this.yMin = yMin;
     this.xMax = xMax;

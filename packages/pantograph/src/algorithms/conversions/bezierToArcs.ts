@@ -169,7 +169,7 @@ export function approximateBezierCurveAsArcs(
   precision = 1e-4,
 ): Arc[] {
   const params = segment.getParametersOfExtrema();
-  if (segment instanceof CubicBezier) {
+  if (CubicBezier.isInstance(segment)) {
     const inflexionPoints = segment.getInflexionParameters();
     params.push(...inflexionPoints);
   }

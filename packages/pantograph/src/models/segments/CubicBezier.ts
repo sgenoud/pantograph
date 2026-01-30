@@ -20,11 +20,22 @@ import { TransformationMatrix } from "../TransformationMatrix.js";
 import { AbstractSegment } from "./Segment.js";
 import { deCasteljauWithHistory } from "./utils/deCasteljau.js";
 
+const CUBIC_BEZIER_INSTANCE = Symbol.for("pantograph:CubicBezier");
+
 export class CubicBezier extends AbstractSegment<CubicBezier> {
   segmentType = "CUBIC_BEZIER";
 
   readonly firstControlPoint: Vector;
   readonly lastControlPoint: Vector;
+
+  static isInstance(value: unknown): value is CubicBezier {
+    return (
+      !!value &&
+      (value as { [CUBIC_BEZIER_INSTANCE]?: boolean })[
+        CUBIC_BEZIER_INSTANCE
+      ] === true
+    );
+  }
 
   constructor(
     firstPoint: Vector,
@@ -34,6 +45,7 @@ export class CubicBezier extends AbstractSegment<CubicBezier> {
     //{ ignoreChecks = false } = {}
   ) {
     super(firstPoint, lastPoint);
+    Object.defineProperty(this, CUBIC_BEZIER_INSTANCE, { value: true });
     this.firstControlPoint = firstControlPoint;
     this.lastControlPoint = lastControlPoint;
   }

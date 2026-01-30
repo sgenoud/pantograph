@@ -10,13 +10,13 @@ import { genericConversion } from "./algorithms/conversions/helpers";
 import { Diagram, Figure, Loop, Strand } from "./main";
 
 function mapAsArcsAndLines(s: Segment, tolerance = 1e-3): Segment[] {
-  if (s instanceof Arc || s instanceof Line) {
+  if (Arc.isInstance(s) || Line.isInstance(s)) {
     return [s];
   }
-  if (s instanceof QuadraticBezier || s instanceof CubicBezier) {
+  if (QuadraticBezier.isInstance(s) || CubicBezier.isInstance(s)) {
     return approximateBezierCurveAsArcs(s, tolerance);
   }
-  if (s instanceof EllipseArc) {
+  if (EllipseArc.isInstance(s)) {
     return approximateEllipticalArcAsCubicBeziers(s).flatMap((s) =>
       approximateBezierCurveAsArcs(s, tolerance),
     );

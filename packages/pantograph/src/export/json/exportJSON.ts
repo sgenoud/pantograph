@@ -11,11 +11,11 @@ import { jsonSegment } from "./jsonSegment.js";
 type Shape = Loop | Figure | Diagram | Segment;
 
 export function exportJSON(shape: Shape) {
-  if (shape instanceof Diagram) {
+  if (Diagram.isInstance(shape)) {
     return jsonDiagram(shape);
-  } else if (shape instanceof Figure) {
+  } else if (Figure.isInstance(shape)) {
     return jsonFigure(shape);
-  } else if (shape instanceof Loop) {
+  } else if (Loop.isInstance(shape)) {
     return jsonLoop(shape);
   } else if (isSegment(shape)) {
     return jsonSegment(shape);

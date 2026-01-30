@@ -7,19 +7,19 @@ import type { Segment } from "../../models/segments/Segment.js";
 import { genericDistance } from "./genericDistance.js";
 
 export function distance(segment1: Segment, segment2: Segment): number {
-  if (segment1 instanceof Line && segment2 instanceof Line) {
+  if (Line.isInstance(segment1) && Line.isInstance(segment2)) {
     return lineLineDistance(segment1, segment2);
   }
 
-  if (segment1 instanceof Line && segment2 instanceof Arc) {
+  if (Line.isInstance(segment1) && Arc.isInstance(segment2)) {
     return lineArcDistance(segment1, segment2);
   }
 
-  if (segment1 instanceof Arc && segment2 instanceof Line) {
+  if (Arc.isInstance(segment1) && Line.isInstance(segment2)) {
     return lineArcDistance(segment2, segment1);
   }
 
-  if (segment1 instanceof Arc && segment2 instanceof Arc) {
+  if (Arc.isInstance(segment1) && Arc.isInstance(segment2)) {
     return arcArcDistance(segment1, segment2);
   }
 

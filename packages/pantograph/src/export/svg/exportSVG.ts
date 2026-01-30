@@ -16,13 +16,13 @@ import { isSegment } from "../../models/segments/utils/isSegment.js";
 type Shape = Figure | Diagram | Stroke | Segment;
 
 export function svgBody(shape: Shape) {
-  if (shape instanceof Diagram) {
+  if (Diagram.isInstance(shape)) {
     return svgDiagram(shape);
-  } else if (shape instanceof Figure) {
+  } else if (Figure.isInstance(shape)) {
     return svgFigure(shape);
-  } else if (shape instanceof Loop) {
+  } else if (Loop.isInstance(shape)) {
     return `<path d="${svgLoop(shape)}" />`;
-  } else if (shape instanceof Strand) {
+  } else if (Strand.isInstance(shape)) {
     return `<path d="${svgStrand(shape)}" />`;
   } else if (isSegment(shape)) {
     return `<path d="${`M ${shape.firstPoint.join(" ")}`} ${svgSegmentToPath(

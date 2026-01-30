@@ -153,19 +153,19 @@ const rayBezierIntersectionsCount = (
 };
 
 export function rayIntersectionsCount(point: Vector, segment: Segment): number {
-  if (segment instanceof Line) {
+  if (Line.isInstance(segment)) {
     return rayLineIntersectionsCount(point, segment);
   }
 
-  if (segment instanceof Arc) {
+  if (Arc.isInstance(segment)) {
     return rayArcIntersectionsCount(point, segment);
   }
 
-  if (segment instanceof EllipseArc) {
+  if (EllipseArc.isInstance(segment)) {
     return rayEllipseArcIntersectionsCount(point, segment);
   }
 
-  if (segment instanceof CubicBezier || segment instanceof QuadraticBezier) {
+  if (CubicBezier.isInstance(segment) || QuadraticBezier.isInstance(segment)) {
     return rayBezierIntersectionsCount(point, segment);
   }
 

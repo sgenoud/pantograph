@@ -55,11 +55,11 @@ export function eraseStrand(
   diagram: Diagram | Figure | Loop,
   eraseOnBorder = true,
 ): Strand[] {
-  if (diagram instanceof Loop) {
+  if (Loop.isInstance(diagram)) {
     return eraseStrandWithinLoop(strand, diagram, eraseOnBorder);
   }
 
-  if (diagram instanceof Figure) {
+  if (Figure.isInstance(diagram)) {
     return eraseStrandWithinFigure(strand, diagram, eraseOnBorder);
   }
 
@@ -78,11 +78,11 @@ export function confineStrand(
   diagram: Diagram | Figure | Loop,
   eraseOnBorder = false,
 ): Strand[] {
-  if (diagram instanceof Loop) {
+  if (Loop.isInstance(diagram)) {
     return eraseStrandOutsideLoop(strand, diagram, eraseOnBorder);
   }
 
-  if (diagram instanceof Figure) {
+  if (Figure.isInstance(diagram)) {
     return eraseStrandOutsideFigure(strand, diagram, eraseOnBorder);
   }
 

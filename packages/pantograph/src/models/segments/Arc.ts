@@ -28,11 +28,19 @@ const polarCoordsFromCenter = (point: Vector, center: Vector) => {
   return cartesianToPolar(vector);
 };
 
+const ARC_INSTANCE = Symbol.for("pantograph:Arc");
+
 export class Arc extends AbstractSegment<Arc> {
   segmentType = "ARC";
 
   readonly center: Vector;
   readonly clockwise: boolean;
+
+  static isInstance(value: unknown): value is Arc {
+    return (
+      !!value && (value as { [ARC_INSTANCE]?: boolean })[ARC_INSTANCE] === true
+    );
+  }
 
   constructor(
     firstPoint: Vector,
@@ -42,6 +50,7 @@ export class Arc extends AbstractSegment<Arc> {
     { ignoreChecks = false } = {},
   ) {
     super(firstPoint, lastPoint);
+    Object.defineProperty(this, ARC_INSTANCE, { value: true });
     this.center = center;
     this.clockwise = clockwise;
 
@@ -187,7 +196,7 @@ export class Arc extends AbstractSegment<Arc> {
   }
 
   isSame(other: Segment): boolean {
-    if (!(other instanceof Arc)) return false;
+    if (!Arc.isInstance(other)) return false;
     if (!sameVector(this.center, other.center)) return false;
 
     return (

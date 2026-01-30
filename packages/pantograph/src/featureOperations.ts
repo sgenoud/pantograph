@@ -237,7 +237,7 @@ function modifyStroke(
   const lastCurve = segments.at(-1);
   if (!lastCurve) throw new Error("Bug in the stroke corner algo");
 
-  if (stroke instanceof Loop) {
+  if (Loop.isInstance(stroke)) {
     const firstCurve = segments.pop();
     const secondCurve = segments.shift();
     if (!firstCurve || !secondCurve)
@@ -272,18 +272,18 @@ function fillet(
     typeof filter === "function" ? filter(new CornerFilter()) : filter;
   const filterFcn = filterObj && filterObj.asFilterFun();
 
-  if (shape instanceof Loop || shape instanceof Strand) {
+  if (Loop.isInstance(shape) || Strand.isInstance(shape)) {
     return modifyStroke(filletSegments, shape, radius, filterFcn);
   }
 
-  if (shape instanceof Figure) {
+  if (Figure.isInstance(shape)) {
     const newContour = fillet(shape.contour, radius, filterObj);
     const newHoles = shape.holes.map((l) => fillet(l, radius, filterObj));
 
     return new Figure(newContour, newHoles, { ignoreChecks: true });
   }
 
-  if (shape instanceof Diagram) {
+  if (Diagram.isInstance(shape)) {
     const newFigs = shape.figures.map((f) => fillet(f, radius, filterObj));
     return new Diagram(newFigs, { ignoreChecks: true });
   }
@@ -306,18 +306,18 @@ function chamfer(shape: Shape, radius: number, filter?: FilterArg): Shape {
     typeof filter === "function" ? filter(new CornerFilter()) : filter;
   const filterFcn = filterObj && filterObj.asFilterFun();
 
-  if (shape instanceof Loop || shape instanceof Strand) {
+  if (Loop.isInstance(shape) || Strand.isInstance(shape)) {
     return modifyStroke(filletSegments, shape, radius, filterFcn);
   }
 
-  if (shape instanceof Figure) {
+  if (Figure.isInstance(shape)) {
     const newContour = chamfer(shape.contour, radius, filterObj);
     const newHoles = shape.holes.map((l) => chamfer(l, radius, filterObj));
 
     return new Figure(newContour, newHoles, { ignoreChecks: true });
   }
 
-  if (shape instanceof Diagram) {
+  if (Diagram.isInstance(shape)) {
     const newFigs = shape.figures.map((f) => chamfer(f, radius, filterObj));
     return new Diagram(newFigs, { ignoreChecks: true });
   }

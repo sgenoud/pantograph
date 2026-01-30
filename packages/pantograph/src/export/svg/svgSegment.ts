@@ -11,15 +11,15 @@ function formatPoint([x, y]: [number, number]) {
 }
 
 export function svgSegmentToPath(segment: Segment) {
-  if (segment instanceof Line) {
+  if (Line.isInstance(segment)) {
     return `L ${formatPoint(segment.lastPoint)}`;
   }
-  if (segment instanceof Arc) {
+  if (Arc.isInstance(segment)) {
     return `A ${segment.radius} ${segment.radius} 0 ${
       segment.angularLength > Math.PI ? "1" : "0"
     } ${segment.clockwise ? "0" : "1"} ${formatPoint(segment.lastPoint)}`;
   }
-  if (segment instanceof EllipseArc) {
+  if (EllipseArc.isInstance(segment)) {
     return `A ${segment.majorRadius} ${segment.minorRadius} ${
       segment.tiltAngle * RAD2DEG
     } ${segment.deltaAngle > Math.PI ? "1" : "0"} ${
@@ -27,14 +27,14 @@ export function svgSegmentToPath(segment: Segment) {
     } ${formatPoint(segment.lastPoint)}`;
   }
 
-  if (segment instanceof QuadraticBezier) {
+  if (QuadraticBezier.isInstance(segment)) {
     return `Q ${[
       formatPoint(segment.controlPoint),
       formatPoint(segment.lastPoint),
     ].join(" ")}`;
   }
 
-  if (segment instanceof CubicBezier) {
+  if (CubicBezier.isInstance(segment)) {
     return `C ${[
       formatPoint(segment.firstControlPoint),
       formatPoint(segment.lastControlPoint),

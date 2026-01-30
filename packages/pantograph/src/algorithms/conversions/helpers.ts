@@ -45,18 +45,18 @@ function genericConversion(
   shape: Diagram | Figure | Loop | Strand | Segment,
   segmentsMap: SegmentsMap,
 ): Diagram | Figure | Loop | Strand | Segment[] {
-  if (shape instanceof Diagram) {
+  if (Diagram.isInstance(shape)) {
     return convertDiagramTo(shape, segmentsMap);
   }
-  if (shape instanceof Figure) {
+  if (Figure.isInstance(shape)) {
     return convertFigureTo(shape, segmentsMap);
   }
 
-  if (shape instanceof Loop) {
+  if (Loop.isInstance(shape)) {
     return convertLoopTo(shape, segmentsMap);
   }
 
-  if (shape instanceof Strand) {
+  if (Strand.isInstance(shape)) {
     return converStrandTo(shape, segmentsMap);
   }
 

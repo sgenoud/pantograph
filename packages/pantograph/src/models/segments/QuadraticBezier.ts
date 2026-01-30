@@ -17,10 +17,21 @@ import { TransformationMatrix } from "../TransformationMatrix.js";
 import { AbstractSegment } from "./Segment.js";
 import { deCasteljauWithHistory } from "./utils/deCasteljau.js";
 
+const QUADRATIC_BEZIER_INSTANCE = Symbol.for("pantograph:QuadraticBezier");
+
 export class QuadraticBezier extends AbstractSegment<QuadraticBezier> {
   segmentType = "QUADRATIC_BEZIER";
 
   readonly controlPoint: Vector;
+
+  static isInstance(value: unknown): value is QuadraticBezier {
+    return (
+      !!value &&
+      (value as { [QUADRATIC_BEZIER_INSTANCE]?: boolean })[
+        QUADRATIC_BEZIER_INSTANCE
+      ] === true
+    );
+  }
 
   constructor(
     firstPoint: Vector,
@@ -29,6 +40,7 @@ export class QuadraticBezier extends AbstractSegment<QuadraticBezier> {
     //{ ignoreChecks = false } = {}
   ) {
     super(firstPoint, lastPoint);
+    Object.defineProperty(this, QUADRATIC_BEZIER_INSTANCE, { value: true });
     this.controlPoint = controlPoint;
   }
 

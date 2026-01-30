@@ -13,11 +13,21 @@ import { Transformable } from "./utils/Transformable.js";
 import { Strand } from "./Strand.js";
 import type { Stroke } from "./Stroke.js";
 
+const DIAGRAM_INSTANCE = Symbol.for("pantograph:Diagram");
+
 export class Diagram extends Transformable<Diagram> {
+  static isInstance(value: unknown): value is Diagram {
+    return (
+      !!value &&
+      (value as { [DIAGRAM_INSTANCE]?: boolean })[DIAGRAM_INSTANCE] === true
+    );
+  }
+
   figures: Figure[];
 
   constructor(figures: Figure[] = [], { ignoreChecks = false } = {}) {
     super();
+    Object.defineProperty(this, DIAGRAM_INSTANCE, { value: true });
     if (!ignoreChecks) checkIsValidDiagram(figures);
     this.figures = figures;
   }
@@ -65,7 +75,7 @@ export class Diagram extends Transformable<Diagram> {
 
   overlappingStrands(other: Diagram | Figure | Stroke): Strand[] {
     return this.figures.flatMap((figure) => {
-      if (!(other instanceof Diagram)) {
+      if (!Diagram.isInstance(other)) {
         return figure.overlappingStrands(other);
       }
 

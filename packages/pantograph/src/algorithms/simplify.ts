@@ -5,13 +5,13 @@ import { parallel, sameVector } from "../vectorOperations.js";
 import { Arc } from "../models/segments/Arc.js";
 
 function canExtendSegment(segment1: Segment, segment2: Segment): boolean {
-  if (segment1 instanceof Line && segment2 instanceof Line) {
+  if (Line.isInstance(segment1) && Line.isInstance(segment2)) {
     if (parallel(segment1.V, segment2.V)) {
       return true;
     }
   }
 
-  if (segment1 instanceof Arc && segment2 instanceof Arc) {
+  if (Arc.isInstance(segment1) && Arc.isInstance(segment2)) {
     if (
       sameVector(segment1.center, segment2.center) &&
       segment1.radius - segment2.radius < segment1.precision
@@ -23,10 +23,10 @@ function canExtendSegment(segment1: Segment, segment2: Segment): boolean {
 }
 
 function extendSegment(segment1: Segment, segment2: Segment): Segment {
-  if (segment1 instanceof Line && segment2 instanceof Line) {
+  if (Line.isInstance(segment1) && Line.isInstance(segment2)) {
     return new Line(segment1.firstPoint, segment2.lastPoint);
   }
-  if (segment1 instanceof Arc && segment2 instanceof Arc) {
+  if (Arc.isInstance(segment1) && Arc.isInstance(segment2)) {
     // clockwise is the same for both segments, we would otherwise have some
     // self-intersections in the stroke
     return new Arc(

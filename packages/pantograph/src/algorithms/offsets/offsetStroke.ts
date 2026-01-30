@@ -36,17 +36,17 @@ export const transformForOffset = (
   segments: Segment[],
 ): OffsettableSegment[] => {
   return segments.flatMap((segment: Segment): OffsettableSegment[] => {
-    if (segment instanceof Line) {
+    if (Line.isInstance(segment)) {
       return [segment];
-    } else if (segment instanceof Arc) {
+    } else if (Arc.isInstance(segment)) {
       return [segment];
-    } else if (segment instanceof EllipseArc) {
+    } else if (EllipseArc.isInstance(segment)) {
       return approximateEllipticalArcAsCubicBeziers(segment).flatMap((c) =>
         splitIntoOffsetSafeBezier(c),
       );
     } else if (
-      segment instanceof QuadraticBezier ||
-      segment instanceof CubicBezier
+      QuadraticBezier.isInstance(segment) ||
+      CubicBezier.isInstance(segment)
     ) {
       return splitIntoOffsetSafeBezier(segment);
     } else {
@@ -81,7 +81,7 @@ export function rawOffsets(
   const appendSegment = (segment: OffsetSegmentPair) => {
     if (!savedLastSegment) {
       savedLastSegment = segment;
-    } else if (!(segment.offset instanceof DegenerateSegment)) {
+    } else if (!DegenerateSegment.isInstance(segment.offset)) {
       offsettedArray.push(segment.offset);
     } else if (
       !sameVector(segment.offset.firstPoint, segment.offset.lastPoint)
@@ -118,8 +118,8 @@ export function rawOffsets(
     let intersections: Vector[] = [];
 
     if (
-      !(previousSegment.offset instanceof DegenerateSegment) &&
-      !(segment.offset instanceof DegenerateSegment)
+      !DegenerateSegment.isInstance(previousSegment.offset) &&
+      !DegenerateSegment.isInstance(segment.offset)
     ) {
       // When the offset segments intersect we cut them and save them at
       const { intersections: pointIntersections, overlaps } =

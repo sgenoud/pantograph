@@ -12,6 +12,10 @@ type Matrix = [
   number,
 ];
 
+const TRANSFORMATION_MATRIX_INSTANCE = Symbol.for(
+  "pantograph:TransformationMatrix",
+);
+
 const matMult = (m1: Matrix, m2: Matrix): Matrix => {
   const [a, b, c, d, e, f, g, h, i] = m1;
   const [j, k, l, m, n, o, p, q, r] = m2;
@@ -50,9 +54,21 @@ const transpose = (m: Matrix): Matrix => {
 };
 
 export class TransformationMatrix {
+  static isInstance(value: unknown): value is TransformationMatrix {
+    return (
+      !!value &&
+      (value as { [TRANSFORMATION_MATRIX_INSTANCE]?: boolean })[
+        TRANSFORMATION_MATRIX_INSTANCE
+      ] === true
+    );
+  }
+
   private _matrix: Matrix = [1, 0, 0, 0, 1, 0, 0, 0, 1];
 
   constructor(matrix?: Matrix) {
+    Object.defineProperty(this, TRANSFORMATION_MATRIX_INSTANCE, {
+      value: true,
+    });
     if (matrix) this._matrix = [...matrix];
   }
 

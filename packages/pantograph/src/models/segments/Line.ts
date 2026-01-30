@@ -17,8 +17,22 @@ import {
 } from "../../vectorOperations";
 import { Segment, AbstractSegment } from "./Segment.js";
 
+const LINE_INSTANCE = Symbol.for("pantograph:Line");
+
 export class Line extends AbstractSegment<Line> {
   segmentType = "LINE";
+
+  static isInstance(value: unknown): value is Line {
+    return (
+      !!value && (value as { [LINE_INSTANCE]?: boolean })[LINE_INSTANCE] === true
+    );
+  }
+
+  constructor(firstPoint: Vector, lastPoint: Vector) {
+    super(firstPoint, lastPoint);
+    Object.defineProperty(this, LINE_INSTANCE, { value: true });
+  }
+
   isValidParameter(t: number): boolean {
     const linearPrecision = this.length * this.precision;
     return t >= -linearPrecision && 1 - t >= -linearPrecision;
@@ -66,7 +80,7 @@ export class Line extends AbstractSegment<Line> {
   }
 
   isSame(other: Segment): boolean {
-    if (!(other instanceof Line)) return false;
+    if (!Line.isInstance(other)) return false;
     return (
       (sameVector(this.firstPoint, other.firstPoint) &&
         sameVector(this.lastPoint, other.lastPoint)) ||

@@ -33,8 +33,8 @@ function removeCorner(
   const secondOffset = offsetSegment(secondSegment, offset);
 
   if (
-    firstOffset instanceof DegenerateSegment ||
-    secondOffset instanceof DegenerateSegment
+    DegenerateSegment.isInstance(firstOffset) ||
+    DegenerateSegment.isInstance(secondOffset)
   ) {
     return null;
   }
