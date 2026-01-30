@@ -80,7 +80,7 @@ function tesselate(
 function tesselatePoints(
   shape: Diagram,
   options?: TesselateSegmentOptions,
-): Vector[][][];
+): Vector[][];
 function tesselatePoints(
   shape: Figure,
   options?: TesselateSegmentOptions,
@@ -88,21 +88,21 @@ function tesselatePoints(
 function tesselatePoints(
   shape: Loop,
   options?: TesselateSegmentOptions,
-): Vector[];
+): Vector[][];
 function tesselatePoints(
   shape: Strand,
   options?: TesselateSegmentOptions,
-): Vector[];
+): Vector[][];
 function tesselatePoints(
   shape: Segment,
   options?: TesselateSegmentOptions,
-): Vector[];
+): Vector[][];
 function tesselatePoints(
   shape: Diagram | Figure | Loop | Strand | Segment,
   options: TesselateSegmentOptions = {},
 ) {
   if (shape instanceof Diagram) {
-    return shape.figures.map((figure) => tesselatePoints(figure, options));
+    return shape.figures.flatMap((figure) => tesselatePoints(figure, options));
   }
 
   if (shape instanceof Figure) {
@@ -117,14 +117,14 @@ function tesselatePoints(
   }
 
   if (shape instanceof Loop) {
-    return orientPoints(stitchSegmentPoints(shape.segments, options), false);
+    return [orientPoints(stitchSegmentPoints(shape.segments, options), false)];
   }
 
   if (shape instanceof Strand) {
-    return stitchSegmentPoints(shape.segments, options);
+    return [stitchSegmentPoints(shape.segments, options)];
   }
 
-  return tesselateSegment(shape, options);
+  return [tesselateSegment(shape, options)];
 }
 
 export { tesselate, tesselatePoints };
