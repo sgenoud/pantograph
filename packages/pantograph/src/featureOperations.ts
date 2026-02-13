@@ -1,4 +1,4 @@
-import { filletSegments } from "./algorithms/filletSegments";
+import { chamferSegments, filletSegments } from "./algorithms/filletSegments";
 import { Vector } from "./definitions";
 import { Diagram, Figure, Loop, Segment, Strand } from "./models/exports";
 import { angle, DEG2RAD, distance, sameVector } from "./vectorOperations";
@@ -307,7 +307,7 @@ function chamfer(shape: Shape, radius: number, filter?: FilterArg): Shape {
   const filterFcn = filterObj && filterObj.asFilterFun();
 
   if (Loop.isInstance(shape) || Strand.isInstance(shape)) {
-    return modifyStroke(filletSegments, shape, radius, filterFcn);
+    return modifyStroke(chamferSegments, shape, radius, filterFcn);
   }
 
   if (Figure.isInstance(shape)) {
