@@ -553,8 +553,14 @@ export const intersectLoops = (
     outer: Loop,
     boundaryInside: boolean,
   ) =>
-    inner.segments.every((segment) =>
-      outer.contains(segment.midPoint, { strokeIsInside: boundaryInside }),
+    inner.segments.every(
+      (segment) =>
+        outer.contains(segment.midPoint, {
+          strokeIsInside: boundaryInside,
+        }) &&
+        outer.contains(segment.firstPoint, {
+          strokeIsInside: boundaryInside,
+        }),
     );
 
   if (useBoundaryChecks) {

@@ -388,6 +388,33 @@ describe("boolean for loops", () => {
       );
     });
 
+    it("handles a rect intersected with a chamfered rect sharing edges", () => {
+      // A rectangle and a chamfered rectangle that share edges on all 4 sides
+      // but differ at the corners. The intersection should be the chamfered
+      // rect (the smaller shape), not the full rectangle.
+      const outerRect = polygon([
+        [0, 0],
+        [10, 0],
+        [10, 10],
+        [0, 10],
+      ]);
+      const chamfered = polygon([
+        [0, 2],
+        [2, 0],
+        [8, 0],
+        [10, 2],
+        [10, 8],
+        [8, 10],
+        [2, 10],
+        [0, 8],
+      ]);
+      const intersected = intersectLoops(outerRect, chamfered, {
+        firstBoundaryInside: true,
+      });
+      expect(intersected.length).toEqual(1);
+      expect(intersected[0]).toBeLoop(chamfered);
+    });
+
     it("handles cutting a weird shape from a square", () => {
       const p1 = polygon([
         [93, 33],
