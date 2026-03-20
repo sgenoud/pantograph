@@ -1,6 +1,6 @@
 {
   "name": "dielines",
-  "version": "0.11.2",
+  "version": "0.11.3",
   "description": "Create dielines with pantograph APIs",
   "type": "module",
   "keywords": [
