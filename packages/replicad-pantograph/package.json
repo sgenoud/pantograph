@@ -29,6 +29,6 @@
     "replicad": "*"
   },
   "dependencies": {
-    "pantograph2d": "workspace:^"
+    "pantograph2d": "^0.11.3"
   }
 }

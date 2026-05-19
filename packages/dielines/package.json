@@ -33,7 +33,7 @@
     "url": "https://github.com/sgenoud/pantograph/issues"
   },
   "dependencies": {
-    "pantograph2d": "workspace:^"
+    "pantograph2d": "^0.11.3"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^8.12.2",

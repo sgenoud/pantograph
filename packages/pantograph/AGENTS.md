@@ -1,8 +1,8 @@
 # Pantograph package bootstrap
 
 ## Tests
-- Run all tests (non-watch): `pnpm vitest --run`
-- Target a single file (non-watch): `pnpm vitest --run path/to/spec.ts`
+- Run all tests (non-watch): `npm exec vitest -- --run`
+- Target a single file (non-watch): `npm exec vitest -- --run path/to/spec.ts`
 
 ## Entry points
 - Public API exports live in `src/main.ts`
