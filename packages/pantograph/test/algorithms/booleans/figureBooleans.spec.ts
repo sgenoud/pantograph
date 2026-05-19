@@ -83,6 +83,35 @@ describe("figure booleans", () => {
         ]),
       ]);
     });
+
+    it("ignores point-only contacts when fusing figures with a shared edge", () => {
+      const first = new Figure(
+        polygon([
+          [0, 0],
+          [4, 0],
+          [4, 4],
+          [0, 4],
+        ]),
+      );
+      const second = new Figure(
+        polygon([
+          [4, 0],
+          [8, 0],
+          [8, 4],
+          [5, 4],
+          [4, 3],
+          [5, 2],
+          [4, 2],
+        ]),
+      );
+
+      const fusedFigures = fuseFiguresLists([first], [second]);
+
+      expect(fusedFigures.length).toBe(1);
+      expect(fusedFigures[0].holes).toEqual([]);
+      expect(fusedFigures[0].contains([2, 2])).toBe(true);
+      expect(fusedFigures[0].contains([6, 2])).toBe(true);
+    });
   });
 
   describe("cutFiguresLists", () => {

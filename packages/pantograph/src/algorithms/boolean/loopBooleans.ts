@@ -85,6 +85,27 @@ function removeNonCrossingPoint(
   });
 }
 
+const findLoopContainmentPoint = (loop: Loop, other: Loop): Vector => {
+  const sampleParams = [0.5, 0.25, 0.75];
+
+  for (const segment of loop.segments) {
+    for (const t of sampleParams) {
+      const point = segment.paramPoint(t);
+      if (!other.onStroke(point)) return point;
+    }
+  }
+
+  for (const segment of loop.segments) {
+    if (!other.onStroke(segment.firstPoint)) {
+      return segment.firstPoint;
+    }
+  }
+
+  // All sampled points are on the boundary. This is the identical or fully
+  // boundary-coincident case, so any point is equivalent for containment.
+  return loop.segments[0].midPoint;
+};
+
 /* When two shape intersect we cut them into segments between the intersection
  * points.
  *
@@ -159,11 +180,21 @@ function loopIntersectionStrands(
   // We need to remove intersection points that are not crossing into each
   // other (i.e. the two blueprints are only touching in one point and not
   // intersecting there.)
-  allIntersections = removeNonCrossingPoint(
-    allIntersections,
-    firstCurveSegments,
-    second,
-  );
+  //
+  // When there are common (shared) segments, we skip this removal. The
+  // containment-based check in removeNonCrossingPoint can give incorrect
+  // results when segment midpoints fall near the other loop's boundary,
+  // which is common in shared-edge scenarios. Keeping all intersection
+  // points is safe because the "same" strand detection in the later
+  // processing correctly handles non-crossing junctions between shared
+  // segments.
+  if (!allCommonSegments.length) {
+    allIntersections = removeNonCrossingPoint(
+      allIntersections,
+      firstCurveSegments,
+      second,
+    );
+  }
 
   if (!allIntersections.length && !allCommonSegments.length) return null;
 
@@ -236,10 +267,11 @@ function loopIntersectionStrands(
         return [first, "same"];
       }
     } else if (
-      first.segmentsCount === 1 &&
-      allCommonSegments.some((commonSegment) => {
-        return first.segments[0].isSame(commonSegment);
-      })
+      first.segments.every((segment) =>
+        allCommonSegments.some((commonSegment) =>
+          segment.isSame(commonSegment),
+        ),
+      )
     ) {
       return [first, "same"];
     }
@@ -373,12 +405,12 @@ export function loopBooleanOperation(
 
   // The case where we have no intersections
   if (!strands) {
-    const firstStrandPoint = first.segments[0].midPoint;
+    const firstStrandPoint = findLoopContainmentPoint(first, second);
     const firstCurveInSecond = second.contains(firstStrandPoint, {
       strokeIsInside: secondBoundaryInside,
     });
 
-    const secondStrandPoint = second.segments[0].midPoint;
+    const secondStrandPoint = findLoopContainmentPoint(second, first);
     const secondCurveInFirst = first.contains(secondStrandPoint, {
       strokeIsInside: firstBoundaryInside,
     });
@@ -394,6 +426,7 @@ export function loopBooleanOperation(
     return { identical: true };
   }
 
+  const hasSharedEdges = strands.some(([, s]) => s === "same");
   let lastWasSame: null | Strand = null;
   let strandsIn: number | null = null;
 
@@ -428,7 +461,15 @@ export function loopBooleanOperation(
     // Every strand is kept or removed according to the fact that it is within
     // or not of the other closed loop
 
-    const firstSegmentPoint = firstStrand.segments[0].midPoint;
+    // When shapes share edges, the first/last segments of a non-shared strand
+    // may have midpoints very close to the other loop's boundary (within FP
+    // noise), leading to unreliable ray cast results. Use a segment from the
+    // middle of the strand for a more robust containment check.
+    const firstCheckIdx =
+      hasSharedEdges && firstStrand.segmentsCount > 2
+        ? Math.floor(firstStrand.segmentsCount / 2)
+        : 0;
+    const firstSegmentPoint = firstStrand.segments[firstCheckIdx].midPoint;
     const firstSegmentInSecondShape = second.contains(firstSegmentPoint, {
       strokeIsInside: secondBoundaryInside,
     });
@@ -441,7 +482,11 @@ export function loopBooleanOperation(
       mergedStrands = extendStrandList(mergedStrands, firstStrand);
     }
 
-    const secondSegmentPoint = secondStrand.segments[0].midPoint;
+    const secondCheckIdx =
+      hasSharedEdges && secondStrand.segmentsCount > 2
+        ? Math.floor(secondStrand.segmentsCount / 2)
+        : 0;
+    const secondSegmentPoint = secondStrand.segments[secondCheckIdx].midPoint;
     const secondSegmentInFirstShape = first.contains(secondSegmentPoint, {
       strokeIsInside: firstBoundaryInside,
     });

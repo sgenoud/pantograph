@@ -3,6 +3,9 @@ import { organiseLoops } from "../organiseLoops";
 import { allPairs } from "../../utils/allPairs";
 import { cutLoops, fuseLoops, intersectLoops } from "./loopBooleans";
 
+const organiseBooleanLoops = (loops: Parameters<typeof organiseLoops>[0]) =>
+  organiseLoops(loops, { regularizeBoundaryTouchingHoles: true });
+
 export function fuseIntersectingFigures(figures: Figure[]) {
   const fused = new Map();
 
@@ -67,7 +70,7 @@ export function fuseFigures(first: Figure, second: Figure) {
     ([first, second]) => intersectLoops(first, second),
   );
 
-  return organiseLoops([
+  return organiseBooleanLoops([
     ...outerFused,
     ...inner1Fused,
     ...inner2Fused,
@@ -77,7 +80,7 @@ export function fuseFigures(first: Figure, second: Figure) {
 
 export function cutFigures(first: Figure, second: Figure): Figure[] {
   if (first.isFull && second.isFull) {
-    return organiseLoops(cutLoops(first.contour, second.contour));
+    return organiseBooleanLoops(cutLoops(first.contour, second.contour));
   }
 
   if (first.isFull) {
@@ -87,7 +90,7 @@ export function cutFigures(first: Figure, second: Figure): Figure[] {
     );
     // We might be able to assume that the contour and the holes are already
     // distinct figures.
-    return organiseLoops([...cutContour, ...cutHoles]);
+    return organiseBooleanLoops([...cutContour, ...cutHoles]);
   } else if (second.isFull) {
     if (!first.contour.intersects(second.contour)) {
       if (!first.contour.contains(second.contour.firstPoint)) {
@@ -99,7 +102,7 @@ export function cutFigures(first: Figure, second: Figure): Figure[] {
           [second],
         );
 
-        return organiseLoops([
+        return organiseBooleanLoops([
           first.contour,
           ...fusedCuts.flatMap((f) => f.allLoops),
         ]);
@@ -120,7 +123,7 @@ export function intersectFigures(first: Figure, second: Figure): Figure[] {
   const outerIntersection = intersectLoops(first.contour, second.contour);
   if (!outerIntersection.length) return [];
 
-  let out = organiseLoops(outerIntersection);
+  let out = organiseBooleanLoops(outerIntersection);
   out = cutFiguresLists(
     out,
     first.holes.map((h) => new Figure(h)),

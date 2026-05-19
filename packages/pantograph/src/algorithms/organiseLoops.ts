@@ -144,13 +144,40 @@ const cleanEdgeCases = (groupedLoops: ContainedLoop[]): ContainedLoop[][] => {
   }
 };
 
+const loopInsideOrOnBoundary = (inner: Loop, outer: Loop) =>
+  inner.segments.every(
+    (segment) =>
+      outer.contains(segment.midPoint, { strokeIsInside: true }) &&
+      outer.contains(segment.firstPoint, { strokeIsInside: true }),
+  );
+
+const removeBoundaryTouchingHoles = (contour: Loop, holes: Loop[]) => {
+  return holes.filter((hole) => {
+    if (!contour.intersects(hole)) return true;
+    return !loopInsideOrOnBoundary(hole, contour);
+  });
+};
+
+type OrganiseLoopsOptions = {
+  /**
+   * Figure cannot represent holes that touch their contour. Boolean operations
+   * use regularized set semantics, so boundary-touching would-be holes are
+   * filled/dropped at the boolean boundary instead of being returned as invalid
+   * figures.
+   */
+  regularizeBoundaryTouchingHoles?: boolean;
+};
+
 /**
  * Groups an array of loops such that loops that correspond to holes
  * in other loops are set in a Figure
  *
  * This algorithm assumes non intersecting loops.
  */
-export function organiseLoops(loops: Loop[]): Figure[] {
+export function organiseLoops(
+  loops: Loop[],
+  { regularizeBoundaryTouchingHoles = false }: OrganiseLoopsOptions = {},
+): Figure[] {
   const uniqueLoops = dedupeEquivalentLoops(loops);
   const basicGrouping =
     groupByBoundingBoxOverlap(uniqueLoops).map(addContainmentInfo);
@@ -159,6 +186,11 @@ export function organiseLoops(loops: Loop[]): Figure[] {
 
     compounds.sort((a, b) => a.isIn.length - b.isIn.length);
     const [contour, ...holes] = compounds.map(({ loop }) => loop);
-    return new Figure(contour, holes);
+    return new Figure(
+      contour,
+      regularizeBoundaryTouchingHoles
+        ? removeBoundaryTouchingHoles(contour, holes)
+        : holes,
+    );
   });
 }
