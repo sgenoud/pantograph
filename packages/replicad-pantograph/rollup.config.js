@@ -1,6 +1,7 @@
 import replaceImports from "rollup-plugin-replace-imports-with-vars";
 import resolve from "@rollup/plugin-node-resolve";
 import typescript from "@rollup/plugin-typescript";
+import ts from "typescript";
 
 export default [
   {
@@ -18,6 +19,7 @@ export default [
     },
     plugins: [
       typescript({
+        typescript: ts,
         declaration: true,
         declarationDir: "dist/es",
       }),
@@ -42,6 +44,6 @@ export default [
     watch: {
       include: "src/**",
     },
-    plugins: [typescript({ sourceMap: false }), resolve()],
+    plugins: [typescript({ typescript: ts, sourceMap: false }), resolve()],
   },
 ];
